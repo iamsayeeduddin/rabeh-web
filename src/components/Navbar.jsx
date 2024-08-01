@@ -1,55 +1,60 @@
-import React from 'react';
+'use client'
+import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import logo from './Logo'
 
-const Header = () => {
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between p-4">
+    <nav className="bg-purple-600 p-4">
+      <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <img src="/logo.png" alt="Rabeh" className="h-8 mr-3" />
-          <span className="font-bold text-xl">Rabeh</span>
+          <Image src={logo} alt="Rabeh Logo" width={100} height={40} />
         </div>
-        <nav className="flex items-center space-x-4">
-          <Link href="/" legacyBehavior>
-            <a className="text-gray-700 hover:text-gray-900">Home</a>
+        
+        <div className="hidden md:flex space-x-4">
+          <Link href="/" className="text-white hover:text-gray-200">Home</Link>
+          <Link href="/about" className="text-white hover:text-gray-200">About</Link>
+          <Link href="/opportunities" className="text-white hover:text-gray-200">Opportunities</Link>
+          <Link href="/business" className="text-white hover:text-gray-200">Business</Link>
+          <Link href="/investor" className="text-white hover:text-gray-200">Investor</Link>
+          <Link href="/help" className="text-white hover:text-gray-200">Help</Link>
+        </div>
+        
+        <div className="flex items-center space-x-2">
+          <Link href="/signin" className="text-white hover:text-gray-200">Sign In</Link>
+          <Link href="/get-started" className="bg-white text-purple-600 px-4 py-2 rounded hover:bg-gray-200">
+            Get Started
           </Link>
-          <Link href="/about" legacyBehavior>
-            <a className="text-gray-700 hover:text-gray-900">About</a>
-          </Link>
-          <div className="relative group">
-            <button className="text-gray-700 hover:text-gray-900">
-              Opportunities
-            </button>
-            <div className="absolute left-0 hidden w-40 mt-2 bg-white border border-gray-200 rounded-md shadow-lg group-hover:block">
-              <Link href="/opportunities/1" legacyBehavior>
-                <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Opportunity 1</a>
-              </Link>
-              <Link href="/opportunities/2" legacyBehavior>
-                <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Opportunity 2</a>
-              </Link>
-            </div>
-          </div>
-          <Link href="/business" legacyBehavior>
-            <a className="text-gray-700 hover:text-gray-900">Business</a>
-          </Link>
-          <Link href="/investor" legacyBehavior>
-            <a className="text-gray-700 hover:text-gray-900">Investor</a>
-          </Link>
-          <Link href="/help" legacyBehavior>
-            <a className="text-gray-700 hover:text-gray-900">Help</a>
-          </Link>
-        </nav>
-        <div className="flex items-center space-x-4">
-          <Link href="/sign-in" legacyBehavior>
-            <a className="text-gray-700 hover:text-gray-900">Sign In</a>
-          </Link>
-          <Link href="/get-started" legacyBehavior>
-            <a className="px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-700">Get Started</a>
-          </Link>
+          <select className="bg-purple-600 text-white border border-white rounded px-2 py-1">
+            <option value="ksa">KSA</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        
+        {/* Mobile menu button */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+            {isOpen ? 'Close' : 'Menu'}
+          </button>
         </div>
       </div>
-    </header>
+      
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden">
+          <Link href="/" className="block text-white py-2">Home</Link>
+          <Link href="/about" className="block text-white py-2">About</Link>
+          <Link href="/opportunities" className="block text-white py-2">Opportunities</Link>
+          <Link href="/business" className="block text-white py-2">Business</Link>
+          <Link href="/investor" className="block text-white py-2">Investor</Link>
+          <Link href="/help" className="block text-white py-2">Help</Link>
+        </div>
+      )}
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;
