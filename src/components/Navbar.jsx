@@ -1,59 +1,64 @@
-'use client'
-import Image from 'next/image';
+'use client';
 import Link from 'next/link';
-import { useState } from 'react';
-import logo from './Logo'
+import Logo from './Logo';
+import { FaYoutube, FaInstagram, FaLinkedin, FaTimes, FaFacebook } from 'react-icons/fa';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <nav className="bg-purple-600 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center">
-          <Image src={logo} alt="Rabeh Logo" width={100} height={40} />
+    <>
+      <nav className="bg-primary">
+        <div className="flex justify-between items-center py-2 px-4 mx-auto w-[1440px] m-h-[88px] border-b border-opacity-0">
+          {/* Social Media Icons */}
+          <div className="flex space-x-4">
+            <FaYoutube className="text-white" />
+            <FaInstagram className="text-white" />
+            <FaLinkedin className="text-white" />
+            <FaTimes className="text-white" />
+            <FaFacebook className="text-white" />
+          </div>
+          {/* Country and Language Selectors */}
+          <div className="flex items-center space-x-4 text-white">
+            <div className="relative inline-block">
+              <select className="bg-primary text-white border-none rounded px-2 py-1">
+                <option value="ksa">🇸🇦 KSA</option>
+                <option value="usa">🇺🇸 USA</option>
+              </select>
+            </div>
+            <div className="relative inline-block">
+              <select className="bg-primary text-white border-none rounded px-2 py-1">
+                <option value="en">EN</option>
+                <option value="ar">AR</option>
+              </select>
+            </div>
+          </div>
         </div>
-        
-        <div className="hidden md:flex space-x-4">
-          <Link href="/" className="text-white hover:text-gray-200">Home</Link>
-          <Link href="/about" className="text-white hover:text-gray-200">About</Link>
-          <Link href="/opportunities" className="text-white hover:text-gray-200">Opportunities</Link>
-          <Link href="/business" className="text-white hover:text-gray-200">Business</Link>
-          <Link href="/investor" className="text-white hover:text-gray-200">Investor</Link>
-          <Link href="/help" className="text-white hover:text-gray-200">Help</Link>
+      </nav>
+      <nav className="bg-white shadow-md">
+        <div className="flex items-center justify-between py-4 px-4 mx-auto w-[1440px] h-[88px]">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Logo />
+          </div>
+          {/* Navigation Links */}
+          <div className="hidden md:flex space-x-6">
+            <Link href="/" className="text-gray-700 hover:text-gray-900">Home</Link>
+            <Link href="/about" className="text-gray-700 hover:text-gray-900">About</Link>
+            <Link href="/opportunities" className="text-gray-700 hover:text-gray-900">
+              Opportunities
+              <span className="ml-1">▼</span>
+            </Link>
+            <Link href="/business" className="text-gray-700 hover:text-gray-900">Business</Link>
+            <Link href="/investor" className="text-gray-700 hover:text-gray-900">Investor</Link>
+            <Link href="/help" className="text-gray-700 hover:text-gray-900">Help</Link>
+          </div>
+          {/* Action Buttons */}
+          <div className="flex items-center space-x-4">
+            <Link href="/sign-in" className="text-gray-700 hover:text-gray-900 border border-gray-700 rounded-md px-4 py-2" style={{ borderRadius: '8px' }}>Sign In</Link>
+            <Link href="/get-started" className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-light" style={{ borderRadius: '8px' }}>Get Started</Link>
+          </div>
         </div>
-        
-        <div className="flex items-center space-x-2">
-          <Link href="/signin" className="text-white hover:text-gray-200">Sign In</Link>
-          <Link href="/get-started" className="bg-white text-purple-600 px-4 py-2 rounded hover:bg-gray-200">
-            Get Started
-          </Link>
-          <select className="bg-purple-600 text-white border border-white rounded px-2 py-1">
-            <option value="ksa">KSA</option>
-            <option value="en">EN</option>
-          </select>
-        </div>
-        
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-white">
-            {isOpen ? 'Close' : 'Menu'}
-          </button>
-        </div>
-      </div>
-      
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden">
-          <Link href="/" className="block text-white py-2">Home</Link>
-          <Link href="/about" className="block text-white py-2">About</Link>
-          <Link href="/opportunities" className="block text-white py-2">Opportunities</Link>
-          <Link href="/business" className="block text-white py-2">Business</Link>
-          <Link href="/investor" className="block text-white py-2">Investor</Link>
-          <Link href="/help" className="block text-white py-2">Help</Link>
-        </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 };
 
