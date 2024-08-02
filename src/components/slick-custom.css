@@ -1,0 +1,19 @@
+.slick-prev,
+.slick-next {
+  width: 48px;
+  height: 48px;
+  z-index: 10; 
+}
+
+.slick-prev {
+  left: -24px; 
+}
+
+.slick-next {
+  right: -24px; 
+}
+
+.slick-slide > div {
+  display: flex;
+  justify-content: center;
+}
