@@ -15,7 +15,7 @@ const InvestmentOpportunities = () => {
       dueDate: '12/2/2024',
     },
     {
-      logoSrc: '/path/to/logo2.png',
+      logoSrc: '/Avatar.png',
       projectName: 'Mohami Project 2',
       issueNumber: '28991',
       amount: '50,897.34',
@@ -26,7 +26,7 @@ const InvestmentOpportunities = () => {
       dueDate: '10/2/2024',
     },
     {
-      logoSrc: '/path/to/logo3.png',
+      logoSrc: '/Avatar.png',
       projectName: 'Mohami Project 3',
       issueNumber: '28992',
       amount: '70,897.34',
@@ -36,7 +36,17 @@ const InvestmentOpportunities = () => {
       returnOnInvestment: '+3,70%',
       dueDate: '11/2/2024',
     },
-    // Add more card data as needed
+    {
+      logoSrc: '/Avatar.png',
+      projectName: 'Mohami Project 4',
+      issueNumber: '28992',
+      amount: '70,897.34',
+      daysLeft: '25',
+      progress: 80,
+      annualReturn: '+3,70%',
+      returnOnInvestment: '+3,70%',
+      dueDate: '11/2/2024',
+    },
   ];
   return (
     <div class=" bg-[#FAFAFA] w-min-[1440px] h-auto pt-[96px] pr-[72px] pb-[112px] pl-[72px] flex-row gap-[64px] ">

@@ -8,6 +8,9 @@ import SaveTimeResources from '@/components/SaveTimeResources';
 import WhatCustomerSays from '@/components/WhatCustomerSays';
 import Brands from '@/components/Brands';
 import SupportedCompainies from '@/components/SupportedCompainies';
+import Newsletter from '@/components/Newsletter';
+import UnleashInvestment from '@/components/UnleashInvestment';
+import Policy from '@/components/Policy';
 const page = () => {
   return (
     <div>
@@ -38,6 +41,9 @@ const page = () => {
 <WhatCustomerSays/>
 <Brands/>
 <SupportedCompainies/>
+<Newsletter/>
+<UnleashInvestment/>
+<Policy/>
     </div>
   )
 }

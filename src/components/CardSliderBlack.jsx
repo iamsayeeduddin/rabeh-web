@@ -1,10 +1,14 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const CardSlider = () => {
-  // Sample card images
+
   const cardImages = [
+    '/ncb.png',
+    '/sc.png',
+    '/amara.png',
+    '/bank.png',
     '/ncb.png',
     '/sc.png',
     '/amara.png',
@@ -12,39 +16,59 @@ const CardSlider = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const containerRef = useRef(null);
+
+  const totalCards = cardImages.length;
+  const displayCards = [...cardImages, ...cardImages, ...cardImages];
+
+  useEffect(() => {
+    if (currentIndex === totalCards) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(0);
+      }, 300);
+    }
+
+    if (currentIndex === -1) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(totalCards - 1);
+      }, 300); 
+    }
+  }, [currentIndex, totalCards]);
 
   const nextCard = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardImages.length);
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
   const prevCard = () => {
-    setCurrentIndex((prevIndex) => 
-      (prevIndex - 1 + cardImages.length) % cardImages.length
-    );
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => prevIndex - 1);
   };
 
   return (
-    <div className="relative mt-10">
-      <div className="flex overflow-hidden">
+    <div className="relative mt-10 overflow-hidden">
+      <div className="flex" ref={containerRef}>
         <div
-          className="flex transition-transform duration-300"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          className={`flex transition-transform duration-300 ${isTransitioning ? 'transform' : ''}`}
+          style={{ transform: `translateX(-${(currentIndex + totalCards) * 356}px)` }} // Adjust the translation by the card width + margin
         >
-          {cardImages.map((src, index) => (
+          {displayCards.map((src, index) => (
             <div key={index} className="w-[340px] h-[210px] bg-[#2E334B] rounded-[16px] flex justify-center items-center p-4 m-2">
               <Image
                 src={src}
-                alt={`Card Image ${index + 1}`}
-                width={266} 
-                height={150} 
-                className="object-contain opacity-50"  
+                alt={`Card Image ${index % totalCards + 1}`}
+                width={266}
+                height={150}
+                className="object-contain opacity-50"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Slider Buttons */}
       <div className="flex justify-end mt-4">
         <button
           onClick={prevCard}
