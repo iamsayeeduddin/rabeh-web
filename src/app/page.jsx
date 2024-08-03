@@ -1,9 +1,11 @@
-import React from 'react'
-import Hero from '../components/HeroSection';
+import React from "react";
+import Hero from "../components/HeroSection";
+import Footer from "@/components/Footer";
+
 const page = () => {
   return (
     <div>
-        <Hero
+      <Hero
         subtitle="Investing opportunities"
         title="Unleash Investment and grow businesses"
         description="An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies."
@@ -11,14 +13,14 @@ const page = () => {
         button1Link="/get-started"
         button2Text="Opportunities"
         button2Link="/opportunities"
-        svgImage="/illustration.svg" 
+        svgImage="/illustration.svg"
         titleColor="text-secoundary"
         titleSize="text-5xl"
         imageWidth="w-auto"
         imageHeight="h-auto"
       />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
