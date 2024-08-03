@@ -16,6 +16,9 @@ module.exports = {
         primary: '#7860DC', 
         secondary: '#252A3F',
       },
+      boxShadow: {
+        'custom': '0px 24px 170px -10px #00000024',
+      },
     },
   },
   plugins: [],

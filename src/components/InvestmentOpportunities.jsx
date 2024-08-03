@@ -51,8 +51,8 @@ const InvestmentOpportunities = () => {
       </div>
       <div className='flex items-center justify-center '>
       <CardSlider cards={cards} />
-
       </div>
+        <div className="flex items-center justify-center text-primary mt-7">        More Investment</div>
 
     </div>
 

@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import ProjectCard from './ProjectCard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './slick-custom.css';  // Make sure this file is present
 
 const CardSlider = ({ cards, onInvestClick }) => {
   const settings = {
@@ -20,10 +19,10 @@ const CardSlider = ({ cards, onInvestClick }) => {
   };
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Slider {...settings}>
         {cards.map((card, index) => (
-          <div key={index} className=" ">
+          <div key={index} className=" p-5 ml-6  ">
             <ProjectCard 
               {...card} 
               onInvestClick={() => onInvestClick(card.projectName)} 

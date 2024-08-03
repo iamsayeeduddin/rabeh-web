@@ -2,6 +2,9 @@ import React from 'react'
 import Hero from '../components/HeroSection';
 import TrustedBy from '../components/TrustedBy';
 import InvestmentOpportunities from '@/components/InvestmentOpportunities';
+import StrategicPartnerships from '@/components/StrategicPartnerships';
+import RestAssured from '@/components/RestAssured';
+import SaveTimeResources from '@/components/SaveTimeResources';
 const page = () => {
   return (
     <div>
@@ -26,7 +29,9 @@ const page = () => {
       />
      <TrustedBy />
      <InvestmentOpportunities/>
-          
+     <StrategicPartnerships/>
+     <RestAssured/>
+     <SaveTimeResources/>
 
     </div>
   )
