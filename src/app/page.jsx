@@ -5,6 +5,9 @@ import InvestmentOpportunities from '@/components/InvestmentOpportunities';
 import StrategicPartnerships from '@/components/StrategicPartnerships';
 import RestAssured from '@/components/RestAssured';
 import SaveTimeResources from '@/components/SaveTimeResources';
+import WhatCustomerSays from '@/components/WhatCustomerSays';
+import Brands from '@/components/Brands';
+import SupportedCompainies from '@/components/SupportedCompainies';
 const page = () => {
   return (
     <div>
@@ -32,7 +35,9 @@ const page = () => {
      <StrategicPartnerships/>
      <RestAssured/>
      <SaveTimeResources/>
-
+<WhatCustomerSays/>
+<Brands/>
+<SupportedCompainies/>
     </div>
   )
 }
