@@ -7,10 +7,9 @@ const logos = [
   { src: "/image2445.png", alt: "Logo 3", width: 107.92, height: 100 },
   { src: "/image2441.png", alt: "Logo 4", width: 117, height: 100 },
   { src: "/image2444.png", alt: "Logo 4", width: 131.59, height: 100 },
-  { src: "/image244.png", alt: "Logo 4", width: 131.59, height: 100 },
+  { src: "/image2443.png", alt: "Logo 4", width: 131.59, height: 100 },
   { src: "/image2439.png", alt: "Logo 5", width: 131.59, height: 100 },
   { src: "/image2442.png", alt: "Logo 6", width: 137.11, height: 100 },
-  // Add more logos as needed
 ];
 
 const StrategicPartnerships = () => {
@@ -29,7 +28,7 @@ const StrategicPartnerships = () => {
             <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
           </div>
         ))}
-      </div>
+      </div>  
     </div>
   );
 };
