@@ -1,5 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
+import useFonts from "@/utils/useFonts";
 
 const logos = [
   { src: "/group.png", alt: "Logo 1", width: 125.37, height: 100 },
@@ -13,8 +14,9 @@ const logos = [
 ];
 
 const StrategicPartnerships = () => {
+  const fonts = useFonts();
   return (
-    <div className='gap-[16px] p-[16px]'>
+    <div className={"gap-[16px] p-[16px] " + fonts.spaceG.className}>
       <div className="p-12 flex flex-col items-center justify-center">
         <div className="text-[48px] text-secondary">Strategic Partnerships</div>
         <div className="text-[20px] text-secondary mt-2">
@@ -28,7 +30,7 @@ const StrategicPartnerships = () => {
             <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
           </div>
         ))}
-      </div>  
+      </div>
     </div>
   );
 };

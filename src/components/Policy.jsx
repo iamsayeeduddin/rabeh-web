@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import useFonts from "@/utils/useFonts";
 
 const cardData = [
   {
@@ -21,61 +22,33 @@ const cardData = [
 ];
 
 const Policy = () => {
+  const fonts = useFonts();
   return (
-    <div className="flex flex-col p-[100px] bg-white">
+    <div className={"flex flex-col p-[100px] bg-white " + fonts.inter.className}>
       <div className="justify-start text-[40px] font-inter mt-5">Policy</div>
-      <div className="text-[18px] text-start">
-        Rabeh Financial Company is under the permit procedures of the Capital
-        Market Authority and under the supervision of the Central Bank of Saudi
-        Arabia to test its innovative products in the experimental environment
-        (Sandbox) for more.
+      <div className="text-[18px] text-start text-[#737373] max-w-3xl">
+        Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of Saudi
+        Arabia to test its innovative products in the experimental environment (Sandbox) for more.
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
         {cardData.map((card, index) => (
-          <div
-            key={index}
-            className="max-w-[568px] p-[16px] border border-[#E5E5E5] rounded-md"
-          >
+          <div key={index} className="max-w-[568px] p-[16px] border border-[#E5E5E5] rounded-md">
             <div className="flex flex-col gap-[20px]">
               <div className="flex justify-center">
                 <div className="h-[350px] w-[536px] px-[5px] border border-[#E5E5E5] bg-[#FAFAFA]  flex items-center justify-center overflow-hidden">
-                  <Image
-                    src={card.imageSrc}
-                    alt="Compliance"
-                    width={card.width}
-                    height={card.height}
-                    className="object-contain"
-                  />
+                  <Image src={card.imageSrc} alt="Compliance" width={card.width} height={card.height} className="object-contain" />
                 </div>
               </div>
               <div>
                 <h2 className="text-lg font-semibold">{card.title}</h2>
                 <p className="mt-2 text-gray-700">{card.description}</p>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 ">
                 <button className="bg-primary text-white px-4 py-2 rounded-[4px] text-sm flex items-center">
                   Learn More
-                  <svg
-                    width="20"
-                    height="21"
-                    viewBox="0 0 20 21"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4.75 10.9634H15.25"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M10 5.71338L15.25 10.9634L10 16.2134"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.75 10.9634H15.25" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M10 5.71338L15.25 10.9634L10 16.2134" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
