@@ -5,7 +5,24 @@ import useFonts from "@/utils/useFonts";
 
 function Footer() {
   const fonts = useFonts();
-  const secCert = [{}, {}, {}, {}, {}, {}];
+  const secCert = [
+    "/assets/norton_logo.png",
+    "/assets/mcafee_logo.png",
+    "/assets/w3c_logo.png",
+    "/assets/ssl_logo.png",
+    "/assets/pci_logo.png",
+    "/assets/soc_logo.png",
+  ];
+  const paymentCert = [
+    "/assets/mada_logo.png",
+    "/assets/apay_logo.png",
+    "/assets/gpay_logo.png",
+    "/assets/paypal_logo.png",
+    "/assets/mastercard_logo.png",
+    "/assets/visa_logo.png",
+    "/assets/stripe_logo.png",
+    "/assets/amex_logo.png",
+  ];
   return (
     <div className="py-16 px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col gap-16">
       <div className="max-w-6xl flex justify-between">
@@ -49,13 +66,13 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className={"max-w-6xl flex justify-between " + fonts.spaceG.className}>
+      <div className={"max-w-6xl gap-8 flex justify-between " + fonts.spaceG.className}>
         <div>
           <h5 className="font-medium">Security Certificates</h5>
           <div className="flex gap-3 pt-5">
             {secCert.map((item, index) => (
               <div key={index + "cert"} className="w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
-                <img src="/assets/norton_logo.png" />
+                <img src={item} />
               </div>
             ))}
           </div>
@@ -63,9 +80,14 @@ function Footer() {
         <div>
           <h5 className="font-medium">Flexible Payment options</h5>
           <div className="flex gap-3 pt-5">
-            {secCert.map((item, index) => (
-              <div key={index + "cert"} className="w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
-                <img src="/assets/norton_logo.png" />
+            {paymentCert.map((item, index) => (
+              <div
+                key={index + "cert"}
+                className={
+                  "w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " + (item.includes("amex") ? "bg-[#1F72CD]" : "")
+                }
+              >
+                <img src={item} />
               </div>
             ))}
           </div>
