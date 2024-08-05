@@ -1,10 +1,84 @@
+import CardSlider from "@/components/CardSlider";
+import StrategicPartnerships from "@/components/StrategicPartnerships";
+import SupportedCompainies from "@/components/SupportedCompainies";
 import TitleHead from "@/components/TitleHead";
 import useFonts from "@/utils/useFonts";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 
 const Page = () => {
   const fonts = useFonts();
+  const cards = [
+    {
+      logoSrc: "/Avatar.png",
+      projectName: "Mohami Project 1",
+      issueNumber: "28990",
+      amount: "60,897.34",
+      daysLeft: "29",
+      progress: 70,
+      annualReturn: "+3,50%",
+      returnOnInvestment: "+3,50%",
+      dueDate: "12/2/2024",
+    },
+    {
+      logoSrc: "/Avatar.png",
+      projectName: "Mohami Project 2",
+      issueNumber: "28991",
+      amount: "50,897.34",
+      daysLeft: "20",
+      progress: 60,
+      annualReturn: "+3,60%",
+      returnOnInvestment: "+3,60%",
+      dueDate: "10/2/2024",
+    },
+    {
+      logoSrc: "/Avatar.png",
+      projectName: "Mohami Project 3",
+      issueNumber: "28992",
+      amount: "70,897.34",
+      daysLeft: "25",
+      progress: 80,
+      annualReturn: "+3,70%",
+      returnOnInvestment: "+3,70%",
+      dueDate: "11/2/2024",
+    },
+    {
+      logoSrc: "/Avatar.png",
+      projectName: "Mohami Project 4",
+      issueNumber: "28992",
+      amount: "70,897.34",
+      daysLeft: "25",
+      progress: 80,
+      annualReturn: "+3,70%",
+      returnOnInvestment: "+3,70%",
+      dueDate: "11/2/2024",
+    },
+  ];
+
+  const team = [
+    {
+      name: "Mohammed Alsolami",
+      title: "Founder & CEO",
+      img: "/assets/mohd_alosaimi.png",
+    },
+    {
+      name: "Mohammed Alomar",
+      title: "Board Member",
+      img: "/assets/mohd_alomar.png",
+    },
+    {
+      name: "Anas Alsalman",
+      title: "Board Member",
+      img: "/assets/anas_alsalman.png",
+    },
+    {
+      name: "Houda Ahmed",
+      title: "Head of Investment",
+      img: "/assets/houda_ahmed.png",
+    },
+  ];
+
   return (
     <div>
       <TitleHead
@@ -280,8 +354,41 @@ const Page = () => {
               <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Completed Projects</span>
             </div>
           </div>
+          <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
+            <CardSlider cards={cards} />
+          </div>
         </div>
       </section>
+      <SupportedCompainies />
+      <section className="flex flex-col items-center">
+        <div className="max-w-7xl flex flex-col items-center p-24">
+          <div className="text-center">
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Meet Our Team</h5>
+            <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>
+              Our team is the driving force behind our innovative fintech platform. We are a diverse group of professionals with a shared passion for
+              transforming the financial landscape and empowering businesses and investors. Get to know the dedicated individuals who make RABEH a
+              success.
+            </p>
+          </div>
+          <div className="flex justify-between gap-11 pt-16">
+            {team.map((member, index) => (
+              <div key={index + member.title} className={"flex px-10 flex-col justify-between items-center " + fonts.inter.className}>
+                <img src={member.img} className="mb-5 w-24 h-24 rounded-full" />
+                <h5 className="text-lg font-semibold">{member.name}</h5>
+                <p className="text-[#6941C6]">{member.title}</p>
+                <div className="flex space-x-4 text-[#98A2B3] pt-4">
+                  <FaTwitter />
+                  <FaLinkedin />
+                  <FaFacebook />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <div className="bg-[#F9F9FB]">
+        <StrategicPartnerships />
+      </div>
     </div>
   );
 };
