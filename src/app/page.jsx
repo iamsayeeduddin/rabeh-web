@@ -11,7 +11,6 @@ import SupportedCompainies from "@/components/SupportedCompainies";
 import Newsletter from "@/components/Newsletter";
 import UnleashInvestment from "@/components/UnleashInvestment";
 import Policy from "@/components/Policy";
-import Footer from "@/components/Footer";
 
 const page = () => {
   return (
