@@ -89,38 +89,67 @@ const Page = () => {
       />
       <section className="flex flex-col items-center">
         <div className="max-w-3xl text-center">
-          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>About Rabeh</h5>
+          <h5
+            className={
+              "text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className
+            }
+          >
+            About Rabeh
+          </h5>
           <p>
-            At RABEH, we believe in democratizing investment opportunities for everyone, regardless of location. Our platform offers a seamless
-            investment experience for all segments of investors around the globe, providing access to successful and lucrative investment
+            At RABEH, we believe in democratizing investment opportunities for
+            everyone, regardless of location. Our platform offers a seamless
+            investment experience for all segments of investors around the
+            globe, providing access to successful and lucrative investment
             opportunities.
           </p>
         </div>
         <div className={"flex gap-6 pt-20 " + fonts.spaceG.className}>
           <div className="flex flex-col gap-4 max-w-xl px-10 py-14 bg-[#F9F9FB] rounded-3xl border border-[#0206171B]">
-            <img src="/assets/logo_mini.png" className="pb-4" height={35} width={30} />
+            <img
+              src="/assets/logo_mini.png"
+              className="pb-4"
+              height={35}
+              width={30}
+            />
             <h5 className="font-medium text-2xl">Our Vision</h5>
             <p className="text-[#36364A]">
-              To be the leading fintech platform that empowers businesses and investors through innovative, automated technologies, transforming the
-              financial landscape and fostering entrepreneurial success in Saudi and MENA region and worldwide.
+              To be the leading fintech platform that empowers businesses and
+              investors through innovative, automated technologies, transforming
+              the financial landscape and fostering entrepreneurial success in
+              Saudi and MENA region and worldwide.
             </p>
           </div>
           <div className="flex flex-col gap-4 max-w-xl px-10 py-14 bg-[#7860DC] rounded-3xl text-white">
-            <img src="/assets/logo_mini_light.png" className="pb-4" height={35} width={30} />
+            <img
+              src="/assets/logo_mini_light.png"
+              className="pb-4"
+              height={35}
+              width={30}
+            />
             <h5 className="font-medium text-2xl">Our Mission</h5>
             <p>
-              To provide an advanced, secure, and efficient platform that simplifies the funding process for businesses and enhances the investment
-              experience for investors. We aim to leverage artificial intelligence and a centralized blockchain network to automate financing,
-              allocation, follow-up, and decision support processes.
+              To provide an advanced, secure, and efficient platform that
+              simplifies the funding process for businesses and enhances the
+              investment experience for investors. We aim to leverage artificial
+              intelligence and a centralized blockchain network to automate
+              financing, allocation, follow-up, and decision support processes.
             </p>
           </div>
         </div>
       </section>
-      <section className={"flex flex-col items-center px-32 py-24 " + fonts.spaceG.className}>
+      <section
+        className={
+          "flex flex-col items-center px-32 py-24 " + fonts.spaceG.className
+        }
+      >
         <div className="max-w-7xl">
           <div className="w-full space-y-4 pb-12">
             <h5 className="font-bold text-4xl">Why Choose Rabeh?</h5>
-            <p className="max-w-xl text-lg">Discover our innovative features crafted to elevate your user journey and exceed your expectations.</p>
+            <p className="max-w-xl text-lg">
+              Discover our innovative features crafted to elevate your user
+              journey and exceed your expectations.
+            </p>
           </div>
           <div className="flex gap-6">
             <div className="max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
@@ -129,7 +158,8 @@ const Page = () => {
                 Innovative Technology
               </span>
               <p className="text-sm text-[#525252]">
-                We harness the power of artificial intelligence and blockchain to provide a seamless, secure, and efficient platform for both
+                We harness the power of artificial intelligence and blockchain
+                to provide a seamless, secure, and efficient platform for both
                 businesses and investors.
               </p>
             </div>
@@ -139,7 +169,8 @@ const Page = () => {
                 Global Reach
               </span>
               <p className="text-sm text-[#525252]">
-                Our platform is designed to accommodate investors and businesses from all over the world, providing access to a global pool of
+                Our platform is designed to accommodate investors and businesses
+                from all over the world, providing access to a global pool of
                 opportunities and resources.
               </p>
             </div>
@@ -149,7 +180,9 @@ const Page = () => {
                 Entrepreneurial Support
               </span>
               <p className="text-sm text-[#525252]">
-                We are committed to supporting entrepreneurs by providing the tools and resources needed to achieve financial success and growth.
+                We are committed to supporting entrepreneurs by providing the
+                tools and resources needed to achieve financial success and
+                growth.
               </p>
             </div>
             <div className="max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
@@ -158,7 +191,8 @@ const Page = () => {
                 Investor Empowerment
               </span>
               <p className="text-sm text-[#525252]">
-                We empower investors by offering a diverse range of investment opportunities and the tools to make informed decisions.
+                We empower investors by offering a diverse range of investment
+                opportunities and the tools to make informed decisions.
               </p>
             </div>
           </div>
@@ -167,9 +201,17 @@ const Page = () => {
       <section className="flex flex-col items-center">
         <div className="max-w-7xl">
           <div className="flex justify-between w-full pb-12">
-            <h5 className={"w-1/2 text-[#263238] font-bold text-4xl " + fonts.spaceG.className}>How it works</h5>
+            <h5
+              className={
+                "w-1/2 text-[#263238] font-bold text-4xl " +
+                fonts.spaceG.className
+              }
+            >
+              How it works
+            </h5>
             <p className="text-lg text-[#667085]">
-              It offers services for fundraising, equity exchange, and business enhancement, and facilitates funds and financing and all kinds of
+              It offers services for fundraising, equity exchange, and business
+              enhancement, and facilitates funds and financing and all kinds of
               support before, during, and after services.{" "}
             </p>
           </div>
@@ -178,9 +220,15 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Entreprenuer</h5>
               <p className="text-[#667085]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus cum purus bibendum risus nibh cursus integer.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus
+                cum purus bibendum risus nibh cursus integer.
               </p>
-              <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
+              <span
+                className={
+                  "pt-4 font-medium gap-2 items-center text-[#667085] flex " +
+                  fonts.spaceG.className
+                }
+              >
                 Join Entreprenuership Community <FaChevronRight />
               </span>
             </div>
@@ -188,9 +236,15 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Investors</h5>
               <p className="text-[#667085]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus cum purus bibendum risus nibh cursus integer.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus
+                cum purus bibendum risus nibh cursus integer.
               </p>
-              <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
+              <span
+                className={
+                  "pt-4 font-medium gap-2 items-center text-[#667085] flex " +
+                  fonts.spaceG.className
+                }
+              >
                 Join Investors Hub <FaChevronRight />
               </span>
             </div>
@@ -198,9 +252,15 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Consultants</h5>
               <p className="text-[#667085]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus cum purus bibendum risus nibh cursus integer.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus
+                cum purus bibendum risus nibh cursus integer.
               </p>
-              <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
+              <span
+                className={
+                  "pt-4 font-medium gap-2 items-center text-[#667085] flex " +
+                  fonts.spaceG.className
+                }
+              >
                 Join Consultants Circles <FaChevronRight />
               </span>
             </div>
@@ -209,21 +269,27 @@ const Page = () => {
             <div className={"flex text-center font-bold text-xl "}>
               <div
                 className={`w-1/3 p-6 ${
-                  true ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]" : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
+                  true
+                    ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]"
+                    : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
                 }`}
               >
                 <h5>For Entrepreneur</h5>
               </div>
               <div
                 className={`w-1/3 p-6 ${
-                  false ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]" : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
+                  false
+                    ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]"
+                    : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
                 }`}
               >
                 <h5>For Investors</h5>
               </div>
               <div
                 className={`w-1/3 p-6 ${
-                  false ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]" : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
+                  false
+                    ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]"
+                    : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
                 }`}
               >
                 <h5>For Consultants</h5>
@@ -234,30 +300,41 @@ const Page = () => {
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-3.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">
+                      Sign Up & Create a Profile
+                    </h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                      offers a seamless and efficient platform that connects
+                      businesses and investors through cutting-edge
+                      technologies. Here&apos;s how it works: For Businesses
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-7.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Submit Funding Request</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">
+                      Submit Funding Request
+                    </h5>
                     <p className="text-[#6C7278] font-medium">
-                      Submit a detailed funding request outlining your financial needs, business goals, and how the funds will be utilized. Our team
-                      will review your request to ensure it meets our criteria.
+                      Submit a detailed funding request outlining your financial
+                      needs, business goals, and how the funds will be utilized.
+                      Our team will review your request to ensure it meets our
+                      criteria.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-8.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Launch Crowdfunding Campaign</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">
+                      Launch Crowdfunding Campaign
+                    </h5>
                     <p className="text-[#6C7278] font-medium">
-                      Once approved, launch your crowdfunding campaign on our platform. Utilize our tools to create engaging content and reach
-                      potential investors. Promote your campaign through various channels to attract attention and support.
+                      Once approved, launch your crowdfunding campaign on our
+                      platform. Utilize our tools to create engaging content and
+                      reach potential investors. Promote your campaign through
+                      various channels to attract attention and support.
                     </p>
                   </div>
                 </div>
@@ -266,30 +343,42 @@ const Page = () => {
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-9.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Real-Time Ownership Exchange</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">
+                      Real-Time Ownership Exchange
+                    </h5>
                     <p className="text-[#6C7278] font-medium">
-                      Offer real-time ownership exchange options to investors, allowing them to buy and sell shares of your business seamlessly. This
-                      provides flexibility and liquidity to both you and your investors.
+                      Offer real-time ownership exchange options to investors,
+                      allowing them to buy and sell shares of your business
+                      seamlessly. This provides flexibility and liquidity to
+                      both you and your investors.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-10.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Automated Allocation & Follow-Up</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">
+                      Automated Allocation & Follow-Up
+                    </h5>
                     <p className="text-[#6C7278] font-medium">
-                      Our AI-driven system automates the allocation of funds and provides continuous follow-up to ensure that the funds are used
-                      effectively. Monitor your campaign&apos;s progress and interact with investors through our platform.
+                      Our AI-driven system automates the allocation of funds and
+                      provides continuous follow-up to ensure that the funds are
+                      used effectively. Monitor your campaign&apos;s progress
+                      and interact with investors through our platform.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-11.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Achieve Financial Succes</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">
+                      Achieve Financial Succes
+                    </h5>
                     <p className="text-[#6C7278] font-medium">
-                      Once your funding goal is reached, receive the funds securely and use them to achieve your business objectives. Our platform
-                      supports you throughout the process, ensuring your success.
+                      Once your funding goal is reached, receive the funds
+                      securely and use them to achieve your business objectives.
+                      Our platform supports you throughout the process, ensuring
+                      your success.
                     </p>
                   </div>
                 </div>
@@ -301,32 +390,49 @@ const Page = () => {
       <section className="flex flex-col items-center">
         <div className="max-w-7xl py-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Advanced Technologies</h5>
+            <h5
+              className={
+                "text-[#263238] font-bold text-4xl pb-4 " +
+                fonts.spaceG.className
+              }
+            >
+              Advanced Technologies
+            </h5>
             <p className={"text-[#667085] " + fonts.inter.className}>
-              Efficiently oversee your freelance workforce within a dedicated talent pool for enhanced productivity and streamlined collaboration
+              Efficiently oversee your freelance workforce within a dedicated
+              talent pool for enhanced productivity and streamlined
+              collaboration
             </p>
           </div>
-          <div className={"pt-24 gap-4 flex justify-between " + fonts.spaceG.className}>
+          <div
+            className={
+              "pt-24 gap-4 flex justify-between " + fonts.spaceG.className
+            }
+          >
             <div className="w-96 bg-[#FAFAFA] rounded-3xl p-6 flex flex-col gap-2">
               <img src="/assets/img-1.png" />
               <h5 className="font-bold text-2xl">Artificial Intelligence</h5>
               <p className="text-[#525252]">
-                Our AI-driven system automates various processes, including financing, allocation, and follow-up, ensuring efficiency and accuracy.
+                Our AI-driven system automates various processes, including
+                financing, allocation, and follow-up, ensuring efficiency and
+                accuracy.
               </p>
             </div>
             <div className="w-96 bg-[#FAFAFA] rounded-3xl p-6 flex flex-col gap-2">
               <img src="/assets/img-2.png" />
               <h5 className="font-bold text-2xl">Blockchain Security</h5>
               <p className="text-[#525252]">
-                We utilize a centralized blockchain network to secure all transactions, providing transparency, speed, and security.
+                We utilize a centralized blockchain network to secure all
+                transactions, providing transparency, speed, and security.
               </p>
             </div>
             <div className="w-96 bg-[#FAFAFA] rounded-3xl p-6 flex flex-col gap-2">
               <img src="/assets/img-3.png" />
               <h5 className="font-bold text-2xl">Decision Support Tools</h5>
               <p className="text-[#525252]">
-                Our platform offers advanced tools to support decision-making for both businesses and investors, ensuring well-informed choices and
-                successful outcomes.
+                Our platform offers advanced tools to support decision-making
+                for both businesses and investors, ensuring well-informed
+                choices and successful outcomes.
               </p>
             </div>
           </div>
@@ -335,24 +441,61 @@ const Page = () => {
       <section className="flex flex-col items-center">
         <div className="max-w-7xl py-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Discover</h5>
+            <h5
+              className={
+                "text-[#263238] font-bold text-4xl pb-4 " +
+                fonts.spaceG.className
+              }
+            >
+              Discover
+            </h5>
             <p className={"text-[#667085] " + fonts.inter.className}>
-              An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies
+              An innovative platform for Crowdfunding, Crowd-investing, and
+              Exchange platform that utilizes advanced technologies
             </p>
           </div>
           <div className="pt-8 w-full flex justify-center">
             <div
               className={
-                "mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] " + fonts.urbanist.className
+                "mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] " +
+                fonts.urbanist.className
               }
             >
-              <span className={`px-3 py-2 rounded-md ${true ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Just Launched</span>
-              <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Early Stage</span>
-              <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Late Stage</span>
-              <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Completed Projects</span>
+              <span
+                className={`px-3 py-2 rounded-md ${
+                  true ? "bg-white text-[#344054]" : "text-[#667085]"
+                }`}
+              >
+                Just Launched
+              </span>
+              <span
+                className={`px-3 py-2 rounded-md ${
+                  false ? "bg-white text-[#344054]" : "text-[#667085]"
+                }`}
+              >
+                Early Stage
+              </span>
+              <span
+                className={`px-3 py-2 rounded-md ${
+                  false ? "bg-white text-[#344054]" : "text-[#667085]"
+                }`}
+              >
+                Late Stage
+              </span>
+              <span
+                className={`px-3 py-2 rounded-md ${
+                  false ? "bg-white text-[#344054]" : "text-[#667085]"
+                }`}
+              >
+                Completed Projects
+              </span>
             </div>
           </div>
-          <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
+          <div
+            className={
+              "flex items-center justify-center pt-10 " + fonts.spaceG.className
+            }
+          >
             <CardSlider cards={cards} />
           </div>
         </div>
@@ -361,16 +504,31 @@ const Page = () => {
       <section className="flex flex-col items-center">
         <div className="max-w-7xl flex flex-col items-center p-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Meet Our Team</h5>
+            <h5
+              className={
+                "text-[#263238] font-bold text-4xl pb-4 " +
+                fonts.spaceG.className
+              }
+            >
+              Meet Our Team
+            </h5>
             <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>
-              Our team is the driving force behind our innovative fintech platform. We are a diverse group of professionals with a shared passion for
-              transforming the financial landscape and empowering businesses and investors. Get to know the dedicated individuals who make RABEH a
-              success.
+              Our team is the driving force behind our innovative fintech
+              platform. We are a diverse group of professionals with a shared
+              passion for transforming the financial landscape and empowering
+              businesses and investors. Get to know the dedicated individuals
+              who make RABEH a success.
             </p>
           </div>
           <div className="flex justify-between gap-11 pt-16">
             {team.map((member, index) => (
-              <div key={index + member.title} className={"flex px-10 flex-col justify-between items-center " + fonts.inter.className}>
+              <div
+                key={index + member.title}
+                className={
+                  "flex px-10 flex-col justify-between items-center " +
+                  fonts.inter.className
+                }
+              >
                 <img src={member.img} className="mb-5 w-24 h-24 rounded-full" />
                 <h5 className="text-lg font-semibold">{member.name}</h5>
                 <p className="text-[#6941C6]">{member.title}</p>
