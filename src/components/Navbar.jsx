@@ -60,7 +60,7 @@ const Navbar = () => {
               <Link href="/investor" className="text-gray-700 hover:text-primary">
                 Investor
               </Link>
-              <Link href="/under-construction" className="text-gray-700 hover:text-primary">
+              <Link href="/help" className="text-gray-700 hover:text-primary">
                 Help
               </Link>
             </div>
