@@ -7,7 +7,7 @@ import { styles } from "@/utils/styles";
 import Link from "next/link";
 import useFonts from "@/utils/useFonts";
 
-const page = () => {
+const Page = () => {
   const fonts = useFonts();
   const figures = [
     {
@@ -92,4 +92,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
