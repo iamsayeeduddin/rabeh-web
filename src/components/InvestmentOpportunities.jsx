@@ -1,6 +1,7 @@
 import React from "react";
 import CardSlider from "./CardSlider";
 import useFonts from "@/utils/useFonts";
+import Link from "next/link";
 const InvestmentOpportunities = () => {
   const fonts = useFonts();
   const cards = [
@@ -70,7 +71,9 @@ const InvestmentOpportunities = () => {
       <div className={"flex items-center justify-center " + fonts.spaceG.className}>
         <CardSlider cards={cards} />
       </div>
-      <div className={"flex items-center justify-center text-primary mt-7 " + fonts.spaceG.classNamep}> More Investment</div>
+      <div className={"flex items-center justify-center text-primary mt-7 " + fonts.spaceG.className}>
+        <Link href="/under-construction">More Investment</Link>
+      </div>
     </div>
   );
 };

@@ -36,7 +36,9 @@ const Navbar = () => {
       <nav className="bg-white shadow-md">
         <div className="flex items-center justify-between py-4 px-4 mx-auto w-[1440px] h-[88px]">
           <div className="flex items-center justify-start space-x-6">
-            <Logo />
+            <Link href="/">
+              <Logo />
+            </Link>
             <div className={"hidden md:flex space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
               <Link href="/" className="text-gray-700 hover:text-primary">
                 Home
@@ -58,16 +60,16 @@ const Navbar = () => {
               <Link href="/investor" className="text-gray-700 hover:text-primary">
                 Investor
               </Link>
-              <Link href="/help" className="text-gray-700 hover:text-primary">
+              <Link href="/under-construction" className="text-gray-700 hover:text-primary">
                 Help
               </Link>
             </div>
           </div>
           <div className={"flex items-center space-x-4 font-medium text-sm " + fonts.spaceG.className}>
-            <Link href="/sign-in" className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
+            <Link href="/under-construction" className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
               Sign In
             </Link>
-            <Link href="/get-started" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+            <Link href="/under-construction" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
               Get Started
             </Link>
           </div>

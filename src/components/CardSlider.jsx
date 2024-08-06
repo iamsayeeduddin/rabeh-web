@@ -1,11 +1,11 @@
 "use client";
-import React from 'react';
-import Slider from 'react-slick';
-import ProjectCard from './ProjectCard';
+import React from "react";
+import Slider from "react-slick";
+import ProjectCard from "./ProjectCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const CardSlider = ({ cards, onInvestClick }) => {
+const CardSlider = ({ cards, onInvestClick = () => null }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -15,7 +15,7 @@ const CardSlider = ({ cards, onInvestClick }) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     centerMode: true,
-    centerPadding: '0',
+    centerPadding: "0",
   };
 
   return (
@@ -23,10 +23,7 @@ const CardSlider = ({ cards, onInvestClick }) => {
       <Slider {...settings}>
         {cards.map((card, index) => (
           <div key={index} className=" p-5 ml-6  ">
-            <ProjectCard 
-              {...card} 
-              onInvestClick={() => onInvestClick(card.projectName)} 
-            />
+            <ProjectCard {...card} onInvestClick={() => onInvestClick(card.projectName)} />
           </div>
         ))}
       </Slider>
@@ -35,7 +32,7 @@ const CardSlider = ({ cards, onInvestClick }) => {
 };
 
 const NextArrow = (props) => {
-  const {  onClick } = props;
+  const { onClick } = props;
   return (
     <div
       className={` bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-300 transition-opacity duration-200 hover:opacity-75 absolute top-1/2 right-0 transform -translate-y-1/2 z-10`}

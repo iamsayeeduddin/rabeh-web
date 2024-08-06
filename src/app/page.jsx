@@ -27,7 +27,7 @@ const page = () => {
         }
         description="An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies."
         button1Text="Get Started"
-        button1Link="/get-started"
+        button1Link="/under-construction"
         button2Text="Opportunities"
         button2Link="/opportunities"
         svgImage="illustration.png"

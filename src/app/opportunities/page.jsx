@@ -89,10 +89,10 @@ const Page = () => {
               build a page.
             </p>
             <div className={"flex space-x-4 " + fonts.spaceG.className}>
-              <Link href={""} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light">
+              <Link href={"/under-construction"} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light">
                 Join Now
               </Link>
-              <Link href={""} className="  text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 ">
+              <Link href={"/under-construction"} className="  text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 ">
                 Learn More
               </Link>
             </div>

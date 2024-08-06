@@ -135,32 +135,30 @@ const Page = () => {
             </div>
             <div className="max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-1.png" />
-                Innovative Technology
+                <img src="/assets/icon-5.png" />
+                Global Reach
               </span>
               <p className="text-sm text-[#525252]">
-                We harness the power of artificial intelligence and blockchain to provide a seamless, secure, and efficient platform for both
-                businesses and investors.
+                Our platform is designed to accommodate investors and businesses from all over the world, providing access to a global pool of
+                opportunities and resources.
               </p>
             </div>
             <div className="max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-1.png" />
-                Innovative Technology
+                <img src="/assets/icon-4.png" />
+                Entrepreneurial Support
               </span>
               <p className="text-sm text-[#525252]">
-                We harness the power of artificial intelligence and blockchain to provide a seamless, secure, and efficient platform for both
-                businesses and investors.
+                We are committed to supporting entrepreneurs by providing the tools and resources needed to achieve financial success and growth.
               </p>
             </div>
             <div className="max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-1.png" />
-                Innovative Technology
+                <img src="/assets/icon-6.png" />
+                Investor Empowerment
               </span>
               <p className="text-sm text-[#525252]">
-                We harness the power of artificial intelligence and blockchain to provide a seamless, secure, and efficient platform for both
-                businesses and investors.
+                We empower investors by offering a diverse range of investment opportunities and the tools to make informed decisions.
               </p>
             </div>
           </div>
@@ -244,54 +242,54 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="flex items-center p-6">
-                  <img src="/assets/icon-3.png" />
+                  <img src="/assets/icon-7.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Submit Funding Request</h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                      Submit a detailed funding request outlining your financial needs, business goals, and how the funds will be utilized. Our team
+                      will review your request to ensure it meets our criteria.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
-                  <img src="/assets/icon-3.png" />
+                  <img src="/assets/icon-8.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Launch Crowdfunding Campaign</h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                      Once approved, launch your crowdfunding campaign on our platform. Utilize our tools to create engaging content and reach
+                      potential investors. Promote your campaign through various channels to attract attention and support.
                     </p>
                   </div>
                 </div>
               </div>
               <div className="w-1/2">
                 <div className="flex items-center p-6">
-                  <img src="/assets/icon-3.png" />
+                  <img src="/assets/icon-9.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Real-Time Ownership Exchange</h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                      Offer real-time ownership exchange options to investors, allowing them to buy and sell shares of your business seamlessly. This
+                      provides flexibility and liquidity to both you and your investors.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
-                  <img src="/assets/icon-3.png" />
+                  <img src="/assets/icon-10.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Automated Allocation & Follow-Up</h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                      Our AI-driven system automates the allocation of funds and provides continuous follow-up to ensure that the funds are used
+                      effectively. Monitor your campaign&apos;s progress and interact with investors through our platform.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
-                  <img src="/assets/icon-3.png" />
+                  <img src="/assets/icon-11.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Achieve Financial Succes</h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                      Once your funding goal is reached, receive the funds securely and use them to achieve your business objectives. Our platform
+                      supports you throughout the process, ensuring your success.
                     </p>
                   </div>
                 </div>

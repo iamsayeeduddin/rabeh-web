@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "./Logo";
 import { FaYoutube, FaInstagram, FaLinkedin, FaTimes, FaFacebook } from "react-icons/fa";
 import useFonts from "@/utils/useFonts";
+import Link from "next/link";
 
 function Footer() {
   const fonts = useFonts();
@@ -36,23 +37,47 @@ function Footer() {
         <div>
           <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
             <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Company</li>
-            <li>About us</li>
-            <li>Opportunities</li>
-            <li>Investments</li>
-            <li>Partnerships</li>
-            <li>Public Relations</li>
-            <li>Knowledge Hub</li>
+            <li>
+              <Link href="/about">About Us</Link>
+            </li>
+            <li>
+              <Link href="/opportunities">Opportunities</Link>
+            </li>
+            <li>
+              <Link href="/under-construction">Investments</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Partnerships</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Public Relations</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Knowledge Hub</Link>
+            </li>
           </ul>
         </div>
         <div>
           <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
             <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Fundraising</li>
-            <li>Investment</li>
-            <li>Business</li>
-            <li>Partner</li>
-            <li>Regulations</li>
-            <li>Privacy Policy</li>
-            <li>Cookies Policy</li>
+            <li>
+              <Link href={"/under-construction"}>Investmentnves</Link>
+            </li>
+            <li>
+              <Link href={"/business"}>Business</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Partner</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Regulations</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Privacy Policy</Link>
+            </li>
+            <li>
+              <Link href={"/under-construction"}>Cookies Policy</Link>
+            </li>
           </ul>
         </div>
         <div className="max-w-80">
@@ -62,7 +87,9 @@ function Footer() {
               Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of
               Saudi Arabia to test its innovative products in the experimental environment (Sandbox) for more.{" "}
             </li>
-            <li className={"text-[#7860DC] font-bold text-sm underline " + fonts.inter.className}>View Policy</li>
+            <li className={"text-[#7860DC] font-bold text-sm underline " + fonts.inter.className}>
+              <Link href={"/under-construction"}>View Policy</Link>
+            </li>
           </ul>
         </div>
       </div>
