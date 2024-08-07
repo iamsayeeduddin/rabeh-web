@@ -17,7 +17,7 @@ const SaveTimeResources = () => {
         Finto’s prebuilt interfaces and billing components
       </div>
       <div className="grid grid-cols-3 gap-6 mt-6">
-        <div className=" bg-white col-span-2 flex flex-row shadow-custom  m-5 h-[343px] pt-10 px-0 pb-0 rounded-[30px] gap-0 relative">
+        <div className=" bg-white col-span-2 flex flex-row shadow-custom  m-5  pt-10 px-0 pb-0 rounded-[30px] gap-0 relative">
           <div className="flex flex-col gap-[24px] pr-20">
             <div className="text-[32px] font-bold leading-[48px] tracking-[-0.03em] text-left font-inter  mx-10 ">
               Diversification of the investment portfolio
@@ -27,19 +27,19 @@ const SaveTimeResources = () => {
               environment <br /> with high transparency of information,
               digitized performance governance and minimizing risks under direct
               supervision of regulatory authorities in the experimental
-              environment of financial technology.
+              environment of financial <technology className=""></technology>
             </div>
           </div>
           <div className="flex items-end justify-end">
             <Image src="/Group427321207.png" width={400} height={391} />
           </div>
         </div>
-        <div className="m-5  bg-white h-[343px] pt-12 px-0 pb-0 rounded-[30px] gap-0 border-2 border-[#EFF7FA]">
+        <div className="m-5  bg-white  pt-12 px-0 pb-0 rounded-[30px] gap-0 border-2 border-[#EFF7FA]">
           <div className="flex flex-col gap-[24px] pr-20 bg-white">
             <div className="text-[32px] font-bold leading-[48px] tracking-[-0.03em] text-left font-inter  mx-10 ">
               Opportunities in different sectors
             </div>
-            <div className="text-left font-inter text-sm mx-10">
+            <div className="text-left font-inter text-sm mx-10 mb-10">
               "Invest in diverse sectors: AI, cybersecurity, telemedicine,
               biotech, renewable energy, sustainable real estate, eco-friendly
               goods, fintech, EdTech, gaming, AgriTech, and autonomous vehicles.
@@ -51,12 +51,12 @@ const SaveTimeResources = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-6 ">
-        <div className="m-5  bg-white h-[343px] pt-12 px-0 pb-0 rounded-[30px] gap-0 border-2 border-[#EFF7FA]">
+        <div className="m-5  bg-white  pt-12 px-0 pb-0 rounded-[30px] gap-0 border-2 border-[#EFF7FA]">
           <div className="flex flex-col gap-[24px] pr-20 bg-white">
             <div className="text-[32px] font-bold leading-[48px] tracking-[-0.03em] text-left font-inter  mx-10 ">
               Owning stakes in projects and companies{" "}
             </div>
-            <div className="text-left font-inter text-sm mx-10">
+            <div className="text-left font-inter text-sm mx-10 mb-10">
               Invest in promising projects and small to medium-sized companies
               engaged in innovative and emerging economic activities.
             </div>
