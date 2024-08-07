@@ -56,7 +56,7 @@ const SaveTimeResources = () => {
             <div className="text-[32px] font-bold leading-[48px] tracking-[-0.03em] text-left font-inter  mx-10 ">
               Owning stakes in projects and companies{" "}
             </div>
-            <div className="text-left font-inter text-sm mx-10 mb-10">
+            <div className="text-left font-inter text-sm mx-10 mb-10`">
               Invest in promising projects and small to medium-sized companies
               engaged in innovative and emerging economic activities.
             </div>

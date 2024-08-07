@@ -6,6 +6,7 @@ import useFonts from "@/utils/useFonts";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
+import ClickTabs from "./ClickTabs";
 
 const Page = () => {
   const fonts = useFonts();
@@ -212,97 +213,8 @@ const Page = () => {
               </span>
             </div>
           </div>
-          <div className={"pt-16 " + fonts.manrope.className}>
-            <div className={"flex text-center font-bold text-xl "}>
-              <div
-                className={`w-1/3 p-6 ${
-                  true ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]" : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
-                }`}
-              >
-                <h5>For Entrepreneur</h5>
-              </div>
-              <div
-                className={`w-1/3 p-6 ${
-                  false ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]" : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
-                }`}
-              >
-                <h5>For Investors</h5>
-              </div>
-              <div
-                className={`w-1/3 p-6 ${
-                  false ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]" : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
-                }`}
-              >
-                <h5>For Consultants</h5>
-              </div>
-            </div>
-            <div className="pt-8 w-full flex">
-              <div className="w-1/2">
-                <div className="flex items-center p-6">
-                  <img src="/assets/icon-3.png" />
-                  <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up </h5>
-                    <p className="text-[#6C7278] font-medium">
-                    Register on the Rabeh platform to create your profile and access campaign tools.
-
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center p-6">
-                  <img src="/assets/icon-7.png" />
-                  <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Set Up Your Campaign</h5>
-                    <p className="text-[#6C7278] font-medium">
-                   Craft a compelling project with clear descriptions, goals, and engaging visuals.
-
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center p-6">
-                  <img src="/assets/icon-8.png" />
-                  <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Launch Your Campaign</h5>
-                    <p className="text-[#6C7278] font-medium">
-                   Activate your campaign and start promoting it through social media, email, and other marketing channels.
-
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="w-1/2">
-                <div className="flex items-center p-6">
-                  <img src="/assets/icon-9.png" />
-                  <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Engage with Your Audience</h5>
-                    <p className="text-[#6C7278] font-medium">
-                    Interact with backers, respond to questions, and provide updates to keep them invested.
-
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center p-6">
-                  <img src="/assets/icon-10.png" />
-                  <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl"> Optimize Your Efforts</h5>
-                    <p className="text-[#6C7278] font-medium">
-                     Adjust your strategy based on feedback and performance analytics to improve your campaign.
-
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center p-6">
-                  <img src="/assets/icon-11.png" />
-                  <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Achieve and Manage Funding</h5>
-                    <p className="text-[#6C7278] font-medium">
-                  Secure the funds needed, execute your project, and keep backers informed about your progress.
-
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <ClickTabs/>
+          
         </div>
       </section>
       <section className="flex flex-col items-center">
