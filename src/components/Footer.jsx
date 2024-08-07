@@ -123,11 +123,21 @@ function Footer() {
       <div className={"flex justify-between " + fonts.inter.className}>
         <div>&#169; {new Date().getFullYear()} Rabeh. All right reserved</div>
         <div className="flex space-x-4 text-[#3A404E]">
-          <FaYoutube />
-          <FaInstagram />
-          <FaLinkedin />
-          <FaTimes />
-          <FaFacebook />
+        <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
+      <FaInstagram />
+    </Link>
+    <Link href="https://www.facebook.com/RABEHclub" target="_blank">
+      <FaFacebook />
+    </Link>
+    <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
+      <FaLinkedin />
+    </Link>
+    <Link href="https://x.com/RabehFinance" target="_blank">
+      <FaYoutube />
+    </Link>
+    <Link href="https://x.com/RabehFinance" target="_blank">
+      <FaTimes />
+    </Link>
         </div>
       </div>
     </div>

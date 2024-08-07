@@ -25,7 +25,7 @@ const Page = () => {
   ];
   return (
     <div>
-      <TitleHead title={"Business"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
+      <TitleHead title={"Business"} desc={"Rabeh is a groundbreaking fintech application that transforms the travel experience by integrating innovative financial solutions into every aspect of your journey.	"} />
       <section className="flex flex-col py-24 px-28">
         <div className="grid grid-cols-12 w-full">
           <div className="flex flex-col col-span-4 ">

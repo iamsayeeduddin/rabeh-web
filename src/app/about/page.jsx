@@ -178,7 +178,9 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Entreprenuer</h5>
               <p className="text-[#667085]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus cum purus bibendum risus nibh cursus integer.
+             Start by setting up your campaign on our platform, outlining your project’s objectives and funding requirements. Promote your campaign to attract and engage potential backers. Keep supporters updated with regular progress reports and use the funds raised to bring your vision to life.															
+															
+
               </p>
               <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
                 Join Entreprenuership Community <FaChevronRight />
@@ -188,7 +190,8 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Investors</h5>
               <p className="text-[#667085]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus cum purus bibendum risus nibh cursus integer.
+              Enjoy personalized assistance and expert guidance from our dedicated support team, helping you navigate every step of your fundraising journey.
+
               </p>
               <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
                 Join Investors Hub <FaChevronRight />
@@ -198,7 +201,11 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Consultants</h5>
               <p className="text-[#667085]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus cum purus bibendum risus nibh cursus integer.
+      Join Rabeh to provide expert advice and support to entrepreneurs. Review and improve project proposals, offer strategic guidance to enhance campaign success, and connect with a network of entrepreneurs and investors to expand your professional opportunities.															
+															
+
+															
+
               </p>
               <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
                 Join Consultants Circles <FaChevronRight />
@@ -234,30 +241,30 @@ const Page = () => {
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-3.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up & Create a Profile</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Sign Up </h5>
                     <p className="text-[#6C7278] font-medium">
-                      offers a seamless and efficient platform that connects businesses and investors through cutting-edge technologies. Here&apos;s
-                      how it works: For Businesses
+                    Register on the Rabeh platform to create your profile and access campaign tools.
+
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-7.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Submit Funding Request</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Set Up Your Campaign</h5>
                     <p className="text-[#6C7278] font-medium">
-                      Submit a detailed funding request outlining your financial needs, business goals, and how the funds will be utilized. Our team
-                      will review your request to ensure it meets our criteria.
+                   Craft a compelling project with clear descriptions, goals, and engaging visuals.
+
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-8.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Launch Crowdfunding Campaign</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Launch Your Campaign</h5>
                     <p className="text-[#6C7278] font-medium">
-                      Once approved, launch your crowdfunding campaign on our platform. Utilize our tools to create engaging content and reach
-                      potential investors. Promote your campaign through various channels to attract attention and support.
+                   Activate your campaign and start promoting it through social media, email, and other marketing channels.
+
                     </p>
                   </div>
                 </div>
@@ -266,30 +273,30 @@ const Page = () => {
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-9.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Real-Time Ownership Exchange</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Engage with Your Audience</h5>
                     <p className="text-[#6C7278] font-medium">
-                      Offer real-time ownership exchange options to investors, allowing them to buy and sell shares of your business seamlessly. This
-                      provides flexibility and liquidity to both you and your investors.
+                    Interact with backers, respond to questions, and provide updates to keep them invested.
+
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-10.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Automated Allocation & Follow-Up</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl"> Optimize Your Efforts</h5>
                     <p className="text-[#6C7278] font-medium">
-                      Our AI-driven system automates the allocation of funds and provides continuous follow-up to ensure that the funds are used
-                      effectively. Monitor your campaign&apos;s progress and interact with investors through our platform.
+                     Adjust your strategy based on feedback and performance analytics to improve your campaign.
+
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center p-6">
                   <img src="/assets/icon-11.png" />
                   <div className="pl-6">
-                    <h5 className="text-[#616B82] font-bold text-2xl">Achieve Financial Succes</h5>
+                    <h5 className="text-[#616B82] font-bold text-2xl">Achieve and Manage Funding</h5>
                     <p className="text-[#6C7278] font-medium">
-                      Once your funding goal is reached, receive the funds securely and use them to achieve your business objectives. Our platform
-                      supports you throughout the process, ensuring your success.
+                  Secure the funds needed, execute your project, and keep backers informed about your progress.
+
                     </p>
                   </div>
                 </div>

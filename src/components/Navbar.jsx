@@ -10,12 +10,22 @@ const Navbar = () => {
     <>
       <nav className="bg-primary">
         <div className="flex justify-between items-center py-2 px-4 mx-auto w-[1440px] m-h-[88px] border-b border-opacity-0">
-          <div className="flex space-x-4">
-            <FaYoutube className="text-white" />
-            <FaInstagram className="text-white" />
-            <FaLinkedin className="text-white" />
-            <FaTimes className="text-white" />
-            <FaFacebook className="text-white" />
+          <div className="flex space-x-4 text-white">
+          <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
+      <FaInstagram />
+    </Link>
+    <Link href="https://www.facebook.com/RABEHclub" target="_blank">
+      <FaFacebook />
+    </Link>
+    <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
+      <FaLinkedin />
+    </Link>
+    <Link href="https://x.com/RabehFinance" target="_blank">
+      <FaYoutube />
+    </Link>
+    <Link href="https://x.com/RabehFinance" target="_blank">
+      <FaTimes />
+    </Link>
           </div>
           <div className={"flex items-center space-x-4 text-white " + fonts.spaceG.className}>
             <div className="relative inline-block">
