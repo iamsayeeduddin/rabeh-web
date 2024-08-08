@@ -179,9 +179,9 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Entreprenuer</h5>
               <p className="text-[#667085]">
-             Start by setting up your campaign on our platform, outlining your project’s objectives and funding requirements. Promote your campaign to attract and engage potential backers. Keep supporters updated with regular progress reports and use the funds raised to bring your vision to life.															
-															
-
+                Start by setting up your campaign on our platform, outlining your project’s objectives and funding requirements. Promote your campaign
+                to attract and engage potential backers. Keep supporters updated with regular progress reports and use the funds raised to bring your
+                vision to life.
               </p>
               <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
                 Join Entreprenuership Community <FaChevronRight />
@@ -191,8 +191,8 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Investors</h5>
               <p className="text-[#667085]">
-              Enjoy personalized assistance and expert guidance from our dedicated support team, helping you navigate every step of your fundraising journey.
-
+                Enjoy personalized assistance and expert guidance from our dedicated support team, helping you navigate every step of your fundraising
+                journey.
               </p>
               <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
                 Join Investors Hub <FaChevronRight />
@@ -202,19 +202,15 @@ const Page = () => {
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">For Consultants</h5>
               <p className="text-[#667085]">
-      Join Rabeh to provide expert advice and support to entrepreneurs. Review and improve project proposals, offer strategic guidance to enhance campaign success, and connect with a network of entrepreneurs and investors to expand your professional opportunities.															
-															
-
-															
-
+                Join Rabeh to provide expert advice and support to entrepreneurs. Review and improve project proposals, offer strategic guidance to
+                enhance campaign success, and connect with a network of entrepreneurs and investors to expand your professional opportunities.
               </p>
               <span className={"pt-4 font-medium gap-2 items-center text-[#667085] flex " + fonts.spaceG.className}>
                 Join Consultants Circles <FaChevronRight />
               </span>
             </div>
           </div>
-        <ClickTabs/>
-          
+          <ClickTabs />
         </div>
       </section>
       <section className="flex flex-col items-center">
