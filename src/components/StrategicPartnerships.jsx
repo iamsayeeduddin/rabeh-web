@@ -27,7 +27,7 @@ const StrategicPartnerships = () => {
       <div className="flex flex-row gap-[12px] mt-10 w-full h-[132px] justify-center">
         {logos.map((logo, index) => (
           <div key={index} className="w-[1556px] h-[100px] ml-[80px] flex justify-center items-center">
-            <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
+            <img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
           </div>
         ))}
       </div>

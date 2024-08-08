@@ -36,7 +36,7 @@ const Policy = () => {
             <div className="flex flex-col gap-[20px]">
               <div className="flex justify-center">
                 <div className="h-[350px] w-[536px] px-[5px] border border-[#E5E5E5] bg-[#FAFAFA]  flex items-center justify-center overflow-hidden">
-                  <Image src={card.imageSrc} alt="Compliance" width={card.width} height={card.height} className="object-contain" />
+                  <img src={card.imageSrc} alt="Compliance" width={card.width} height={card.height} className="object-contain" />
                 </div>
               </div>
               <div>

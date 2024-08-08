@@ -10,16 +10,16 @@ const TrustedBy = () => {
         <br /> investment funds
       </div>
       <div>
-        <Image src="/image2451.png" alt="Logo 1" width={125.37} height={100} />
+        <img src="/image2451.png" alt="Logo 1" width={125.37} height={100} />
       </div>
       <div>
-        <Image src="/image2448.png" alt="Logo 2" width={107.92} height={100} />
+        <img src="/image2448.png" alt="Logo 2" width={107.92} height={100} />
       </div>
       <div>
-        <Image src="/image2449.png" alt="Logo 3" width={131.59} height={100} />
+        <img src="/image2449.png" alt="Logo 3" width={131.59} height={100} />
       </div>
       <div>
-        <Image src="/image2450.png" alt="Logo 4" width={137.11} height={100} />
+        <img src="/image2450.png" alt="Logo 4" width={137.11} height={100} />
       </div>
     </section>
   );

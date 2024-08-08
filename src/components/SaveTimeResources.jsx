@@ -24,7 +24,7 @@ const SaveTimeResources = () => {
             </div>
           </div>
           <div className="flex items-end justify-end">
-            <Image src="/Group427321207.png" width={400} height={391} />
+            <img src="/Group427321207.png" width={400} height={391} />
           </div>
         </div>
         <div className="m-5  bg-white  pt-12 px-0 pb-0 rounded-[30px] gap-0 border-2 border-[#EFF7FA]">
@@ -63,7 +63,7 @@ const SaveTimeResources = () => {
             </div>
           </div>
           <div className="flex items-end justify-end">
-            <Image src="/halfLogo.png" width={250} height={200} className="rounded-br-[30px]" />
+            <img src="/halfLogo.png" width={250} height={200} className="rounded-br-[30px]" />
           </div>
         </div>
       </div>

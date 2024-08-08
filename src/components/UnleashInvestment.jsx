@@ -20,7 +20,7 @@ const UnleashInvestment = () => {
       </div>
 
       <div className="flex-1 h-[579px] bg-white p-8 md:p-16 mt-8 md:mt-0 relative ">
-        <Image src="/Content.png" alt="Investment Projects" width={576} height={400} />
+        <img src="/Content.png" alt="Investment Projects" width={576} height={400} />
       </div>
     </div>
   );

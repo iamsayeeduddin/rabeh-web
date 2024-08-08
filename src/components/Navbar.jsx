@@ -11,21 +11,21 @@ const Navbar = () => {
       <nav className="bg-primary">
         <div className="flex justify-between items-center py-2 px-4 mx-auto w-[1440px] m-h-[88px] border-b border-opacity-0">
           <div className="flex space-x-4 text-white">
-          <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
-      <FaInstagram />
-    </Link>
-    <Link href="https://www.facebook.com/RABEHclub" target="_blank">
-      <FaFacebook />
-    </Link>
-    <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
-      <FaLinkedin />
-    </Link>
-    <Link href="https://x.com/RabehFinance" target="_blank">
-      <FaYoutube />
-    </Link>
-    <Link href="https://x.com/RabehFinance" target="_blank">
-      <FaTimes />
-    </Link>
+            <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
+              <FaInstagram />
+            </Link>
+            <Link href="https://www.facebook.com/RABEHclub" target="_blank">
+              <FaFacebook />
+            </Link>
+            <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
+              <FaLinkedin />
+            </Link>
+            <Link href="https://x.com/RabehFinance" target="_blank">
+              <FaYoutube />
+            </Link>
+            <Link href="https://x.com/RabehFinance" target="_blank">
+              <FaTimes />
+            </Link>
           </div>
           <div className={"flex items-center space-x-4 text-white " + fonts.spaceG.className}>
             <div className="relative inline-block">
@@ -58,11 +58,11 @@ const Navbar = () => {
               </Link>
               <Link href="/opportunities" className="text-gray-700 hover:text-primary flex items-center justify-center">
                 Opportunities
-                <span className="ml-2   ">
+                {/* <span className="ml-2   ">
                   <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1.5L6 6.5L11 1.5" stroke="#3A404E" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </span>
+                </span> */}
               </Link>
               <Link href="/business" className="text-gray-700 hover:text-primary">
                 Business
@@ -72,6 +72,12 @@ const Navbar = () => {
               </Link>
               <Link href="/help" className="text-gray-700 hover:text-primary">
                 Help
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-primary">
+                Contact Us
+              </Link>
+              <Link href="/careers" className="text-gray-700 hover:text-primary">
+                Careers
               </Link>
             </div>
           </div>
