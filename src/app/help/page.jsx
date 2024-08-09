@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 
 const Page = () => {
-  const fonts = useFonts();
+  const fonts = useFonts(); 
   return (
     <div>
       <TitleHead title={"Help"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
@@ -118,7 +118,6 @@ const Page = () => {
         </div>
       </div>
 
-      {/* //still have a question component  */}
 
       <div className="p-[96px] w-full">
         <div className={"bg-[#F9FAFB] rounded-[16px] w-[1216px] flex flex-col gap-8 items-center justify-center p-16 " + fonts.urbanist.className}>
