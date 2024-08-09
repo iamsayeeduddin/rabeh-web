@@ -273,7 +273,7 @@ const Navbar = () => {
             }
           >
             <Link
-              href="/under-construction"
+              href="/sign-in"
               className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2"
             >
               Sign In
