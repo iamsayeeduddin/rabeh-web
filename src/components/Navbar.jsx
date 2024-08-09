@@ -279,7 +279,7 @@ const Navbar = () => {
               Sign In
             </Link>
             <Link
-              href="/under-construction"
+              href="/sign-up"
               className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light"
             >
               Get Started
