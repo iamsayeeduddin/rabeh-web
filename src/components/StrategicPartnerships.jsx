@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import useFonts from "@/utils/useFonts";
 
 const logos = [
@@ -16,17 +15,17 @@ const logos = [
 const StrategicPartnerships = () => {
   const fonts = useFonts();
   return (
-    <div className={"gap-[16px] p-[16px] " + fonts.spaceG.className}>
-      <div className="p-12 flex flex-col items-center justify-center">
+    <div className={"gap-[16px] md:p-[16px] " + fonts.spaceG.className}>
+      <div className="md:p-12 p-5 flex flex-col items-center justify-center">
         <div className="text-[48px] text-secondary">Strategic Partnerships</div>
         <div className="text-[20px] text-secondary mt-2">
           Partnerships, bodies and institutions that deal with a lawyer platform to provide you with the best services.
         </div>
       </div>
 
-      <div className="flex flex-row gap-[12px] mt-10 w-full h-[132px] justify-center">
+      <div className="flex md:flex-row flex-col md:gap-[12px] mt-10 w-full md:h-[132px]  justify-center">
         {logos.map((logo, index) => (
-          <div key={index} className="w-[1556px] h-[100px] ml-[80px] flex justify-center items-center">
+          <div key={index} className="w-full mb-5 md:ml-[80px] flex justify-center items-center">
             <img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
           </div>
         ))}
