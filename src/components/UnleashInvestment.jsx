@@ -6,8 +6,8 @@ import useFonts from "@/utils/useFonts";
 const UnleashInvestment = () => {
   const fonts = useFonts();
   return (
-    <div className={"flex flex-col md:flex-row  text-secondary mt-5 " + fonts.urbanist.className}>
-      <div className="flex-1 md:mr-8   pt-[128px] pb-[128px] pl-[80px] pr-[80px]">
+    <div className={"flex flex-col md:flex-row  text-secondary md:mt-5 m-5  " + fonts.urbanist.className}>
+      <div className="flex-1 md:mr-8   pt-[128px] pb-[128px] md:px-[80px] p-5">
         <h2 className="text-5xl text-inter font-semibold mb-4 ">Unleash Investment and grow businesses</h2>
         <div className="flex  mt-[48px] ">
           <div className="text-start text-[#475467]  text-xl border-l-0 ">

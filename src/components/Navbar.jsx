@@ -5,6 +5,7 @@ import {
   FaYoutube,
   FaInstagram,
   FaLinkedin,
+  FaBars, 
   FaTimes,
   FaFacebook,
 } from "react-icons/fa";
@@ -14,9 +15,14 @@ import { useState } from "react";
 const Navbar = () => {
   const fonts = useFonts();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
   };
 
   const sections = [
@@ -145,8 +151,8 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-primary ">
-        <div className="flex justify-between items-center py-2 px-4 mx-auto w-[1440px] m-h-[88px] border-b border-opacity-0">
-          <div className="flex space-x-4 text-white">
+        <div className="flex  justify-between items-center py-2 px-4 mx-auto md:w-[1440px] m-h-[88px] border-b ">
+          <div className=" flex space-x-4 text-white">
             <Link
               href="https://www.instagram.com/rabehfinance/"
               target="_blank"
@@ -190,128 +196,108 @@ const Navbar = () => {
         </div>
       </nav>
       <nav className="bg-white shadow-md">
-        <div className="flex items-center justify-between py-4 px-4 mx-auto w-[1440px] h-[88px]">
-          <div className="flex items-center justify-start space-x-6">
-            <Link href="/">
-              <Logo />
-            </Link>
-            <div
-              className={
-                "hidden md:flex space-x-6 text-sm text-[#2C303B] " +
-                fonts.inter.className
-              }
-            >
-              <Link href="/" className="text-gray-700 hover:text-primary">
-                Home
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-primary">
-                About
-              </Link>
-              <div className="relative">
-                <button
-                  onClick={toggleDropdown}
-                  className="text-gray-700 hover:text-primary flex items-center"
-                >
-                  Opportunities
-                  <span
-                    className={`ml-2 transform transition-transform duration-200 ${
-                      dropdownOpen ? "rotate-180" : ""
-                    }`}
-                  >
-                    <svg
-                      width="12"
-                      height="8"
-                      viewBox="0 0 12 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="hover:text-primary "
-                    >
-                      <path
-                        d="M1 1.5L6 6.5L11 1.5"
-                        stroke="#3A404E"
-                        strokeWidth="1.66667"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-              <Link
-                href="/business"
-                className="text-gray-700 hover:text-primary"
-              >
-                Business
-              </Link>
-              <Link
-                href="/investor"
-                className="text-gray-700 hover:text-primary"
-              >
-                Investor
-              </Link>
-              <Link href="/help" className="text-gray-700 hover:text-primary">
-                Help
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-primary"
-              >
-                Contact Us
-              </Link>
-              <Link
-                href="/careers"
-                className="text-gray-700 hover:text-primary"
-              >
-                Careers
-              </Link>
-            </div>
-          </div>
-          <div
-            className={
-              "flex items-center space-x-4 font-medium text-sm " +
-              fonts.spaceG.className
-            }
+  <div className="flex items-center justify-between py-4 px-4 mx-auto md:w-[1440px] md:h-[88px]">
+    <div className="flex items-center space-x-6">
+      <Link href="/">
+        <Logo />
+      </Link>
+      
+      <div className={"hidden md:flex space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
+        <Link href="/" className="text-gray-700 hover:text-primary">
+          Home
+        </Link>
+        <Link href="/about" className="text-gray-700 hover:text-primary">
+          About
+        </Link>
+        <div className="relative">
+          <button
+            onClick={toggleDropdown}
+            className="text-gray-700 hover:text-primary flex items-center"
           >
-            <Link
-              href="/sign-in"
-              className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2"
+            Opportunities
+            <span
+              className={`ml-2 transform transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
             >
-              Sign In
-            </Link>
-            <Link
-              href="/sign-up"
-              className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light"
-            >
-              Get Started
-            </Link>
-          </div>
+              <svg
+                width="12"
+                height="8"
+                viewBox="0 0 12 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="hover:text-primary"
+              >
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="#3A404E"
+                  strokeWidth="1.66667"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
         </div>
-        {dropdownOpen && (
-  <div className="py-5 px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
-    <div className={"grid grid-cols-4 md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
-      {sections.map((section, index) => (
-        <div key={index}>
-          <h3 className={"font-semibold mb-4 text-[#004677]"  }>{section.title}</h3>
-          <div className="space-y-5 ">
-            {section.items.map((item, itemIndex) => (
-              <div className="flex items-start  justify-center mt-10 gap-8" key={itemIndex}>
-                <div className="flex items-center justify-center  mt-2 ">
-                {item.icon}
-
-                </div>
-                <div className="">
-                  <h4 className={"font-semibold mb-2" + fonts.spaceG.className}>{item.title}</h4>
-                  <p className={'mt-5' + fonts.inter.className}>{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        <Link href="/business" className="text-gray-700 hover:text-primary">
+          Business
+        </Link>
+        <Link href="/investor" className="text-gray-700 hover:text-primary">
+          Investor
+        </Link>
+        <Link href="/help" className="text-gray-700 hover:text-primary">
+          Help
+        </Link>
+        <Link href="/contact" className="text-gray-700 hover:text-primary">
+          Contact Us
+        </Link>
+        <Link href="/careers" className="text-gray-700 hover:text-primary">
+          Careers
+        </Link>
+      </div>
+    </div>
+    <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + fonts.spaceG.className}>
+      <Link href="/sign-in" className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
+        Sign In
+      </Link>
+      <Link href="/sign-up" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+        Get Started
+      </Link>
+    </div>
+    <div className="md:hidden flex ml-auto">
+      <button
+        onClick={toggleMenu}
+        className="text-primary hover:text-gray-900"
+      >
+        {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </button>
     </div>
   </div>
-)}
-      </nav>
+
+  {dropdownOpen && (
+    <div className="py-5 px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
+      <div className={"grid grid-cols-4 md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+        {sections.map((section, index) => (
+          <div key={index}>
+            <h3 className={"font-semibold mb-4 text-[#004677]"}>{section.title}</h3>
+            <div className="space-y-5">
+              {section.items.map((item, itemIndex) => (
+                <div className="flex items-start gap-4" key={itemIndex}>
+                  <div className="mt-2">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                    <p className={'mt-5 ' + fonts.inter.className}>{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</nav>
+
     </>
   );
 };

@@ -24,7 +24,7 @@ const cardData = [
 const Policy = () => {
   const fonts = useFonts();
   return (
-    <div className={"flex flex-col p-[100px] bg-white " + fonts.inter.className}>
+    <div className={"flex flex-col md:p-[100px] p-5 bg-white " + fonts.inter.className}>
       <div className="justify-start text-[40px] font-inter mt-5">Policy</div>
       <div className="text-[18px] text-start text-[#737373] max-w-3xl">
         Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of Saudi

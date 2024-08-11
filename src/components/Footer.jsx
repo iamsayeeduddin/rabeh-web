@@ -25,8 +25,8 @@ function Footer() {
     "/assets/amex_logo.png",
   ];
   return (
-    <div className="py-16 px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col gap-16">
-      <div className="max-w-6xl flex justify-between">
+    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col  gap-16 p-5">
+      <div className="md:max-w-6xl flex flex-col md:flex-row  md:justify-between ">
         <div className="max-w-80">
           <Logo />
           <p className={"pt-6 font-normal text-sm text-[#2C303B] " + fonts.urbanist.className}>
@@ -34,7 +34,7 @@ function Footer() {
             Transforming Finance.
           </p>
         </div>
-        <div>
+        <div className="mt-5 md:mt-0">
           <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
             <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Company</li>
             <li>
@@ -57,7 +57,8 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="mt-5 md:mt-0">
+
           <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
             <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Fundraising</li>
             <li>
@@ -80,8 +81,8 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="max-w-80">
-          <ul className={"text-[#2C303B] flex flex-col gap-4 " + fonts.urbanist.className}>
+        <div className="max-w-80 mt-5 md:mt-0 ">
+          <ul className={"text-[#2C303B] flex flex-col  gap-4 " + fonts.urbanist.className}>
             <li className="text-[#392E69] font-semibold">Policy</li>
             <li>
               Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of
@@ -93,25 +94,25 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className={"max-w-6xl gap-8 flex justify-between " + fonts.spaceG.className}>
+      <div className={"max-w-6xl gap-8 justify-between flex flex-col md:flex-row " + fonts.spaceG.className}>
         <div>
           <h5 className="font-medium">Security Certificates</h5>
           <div className="flex gap-3 pt-5">
             {secCert.map((item, index) => (
-              <div key={index + "cert"} className="w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
+              <div key={index + "cert"} className="md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
                 <img src={item} />
               </div>
             ))}
           </div>
         </div>
-        <div>
+        <div className="mt-5 md:mt-0">
           <h5 className="font-medium">Flexible Payment options</h5>
           <div className="flex gap-3 pt-5">
             {paymentCert.map((item, index) => (
               <div
                 key={index + "cert"}
                 className={
-                  "w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " + (item.includes("amex") ? "bg-[#1F72CD]" : "")
+                  "md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " + (item.includes("amex") ? "bg-[#1F72CD]" : "")
                 }
               >
                 <img src={item} />
@@ -120,9 +121,9 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className={"flex justify-between " + fonts.inter.className}>
+      <div className={"flex flex-col md:flex-row justify-between " + fonts.inter.className}>
         <div>&#169; {new Date().getFullYear()} Rabeh. All right reserved</div>
-        <div className="flex space-x-4 text-[#3A404E]">
+        <div className="flex space-x-4 text-[#3A404E] mt-5 md:mt-0">
         <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
       <FaInstagram />
     </Link>

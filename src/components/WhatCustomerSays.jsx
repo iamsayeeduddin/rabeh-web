@@ -48,10 +48,10 @@ const WhatCustomerSays = () => {
   
 
   return (
-    <div className={"flex flex-col p-[72px] bg-white " + fonts.inter.className}>
+    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
       <div className="justify-start text-lg text-medium text-[#737373]">Testimonial</div>
       <div className="justify-start text-5xl font-semibold font-inter mt-5">What Customer Says</div>
-      <div className="grid grid-cols-3 gap-[32px] mt-10 p-0 ">
+      <div className="grid md:grid-cols-3 gap-[32px] mt-10 p-0 ">
         {testimonials.map((testimonial, index) => (
           <div
             key={index}

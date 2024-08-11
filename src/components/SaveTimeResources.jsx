@@ -23,8 +23,8 @@ const SaveTimeResources = () => {
               financial <technology className=""></technology>
             </div>
           </div>
-          <div className="flex items-end justify-end">
-            <img src="/Group427321207.png" width={400} height={391} />
+          <div className="hidden md:flex items-end justify-end "> 
+            <img src="/Group427321207.png " width={400} height={391} />
           </div>
         </div>
         <div className="bg-white col-span-1 flex md:flex-row   m-5  md:pt-10 md:px-0 pb-0 rounded-[30px] gap-0 relative border-2 border-[#EFF7FA] ">
@@ -62,8 +62,9 @@ const SaveTimeResources = () => {
               innovation across various sectors and driving long-term success.
             </div>
           </div>
-          <div className="flex items-end justify-end">
-            <img src="/halfLogo.png" width={250} height={220} className="rounded-br-[30px]" />
+          <div className="hidden md:flex items-end justify-end "> 
+    
+            <img src="/halfLogo.png" width={250} height={220} className="rounded-br-[30px] " />
           </div>
         </div>
       </div>
