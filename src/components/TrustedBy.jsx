@@ -1,11 +1,10 @@
 import useFonts from "@/utils/useFonts";
-import Image from "next/image";
 
 const TrustedBy = () => {
   const fonts = useFonts();
   return (
-    <section className="py-[24px] px-[72px] flex justify-between items-center gap-0">
-      <div className={"text-[#A3A3A3] text-[14px] font-medium " + fonts.inter.className}>
+    <section className="py-[24px] px-[72px] flex flex-col justify-center items-center gap-5 md:flex-row  md:justify-between  md:gap-0">
+      <div className={"text-[#A3A3A3] text-center md:text-left text-[14px] font-medium mb-4 md:mb-0 " + fonts.inter.className}>
         Trusted by Venture capital
         <br /> investment funds
       </div>
@@ -24,5 +23,5 @@ const TrustedBy = () => {
     </section>
   );
 };
-
+  
 export default TrustedBy;
