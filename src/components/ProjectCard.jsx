@@ -96,7 +96,7 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
         </div>
       </div>
       <div className="mt-5">
-        <button className="bg-primary text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
+        <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
           Invest
         </button>
       </div>

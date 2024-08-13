@@ -22,13 +22,7 @@ const Hero = ({
         <div className="lg:w-1/2 px-4">
           <div className="bg-[#F9F8FD] inline-block text-black px-4 py-2 md:py-4 mb-4 rounded-full">
             <div className="inline-block">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -37,33 +31,21 @@ const Hero = ({
                 />
               </svg>
             </div>
-            <span className={"font-medium text-[#392E69] text-sm rounded-full pl-2"}>
-              {subtitle}
-            </span>
+            <span className={"font-medium text-[#392E69] text-sm rounded-full pl-2"}>{subtitle}</span>
           </div>
           <h1 className={`${titleSize} font-bold mb-6 ${titleColor} `}>{title}</h1>
           <p className="text-base md:text-lg mb-8 text-[#737373]">{description}</p>
           <div className={"flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 " + fonts.spaceG.className}>
-            <Link
-              href={button1Link}
-              className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light text-center"
-            >
+            <Link href={button1Link} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/80 text-center">
               {button1Text}
             </Link>
-            <Link
-              href={button2Link}
-              className="text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 text-center"
-            >
+            <Link href={button2Link} className="text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 text-center">
               {button2Text}
             </Link>
           </div>
         </div>
         <div className="flex items-center justify-center lg:justify-end lg:w-1/2 px-4 lg:mt-0">
-          <img
-            src={svgImage}
-            alt="Hero Section Image"
-            className={`${imageWidth} ${imageHeight} w-full lg:w-auto`}
-          />
+          <img src={svgImage} alt="Hero Section Image" className={`${imageWidth} ${imageHeight} w-full lg:w-auto`} />
         </div>
       </div>
     </div>

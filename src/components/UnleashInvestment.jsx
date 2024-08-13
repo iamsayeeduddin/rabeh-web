@@ -14,7 +14,7 @@ const UnleashInvestment = () => {
             <div>Stop compromising between billing needs and engineering bandwidth. With Finto’s prebuilt interfaces and billing components</div>
           </div>
         </div>
-        <div className=" ">
+        <div className="hover:cursor-pointer">
           <ApplePlaystore />
         </div>
       </div>
