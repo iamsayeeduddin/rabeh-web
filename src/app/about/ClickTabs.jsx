@@ -44,32 +44,32 @@ const tabData = [
       label: "For Investors",
       content: [
         {
-          icon: "/assets/icon-3.png", // Reuse icon-3 for all sections
+          icon: "/assets/icon-3.png", 
           title: "Create an Account",
           description: "Sign up on Rabeh to begin exploring investment opportunities.",
         },
         {
-          icon: "/assets/icon-7.png", // Reuse icon-7 for all sections
+          icon: "/assets/icon-7.png", 
           title: "Browse Projects",
           description: "Explore a variety of campaigns across different sectors and industries.",
         },
         {
-          icon: "/assets/icon-8.png", // Reuse icon-8 for all sections
+          icon: "/assets/icon-8.png", 
           title: "Review Details",
           description: "Examine project descriptions, business plans, funding goals, and risks to make informed decisions.",
         },
         {
-          icon: "/assets/icon-9.png", // Reuse icon-9 for all sections
+          icon: "/assets/icon-9.png", 
           title: "Make Investments",
           description: "Support projects that match your interests and investment goals through our secure platform.",
         },
         {
-          icon: "/assets/icon-10.png", // Reuse icon-10 for all sections
+          icon: "/assets/icon-10.png",
           title: "Monitor Performance",
           description: "Track the progress of your investments and stay updated with project milestones and developments.",
         },
         {
-          icon: "/assets/icon-11.png", // Reuse icon-11 for all sections
+          icon: "/assets/icon-11.png", 
           title: "Engage with Entrepreneurs",
           description: "Provide feedback or support to the projects you’ve invested in, if desired.",
         },
@@ -118,12 +118,12 @@ const ClickTabs = () => {
   const fonts = useFonts();
 
   return (
-    <div className={"pt-16 " + fonts.manrope.className}>
-      <div className={"flex text-center font-bold text-xl "}>
+    <div className={"pt-16 p-5  " + fonts.manrope.className}>
+      <div className={"flex flex-col md:flex-row text-center font-bold text-xl "}>
         {tabData.map((tab) => (
           <div
             key={tab.key}
-            className={`w-1/3 p-6 cursor-pointer ${
+            className={`md:w-1/3 p-6 cursor-pointer ${
               activeTab === tab.key
                 ? "bg-[#F9F8FD] border-t-2 border-[#7860DC] text-[#616B82]"
                 : "text-[#7986A3] border-t-2 border-[#DCE4E8]"
@@ -134,16 +134,16 @@ const ClickTabs = () => {
           </div>
         ))}
       </div>
-      <div className="pt-8 w-full flex">
+      <div className="pt-8 w-full flex flex-col">
         {tabData
           .filter((tab) => tab.key === activeTab)
           .map((tab) => (
-            <div key={tab.key} className="w-full flex flex-wrap">
+            <div key={tab.key} className="w-full flex flex-wrap md:flex-row flex-col ">
               {tab.content.map((item, index) => (
-                <div key={index} className="w-1/2 p-6">
-                  <div className="flex items-center">
-                    <img src={item.icon} alt={item.title} />
-                    <div className="pl-6">
+                <div key={index} className="md:w-1/2 p-6 ">
+                  <div className="flex flex-col md:flex-row items-center">
+                    <img className="" src={item.icon} alt={item.title} />
+                    <div className="md:pl-6 text-center md:text-start">
                       <h5 className="text-[#616B82] font-bold text-2xl">{item.title}</h5>
                       <p className="text-[#6C7278] font-medium">{item.description}</p>
                     </div>

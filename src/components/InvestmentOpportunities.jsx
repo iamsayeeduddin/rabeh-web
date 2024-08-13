@@ -93,7 +93,7 @@ const InvestmentOpportunities = () => {
       </div>
       <div className="md:py-2 w-full flex md:justify-start ">
         <div
-          className={"flex-row w-full  md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] " + fonts.urbanist.className}
+          className={"flex-row w-full  md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] p-5" + fonts.urbanist.className}
         >
           <span className={`md:px-3  py-2 rounded-md ${true ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Just Launched</span>
           <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Early Stage</span>
