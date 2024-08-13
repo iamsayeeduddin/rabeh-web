@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import useFonts from "@/utils/useFonts";
 
 const OurServices = () => {
@@ -12,8 +11,8 @@ const OurServices = () => {
   };
 
   return (
-    <section className={`flex justify-between items-start py-10 h-max-[659px] px-24 mt-10 ${fonts.inter.className}`}>
-      <div className="flex flex-col w-1/2">
+    <section className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5  ${fonts.inter.className}`}>
+      <div className="flex flex-col    md:w-1/2 w-full">
         <h2 className={`text-3xl font-semibold ${fonts.spaceG.className}`}>Our Services</h2>
         <p className="text-gray-600 mb-8 mt-5">Consolidate A/R: Unify revenue from all online sales channels, simplifying financial management.</p>
         <div
@@ -166,7 +165,7 @@ const OurServices = () => {
           </div>
         </div>
       </div>
-      <div className="w-1/2 flex items-center justify-end mt-8 ">
+      <div className="md:w-1/2 w-full flex items-center md:justify-end mt-8 ">
         <img src="/assets/image.png" alt="Our Services Image" width={500} height={500} className="rounded-3xl mt-5" />
       </div>
     </section>

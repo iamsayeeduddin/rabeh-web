@@ -5,7 +5,7 @@ const WhyRabeh = () => {
   const fonts = useFonts();
 
   return (
-    <div className="flex flex-col mt-5 pt-20 h-max-[659px] px-24">
+    <div className="flex flex-col mt-5 pt-20 md:h-max-[659px] md:px-24 px-5">
       <div
         className={
           "text-4xl  " +
@@ -15,9 +15,9 @@ const WhyRabeh = () => {
       >
         Why partner with RABEH ?
       </div>
-      <div className={"flex flex-row mt-5 " + fonts.inter.className}>
-        <div className="flex justify-between ml-0  m-8 ">
-          <div className="  w-[389px] h-[363px] p-8 gap-6 rounded-[30px]  flex flex-col items-start justify-center bg-white shadow-custom ">
+      <div className={"flex md:flex-row flex-col mt-5 " + fonts.inter.className}>
+        <div className="flex justify-between ml-0   md:m-8 mt-5 ">
+          <div className=" w-[389px] h-[363px] p-8 gap-6 rounded-[30px]  flex flex-col items-start justify-center bg-white shadow-custom ">
             <div>
               <svg
                 width="74"
@@ -37,7 +37,7 @@ const WhyRabeh = () => {
             <p className="text-[18px]">Manage your clients with a single sign-in using pro access.</p>
           </div>
         </div>
-        <div className="flex justify-center m-8 ">
+        <div className="flex justify-center md:m-8 mt-5 ">
           <div className="  w-[389px] h-[363px] p-8 gap-6 rounded-[30px]  flex flex-col items-start justify-center bg-white border-2 border-[#F0F6F9]">
             <div>
               <svg
@@ -90,7 +90,7 @@ const WhyRabeh = () => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center m-8 ">
+        <div className="flex justify-center md:m-8 mt-5 ">
           <div className="  w-[389px] h-[363px] p-8 gap-6 rounded-[30px]  flex flex-col items-start justify-center bg-white border-2 border-[#F0F6F9]">
             <div>
               <svg
