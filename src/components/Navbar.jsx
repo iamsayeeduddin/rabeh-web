@@ -262,19 +262,79 @@ const Navbar = () => {
         Get Started
       </Link>
     </div>
-    <div className="md:hidden flex ml-auto">
-      <button
-        onClick={toggleMenu}
-        className="text-primary hover:text-gray-900"
-      >
-        {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-      </button>
+    <div className="md:hidden flex flex-col ml-auto">
+    <button
+  onClick={toggleMenu}
+  className="text-primary hover:text-gray-900"
+>
+  {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+</button>
+
+
+
     </div>
   </div>
 
+  {menuOpen && (
+  <div className="md:hidden bg-white px-4 pt-4 pb-3 space-y-1 flex flex-col">
+    <Link href="/" className="text-gray-700 hover:text-primary">
+      Home
+    </Link>
+    <Link href="/about" className="text-gray-700 hover:text-primary">
+      About
+    </Link>
+    <div className="relative">
+      <button
+        onClick={toggleDropdown}
+        className="text-gray-700 hover:text-primary flex items-center justify-between w-full"
+      >
+        Opportunities
+        <span
+          className={`ml-2 transform transition-transform duration-200 ${
+            dropdownOpen ? "rotate-180" : ""
+          }`}
+        >
+          <svg
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="hover:text-primary"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#3A404E"
+              strokeWidth="1.66667"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </button>
+      
+    </div>
+    <Link href="/business" className="text-gray-700 hover:text-primary">
+      Business
+    </Link>
+    <Link href="/investor" className="text-gray-700 hover:text-primary">
+      Investor
+    </Link>
+    <Link href="/help" className="text-gray-700 hover:text-primary">
+      Help
+    </Link>
+    <Link href="/contact" className="text-gray-700 hover:text-primary">
+      Contact Us
+    </Link>
+    <Link href="/careers" className="text-gray-700 hover:text-primary">
+      Careers
+    </Link>
+  </div>
+)}
+
   {dropdownOpen && (
-    <div className="py-5 px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
-      <div className={"grid grid-cols-4 md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+    <div className=" p-5 md:py-5 md:px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
+      <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
         {sections.map((section, index) => (
           <div key={index}>
             <h3 className={"font-semibold mb-4 text-[#004677]"}>{section.title}</h3>
