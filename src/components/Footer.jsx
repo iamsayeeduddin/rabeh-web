@@ -58,11 +58,10 @@ function Footer() {
           </ul>
         </div>
         <div className="mt-5 md:mt-0">
-
           <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
             <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Fundraising</li>
             <li>
-              <Link href={"/under-construction"}>Investmentnves</Link>
+              <Link href={"/under-construction"}>Investment</Link>
             </li>
             <li>
               <Link href={"/business"}>Business</Link>
@@ -74,7 +73,7 @@ function Footer() {
               <Link href={"/under-construction"}>Regulations</Link>
             </li>
             <li>
-              <Link href={"/under-construction"}>Privacy Policy</Link>
+              <Link href={"/privacy-policy"}>Privacy Policy</Link>
             </li>
             <li>
               <Link href={"/under-construction"}>Cookies Policy</Link>
@@ -112,7 +111,8 @@ function Footer() {
               <div
                 key={index + "cert"}
                 className={
-                  "md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " + (item.includes("amex") ? "bg-[#1F72CD]" : "")
+                  "md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " +
+                  (item.includes("amex") ? "bg-[#1F72CD]" : "")
                 }
               >
                 <img src={item} />
@@ -124,21 +124,21 @@ function Footer() {
       <div className={"flex flex-col md:flex-row justify-between " + fonts.inter.className}>
         <div>&#169; {new Date().getFullYear()} Rabeh. All right reserved</div>
         <div className="flex space-x-4 text-[#3A404E] mt-5 md:mt-0">
-        <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
-      <FaInstagram />
-    </Link>
-    <Link href="https://www.facebook.com/RABEHclub" target="_blank">
-      <FaFacebook />
-    </Link>
-    <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
-      <FaLinkedin />
-    </Link>
-    <Link href="https://x.com/RabehFinance" target="_blank">
-      <FaYoutube />
-    </Link>
-    <Link href="https://x.com/RabehFinance" target="_blank">
-      <FaTimes />
-    </Link>
+          <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
+            <FaInstagram />
+          </Link>
+          <Link href="https://www.facebook.com/RABEHclub" target="_blank">
+            <FaFacebook />
+          </Link>
+          <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
+            <FaLinkedin />
+          </Link>
+          <Link href="https://x.com/RabehFinance" target="_blank">
+            <FaYoutube />
+          </Link>
+          <Link href="https://x.com/RabehFinance" target="_blank">
+            <FaTimes />
+          </Link>
         </div>
       </div>
     </div>
