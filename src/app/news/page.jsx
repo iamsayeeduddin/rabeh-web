@@ -55,9 +55,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className="w-full">
-        <TitleHead title={"News"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
-      </div>
+      <TitleHead title={"News"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7 p-5 md:p-28">
         {cardData.map((card, index) => (
           <div

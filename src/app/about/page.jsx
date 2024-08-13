@@ -82,14 +82,12 @@ const Page = () => {
 
   return (
     <div>
-      <div>
-        <TitleHead
-          title={"About"}
-          desc={
-            "Welcome to RABEH, your comprehensive fintech platform designed to revolutionize the way businesses and investors connect. We specialize in crowdfunding and real-time ownership exchange systems, catering to all types of businesses and companies. Our mission is to facilitate the journey of entrepreneurs and business owners in accessing financial support and achieving success in their ventures."
-          }
-        />
-      </div>
+      <TitleHead
+        title={"About"}
+        desc={
+          "Welcome to RABEH, your comprehensive fintech platform designed to revolutionize the way businesses and investors connect. We specialize in crowdfunding and real-time ownership exchange systems, catering to all types of businesses and companies. Our mission is to facilitate the journey of entrepreneurs and business owners in accessing financial support and achieving success in their ventures."
+        }
+      />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-3xl text-center">
           <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>About Rabeh</h5>
