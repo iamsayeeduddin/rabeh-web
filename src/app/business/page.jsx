@@ -26,14 +26,14 @@ const Page = () => {
   return (
     <div>
       <TitleHead title={"Business"} desc={"Rabeh is a groundbreaking fintech application that transforms the travel experience by integrating innovative financial solutions into every aspect of your journey.	"} />
-      <section className="flex flex-col py-24 px-28">
-        <div className="grid grid-cols-12 w-full">
+      <section className="flex flex-col md:py-24 md:px-28 p-5">
+        <div className="grid md:grid-cols-12 w-full">
           <div className="flex flex-col col-span-4 ">
-            <h2 className={"text-5xl leading-tight font-bold my-4 " + fonts.spaceG.className}>
+            <h2 className={"text-5xl leading-tight font-bold my-4 text-center md:text-start " + fonts.spaceG.className}>
               Welcome to our <br /> freelancers <br /> consultants in RABEH <br />
               Community.
             </h2>
-            <p className={"text-lg text-gray-400 mb-2 " + fonts.inter.className}>
+            <p className={"text-lg text-gray-400 mb-2 text-center md:text-start " + fonts.inter.className}>
               Online payment companies are responsible for <br /> handling online or internet based payment. <br /> The online payment systems.
             </p>
             <hr className="w-1/2 h-px my-8 bg-gray-400 border-0 "></hr>
@@ -45,46 +45,46 @@ const Page = () => {
               testimonial={`Simply the best. Better than all the rest. Recommend this product to beginners and advanced users.`}
             />
           </div>
-          <div className="col-span-8 flex items-center justify-end w-full">
-            <img className="w-1/2" src={"/assets/business-img-asset-1.png"} alt="" />
+          <div className=" col-span-8 flex items-center justify-end w-full">
+            <img className=" md:w-1/2" src={"/assets/business-img-asset-1.png"} alt="" />
           </div>
         </div>
       </section>
-      <section className={"w-full p-24 bg-tertiary flex flex-col items-center  " + fonts.plusJakarta.className}>
-        <h1 className="text-white text-4xl font-bold mb-10">Join millions getting secured payment</h1>
-        <div className="grid grid-cols-12 divide-x divide-gray-600 gap-4 my-12">
+      <section className={"w-full md:p-24 p-5 bg-tertiary flex flex-col items-center  " + fonts.plusJakarta.className}>
+        <h1 className="text-white text-4xl font-bold mb-10 items-center md:items-start">Join millions getting secured payment</h1>
+        <div className="grid md:grid-cols-12 divide-x divide-gray-600 gap-4 my-12">
           {figures.map(({ number, title }, index) => (
-            <NumberCard key={index} title={title} number={number} className="col-span-4" />
+            <NumberCard key={index} title={title} number={number} className="col-span-4 items-center md:items-start" />
           ))}
         </div>
       </section>
-      <section className="grid grid-cols-12 py-24 px-28  gap-4">
-        <div className={"flex flex-col col-span-5 gap-8 justify-center " + fonts.plusJakarta.className}>
+      <section className="grid md:grid-cols-12 md:py-24 md:px-28 p-5 md:gap-4">
+        <div className={"flex flex-col md:col-span-5 gap-8 justify-center text-center md:text-start " + fonts.plusJakarta.className}>
           <h1 className="text-5xl font-bold leading-tight">Create a culture of speed and financial discipline.</h1>
-          <p className="text-lg text-gray-400 mb-2">
+          <p className="text-lg text-gray-400 mb-2 text-center md:text-start ">
             Gain real-time visibility and accountability across global spend, break down silos of separate systems, and give accounting teams more
             automation and accuracy.
           </p>
-          <button className={`${styles["button-primary"]} ${fonts.manrope.className} w-1/3`}>
-            <Link href="/under-construction">Get started</Link>
+          <button className={`${styles["button-primary"]} ${fonts.manrope.className} md:w-1/3 text-center md:text-start mb-5 md:mb-0`}>
+            <Link href="/sign-up">Get started</Link>
           </button>
         </div>
         <div className="flex items-center justify-end col-span-7">
           <img src="/assets/business-img-asset-2.png" alt="" />
         </div>
       </section>
-      <section className="grid grid-cols-12 py-24 px-28  gap-4">
-        <div className="flex  col-span-7">
+      <section className="grid md:grid-cols-12 p-5 md:py-24 md:px-28  md:gap-4">
+        <div className="flex col-span-7">
           <img src="/assets/business-img-asset-2.png" alt="" />
         </div>
-        <div className={"flex flex-col col-span-5 gap-8 justify-center " + fonts.plusJakarta.className}>
-          <h1 className="text-5xl font-bold leading-tight">Make it easy to do the right thing, anywhere.</h1>
-          <p className="text-lg text-gray-400 mb-2">
+        <div className={"flex flex-col md:col-span-5 gap-8 justify-center items-center md:items-start " + fonts.plusJakarta.className}>
+          <h1 className="text-5xl font-bold leading-tight text-center md:text-start md:mt-0 mt-5">Make it easy to do the right thing, anywhere.</h1>
+          <p className="text-lg text-gray-400 mb-2 text-center md:text-start">
             Auto-generate receipts and make it easy to understand the policy and purpose for expenses, across cards, reimbursements, and bill pay —
             with amounts shown in USD and local currency.
           </p>
-          <button className={`${styles["button-primary"]} ${fonts.manrope.className} w-1/3`}>
-            <Link href={"/under-construction"}>Get started</Link>
+          <button className={`${styles["button-primary"]} ${fonts.manrope.className} md:w-1/3 text-center md:text-start mb-5 md:mb-0 `}>
+            <Link href={"/sign-up"}>Get started</Link>
           </button>
         </div>
       </section>
