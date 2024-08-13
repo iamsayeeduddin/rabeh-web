@@ -25,7 +25,7 @@ function Footer() {
     "/assets/amex_logo.png",
   ];
   return (
-    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-[#2C303B]  gap-16 p-5">
+    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-[#2C303B]  gap-16 p-5 pt-8">
       <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start  md:justify-between ">
         <div className="max-w-80 self-center md:self-start text-center md:text-start">
           <Logo width={250} height={100} />
@@ -83,7 +83,7 @@ function Footer() {
           </div>
         </div>
         <div className="max-w-80 mt-7 md:mt-0 ">
-          <ul className={"text-[#2C303B] flex flex-col items-center md:justify-start gap-4 " + fonts.urbanist.className}>
+          <ul className={"text-[#2C303B] flex flex-col items-center md:items-start md:justify-start gap-4 " + fonts.urbanist.className}>
             <li className="text-[#392E69] text-lg font-semibold">Policy</li>
             <li>
               Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of
