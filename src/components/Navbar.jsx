@@ -214,7 +214,9 @@ const Navbar = () => {
             onClick={toggleDropdown}
             className="text-gray-700 hover:text-primary flex items-center"
           >
-            Opportunities
+          <Link href="/opportunities" className="text-gray-700 hover:text-primary">
+          Opportunities
+        </Link>
             <span
               className={`ml-2 transform transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
             >
@@ -288,13 +290,15 @@ const Navbar = () => {
         onClick={toggleDropdown}
         className="text-gray-700 hover:text-primary flex items-center justify-between w-full"
       >
-        Opportunities
+      <Link href="/opportunities" className="text-gray-700 hover:text-primary">
+          Opportunities
+        </Link>
         <span
           className={`ml-2 transform transition-transform duration-200 ${
             dropdownOpen ? "rotate-180" : ""
           }`}
         >
-          <svg
+          <svg  
             width="12"
             height="8"
             viewBox="0 0 12 8"
