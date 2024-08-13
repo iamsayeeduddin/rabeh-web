@@ -67,7 +67,7 @@ const Page = () => {
     const fonts = useFonts();
   
     return (
-      <div className="w-full flex flex-col p-[72px] mt-10 ">
+      <div className="w-full flex flex-col md:p-[72px] mt-10 p-5 ">
         <div
           className={
             "flex flex-col items-center justify-center gap-10 mb-5 " + fonts.urbanist.className
@@ -110,9 +110,9 @@ const Page = () => {
         <div className="flex flex-col gap-10 mt-10 items-center justify-center">
           {jobData.map((job, index) => (
             <div
-              key={index}
+              key={index} 
               className={
-                "w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between " +
+                "md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between " +
                 fonts.urbanist.className
               }
             >
