@@ -8,8 +8,8 @@ const Page = () => {
   return (
     <div>
       <TitleHead title={"Help"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
-      <div className="flex w-full p-[72px]">
-        <div className={"grid  grid-cols-3 gap-10 py-[96px] px-5 " + fonts.urbanist.className}>
+      <div className="flex w-full md:p-[72px]">
+        <div className={"grid  md:grid-cols-3 gap-10 py-[96px] px-5 " + fonts.urbanist.className}>
           <div className="flex flex-col gap-8 ">
             <div className="flex items-center justify-center border-2 border-[#EAECF0] h-12 w-12 rounded-lg">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,16 +119,16 @@ const Page = () => {
       </div>
 
 
-      <div className="p-[96px] w-full">
-        <div className={"bg-[#F9FAFB] rounded-[16px] w-[1216px] flex flex-col gap-8 items-center justify-center p-16 " + fonts.urbanist.className}>
+      <div className="md:p-[96px] w-full p-5">
+        <div className={"bg-[#F9FAFB] rounded-[16px] md:w-[1216px] flex flex-col gap-8 items-center justify-center p-16 " + fonts.urbanist.className}>
           <div className="text-[36px] font-semibold">Still have questions?</div>
           <div className="text-[16px]">Join over 4,000+ startups already growing with Untitled.</div>
-          <div className="flex flex-row gap-2">
-            <div className="flex space-x-4">
-              <Link href="" className="bg-white text-black px-6 py-3 border border-[#EAECF0] rounded-lg hover:bg-gray-200">
+          <div className="flex md:flex-row gap-2">
+            <div className="flex flex-col md:flex-row md:space-x-4 gap-2 md:gap-0">
+              <Link href="/opportunities" className="bg-white text-black px-6 py-3 border border-[#EAECF0] rounded-lg hover:bg-gray-200">
                 Learn More
               </Link>
-              <Link href="" className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light">
+              <Link href="/sign-up" className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light">
                 Get Started
               </Link>
             </div>
