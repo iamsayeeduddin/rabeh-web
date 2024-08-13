@@ -88,7 +88,7 @@ const Page = () => {
           "Rabeh is a revolutionary fintech application that redefines the travel experience."
         }
       />
-      <div className="grid grid-cols-3 gap-7 p-28">
+      <div className="grid md:grid-cols-3 gap-7 md:p-28 p-5">
         {cardData.map((card, index) => (
           <div
             key={index}
