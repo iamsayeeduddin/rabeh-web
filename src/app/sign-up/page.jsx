@@ -6,17 +6,17 @@ const Page = () => {
 
   return (
     <div
-      className={`w-full p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]`}
+      className={`w-full p-5  md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]`}
     >
-      <div className="flex flex-col gap-5 bg-[#FFFFFF] px-[112px] py-[32px] rounded-b-[12px] " style={{ boxShadow: '0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A' }}>
-        <h2 className={`font-bold text-[24px] ${fonts.spaceG.className}`}>
-        Get Started
+      <div className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px] " style={{ boxShadow: '0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A' }}>
+        <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>
+          Get Started
         </h2>
-        <p className={`text-[16] ${fonts.spaceG.className}`}>
+        <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>
           Rabeh is a revolutionary fintech application that redefines the travel
           <br></br> experience.
         </p>
-        <div className="flex flex-row gap-3 mt-12">
+        <div className="flex md:flex-row flex-col gap-3 mt-12 items-center ">
           <div
             className={`flex flex-col items-center justify-center gap-8 px-8 py-3 bg-white rounded-[20px] w-[183.33px] shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${fonts.spaceG.className}`}
           >
@@ -97,7 +97,7 @@ const Page = () => {
           </div>
         </div>
         <div
-          className={`flex items-center justify-center text-[16px] mt-12 ${fonts.spaceG.className}`}
+          className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-12 ${fonts.spaceG.className}`}
         >
           Did’t have an account? <p className="text-primary ml-2"> Register</p>
         </div>

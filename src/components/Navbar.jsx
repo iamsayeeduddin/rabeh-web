@@ -19,11 +19,20 @@ const Navbar = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
+    
   };
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
+   
+    
   };
+  const handleLinkClick = () => {
+    setDropdownOpen(false);
+    setMenuOpen(false);
+  };
+
+ 
 
   const sections = [
     {
@@ -198,12 +207,12 @@ const Navbar = () => {
       <nav className="bg-white shadow-md">
   <div className="flex items-center justify-between py-4 px-4 mx-auto md:w-[1440px] md:h-[88px]">
     <div className="flex items-center space-x-6">
-      <Link href="/">
+      <Link href="/" onClick={handleLinkClick} >
         <Logo />
       </Link>
       
       <div className={"hidden md:flex space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
-        <Link href="/" className="text-gray-700 hover:text-primary">
+        <Link href="/" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Home
         </Link>
         <Link href="/about" className="text-gray-700 hover:text-primary">
@@ -211,10 +220,10 @@ const Navbar = () => {
         </Link>
         <div className="relative">
           <button
-            onClick={toggleDropdown}
+            onClick={toggleDropdown} 
             className="text-gray-700 hover:text-primary flex items-center"
           >
-          <Link href="/opportunities" className="text-gray-700 hover:text-primary">
+          <Link href="/opportunities"  onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Opportunities
         </Link>
             <span
@@ -239,28 +248,28 @@ const Navbar = () => {
             </span>
           </button>
         </div>
-        <Link href="/business" className="text-gray-700 hover:text-primary">
+        <Link href="/business" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Business
         </Link>
-        <Link href="/investor" className="text-gray-700 hover:text-primary">
+        <Link href="/investor"onClick={handleLinkClick}   className="text-gray-700 hover:text-primary">
           Investor
         </Link>
-        <Link href="/help" className="text-gray-700 hover:text-primary">
+        <Link href="/help" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Help
         </Link>
-        <Link href="/contact" className="text-gray-700 hover:text-primary">
+        <Link href="/contact" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Contact Us
         </Link>
-        <Link href="/careers" className="text-gray-700 hover:text-primary">
+        <Link href="/careers" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Careers
         </Link>
       </div>
     </div>
     <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + fonts.spaceG.className}>
-      <Link href="/sign-in" className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
+      <Link href="/sign-in" onClick={handleLinkClick}  className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
         Sign In
       </Link>
-      <Link href="/sign-up" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+      <Link href="/sign-up" onClick={handleLinkClick}  className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
         Get Started
       </Link>
     </div>
@@ -279,10 +288,10 @@ const Navbar = () => {
 
   {menuOpen && (
   <div className="md:hidden bg-white px-4 pt-4 pb-3 space-y-1 flex flex-col">
-    <Link href="/" className="text-gray-700 hover:text-primary">
+    <Link href="/" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       Home
     </Link>
-    <Link href="/about" className="text-gray-700 hover:text-primary">
+    <Link href="/about" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       About
     </Link>
     <div className="relative">
@@ -290,7 +299,7 @@ const Navbar = () => {
         onClick={toggleDropdown}
         className="text-gray-700 hover:text-primary flex items-center justify-between w-full"
       >
-      <Link href="/opportunities" className="text-gray-700 hover:text-primary">
+      <Link href="/opportunities" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
           Opportunities
         </Link>
         <span
@@ -318,21 +327,27 @@ const Navbar = () => {
       </button>
       
     </div>
-    <Link href="/business" className="text-gray-700 hover:text-primary">
+    <Link href="/business" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       Business
     </Link>
-    <Link href="/investor" className="text-gray-700 hover:text-primary">
+    <Link href="/investor" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       Investor
     </Link>
-    <Link href="/help" className="text-gray-700 hover:text-primary">
+    <Link href="/help" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       Help
     </Link>
-    <Link href="/contact" className="text-gray-700 hover:text-primary">
+    <Link href="/contact" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       Contact Us
     </Link>
-    <Link href="/careers" className="text-gray-700 hover:text-primary">
+    <Link href="/careers" onClick={handleLinkClick}  className="text-gray-700 hover:text-primary">
       Careers
     </Link>
+    <Link href="/sign-in" onClick={handleLinkClick}  className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2 ">
+        Sign In
+      </Link>
+      <Link href="/sign-up" onClick={handleLinkClick}  className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+        Get Started
+      </Link>
   </div>
 )}
 

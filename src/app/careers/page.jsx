@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm";
 import useFonts from "@/utils/useFonts";
 import React from "react";
 import Link from "next/link";
@@ -92,10 +93,8 @@ const Page = () => {
           >
             <div className="flex justify-between items-start">
               <span className="text-primary font-semibold">{job.category}</span>
-              <span href="#" className="text-primary flex items-center space-x-1">
-                <span>
-                  <Link href="/under-construction">View job</Link>
-                </span>
+              <a href="#" className="text-primary flex items-center space-x-1">
+                <span>View job</span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M5.83301 14.1667L14.1663 5.83334M14.1663 5.83334H5.83301M14.1663 5.83334V14.1667"
@@ -105,7 +104,7 @@ const Page = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </span>
+              </a>
             </div>
             <div className="mt-2">
               <h3 className="text-2xl font-semibold flex items-center">
@@ -169,6 +168,7 @@ const Page = () => {
           </div>
         ))}
       </div>
+      <ContactForm />
     </div>
   );
 };
