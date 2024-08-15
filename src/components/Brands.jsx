@@ -3,7 +3,7 @@ import useFonts from "@/utils/useFonts";
 
 const Brands = () => {
   const brandImages = [
-    { src: "/sabic.png", width: 100, height: 40 }, 
+    { src: "/sabic.png", width: 100, height: 40 },
     { src: "/Image3.png", width: 80, height: 30 },
     { src: "/samba.png", width: 90, height: 35 },
     { src: "/nyad.png", width: 110, height: 45 },

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 const CardSlider = () => {
   const cardImages = ["/ncb.png", "/sc.png", "/amara.png", "/bank.png", "/ncb.png", "/sc.png", "/amara.png", "/bank.png"];
@@ -11,6 +10,14 @@ const CardSlider = () => {
 
   const totalCards = cardImages.length;
   const displayCards = [...cardImages, ...cardImages, ...cardImages];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextCard();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (currentIndex === totalCards) {
@@ -43,7 +50,7 @@ const CardSlider = () => {
       <div className="flex" ref={containerRef}>
         <div
           className={`flex transition-transform duration-300 ${isTransitioning ? "transform" : ""}`}
-          style={{ transform: `translateX(-${(currentIndex + totalCards) * 356}px)` }} 
+          style={{ transform: `translateX(-${(currentIndex + totalCards) * 356}px)` }}
         >
           {displayCards.map((src, index) => (
             <div key={index} className="w-[340px] h-[210px] bg-[#2E334B] rounded-[16px] flex justify-center items-center p-4 m-2">

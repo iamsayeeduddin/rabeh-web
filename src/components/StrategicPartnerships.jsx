@@ -23,10 +23,10 @@ const StrategicPartnerships = () => {
         </div>
       </div>
 
-      <div className="flex md:flex-row flex-col md:gap-[12px] mt-10 w-full md:h-[132px]  justify-center">
+      <div className="flex md:flex-row flex-col md:gap-[12px] mt-10 w-full md:h-[132px] justify-center">
         {logos.map((logo, index) => (
-          <div key={index} className="w-full mb-5 md:ml-[80px] flex justify-center items-center">
-            <img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
+          <div key={index} className="w-full mb-5 flex justify-center items-center">
+            <img src={logo.src} alt={logo.alt} />
           </div>
         ))}
       </div>

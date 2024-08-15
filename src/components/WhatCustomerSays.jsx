@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "framer-motion";
 import useFonts from "@/utils/useFonts";
 import React from "react";
 
@@ -45,7 +47,6 @@ const WhatCustomerSays = () => {
       imageUrl: "/user3.png",
     },
   ];
-  
 
   return (
     <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
@@ -53,19 +54,26 @@ const WhatCustomerSays = () => {
       <div className="justify-start text-5xl font-semibold font-inter mt-5">What Customer Says</div>
       <div className="grid md:grid-cols-3 gap-[32px] mt-10 p-0 ">
         {testimonials.map((testimonial, index) => (
-          <div
+          <motion.div
             key={index}
-            className="box-border m-0 flex flex-col items-start p-10 gap-[32px]  bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg "
+            className="box-border m-0 flex flex-col items-start p-10 gap-[32px] bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg"
+            whileHover={{
+              y: -10, // Moves the div up by 10px on hover
+              transition: {
+                duration: 0.3, // Duration of the hover effect
+                ease: "easeOut", // Easing function for the hover effect
+              },
+            }}
           >
             <p className="text-lg font-medium leading-[24px] text-left">&quot;{testimonial.description}&ldquo;</p>
-            <div className="flex items-center mt-4  ">
-              <img src={testimonial.imageUrl} alt={testimonial.name} className="w-10 h-10 rounded-full mr-4 bg-[#D9F6C6] " />
-              <div className="">
+            <div className="flex items-center mt-4">
+              <img src={testimonial.imageUrl} alt={testimonial.name} className="w-10 h-10 rounded-full mr-4 bg-[#D9F6C6]" />
+              <div>
                 <p className="text-[14px] font-inter font-medium">{testimonial.name}</p>
                 <p className="text-[12px] text-gray-500">{testimonial.position}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

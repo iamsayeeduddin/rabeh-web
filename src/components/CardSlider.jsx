@@ -10,13 +10,15 @@ const CardSlider = ({ cards, onInvestClick = () => null }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, 
+    slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 768, 
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
         },
@@ -28,7 +30,7 @@ const CardSlider = ({ cards, onInvestClick = () => null }) => {
     <div className="w-full">
       <Slider {...settings}>
         {cards.map((card, index) => (
-          <div key={index} className="px-2 mt-16"> {/* Adjust padding as needed */}
+          <div key={index} className="px-2 mt-16">
             <ProjectCard {...card} onInvestClick={() => onInvestClick(card.projectName)} />
           </div>
         ))}

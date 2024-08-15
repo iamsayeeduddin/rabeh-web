@@ -25,7 +25,7 @@ function Footer() {
     "/assets/amex_logo.png",
   ];
   return (
-    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-[#2C303B]  gap-16 p-5 pt-8">
+    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-primary  gap-16 p-5 pt-8">
       <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start  md:justify-between ">
         <div className="max-w-80 self-center md:self-start text-center md:text-start">
           <Logo width={250} height={100} />
