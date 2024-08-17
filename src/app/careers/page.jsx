@@ -1,7 +1,9 @@
+"use client";
 import ContactForm from "@/components/ContactForm";
 import useFonts from "@/utils/useFonts";
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const jobData = [
   {
@@ -63,6 +65,33 @@ const jobData = [
 
 const Page = () => {
   const fonts = useFonts();
+  const parentVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3, // Delay between each child animation
+        delayChildren: 0.2, // Delay before the first child starts animating
+      },
+    },
+  };
+
+  const childVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20, // Slide in effect from below
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <div className="w-full flex flex-col md:p-[72px] mt-10 p-5 ">
@@ -85,9 +114,10 @@ const Page = () => {
           <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Marketing</span>
         </div>
       </div>
-      <div className="flex flex-col gap-10 mt-10 items-center justify-center">
+      <motion.div initial="hidden" animate="visible" variants={parentVariants} className="flex flex-col gap-10 mt-10 items-center justify-center">
         {jobData.map((job, index) => (
-          <div
+          <motion.div
+            variants={childVariants}
             key={index}
             className={"md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between " + fonts.urbanist.className}
           >
@@ -117,7 +147,7 @@ const Page = () => {
                     color: job.textColor,
                   }}
                 >
-                  <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="animate-pulse" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3" fill={job.textColor} />
                   </svg>
                   <span className="ml-1">{job.type}</span>
@@ -165,9 +195,9 @@ const Page = () => {
                 <span className="text-gray-600">{job.jobType}</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       <ContactForm />
     </div>
   );

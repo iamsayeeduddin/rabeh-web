@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import TitleHead from "@/components/TitleHead";
@@ -6,8 +7,25 @@ import { NumberCard } from "./NumberCard";
 import { styles } from "@/utils/styles";
 import Link from "next/link";
 import useFonts from "@/utils/useFonts";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Page = () => {
+  const { ref: visionRef, inView: visionInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const { ref: visionRef2, inView: visionInView2 } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const fadeInVariant = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.8 } },
+  };
+
   const fonts = useFonts();
   const figures = [
     {
@@ -25,7 +43,12 @@ const Page = () => {
   ];
   return (
     <div>
-      <TitleHead title={"Business"} desc={"Rabeh is a groundbreaking fintech application that transforms the travel experience by integrating innovative financial solutions into every aspect of your journey.	"} />
+      <TitleHead
+        title={"Business"}
+        desc={
+          "Rabeh is a groundbreaking fintech application that transforms the travel experience by integrating innovative financial solutions into every aspect of your journey.	"
+        }
+      />
       <section className="flex flex-col md:py-24 md:px-28 p-5">
         <div className="grid md:grid-cols-12 w-full">
           <div className="flex flex-col col-span-4 ">
@@ -58,7 +81,13 @@ const Page = () => {
           ))}
         </div>
       </section>
-      <section className="grid md:grid-cols-12 md:py-24 md:px-28 p-5 md:gap-4">
+      <motion.section
+        ref={visionRef}
+        variants={fadeInVariant}
+        initial="hidden"
+        animate={visionInView ? "visible" : "hidden"}
+        className="grid md:grid-cols-12 md:py-24 md:px-28 p-5 md:gap-4"
+      >
         <div className={"flex flex-col md:col-span-5 gap-8 justify-center text-center md:text-start " + fonts.plusJakarta.className}>
           <h1 className="text-5xl font-bold leading-tight">Create a culture of speed and financial discipline.</h1>
           <p className="text-lg text-gray-400 mb-2 text-center md:text-start ">
@@ -72,8 +101,14 @@ const Page = () => {
         <div className="flex items-center justify-end col-span-7">
           <img src="/assets/business-img-asset-2.png" alt="" />
         </div>
-      </section>
-      <section className="grid md:grid-cols-12 p-5 md:py-24 md:px-28  md:gap-4">
+      </motion.section>
+      <motion.section
+        ref={visionRef2}
+        variants={fadeInVariant}
+        initial="hidden"
+        animate={visionInView2 ? "visible" : "hidden"}
+        className="grid md:grid-cols-12 p-5 md:py-24 md:px-28  md:gap-4"
+      >
         <div className="flex col-span-7">
           <img src="/assets/business-img-asset-2.png" alt="" />
         </div>
@@ -87,7 +122,7 @@ const Page = () => {
             <Link href={"/sign-up"}>Get started</Link>
           </button>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

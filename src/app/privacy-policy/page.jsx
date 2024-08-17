@@ -1,9 +1,31 @@
+"use client";
 import React from "react";
 import TitleHead from "@/components/TitleHead";
 import useFonts from "@/utils/useFonts";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Page = () => {
   const fonts = useFonts();
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Trigger animation only once
+    threshold: 0.1, // Trigger when 10% of the element is in view
+  });
+
+  const fadeInVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20, // Optionally move it slightly from below
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
 
   const content = [
     {
@@ -48,7 +70,13 @@ const Page = () => {
           "We use some cookies to help improve your experience on this website. Here's some more info about what we do with information we collect.."
         }
       />
-      <div className="flex flex-col gap-16 px-16 items-center ">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={fadeInVariants}
+        className="flex flex-col p-16 w-[425px] md:w-[720px]"
+      >
         <div className="flex flex-col p-16 w-[425px] md:w-[720px]">
           {content.map((section, index) => (
             <div key={index} className={"flex flex-col gap-10 my-5 " + fonts.urbanist.className}>
@@ -59,7 +87,7 @@ const Page = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

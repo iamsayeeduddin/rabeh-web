@@ -89,11 +89,11 @@ const Page = () => {
               Create custom landing pages with Rareblocks that converts more visitors than any website. With lots of unique blocks, you can easily
               build a page.
             </p>
-            <div className={"flex flex-col md:flex-row space-y-2 md:space-x-4 " + fonts.spaceG.className}>
+            <div className={"flex flex-col md:flex-row  gap-2 md:gap-4 " + fonts.spaceG.className}>
               <Link href={"/under-construction"} className="bg-primary text-white px-6 py-4 rounded-lg hover:bg-primary/80">
                 Join Now
               </Link>
-              <Link href={"/under-construction"} className="  text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 ">
+              <Link href={"/under-construction"} className="  text-black px-6 py-4 border border-gray-700 rounded-lg hover:bg-gray-200 ">
                 Learn More
               </Link>
             </div>
