@@ -11,7 +11,7 @@ const ProjectCard = ({
   onInvestClick,
 }) => {
   return (
-    <div className="bg-white w-max-[370.67px] p-4 gap-[16px] border-t border-gray-200 rounded-lg shadow-md">
+    <div className="bg-white w-max-[370.67px] p-4 gap-[16px] border-t border-gray-200 rounded-lg shadow-md mb-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <img
