@@ -58,6 +58,8 @@ const WhatCustomerSays = () => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    autoplay: true,
+    autoplaySpeed: 1500,
     responsive: [
       {
         breakpoint: 768,
@@ -79,7 +81,7 @@ const WhatCustomerSays = () => {
             <div className="   p-2" key={index}>
               <div
                 key={index}
-                className="box-border m-0 flex flex-col items-start p-10 gap-[32px]  bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg md:h-[340px] "
+                className="box-border hover:scale-105 transition m-0 flex flex-col items-start p-10 gap-[32px]  bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg md:h-[340px] "
               >
                 <p className="text-lg font-medium leading-[24px] text-left">&quot;{testimonial.description}&ldquo;</p>
                 <div className="flex items-center mt-4">
