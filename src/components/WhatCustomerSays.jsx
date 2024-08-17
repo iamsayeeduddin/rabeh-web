@@ -76,7 +76,7 @@ const WhatCustomerSays = () => {
       <div className="w-full  mt-10 p-0 ">
         <Slider {...settings}>
           {testimonials.map((testimonial, index) => (
-            <div className="   p-2">
+            <div className="   p-2" key={index}>
               <div
                 key={index}
                 className="box-border m-0 flex flex-col items-start p-10 gap-[32px]  bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg md:h-[340px] "
