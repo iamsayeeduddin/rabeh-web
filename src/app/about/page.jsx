@@ -4,7 +4,7 @@ import StrategicPartnerships from "@/components/StrategicPartnerships";
 import SupportedCompainies from "@/components/SupportedCompainies";
 import TitleHead from "@/components/TitleHead";
 import useFonts from "@/utils/useFonts";
-import React from "react";
+import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 import ClickTabs from "./ClickTabs";

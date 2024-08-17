@@ -165,7 +165,7 @@ const Page = () => {
             </div>
           </div>
           <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
-            <CardSlider cards={allCards} />
+            <CardSlider cards={filteredCards} />
           </div>
         </div>
       </section>
@@ -207,7 +207,7 @@ const Page = () => {
           </div>
 
           <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
-            <CardSlider cards={cards} />
+            <CardSlider cards={allCards} />
           </div>
         </div>
       </section>
