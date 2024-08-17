@@ -8,11 +8,7 @@ const ContactForm = () => {
       <p className={"text-md text-primary font-bold " + fonts.spaceG.className}>Contact us</p>
       <h3 className={"text-4xl font-bold " + fonts.urbanist.className}>Get in touch</h3>
       <p className={"text-gray-500 " + fonts.urbanist.className}>We’d love to hear from you. Please fill out this form.</p>
-      <form
-        className="w-full max-w-lg mt-8"
-        action="https://formspree.io/f/{your-form-id}" // replace {your-form-id} with your actual Formspree form ID
-        method="POST"
-      >
+      <form className="w-full max-w-lg mt-8" action="" method="POST">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
@@ -94,7 +90,7 @@ const ContactForm = () => {
         </div>
         <div className="flex items-center">
           <button
-            className="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
             type="submit"
           >
             Send Message

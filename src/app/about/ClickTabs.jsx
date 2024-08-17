@@ -80,32 +80,32 @@ const tabData = [
     label: "For Consultants",
     content: [
       {
-        icon: "/assets/icon-3.png", // Reuse icon-3 for all sections
+        icon: "/assets/icon-3.png",
         title: "Apply to Join",
         description: "Register as a consultant on the Rabeh platform to start offering your expertise.",
       },
       {
-        icon: "/assets/icon-7.png", // Reuse icon-7 for all sections
+        icon: "/assets/icon-7.png",
         title: "Assess Campaigns",
         description: "Review project proposals to provide insightful feedback and strategic advice.",
       },
       {
-        icon: "/assets/icon-8.png", // Reuse icon-8 for all sections
+        icon: "/assets/icon-8.png",
         title: "Advise Entrepreneurs",
         description: "Work closely with campaign creators to refine their strategies and improve their chances of success.",
       },
       {
-        icon: "/assets/icon-9.png", // Reuse icon-9 for all sections
+        icon: "/assets/icon-9.png",
         title: "Support Campaign Development",
         description: "Help entrepreneurs enhance their campaign presentations and fundraising approaches.",
       },
       {
-        icon: "/assets/icon-10.png", // Reuse icon-10 for all sections
+        icon: "/assets/icon-10.png",
         title: "Monitor Campaigns",
         description: "Keep track of the progress of campaigns you’re involved with and offer ongoing support as needed.",
       },
       {
-        icon: "/assets/icon-11.png", // Reuse icon-11 for all sections
+        icon: "/assets/icon-11.png",
         title: "Network and Grow",
         description: "Connect with a diverse range of entrepreneurs and investors, expanding your professional network and opportunities.",
       },
