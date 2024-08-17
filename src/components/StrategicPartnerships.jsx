@@ -32,7 +32,7 @@ const StrategicPartnerships = () => {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
-        },
+        },  
       },
     ],
   };
@@ -45,7 +45,7 @@ const StrategicPartnerships = () => {
           Partnerships, bodies, and institutions that deal with a lawyer platform to provide you with the best services.
         </p>
       </div>
-      <div className="w-full mt-10 p-0 mb-10">
+      <div className="w-full mt-10 p-5 mb-10 ">
         <Slider {...settings}>
           {logos.map((logo, index) => (
             <div key={index} className="w-full flex justify-center items-center">

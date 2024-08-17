@@ -18,7 +18,7 @@ const Hero = ({
   const fonts = useFonts();
   return (
     <div className={"flex flex-col gap-10 md:gap-[80px] " + fonts.inter.className}>
-      <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center max-w-[1440px] h-auto lg:h-max-[713px] p-6 md:p-[72px]">
+      <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center md:w-[1440px] h-auto lg:h-max-[713px] p-6 md:p-[72px]">
         <div className="lg:w-1/2 px-4">
           <div className="bg-[#F9F8FD] inline-block text-black px-4 py-2 md:py-4 mb-4 rounded-full">
             <div className="inline-block">

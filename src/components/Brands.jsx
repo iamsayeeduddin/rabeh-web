@@ -50,12 +50,12 @@ const Brands = () => {
         </div>
       </div>
 
-      <div className="w-full mt-10 mb-10 p-0">
+      <div className="w-full mt-10 mb-10   p-0">
         <Slider {...settings}>
           {brandImages.map((logo, index) => (
             <div
               key={index}
-              className="flex justify-center items-center w-[100px] h-[40px] md:w-[155px] md:h-[60px]"
+              className="flex justify-center items-center  h-[40px] md:w-[155px] md:h-[60px]"
             >
               <img
                 src={logo.src}

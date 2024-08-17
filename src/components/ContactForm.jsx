@@ -10,7 +10,7 @@ const ContactForm = () => {
     <p className={"text-gray-500 " + fonts.urbanist.className}>We’d love to hear from you. Please fill out this form.</p>
     <form
       className="w-full max-w-lg mt-8"
-      action="https://formspree.io/f/{your-form-id}" // replace {your-form-id} with your actual Formspree form ID
+      action=""
       method="POST"
     >
       <div className="flex flex-wrap -mx-3 mb-6">
