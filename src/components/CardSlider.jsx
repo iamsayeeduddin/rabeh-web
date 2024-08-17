@@ -28,7 +28,7 @@ const CardSlider = ({ cards, onInvestClick = () => null }) => {
     <div className="w-full">
       <Slider {...settings}>
         {cards.map((card, index) => (
-          <div key={index} className="px-2 mt-16"> {/* Adjust padding as needed */}
+          <div key={index} className="px-2 mt-16">  
             <ProjectCard {...card} onInvestClick={() => onInvestClick(card.projectName)} />
           </div>
         ))}
