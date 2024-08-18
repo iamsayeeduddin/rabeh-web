@@ -30,17 +30,17 @@ const TrustedBy = () => {
         Trusted by Venture capital
         <br /> investment funds
       </div>
-      <div className="py-5 px-10 hover:shadow-2xl">
-        <img src="/image2451.png" alt="Logo 1" width={125} height={100} />
+      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+        <img src="/assets/logos/pif.jpg" alt="Logo 1" width={150} />
       </div>
-      <div className="py-5 px-10 hover:shadow-2xl">
-        <img src="/image2448.png" alt="Logo 2" width={125} height={100} />
+      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+        <img src="/assets/logos/kaust.jpg" alt="Logo 2" width={150} />
       </div>
-      <div className="py-5 px-10 hover:shadow-2xl">
-        <img src="/image2449.png" alt="Logo 3" width={125} height={100} />
+      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+        <img src="/assets/logos/vision.jpg" alt="Logo 3" width={150} />
       </div>
-      <div className="py-5 px-10 hover:shadow-2xl">
-        <img src="/image2450.png" alt="Logo 4" width={125} height={100} />
+      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+        <img src="/assets/logos/raed.jpg" alt="Logo 4" width={150} />
       </div>
     </motion.section>
   );

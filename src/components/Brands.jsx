@@ -9,13 +9,13 @@ const Brands = () => {
   const fonts = useFonts();
 
   const brandImages = [
-    { src: "/sabic.png", alt: "Sabic" },
-    { src: "/Image3.png", alt: "Image3" },
-    { src: "/samba.png", alt: "Samba" },
-    { src: "/nyad.png", alt: "Nyad" },
-    { src: "/mobily.png", alt: "Mobily" },
-    { src: "/sabb.png", alt: "SABB" },
-    { src: "/tasnee.png", alt: "Tasnee" },
+    { src: "/assets/logos/sabic.jpg", alt: "Sabic" },
+    { src: "/assets/logos/sec.jpg", alt: "Image3" },
+    { src: "/assets/logos/samba.jpg", alt: "Samba" },
+    { src: "/assets/logos/riyadhbank.jpg", alt: "Nyad" },
+    { src: "/assets/logos/mobily.jpg", alt: "Mobily" },
+    { src: "/assets/logos/sabb.jpg", alt: "SABB" },
+    { src: "/assets/logos/tasnee.jpg", alt: "Tasnee" },
   ];
 
   const settings = {
@@ -26,6 +26,8 @@ const Brands = () => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    autoplay: true,
+    autoplaySpeed: 1500,
     responsive: [
       {
         breakpoint: 768,

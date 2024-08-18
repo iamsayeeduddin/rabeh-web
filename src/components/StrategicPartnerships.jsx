@@ -9,14 +9,14 @@ const StrategicPartnerships = () => {
   const fonts = useFonts();
 
   const logos = [
-    { src: "/group.png", alt: "Logo 1" },
-    { src: "/image2446.png", alt: "Logo 2" },
-    { src: "/image2445.png", alt: "Logo 3" },
-    { src: "/image2441.png", alt: "Logo 4" },
-    { src: "/image2444.png", alt: "Logo 5" },
-    { src: "/image2443.png", alt: "Logo 6" },
-    { src: "/image2439.png", alt: "Logo 7" },
-    { src: "/image2442.png", alt: "Logo 8" },
+    { src: "/assets/logos/cma.jpg", alt: "Logo 1" },
+    { src: "/assets/logos/ndu.jpg", alt: "Logo 2" },
+    { src: "/assets/logos/snb.jpg", alt: "Logo 3" },
+    { src: "/assets/logos/detailsdigi.jpg", alt: "Logo 4" },
+    { src: "/assets/logos/elm.jpg", alt: "Logo 5" },
+    { src: "/assets/logos/oceanx.jpg", alt: "Logo 6" },
+    { src: "/assets/logos/monshaat.jpg", alt: "Logo 7" },
+    { src: "/assets/logos/garage.jpg", alt: "Logo 8" },
   ];
 
   const settings = {
@@ -27,6 +27,8 @@ const StrategicPartnerships = () => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    autoplay: true,
+    autoplaySpeed: 1500,
     responsive: [
       {
         breakpoint: 768,
@@ -49,7 +51,7 @@ const StrategicPartnerships = () => {
         <Slider {...settings}>
           {logos.map((logo, index) => (
             <div key={index} className="w-full flex justify-center items-center">
-              <img src={logo.src} alt={logo.alt} className="w-[125px] h-[100px] object-contain" />
+              <img src={logo.src} alt={logo.alt} className="w-2/3 h-2/3 object-contain" />
             </div>
           ))}
         </Slider>
