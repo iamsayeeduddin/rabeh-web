@@ -26,7 +26,7 @@ const TrustedBy = () => {
       animate={controls}
       className="py-[24px] px-[72px] flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between md:gap-0"
     >
-      <div className={`text-[#A3A3A3] text-center md:text-left text-[14px] font-medium mb-4 md:mb-0 ${fonts.inter.className}`}>
+      <div className={`text-[#A3A3A3] text-center md:text-left text-lg md:text-[14px] font-medium mb-4 md:mb-0 ${fonts.inter.className}`}>
         Trusted by Venture capital
         <br /> investment funds
       </div>

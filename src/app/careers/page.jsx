@@ -1,7 +1,7 @@
 "use client";
 import ContactForm from "@/components/ContactForm";
 import useFonts from "@/utils/useFonts";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -64,6 +64,7 @@ const jobData = [
 ];
 
 const Page = () => {
+  const [jobType, setJobType] = useState("All");
   const fonts = useFonts();
   const parentVariants = {
     hidden: {
@@ -104,14 +105,20 @@ const Page = () => {
       </div>
       <div className="py-2 w-full flex mt-10 justify-center gap-10 mb-5">
         <div
-          className={"mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] " + fonts.spaceG.className}
+          className={
+            "mt-3 bg-[#F9FAFB] rounded-lg flex flex-wrap justify-between cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] " +
+            fonts.spaceG.className
+          }
         >
-          <span className={`px-3 py-2 rounded-md ${true ? "bg-white text-[#344054]" : "text-[#667085]"}`}>View all</span>
-          <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Design</span>
-          <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Software Engineering</span>
-          <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Customer Success</span>
-          <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Sales</span>
-          <span className={`px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Marketing</span>
+          {["All", "Design", "Software Engineering", "Customer Success", "Sales", "Marketing"].map((d, i) => (
+            <span
+              key={i + d}
+              onClick={() => setJobType(d)}
+              className={`px-3 w-fit py-2 rounded-md transition-all duration-200 ${d === jobType ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+            >
+              {d}
+            </span>
+          ))}
         </div>
       </div>
       <motion.div initial="hidden" animate="visible" variants={parentVariants} className="flex flex-col gap-10 mt-10 items-center justify-center">

@@ -24,6 +24,24 @@ function Footer() {
     "/assets/stripe_logo.png",
     "/assets/amex_logo.png",
   ];
+  const links = [
+    { href: "/about", label: "About Us" },
+    { href: "/opportunities", label: "Opportunities" },
+    { href: "/under-construction", label: "Investments" },
+    { href: "/under-construction", label: "Partnerships" },
+    { href: "/under-construction", label: "Public Relations" },
+    { href: "/under-construction", label: "Knowledge Hub" },
+  ];
+
+  const fundraisingLinks = [
+    { href: "/under-construction", label: "Investment" },
+    { href: "/business", label: "Business" },
+    { href: "/under-construction", label: "Partner" },
+    { href: "/under-construction", label: "Regulations" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/under-construction", label: "Cookies Policy" },
+  ];
+
   return (
     <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-primary  gap-16 p-5 pt-8">
       <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start  md:justify-between ">
@@ -36,49 +54,23 @@ function Footer() {
         </div>
         <div className="flex justify-center md:justify-start text-center md:text-left md:flex-row gap-10">
           <div className="mt-5 md:mt-0">
-            <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
-              <li className={"text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 " + fonts.spaceG.className}>Company</li>
-              <li>
-                <Link href="/about">About Us</Link>
-              </li>
-              <li>
-                <Link href="/opportunities">Opportunities</Link>
-              </li>
-              <li>
-                <Link href="/under-construction">Investments</Link>
-              </li>
-              <li>
-                <Link href={"/under-construction"}>Partnerships</Link>
-              </li>
-              <li>
-                <Link href={"/under-construction"}>Public Relations</Link>
-              </li>
-              <li>
-                <Link href={"/under-construction"}>Knowledge Hub</Link>
-              </li>
+            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>Company</li>
+              {links.map(({ href, label }) => (
+                <Link key={label} href={href} className="hover:text-[#392E69]/70">
+                  {label}
+                </Link>
+              ))}
             </ul>
           </div>
           <div className="mt-5 md:mt-0">
-            <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
-              <li className={"text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 " + fonts.spaceG.className}>Fundraising</li>
-              <li>
-                <Link href={"/under-construction"}>Investment</Link>
-              </li>
-              <li>
-                <Link href={"/business"}>Business</Link>
-              </li>
-              <li>
-                <Link href={"/under-construction"}>Partner</Link>
-              </li>
-              <li>
-                <Link href={"/under-construction"}>Regulations</Link>
-              </li>
-              <li>
-                <Link href={"/privacy-policy"}>Privacy Policy</Link>
-              </li>
-              <li>
-                <Link href={"/under-construction"}>Cookies Policy</Link>
-              </li>
+            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>Fundraising</li>
+              {fundraisingLinks.map(({ href, label }) => (
+                <Link key={label} href={href} className="hover:text-[#392E69]/70">
+                  {label}
+                </Link>
+              ))}
             </ul>
           </div>
         </div>

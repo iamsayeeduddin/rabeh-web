@@ -5,7 +5,7 @@ import useFonts from "@/utils/useFonts";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const StrategicPartnerships = () => {
+const StrategicPartnerships = ({ bottomSpacing }) => {
   const fonts = useFonts();
 
   const logos = [
@@ -47,7 +47,7 @@ const StrategicPartnerships = () => {
           Partnerships, bodies, and institutions that deal with a lawyer platform to provide you with the best services.
         </p>
       </div>
-      <div className="w-full mt-10 p-5 mb-10 ">
+      <div className={`w-full mt-10 p-5 ${bottomSpacing ? "mb-10" : ""} `}>
         <Slider {...settings}>
           {logos.map((logo, index) => (
             <div key={index} className="w-full flex justify-center items-center">

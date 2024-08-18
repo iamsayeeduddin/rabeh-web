@@ -38,7 +38,7 @@ const page = () => {
       />
       <TrustedBy />
       <InvestmentOpportunities />
-      <StrategicPartnerships />
+      <StrategicPartnerships bottomSpacing={true} />
       <RestAssured />
       <SaveTimeResources />
       <WhatCustomerSays />

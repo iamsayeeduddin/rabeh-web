@@ -4,9 +4,11 @@ import Logo from "./Logo";
 import { FaYoutube, FaInstagram, FaLinkedin, FaBars, FaTimes, FaFacebook } from "react-icons/fa";
 import useFonts from "@/utils/useFonts";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const fonts = useFonts();
+  const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -244,8 +246,26 @@ const Navbar = () => {
           <div className={"flex items-center space-x-4 text-white " + fonts.spaceG.className}>
             <div className="relative inline-block">
               <select className="bg-primary text-white border-none rounded px-2 py-1">
-                <option value="ksa">🇸🇦 KSA</option>
-                <option value="usa">🇺🇸 USA</option>
+                <option
+                  value="ksa"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    router.push("/");
+                  }}
+                >
+                  🇸🇦 KSA
+                </option>
+                <option
+                  value="usa"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    router.push("/under-construction");
+                  }}
+                >
+                  🇺🇸 USA
+                </option>
               </select>
             </div>
             <div className="relative inline-block">

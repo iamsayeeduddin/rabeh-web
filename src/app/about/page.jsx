@@ -239,11 +239,11 @@ const Page = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex flex-col md:flex-row gap-6"
+            className="flex flex-col items-center md:flex-row gap-6"
           >
-            <div className="hover:scale-110 transition-transform max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
+            <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-1.png" />
+                <img src="/assets/icon-1.png" width={26} height={26} />
                 Innovative Technology
               </span>
               <p className="text-sm text-[#525252]">
@@ -251,9 +251,9 @@ const Page = () => {
                 businesses and investors.
               </p>
             </div>
-            <div className="hover:scale-110 transition-transform max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
+            <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-5.png" />
+                <img src="/assets/icon-5.png" width={26} height={26} />
                 Global Reach
               </span>
               <p className="text-sm text-[#525252]">
@@ -261,18 +261,18 @@ const Page = () => {
                 opportunities and resources.
               </p>
             </div>
-            <div className="hover:scale-110 transition-transform max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
+            <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-4.png" />
+                <img src="/assets/icon-4.png" width={26} height={26} />
                 Entrepreneurial Support
               </span>
               <p className="text-sm text-[#525252]">
                 We are committed to supporting entrepreneurs by providing the tools and resources needed to achieve financial success and growth.
               </p>
             </div>
-            <div className="hover:scale-110 transition-transform max-w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
+            <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
-                <img src="/assets/icon-6.png" />
+                <img src="/assets/icon-6.png" width={26} height={26} />
                 Investor Empowerment
               </span>
               <p className="text-sm text-[#525252]">
@@ -285,8 +285,8 @@ const Page = () => {
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-7xl">
           <div className="flex justify-between w-full pb-12 md:flex-row flex-col">
-            <h5 className={"w-1/2 text-[#263238] font-bold text-4xl " + fonts.spaceG.className}>How it works</h5>
-            <p className="text-lg text-[#667085] mt-5 md:mt-0 ">
+            <h5 className={"w-full md:w-1/2 text-[#263238] font-bold text-4xl " + fonts.spaceG.className}>How it works</h5>
+            <p className="text-lg text-[#667085] mt-5 md:mt-0 text-justify">
               It offers services for fundraising, equity exchange, and business enhancement, and facilitates funds and financing and all kinds of
               support before, during, and after services.{" "}
             </p>
@@ -395,21 +395,21 @@ const Page = () => {
                 <span
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`md:px-3 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+                  className={`md:px-3 px-2 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
                 >
                   {category}
                 </span>
               ))}
             </div>
           </div>
-          <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
+          <div className={"flex items-center justify-center py-3 md:pt-10 " + fonts.spaceG.className}>
             <CardSlider cards={filteredCards} />
           </div>
         </div>
       </section>
       <SupportedCompainies />
       <section className="flex flex-col items-center">
-        <div className="max-w-7xl flex flex-col items-center p-24">
+        <div className="max-w-7xl flex flex-col items-center p-10 md:p-24">
           <div className="text-center">
             <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Meet Our Team</h5>
             <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>
@@ -435,7 +435,7 @@ const Page = () => {
         </div>
       </section>
       <div className="bg-[#F9F9FB]">
-        <StrategicPartnerships />
+        <StrategicPartnerships bottomSpacing={false} />
       </div>
     </div>
   );

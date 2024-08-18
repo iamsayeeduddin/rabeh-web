@@ -75,18 +75,18 @@ const Page = () => {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={fadeInVariants}
-        className="flex flex-col p-16 w-[425px] md:w-[720px]"
+        className="flex flex-col p-10 md:p-16 w-[425px] md:w-[720px]"
       >
-        <div className="flex flex-col p-16 w-[425px] md:w-[720px]">
-          {content.map((section, index) => (
-            <div key={index} className={"flex flex-col gap-10 my-5 " + fonts.urbanist.className}>
-              <h3 className="font-semibold text-[32px]">{section.title}</h3>
-              {section.paragraphs.map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
-              ))}
-            </div>
-          ))}
-        </div>
+        {content.map((section, index) => (
+          <div key={index} className={"flex flex-col gap-10 my-5 " + fonts.urbanist.className}>
+            <h3 className="font-semibold text-[32px]">{section.title}</h3>
+            {section.paragraphs.map((paragraph, idx) => (
+              <p className="text-justify" key={idx}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        ))}
       </motion.div>
     </div>
   );

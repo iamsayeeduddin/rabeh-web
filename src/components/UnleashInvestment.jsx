@@ -16,7 +16,7 @@ const UnleashInvestment = () => {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -50 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="flex-1 md:mr-8 pt-[128px] pb-[128px] md:px-[80px] p-5"
+        className="flex-1 md:mr-8 md:pt-[128px] md:pb-[128px] md:px-[80px] p-5"
       >
         <h2 className="text-5xl text-inter font-semibold mb-4">Unleash Investment and grow businesses</h2>
         <div className="flex mt-[48px]">

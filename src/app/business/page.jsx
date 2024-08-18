@@ -94,7 +94,9 @@ const Page = () => {
             Gain real-time visibility and accountability across global spend, break down silos of separate systems, and give accounting teams more
             automation and accuracy.
           </p>
-          <button className={`${styles["button-primary"]} ${fonts.manrope.className} md:w-1/3 text-center md:text-start mb-5 md:mb-0`}>
+          <button
+            className={`${styles["button-primary"]} ${fonts.manrope.className} w-fit hover:bg-primary/80 text-center md:text-start mb-5 md:mb-0`}
+          >
             <Link href="/sign-up">Get started</Link>
           </button>
         </div>
@@ -118,7 +120,9 @@ const Page = () => {
             Auto-generate receipts and make it easy to understand the policy and purpose for expenses, across cards, reimbursements, and bill pay —
             with amounts shown in USD and local currency.
           </p>
-          <button className={`${styles["button-primary"]} ${fonts.manrope.className} md:w-1/3 text-center md:text-start mb-5 md:mb-0 `}>
+          <button
+            className={`${styles["button-primary"]} ${fonts.manrope.className} w-fit hover:bg-primary/80 text-center md:text-start mb-5 md:mb-0 `}
+          >
             <Link href={"/sign-up"}>Get started</Link>
           </button>
         </div>

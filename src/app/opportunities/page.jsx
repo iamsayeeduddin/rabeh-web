@@ -157,7 +157,7 @@ const Page = () => {
                 <span
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`md:px-3 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+                  className={`md:px-3 px-2 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
                 >
                   {category}
                 </span>
@@ -169,7 +169,7 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section className={"flex flex-col items-center md:p-0 p-5" + fonts.plusJakarta.className}>
+      <section className={"flex flex-col items-center md:p-0 p-5 " + fonts.plusJakarta.className}>
         <div className="md:max-w-7xl flex flex-col md:flex-row gap-10">
           <div className="max-w-96">
             <h5 className="font-bold text-4xl">Explore Projects</h5>
@@ -177,22 +177,22 @@ const Page = () => {
               Create custom landing pages with Rareblocks that converts more visitors than any website. With lots of unique blocks, you can easily
               build a page.
             </p>
-            <div className={"flex flex-col md:flex-row  gap-2 md:gap-4 " + fonts.spaceG.className}>
-              <Link href={"/under-construction"} className="bg-primary text-white px-6 py-4 rounded-lg hover:bg-primary/80">
+            <div className={"flex flex-row  gap-2 md:gap-4 " + fonts.spaceG.className}>
+              <Link href={"/under-construction"} className="bg-primary w-fit text-white px-6 py-4 rounded-lg hover:bg-primary/80">
                 Join Now
               </Link>
-              <Link href={"/under-construction"} className="  text-black px-6 py-4 border border-gray-700 rounded-lg hover:bg-gray-200 ">
+              <Link href={"/under-construction"} className="  text-black w-fit px-6 py-4 border border-gray-700 rounded-lg hover:bg-gray-200 ">
                 Learn More
               </Link>
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl max-w-72">
+            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/building-06.png" />
               <h5 className="font-bold">Startups</h5>
               <p className={"text-[#12141D] text-sm " + fonts.inter.className}>Create beautiful landing pages with Rareblocks that converts.</p>
             </div>
-            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl max-w-72">
+            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/chart-breakout-circle.png" />
               <h5 className="font-bold">Businesses</h5>
               <p className={"text-[#12141D] text-sm " + fonts.inter.className}>Create beautiful landing pages with Rareblocks that converts.</p>
