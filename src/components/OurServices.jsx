@@ -166,7 +166,7 @@ const OurServices = () => {
         </div>
       </div>
       <div className="md:w-1/2 w-full flex items-center md:justify-end mt-8 ">
-        <img src="/assets/image.png" alt="Our Services Image" width={500} height={500} className="rounded-3xl mt-5" />
+        <img src="/assets/image-1.png" alt="Our Services Image" width={500} height={500} className="rounded-3xl mt-5" />
       </div>
     </section>
   );

@@ -6,6 +6,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Brands = () => {
+<<<<<<< HEAD
+=======
+  const brandImages = [
+    { src: "/sabic.png", width: 100, height: 40 },
+    { src: "/Image3.png", width: 80, height: 30 },
+    { src: "/samba.png", width: 90, height: 35 },
+    { src: "/nyad.png", width: 110, height: 45 },
+    { src: "/mobily.png", width: 95, height: 38 },
+    { src: "/sabb.png", width: 100, height: 40 },
+    { src: "/tasnee.png", width: 85, height: 32 },
+  ];
+
+>>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
   const fonts = useFonts();
 
   const brandImages = [

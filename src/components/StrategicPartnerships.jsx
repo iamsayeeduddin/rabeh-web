@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 const StrategicPartnerships = () => {
   const fonts = useFonts();
 
+<<<<<<< HEAD
   const logos = [
     { src: "/group.png", alt: "Logo 1" },
     { src: "/image2446.png", alt: "Logo 2" },
@@ -57,6 +58,14 @@ const StrategicPartnerships = () => {
             </div>
           ))}
         </Slider>
+=======
+      <div className="flex md:flex-row flex-col md:gap-[12px] mt-10 w-full md:h-[132px] justify-center">
+        {logos.map((logo, index) => (
+          <div key={index} className="w-full mb-5 flex justify-center items-center">
+            <img src={logo.src} alt={logo.alt} />
+          </div>
+        ))}
+>>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
       </div>
     </div>
   );

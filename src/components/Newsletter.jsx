@@ -15,7 +15,7 @@ const Newsletter = () => {
           <input type="text" placeholder="Enter your email" className="w-full h-[48px] border border-secondary rounded-[8px] p-5 mt-3" />
           <div className="text-[14px] text-gray-500 mt-1 w-full">We care about your data in our privacy policy</div>
         </div>
-        <button className="text-xl bg-primary text-white px-6 py-3 rounded-[8px] ml-5">Subscribe</button>
+        <button className="text-xl bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-[8px] ml-5">Subscribe</button>
       </div>
     </div>
   );

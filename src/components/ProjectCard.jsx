@@ -131,10 +131,14 @@ const ProjectCard = ({
         </div>
       </div>
       <div className="mt-5">
+<<<<<<< HEAD
         <button
           className="bg-primary text-white w-full py-2 rounded-md hover:bg-primary-light"
           onClick={onInvestClick}
         >
+=======
+        <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
+>>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
           Invest
         </button>
       </div>

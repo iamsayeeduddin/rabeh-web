@@ -210,7 +210,7 @@ const Page = () => {
                 <img src="/assets/icon-1.png" />
                 Innovative Technology
               </span>
-              <p className="text-sm text-[#525252]">  
+              <p className="text-sm text-[#525252]">
                 We harness the power of artificial intelligence and blockchain to provide a seamless, secure, and efficient platform for both
                 businesses and investors.
               </p>
@@ -336,6 +336,7 @@ const Page = () => {
               An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies
             </p>
           </div>
+<<<<<<< HEAD
           <div className="pt-8 w-full flex items-center justify-center ">
           <div
           className={"flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" + fonts.urbanist.className}
@@ -350,6 +351,20 @@ const Page = () => {
             </span>
           ))}
         </div>
+=======
+          <div className="pt-8 w-full flex justify-center">
+            <div
+              className={
+                "flex-row w-full  md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
+                fonts.urbanist.className
+              }
+            >
+              <span className={`md:px-3  py-2 rounded-md ${true ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Just Launched</span>
+              <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Early Stage</span>
+              <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Late Stage</span>
+              <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Completed Projects</span>
+            </div>
+>>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
           </div>
           <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
           <CardSlider cards={filteredCards} />
