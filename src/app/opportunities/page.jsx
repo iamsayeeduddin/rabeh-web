@@ -1,5 +1,4 @@
-
-'use client'
+"use client";
 import React, { useState } from "react";
 import CardSlider from "@/components/CardSlider";
 import Newsletter from "@/components/Newsletter";
@@ -25,7 +24,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "25-11-2024",
-      category: "Just Launched"
+      category: "Just Launched",
     },
     {
       logoSrc: "/Avatar.png",
@@ -37,7 +36,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "16-10-2024",
-      category: "Early Stage"
+      category: "Early Stage",
     },
     {
       logoSrc: "/Avatar.png",
@@ -49,7 +48,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "29-10-2024",
-      category: "Late Stage"
+      category: "Late Stage",
     },
     {
       logoSrc: "/Avatar.png",
@@ -61,7 +60,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "19-12-2024",
-      category: "Completed Projects"
+      category: "Completed Projects",
     },
     {
       logoSrc: "/Avatar.png",
@@ -73,7 +72,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "21-12-2024",
-      category: "Just Launched"
+      category: "Just Launched",
     },
     {
       logoSrc: "/Avatar.png",
@@ -85,7 +84,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "11-12-2024",
-      category: "Early Stage"
+      category: "Early Stage",
     },
     {
       logoSrc: "/Avatar.png",
@@ -97,7 +96,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "04-11-2024",
-      category: "Late Stage"
+      category: "Late Stage",
     },
     {
       logoSrc: "/Avatar.png",
@@ -109,7 +108,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "15-11-2024",
-      category: "Completed Projects"
+      category: "Completed Projects",
     },
     {
       logoSrc: "/Avatar.png",
@@ -121,7 +120,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "30-11-2024",
-      category: "Just Launched"
+      category: "Just Launched",
     },
     {
       logoSrc: "/Avatar.png",
@@ -133,78 +132,61 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "10-12-2024",
-      category: "Early Stage"
+      category: "Early Stage",
     },
   ];
-  const filteredCards = allCards.filter(card => card.category === selectedCategory);
+
+  const filteredCards = allCards.filter((card) => card.category === selectedCategory);
 
   return (
     <div>
-      <TitleHead title={"Opportunities"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience. "} />
+      <TitleHead title={"Opportunities"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="md:max-w-7xl w-full py-28 ">
           <div className="text-center">
             <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Highlighted projects</h5>
           </div>
           <div className="pt-8 w-full flex justify-center">
-          <div
-          className={"flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" + fonts.urbanist.className}
-        > {["Just Launched", "Early Stage", "Late Stage", "Completed Projects"].map(category => (
-            <span
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`md:px-3 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
-            >
-<<<<<<< HEAD
-              {category}
-            </span>
-          ))}
-        </div>
-          </div>
-          <div
-            className={
-              "flex items-center justify-center pt-10 " + fonts.spaceG.className
-            }
-          >
-                    <CardSlider cards={filteredCards} />
-
-=======
-              <span className={`md:px-3  py-2 rounded-md ${true ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Just Launched</span>
-              <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Early Stage</span>
-              <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Late Stage</span>
-              <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Completed Projects</span>
+            <div className={"flex-row items-center justify-center md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5 " + fonts.urbanist.className}>
+              {["Just Launched", "Early Stage", "Late Stage", "Completed Projects"].map((category) => (
+                <span
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`md:px-3 px-2 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+                >
+                  {category}
+                </span>
+              ))}
             </div>
           </div>
           <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
-            <CardSlider cards={cards} />
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
+            <CardSlider cards={filteredCards} />
           </div>
         </div>
       </section>
-      <section className={"flex flex-col items-center md:p-0 p-5" + fonts.plusJakarta.className}>
+      <section className={"flex flex-col items-center md:p-0 p-5 " + fonts.plusJakarta.className}>
         <div className="md:max-w-7xl flex flex-col md:flex-row gap-10">
           <div className="max-w-96">
             <h5 className="font-bold text-4xl">Explore Projects</h5>
             <p className="text-[#0B0B0B] text-sm py-6">
-              Create custom landing pages with Rareblocks that converts more visitors than any website. With lots of unique blocks, you can easily
-              build a page.
+              Create custom landing pages with Rareblocks that converts more visitors than any website. With lots of unique blocks, you can easily build a page.
             </p>
-            <div className={"flex flex-col md:flex-row space-y-2 md:space-x-4 " + fonts.spaceG.className}>
-              <Link href={"/under-construction"} className="bg-primary text-white px-6 py-4 rounded-lg hover:bg-primary/80">
+            <div className={"flex flex-row gap-2 md:gap-4 " + fonts.spaceG.className}>
+              <Link href={"/under-construction"} className="bg-primary w-fit text-white px-6 py-4 rounded-lg hover:bg-primary/80">
                 Join Now
               </Link>
-              <Link href={"/under-construction"} className="  text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 ">
+              <Link href={"/under-construction"} className="text-black w-fit px-6 py-4 border border-gray-700 rounded-lg hover:bg-gray-200">
                 Learn More
               </Link>
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl max-w-72">
+            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/building-06.png" />
               <h5 className="font-bold">Startups</h5>
               <p className={"text-[#12141D] text-sm " + fonts.inter.className}>Create beautiful landing pages with Rareblocks that converts.</p>
             </div>
-            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl max-w-72">
+            <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/chart-breakout-circle.png" />
               <h5 className="font-bold">Businesses</h5>
               <p className={"text-[#12141D] text-sm " + fonts.inter.className}>Create beautiful landing pages with Rareblocks that converts.</p>
@@ -217,28 +199,19 @@ const Page = () => {
           <div className="text-center">
             <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>New projects</h5>
           </div>
-
-<<<<<<< HEAD
-          <div
-            className={
-              "flex items-center justify-center pt-10 " + fonts.spaceG.className
-            }
-          >
-                                <CardSlider cards={filteredCards} />
-
-=======
           <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
-            <CardSlider cards={cards} />
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
+            <CardSlider cards={allCards} />
           </div>
         </div>
       </section>
-      <UnleashInvestment />
-      <SupportedCompainies />
+      <section className="bg-[#0B0B0B]">
+        <div className="md:max-w-7xl mx-auto">
+          <UnleashInvestment />
+        </div>
+      </section>
       <TrustedBy />
-      <div className="pb-24">
-        <Newsletter />
-      </div>
+      <SupportedCompainies />
+      <Newsletter />
     </div>
   );
 };

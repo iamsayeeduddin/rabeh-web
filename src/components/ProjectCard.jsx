@@ -1,26 +1,9 @@
-const ProjectCard = ({
-  logoSrc,
-  projectName,
-  issueNumber,
-  amount,
-  daysLeft,
-  progress,
-  annualReturn,
-  returnOnInvestment,
-  dueDate,
-  onInvestClick,
-}) => {
+const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, progress, annualReturn, returnOnInvestment, dueDate, onInvestClick }) => {
   return (
     <div className="bg-white w-max-[370.67px] p-4 gap-[16px] border-t border-gray-200 rounded-lg shadow-md mb-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <img
-            src={logoSrc}
-            alt="Logo"
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+          <img src={logoSrc} alt="Logo" width={40} height={40} className="rounded-full" />
           <div className="ml-3">
             <h2 className="font-semibold text-lg">{projectName}</h2>
             <p className="text-secondary"> Issue number {issueNumber}</p>
@@ -30,13 +13,7 @@ const ProjectCard = ({
         <div className="text-secondary rounded-full bg-[#F4F6F8]">
           <div className="flex flex-row items-center justify-center p-1 ">
             {" "}
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 17 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -63,13 +40,7 @@ const ProjectCard = ({
       <div className="mt-4 space-y-2">
         <div className="flex items-center justify-between text-gray-700 border-b-2 border-[#EAECF1] p-[12px]">
           <div className="flex items-center gap-2 ">
-            <svg
-              width="20"
-              height="16"
-              viewBox="0 0 20 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2.7999 0.739929C1.47442 0.739929 0.399902 1.81445 0.399902 3.13993V7.93993C0.399902 9.26541 1.47442 10.3399 2.7999 10.3399L2.7999 3.13993H14.7999C14.7999 1.81445 13.7254 0.739929 12.3999 0.739929H2.7999Z"
                 fill="#616B82"
@@ -87,13 +58,7 @@ const ProjectCard = ({
         </div>
         <div className="flex items-center justify-between text-gray-700 border-b-2 border-[#EAECF1] p-[12px]">
           <div className="flex items-center gap-2">
-            <svg
-              width="24"
-              height="25"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -111,13 +76,7 @@ const ProjectCard = ({
         </div>
         <div className="flex items-center justify-between text-gray-700 border-b-2 border-[#EAECF1] p-[12px]">
           <div className="flex items-center gap-2 ">
-            <svg
-              width="24"
-              height="25"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -132,6 +91,7 @@ const ProjectCard = ({
       </div>
       <div className="mt-5">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <button
           className="bg-primary text-white w-full py-2 rounded-md hover:bg-primary-light"
           onClick={onInvestClick}
@@ -139,6 +99,9 @@ const ProjectCard = ({
 =======
         <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
 >>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
+=======
+        <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
+>>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
           Invest
         </button>
       </div>

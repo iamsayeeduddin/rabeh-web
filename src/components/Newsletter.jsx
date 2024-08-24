@@ -4,7 +4,7 @@ import React from "react";
 const Newsletter = () => {
   const fonts = useFonts();
   return (
-    <div className={"gap-[16px] md:p-[16px] mb-5  " + fonts.spaceG.className}>
+    <div className={"gap-[16px] md:p-[16px] mb-5 text-center md:text-[none]  " + fonts.spaceG.className}>
       <div className="md:p-12 p-5 flex flex-col items-center justify-center ">
         <div className="text-[36px] text-secondary">Sign up for our newsletter</div>
         <div className="text-[20px] text-[#616B82] mt-2">Be the first to know about releases and industry news and insights.</div>
