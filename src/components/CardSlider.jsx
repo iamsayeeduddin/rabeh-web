@@ -27,18 +27,10 @@ const CardSlider = ({ cards, onInvestClick = () => null }) => {
   };
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Slider {...settings}>
         {cards.map((card, index) => (
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <div key={index} className="px-2 mt-16">  
-=======
           <div key={index} className="px-2 mt-16">
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
-          <div key={index} className="px-2 mt-16">
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
             <ProjectCard {...card} onInvestClick={() => onInvestClick(card.projectName)} />
           </div>
         ))}

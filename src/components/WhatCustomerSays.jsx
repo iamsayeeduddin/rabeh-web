@@ -1,12 +1,6 @@
 "use client";
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 import { motion } from "framer-motion";
-import useFonts from "@/utils/useFonts";
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
 import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -57,12 +51,7 @@ const WhatCustomerSays = () => {
       imageUrl: "/user3.png",
     },
   ];
-<<<<<<< HEAD
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
   const settings = {
     dots: false,
     infinite: true,
@@ -83,91 +72,41 @@ const WhatCustomerSays = () => {
     ],
   };
 
-<<<<<<< HEAD
- 
-   
-
-=======
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
   return (
     <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
       <div className="justify-start text-lg text-medium text-[#737373]">Testimonial</div>
       <div className="justify-start text-5xl font-semibold font-inter mt-5">What Customer Says</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-      <div className="w-full  mt-10 p-0 ">
-      <Slider {...settings}>
-      {testimonials.map((testimonial, index) => (
-        <div className="   p-2">
-          <div
-            key={index}
-            className="box-border m-0 flex flex-col items-start p-10 gap-[32px]  bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg md:h-[340px] "
-=======
-      <div className="grid md:grid-cols-3 gap-[32px] mt-10 p-0 ">
-        {testimonials.map((testimonial, index) => (
-          <motion.div
-            key={index}
-            className="box-border m-0 flex flex-col items-start p-10 gap-[32px] bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg"
-            whileHover={{
-              y: -10, // Moves the div up by 10px on hover
-              transition: {
-                duration: 0.3, // Duration of the hover effect
-                ease: "easeOut", // Easing function for the hover effect
-              },
-            }}
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-          >
-            <p className="text-lg font-medium leading-[24px] text-left">&quot;{testimonial.description}&ldquo;</p>
-            <div className="flex items-center mt-4">
-              <img src={testimonial.imageUrl} alt={testimonial.name} className="w-10 h-10 rounded-full mr-4 bg-[#D9F6C6]" />
-              <div>
-                <p className="text-[14px] font-inter font-medium">{testimonial.name}</p>
-                <p className="text-[12px] text-gray-500">{testimonial.position}</p>
-              </div>
-            </div>
-<<<<<<< HEAD
-          </div>
-        </div>
-=======
-          </motion.div>
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-        ))}
-      </Slider>
-    </div>
-
-       
-=======
-
-      <div className="w-full  mt-10 p-0 ">
+      <div className="w-full mt-10 p-0">
         <Slider {...settings}>
           {testimonials.map((testimonial, index) => (
-            <div className="   p-2" key={index}>
-              <div
-                key={index}
-                className="box-border hover:scale-105 transition m-0 flex flex-col items-start p-10 gap-[32px]  bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg md:h-[340px] "
-              >
-                <p className="text-lg font-medium leading-[24px] text-left">&quot;{testimonial.description}&ldquo;</p>
-                <div className="flex items-center mt-4">
-                  <img src={testimonial.imageUrl} alt={testimonial.name} className="w-10 h-10 rounded-full mr-4 bg-[#D9F6C6]" />
-                  <div>
-                    <p className="text-[14px] font-inter font-medium">{testimonial.name}</p>
-                    <p className="text-[12px] text-gray-500">{testimonial.position}</p>
-                  </div>
+            <motion.div
+              key={index}
+              className="box-border flex flex-col items-start p-10 gap-[32px] bg-white border border-[#E5E5E5] shadow-[0px_4px_11px_-1px_rgba(10,10,10,0.04)] rounded-lg"
+              whileHover={{
+                y: -10,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              }}
+            >
+              <p className="text-lg font-medium leading-[24px] text-left">&quot;{testimonial.description}&ldquo;</p>
+              <div className="flex items-center mt-4">
+                <img src={testimonial.imageUrl} alt={testimonial.name} className="w-10 h-10 rounded-full mr-4 bg-[#D9F6C6]" />
+                <div>
+                  <p className="text-[14px] font-inter font-medium">{testimonial.name}</p>
+                  <p className="text-[12px] text-gray-500">{testimonial.position}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </Slider>
       </div>
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
     </div>
   );
 };
+
 const NextArrow = (props) => {
   const { onClick } = props;
   return (
@@ -195,4 +134,5 @@ const PrevArrow = (props) => {
     </div>
   );
 };
+
 export default WhatCustomerSays;

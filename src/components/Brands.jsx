@@ -6,22 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Brands = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  const brandImages = [
-    { src: "/sabic.png", width: 100, height: 40 },
-    { src: "/Image3.png", width: 80, height: 30 },
-    { src: "/samba.png", width: 90, height: 35 },
-    { src: "/nyad.png", width: 110, height: 45 },
-    { src: "/mobily.png", width: 95, height: 38 },
-    { src: "/sabb.png", width: 100, height: 40 },
-    { src: "/tasnee.png", width: 85, height: 32 },
-  ];
-
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
   const fonts = useFonts();
 
   const brandImages = [
@@ -66,10 +50,10 @@ const Brands = () => {
         <div className="text-[36px] text-secondary font-medium">Trusted by thousands of top brands</div>
       </div>
 
-      <div className="w-full mt-10 mb-10   p-0">
+      <div className="w-full mt-10 mb-10 p-0">
         <Slider {...settings}>
           {brandImages.map((logo, index) => (
-            <div key={index} className="flex justify-center items-center  h-[40px] md:w-[155px] md:h-[60px]">
+            <div key={index} className="flex justify-center items-center h-[40px] md:w-[155px] md:h-[60px]">
               <img src={logo.src} alt={logo.alt} className="w-full h-full object-contain" />
             </div>
           ))}

@@ -90,21 +90,14 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
         </div>
       </div>
       <div className="mt-5">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <button
-          className="bg-primary text-white w-full py-2 rounded-md hover:bg-primary-light"
-          onClick={onInvestClick}
-        >
-=======
-        <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
-        <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md hover:bg-primary-light" onClick={onInvestClick}>
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
-          Invest
-        </button>
-      </div>
+  <button
+    className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md transition"
+    onClick={onInvestClick}
+  >
+    Invest
+  </button>
+</div>
+
     </div>
   );
 };

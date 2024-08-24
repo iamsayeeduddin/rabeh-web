@@ -20,14 +20,6 @@ const Hero = ({
   const fonts = useFonts();
   return (
     <div className={"flex flex-col gap-10 md:gap-[80px] " + fonts.inter.className}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center md:w-[1440px] h-auto lg:h-max-[713px] p-6 md:p-[72px]">
-        <div className="lg:w-1/2 px-4">
-          <div className="bg-[#F9F8FD] inline-block text-black px-4 py-2 md:py-4 mb-4 rounded-full">
-=======
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center max-w-[1440px] h-auto lg:h-max-[713px] p-6 md:p-[72px]">
         <motion.div
           initial={{ x: "-100vw", opacity: 0 }}
@@ -36,10 +28,6 @@ const Hero = ({
           className="lg:w-1/2 px-4"
         >
           <div className="bg-[#F9F8FD] flex w-fit items-center text-black px-4 py-2 md:py-4 mb-4 rounded-full animate-bounce">
-<<<<<<< HEAD
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
             <div className="inline-block">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

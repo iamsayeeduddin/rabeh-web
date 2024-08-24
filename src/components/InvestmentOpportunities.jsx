@@ -91,12 +91,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "04-11-2024",
-<<<<<<< HEAD
-<<<<<<< HEAD
-      category: "Late Stage"
-=======
       category: "Late Stage",
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
     },
     {
       logoSrc: "/Avatar.png",
@@ -132,77 +127,46 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "10-12-2024",
-<<<<<<< HEAD
-      category: "Early Stage"
-=======
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
       category: "Early Stage",
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
     },
   ];
 
   const filteredCards = allCards.filter((card) => card.category === selectedCategory);
 
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
     <div className="bg-[#FAFAFA] w-full h-auto md:pt-[96px] md:pr-[72px] md:pb-[112px] md:pl-[72px] md:flex-row md:gap-[64px] p-5">
       <div className="font-inter text-[18px] font-medium leading-[27px] text-left my-5">Unleash Investment</div>
-      <div className="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] text-left my-5">Investment Opportunities</div>
+      <div className="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] text-left my-5">Investment opportunities</div>
       <div className="font-inter text-[18px] font-normal leading-[27px] text-left my-5 max-w-2xl text-[#737373]">
         It offers services for fundraising, equity exchange, and business enhancement, and facilitates funds and financing and all kinds of support
         before, during, and after services.
       </div>
-      <div className="md:py-2 w-full flex md:justify-start justify-center">
+      <div className="md:py-2 w-full flex md:justify-start">
         <div
           className={
-            "flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
+            "flex-row w-full md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] p-5" +
             fonts.urbanist.className
           }
         >
-          {" "}
-          {["Just Launched", "Early Stage", "Late Stage", "Completed Projects"].map((category) => (
-            <span
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`md:px-3 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
-            >
-              {category}
-            </span>
-          ))}
-<<<<<<< HEAD
-=======
-    <div class=" bg-[#FAFAFA] w-full h-auto md:pt-[96px] md:pr-[72px] md:pb-[112px] md:pl-[72px] md:flex-row md:gap-[64px] p-5 ">
-      <div class="font-inter text-[18px] font-medium leading-[27px] text-left my-5">Unleash Investment</div>
-      <div class="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] text-left my-5">Investment opportunities</div>
-      <div class="font-inter text-[18px] font-normal leading-[27px] text-left my-5 max-w-2xl text-[#737373]">
-        It offers services for fundraising, equity exchange, and business enhancement, and facilitates funds and financing and all kinds of support
-        before, during, and after services.
-      </div>
-      <div className="md:py-2 w-full flex md:justify-start ">
-        <div
-          className={
-            "flex-row w-full  md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] p-5" +
-            fonts.urbanist.className
-          }
-        >
-          <span className={`md:px-3  py-2 rounded-md ${true ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Just Launched</span>
-          <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Early Stage</span>
-          <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Late Stage</span>
-          <span className={`md:px-3 py-2 rounded-md ${false ? "bg-white text-[#344054]" : "text-[#667085]"}`}>Completed Projects</span>
->>>>>>> 91f509d6370cc4bbd31674259870e948335af3f4
-=======
->>>>>>> 66115350ae41532624a8f436c7c5223cc77af29c
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Just Launched" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            Just Launched
+          </span>
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Early Stage" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            Early Stage
+          </span>
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Late Stage" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            Late Stage
+          </span>
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Completed Projects" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            Completed Projects
+          </span>
         </div>
       </div>
       <div className={"flex items-center justify-center " + fonts.spaceG.className}>
         <CardSlider cards={filteredCards} />
       </div>
       <div className={"flex items-center justify-center text-primary mt-7 " + fonts.spaceG.className}>
-        <Link href="/under-construction" className="hover:border-b-2 pb-1 border-primary transition-all ease-in-out duration-75	">
+        <Link href="/under-construction" className="hover:border-b-2 pb-1 border-primary transition-all ease-in-out duration-75">
           More Investment
         </Link>
       </div>
