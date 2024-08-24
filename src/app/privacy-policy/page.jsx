@@ -134,14 +134,14 @@ const sections = [
 ];
 
 const Section = ({ title, content }) => (
-  <div className="flex flex-col gap-10 my-5">
+  <div className="flex flex-col gap-5 my-5">
     <h3 className="font-semibold text-[32px]">{title}</h3>
     {content.map((item, index) => (
       <div key={index} className="text-justify">
         {item.subtitle ? (
           <>
-            <h4 className="font-semibold text-[16px]">{item.subtitle}</h4>
-            <ul className="ml-4 list-disc">
+            <h4 className="font-semibold text-lg">{item.subtitle}</h4>
+            <ul className="ml-4 text-lg list-disc">
               {item.items.map((text, i) => (
                 <li key={i}>{text}</li>
               ))}
