@@ -400,7 +400,7 @@ const Navbar = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div>  
               </>
             )}
             <Link href="/business" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
