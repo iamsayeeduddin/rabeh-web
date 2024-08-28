@@ -43,7 +43,7 @@ const Page = () => {
           boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A",
         }}
       >
-        <p className={`text-[#7986A3] md:text-start text-center  ${fonts.spaceG.className}`}> 1/3</p>
+        <p className={`text-[#7986A3]  text-center  ${fonts.spaceG.className}`}> 1/3</p>
         <h2
           className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}
         >
