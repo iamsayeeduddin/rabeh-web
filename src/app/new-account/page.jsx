@@ -38,7 +38,7 @@ const Page = () => {
       className={`w-full p-5  md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]`}
     >
       <div
-        className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px] "
+        className="flex flex-col gap-5  bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px] "
         style={{
           boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A",
         }}
