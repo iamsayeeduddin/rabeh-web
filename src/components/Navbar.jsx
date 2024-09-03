@@ -3,14 +3,16 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { FaYoutube, FaInstagram, FaLinkedin, FaBars, FaTimes, FaFacebook } from "react-icons/fa";
 import useFonts from "@/utils/useFonts";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const fonts = useFonts();
   const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState();
+  const path = usePathname();
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -23,6 +25,10 @@ const Navbar = () => {
     setDropdownOpen(false);
     setMenuOpen(false);
   };
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, [path]);
 
   const sections = [
     {
@@ -305,28 +311,27 @@ const Navbar = () => {
               </div>
 
               {dropdownOpen && (
-          <div className="flex md:hidden p-5 md:py-5 md:px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
-            <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
-              {sections.map((section, index) => (
-                <div key={index}>
-                  <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
-                  <div className="space-y-6">
-                    {section.items.map((item, itemIndex) => (
-                      <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
-                        <div className="mt-2">{item.icon}</div>
-                        <div>
-                          <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
-                          <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
+                <div className="flex md:hidden p-5 md:py-5 md:px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
+                  <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+                    {sections.map((section, index) => (
+                      <div key={index}>
+                        <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
+                        <div className="space-y-6">
+                          {section.items.map((item, itemIndex) => (
+                            <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
+                              <div className="mt-2">{item.icon}</div>
+                              <div>
+                                <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                                <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-             
+              )}
 
               <Link href="/business" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
                 Business
@@ -346,12 +351,18 @@ const Navbar = () => {
             </div>
           </div>
           <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + fonts.spaceG.className}>
-            <Link href="/sign-in" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
-              Sign In
-            </Link>
-            <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
-              Get Started
-            </Link>
+            {!user?._id ? (
+              <>
+                <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
+                  Sign In
+                </Link>
+                <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+                  Get Started
+                </Link>
+              </>
+            ) : (
+              <p>Welcome, {user?.name || "User"}!</p>
+            )}
           </div>
           <div className="md:hidden flex flex-col ml-auto">
             <button onClick={toggleMenu} className="text-primary hover:text-gray-900">
@@ -383,24 +394,24 @@ const Navbar = () => {
 
             {dropdownOpen && (
               <>
-              <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
-              {sections.map((section, index) => (
-                <div key={index}>
-                  <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
-                  <div className="space-y-6">
-                    {section.items.map((item, itemIndex) => (
-                      <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
-                        <div className="mt-2">{item.icon}</div>
-                        <div>
-                          <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
-                          <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
-                        </div>
+                <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+                  {sections.map((section, index) => (
+                    <div key={index}>
+                      <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
+                      <div className="space-y-6">
+                        {section.items.map((item, itemIndex) => (
+                          <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
+                            <div className="mt-2">{item.icon}</div>
+                            <div>
+                              <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                              <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>  
               </>
             )}
             <Link href="/business" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
@@ -418,7 +429,7 @@ const Navbar = () => {
             <Link href="/careers" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
               Careers
             </Link>
-            <Link href="/sign-in" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2 ">
+            <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2 ">
               Sign In
             </Link>
             <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">

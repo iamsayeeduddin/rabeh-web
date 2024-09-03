@@ -1,6 +1,8 @@
 import "./globals.css";
 import Layout from "../components/_Layout";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -11,6 +13,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Layout>{children}</Layout>
+        <ToastContainer position="bottom-center" />
       </body>
       <GoogleAnalytics gaId={"G-550WGYWGEQ"} />
     </html>
