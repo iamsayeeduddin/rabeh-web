@@ -1,9 +1,11 @@
+"use client";
+import { motion } from "framer-motion";
 import React from "react";
 
 const ApplePlaystore = () => {
   return (
     <div className="flex flex-row gap-3 mt-5 ">
-      <div className="py-5">
+      <motion.div whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="py-5">
         <svg width="132" height="45" viewBox="0 0 132 45" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="0.5" y="1.46338" width="131" height="43" rx="6.5" fill="black" />
           <rect x="0.5" y="1.46338" width="131" height="43" rx="6.5" stroke="#A6A6A6" />
@@ -97,9 +99,9 @@ const ApplePlaystore = () => {
             fill="white"
           />
         </svg>
-      </div>
+      </motion.div>
 
-      <div className="py-5">
+      <motion.div whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="py-5">
         <svg width="149" height="45" viewBox="0 0 149 45" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="0.5" y="1.46338" width="147.5" height="43" rx="4.5" fill="black" />
           <rect x="0.5" y="1.46338" width="147.5" height="43" rx="4.5" stroke="#A6A6A6" />
@@ -247,7 +249,7 @@ const ApplePlaystore = () => {
             </linearGradient>
           </defs>
         </svg>
-      </div>
+      </motion.div>
     </div>
   );
 };

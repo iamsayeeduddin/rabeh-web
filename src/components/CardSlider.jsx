@@ -12,17 +12,25 @@ const CardSlider = ({ cards, onInvestClick = () => null }) => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    centerMode: true,
-    centerPadding: "0",
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div className="w-full">
       <Slider {...settings}>
         {cards.map((card, index) => (
-          <div key={index} className=" p-5 ml-6  ">
+          <div key={index} className="px-2 mt-16">
             <ProjectCard {...card} onInvestClick={() => onInvestClick(card.projectName)} />
           </div>
         ))}
@@ -35,7 +43,7 @@ const NextArrow = (props) => {
   const { onClick } = props;
   return (
     <div
-      className={` bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-300 transition-opacity duration-200 hover:opacity-75 absolute top-1/2 right-0 transform -translate-y-1/2 z-10`}
+      className="bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-300 transition-opacity duration-200 hover:opacity-75 absolute top-1/2 right-0 transform -translate-y-1/2 z-10"
       onClick={onClick}
     >
       <svg className="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,7 +57,7 @@ const PrevArrow = (props) => {
   const { onClick } = props;
   return (
     <div
-      className={` bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-300 transition-opacity duration-200 hover:opacity-75 absolute top-1/2 left-0 transform -translate-y-1/2 z-10`}
+      className="bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-300 transition-opacity duration-200 hover:opacity-75 absolute top-1/2 left-0 transform -translate-y-1/2 z-10"
       onClick={onClick}
     >
       <svg className="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

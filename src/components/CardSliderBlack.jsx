@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 const CardSlider = () => {
   const cardImages = ["/ncb.png", "/sc.png", "/amara.png", "/bank.png", "/ncb.png", "/sc.png", "/amara.png", "/bank.png"];
@@ -11,6 +10,14 @@ const CardSlider = () => {
 
   const totalCards = cardImages.length;
   const displayCards = [...cardImages, ...cardImages, ...cardImages];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextCard();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (currentIndex === totalCards) {
@@ -39,11 +46,11 @@ const CardSlider = () => {
   };
 
   return (
-    <div className="relative mt-10 overflow-hidden">
+    <div className="relative mt-10 pb-5 md:pb-0 overflow-hidden">
       <div className="flex" ref={containerRef}>
         <div
           className={`flex transition-transform duration-300 ${isTransitioning ? "transform" : ""}`}
-          style={{ transform: `translateX(-${(currentIndex + totalCards) * 356}px)` }} // Adjust the translation by the card width + margin
+          style={{ transform: `translateX(-${(currentIndex + totalCards) * 356}px)` }}
         >
           {displayCards.map((src, index) => (
             <div key={index} className="w-[340px] h-[210px] bg-[#2E334B] rounded-[16px] flex justify-center items-center p-4 m-2">
@@ -53,7 +60,7 @@ const CardSlider = () => {
         </div>
       </div>
 
-      <div className="flex justify-end mt-4">
+      <div className="flex md:justify-end justify-center mt-4">
         <button onClick={prevCard} className="w-[44px] h-[44px] rounded-full flex justify-center items-center border border-gray-400 opacity-40 mr-2">
           <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path

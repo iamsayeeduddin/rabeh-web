@@ -30,7 +30,7 @@ const page = () => {
         button1Link="/under-construction"
         button2Text="Opportunities"
         button2Link="/opportunities"
-        svgImage="illustration.png"
+        svgImage="illustration-1.png"
         titleColor="text-secoundary"
         titleSize="text-[60px]"
         imageWidth="w-auto  "
@@ -38,7 +38,7 @@ const page = () => {
       />
       <TrustedBy />
       <InvestmentOpportunities />
-      <StrategicPartnerships />
+      <StrategicPartnerships bottomSpacing={true} />
       <RestAssured />
       <SaveTimeResources />
       <WhatCustomerSays />

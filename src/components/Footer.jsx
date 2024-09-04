@@ -24,65 +24,59 @@ function Footer() {
     "/assets/stripe_logo.png",
     "/assets/amex_logo.png",
   ];
+  const links = [
+    { href: "/about", label: "About Us" },
+    { href: "/opportunities", label: "Opportunities" },
+    { href: "/under-construction", label: "Investments" },
+    { href: "/under-construction", label: "Partnerships" },
+    { href: "/under-construction", label: "Public Relations" },
+    { href: "/under-construction", label: "Knowledge Hub" },
+  ];
+
+  const fundraisingLinks = [
+    { href: "/under-construction", label: "Investment" },
+    { href: "/business", label: "Business" },
+    { href: "/under-construction", label: "Partner" },
+    { href: "/under-construction", label: "Regulations" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/under-construction", label: "Cookies Policy" },
+  ];
+
   return (
-    <div className="py-16 px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col gap-16">
-      <div className="max-w-6xl flex justify-between">
-        <div className="max-w-80">
-          <Logo />
-          <p className={"pt-6 font-normal text-sm text-[#2C303B] " + fonts.urbanist.className}>
+    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-primary  gap-16 p-5 pt-8">
+      <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start  md:justify-between ">
+        <div className="max-w-80 self-center md:self-start text-center md:text-start">
+          <Logo width={250} height={100} />
+          <p className={"pt-8 md:pt-6 font-normal text-base text-[#2C303B] " + fonts.urbanist.className}>
             Empowering Businesses. <br /> Connecting Investors. <br />
             Transforming Finance.
           </p>
         </div>
-        <div>
-          <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
-            <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Company</li>
-            <li>
-              <Link href="/about">About Us</Link>
-            </li>
-            <li>
-              <Link href="/opportunities">Opportunities</Link>
-            </li>
-            <li>
-              <Link href="/under-construction">Investments</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Partnerships</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Public Relations</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Knowledge Hub</Link>
-            </li>
-          </ul>
+        <div className="flex justify-center md:justify-start text-center md:text-left md:flex-row gap-10">
+          <div className="mt-5 md:mt-0">
+            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>Company</li>
+              {links.map(({ href, label }) => (
+                <Link key={label} href={href} className="hover:text-[#392E69]/70">
+                  {label}
+                </Link>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-5 md:mt-0">
+            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>Fundraising</li>
+              {fundraisingLinks.map(({ href, label }) => (
+                <Link key={label} href={href} className="hover:text-[#392E69]/70">
+                  {label}
+                </Link>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div>
-          <ul className={"text-[#2C303B] font-medium flex flex-col gap-3 " + fonts.urbanist.className}>
-            <li className={"text-[#392E69] font-bold text-sm pb-4 " + fonts.spaceG.className}>Fundraising</li>
-            <li>
-              <Link href={"/under-construction"}>Investmentnves</Link>
-            </li>
-            <li>
-              <Link href={"/business"}>Business</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Partner</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Regulations</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Privacy Policy</Link>
-            </li>
-            <li>
-              <Link href={"/under-construction"}>Cookies Policy</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="max-w-80">
-          <ul className={"text-[#2C303B] flex flex-col gap-4 " + fonts.urbanist.className}>
-            <li className="text-[#392E69] font-semibold">Policy</li>
+        <div className="max-w-80 mt-7 md:mt-0 ">
+          <ul className={"text-[#2C303B] flex flex-col items-center md:items-start md:justify-start gap-4 " + fonts.urbanist.className}>
+            <li className="text-[#392E69] text-lg font-semibold">Policy</li>
             <li>
               Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of
               Saudi Arabia to test its innovative products in the experimental environment (Sandbox) for more.{" "}
@@ -93,25 +87,26 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className={"max-w-6xl gap-8 flex justify-between " + fonts.spaceG.className}>
+      <div className={"max-w-6xl gap-8 justify-between flex flex-col md:flex-row " + fonts.spaceG.className}>
         <div>
-          <h5 className="font-medium">Security Certificates</h5>
+          <h5 className="font-medium text-center md:text-left">Security Certificates</h5>
           <div className="flex gap-3 pt-5">
             {secCert.map((item, index) => (
-              <div key={index + "cert"} className="w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
+              <div key={index + "cert"} className="md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
                 <img src={item} />
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <h5 className="font-medium">Flexible Payment options</h5>
+        <div className="mt-5 md:mt-0">
+          <h5 className="font-medium text-center md:text-left">Flexible Payment options</h5>
           <div className="flex gap-3 pt-5">
             {paymentCert.map((item, index) => (
               <div
                 key={index + "cert"}
                 className={
-                  "w-20 h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " + (item.includes("amex") ? "bg-[#1F72CD]" : "")
+                  "md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center " +
+                  (item.includes("amex") ? "bg-[#1F72CD]" : "")
                 }
               >
                 <img src={item} />
@@ -120,24 +115,24 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className={"flex justify-between " + fonts.inter.className}>
+      <div className={"flex flex-col md:flex-row items-center md:items-start justify-between " + fonts.inter.className}>
         <div>&#169; {new Date().getFullYear()} Rabeh. All right reserved</div>
-        <div className="flex space-x-4 text-[#3A404E]">
-        <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
-      <FaInstagram />
-    </Link>
-    <Link href="https://www.facebook.com/RABEHclub" target="_blank">
-      <FaFacebook />
-    </Link>
-    <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
-      <FaLinkedin />
-    </Link>
-    <Link href="https://x.com/RabehFinance" target="_blank">
-      <FaYoutube />
-    </Link>
-    <Link href="https://x.com/RabehFinance" target="_blank">
-      <FaTimes />
-    </Link>
+        <div className="flex space-x-4 text-[#3A404E] mt-5 md:mt-0">
+          <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
+            <FaInstagram />
+          </Link>
+          <Link href="https://www.facebook.com/RABEHclub" target="_blank">
+            <FaFacebook />
+          </Link>
+          <Link href="https://www.linkedin.com/company/rabeh-ksa/" target="_blank">
+            <FaLinkedin />
+          </Link>
+          <Link href="https://x.com/RabehFinance" target="_blank">
+            <FaYoutube />
+          </Link>
+          <Link href="https://x.com/RabehFinance" target="_blank">
+            <FaTimes />
+          </Link>
         </div>
       </div>
     </div>
