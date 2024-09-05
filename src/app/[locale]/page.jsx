@@ -1,6 +1,6 @@
 import React from "react";
-import Hero from "../components/HeroSection";
-import TrustedBy from "../components/TrustedBy";
+import Hero from "../../components/HeroSection";
+import TrustedBy from "../../components/TrustedBy";
 import InvestmentOpportunities from "@/components/InvestmentOpportunities";
 import StrategicPartnerships from "@/components/StrategicPartnerships";
 import RestAssured from "@/components/RestAssured";
@@ -11,8 +11,10 @@ import SupportedCompainies from "@/components/SupportedCompainies";
 import Newsletter from "@/components/Newsletter";
 import UnleashInvestment from "@/components/UnleashInvestment";
 import Policy from "@/components/Policy";
+import { useTranslations } from "next-intl";
 
-const page = () => {
+const Page = () => {
+  const t = useTranslations("Homepage");
   return (
     <div>
       <Hero
@@ -36,6 +38,7 @@ const page = () => {
         imageWidth="w-auto  "
         imageHeight="h-auto"
       />
+      <p>{t("title")}</p>
       <TrustedBy />
       <InvestmentOpportunities />
       <StrategicPartnerships bottomSpacing={true} />
@@ -51,4 +54,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -2,7 +2,7 @@
 import React from "react";
 import useFonts from "@/utils/useFonts";
 import { useState } from "react";
-import Logo from "../../components/Logo";
+import Logo from "../../../components/Logo";
 import OTPVerify from "@/components/OTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
