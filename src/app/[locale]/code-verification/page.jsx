@@ -3,7 +3,7 @@ import React from "react";
 import useFonts from "@/utils/useFonts";
 import { useState } from "react";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
   function handlePasswordChange(event) {
     const password = event.target.value;

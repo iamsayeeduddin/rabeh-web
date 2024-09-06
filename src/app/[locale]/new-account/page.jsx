@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isRegister, setIsRegister] = useState(false);

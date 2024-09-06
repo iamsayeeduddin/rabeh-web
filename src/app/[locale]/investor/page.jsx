@@ -7,7 +7,7 @@ import Newsletter from "@/components/Newsletter";
 import Brands from "@/components/Brands";
 import { useTranslations } from "next-intl";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const t = useTranslations();
   return (
     <div>

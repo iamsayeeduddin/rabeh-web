@@ -4,7 +4,7 @@ import TitleHead from "@/components/TitleHead";
 import SingleCard from "@/components/SingleCard";
 import ContactForm from "@/components/ContactForm";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
   return (
     <div>

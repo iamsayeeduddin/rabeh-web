@@ -10,7 +10,7 @@ import useFonts from "@/utils/useFonts";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
   const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState("Just Launched");

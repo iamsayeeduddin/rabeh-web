@@ -25,7 +25,7 @@ const FAQItem = ({ iconPath, question, answer }) => (
   </div>
 );
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
 
   return (

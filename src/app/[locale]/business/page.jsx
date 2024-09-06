@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useTranslations } from "next-intl";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const { ref: visionRef, inView: visionInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,

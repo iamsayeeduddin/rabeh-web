@@ -13,7 +13,7 @@ import UnleashInvestment from "@/components/UnleashInvestment";
 import Policy from "@/components/Policy";
 import { useTranslations } from "next-intl";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const t = useTranslations();
   return (
     <div>

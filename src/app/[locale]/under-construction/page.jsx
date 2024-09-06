@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { MdBuild } from "react-icons/md";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
   const router = useRouter();
   const path = usePathname();

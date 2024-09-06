@@ -8,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

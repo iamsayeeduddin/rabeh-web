@@ -1,7 +1,7 @@
 import React from "react";
 import useFonts from "@/utils/useFonts";
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const fonts = useFonts();
 
   return (

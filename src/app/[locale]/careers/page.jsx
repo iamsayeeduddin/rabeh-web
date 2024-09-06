@@ -63,7 +63,7 @@ const jobData = [
   },
 ];
 
-const Page = ({ params: { locale } }) => {
+const Page = () => {
   const [jobType, setJobType] = useState("All");
   const fonts = useFonts();
   const parentVariants = {
