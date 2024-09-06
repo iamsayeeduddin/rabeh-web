@@ -10,10 +10,13 @@ import { FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 import ClickTabs from "./ClickTabs";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const Page = () => {
   const fonts = useFonts();
+
+  const t = useTranslations();
   const { ref: visionRef, inView: visionInView } = useInView({
     triggerOnce: true,
     threshold: 0.1, // Adjust this value as needed
@@ -180,20 +183,11 @@ const Page = () => {
 
   return (
     <div>
-      <TitleHead
-        title={"About"}
-        desc={
-          "Welcome to RABEH, your comprehensive fintech platform designed to revolutionize the way businesses and investors connect. We specialize in crowdfunding and real-time ownership exchange systems, catering to all types of businesses and companies. Our mission is to facilitate the journey of entrepreneurs and business owners in accessing financial support and achieving success in their ventures."
-        }
-      />
+      <TitleHead title={t("about")} desc={t("aboutSub")} />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-3xl text-center">
-          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>About Rabeh</h5>
-          <p>
-            At RABEH, we believe in democratizing investment opportunities for everyone, regardless of location. Our platform offers a seamless
-            investment experience for all segments of investors around the globe, providing access to successful and lucrative investment
-            opportunities.
-          </p>
+          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("aboutRabeh")}</h5>
+          <p>{t("aboutRabehSub")}</p>
         </div>
         <div className={"flex flex-col md:flex-row gap-6 pt-20 " + fonts.spaceG.className}>
           <motion.div
@@ -205,11 +199,8 @@ const Page = () => {
           >
             <img src="/assets/logo_mini.png" className="pb-4 group-hover:hidden" height={35} width={30} />
             <img src="/assets/logo_mini_light.png" className="pb-4 hidden group-hover:block" height={35} width={30} />
-            <h5 className="font-medium text-2xl group-hover:text-white">Our Vision</h5>
-            <p className="text-[#36364A] group-hover:text-white">
-              To be the leading fintech platform that empowers businesses and investors through innovative, automated technologies, transforming the
-              financial landscape and fostering entrepreneurial success in Saudi and MENA region and worldwide.
-            </p>
+            <h5 className="font-medium text-2xl group-hover:text-white">{t("ourVision")}</h5>
+            <p className="text-[#36364A] group-hover:text-white">{t("oVSub")}</p>
           </motion.div>
           <motion.div
             ref={visionRef}
@@ -220,20 +211,16 @@ const Page = () => {
           >
             <img src="/assets/logo_mini.png" className="pb-4 group-hover:hidden" height={35} width={30} />
             <img src="/assets/logo_mini_light.png" className="pb-4 hidden group-hover:block" height={35} width={30} />
-            <h5 className="font-medium text-2xl group-hover:text-white">Our Mission</h5>
-            <p className="text-[#36364A] group-hover:text-white">
-              To provide an advanced, secure, and efficient platform that simplifies the funding process for businesses and enhances the investment
-              experience for investors. We aim to leverage artificial intelligence and a centralized blockchain network to automate financing,
-              allocation, follow-up, and decision support processes.
-            </p>
+            <h5 className="font-medium text-2xl group-hover:text-white">{t("ourMission")}</h5>
+            <p className="text-[#36364A] group-hover:text-white">{t("oMSub")}</p>
           </motion.div>
         </div>
       </section>
       <section className={"flex flex-col items-center p-5  md:px-32 md:py-24 " + fonts.spaceG.className}>
         <div className="max-w-7xl">
           <div className="w-full space-y-4 pb-12">
-            <h5 className="font-bold text-4xl">Why Choose Rabeh?</h5>
-            <p className="max-w-xl text-lg">Discover our innovative features crafted to elevate your user journey and exceed your expectations.</p>
+            <h5 className="font-bold text-4xl">{t("whyChooseRabeh")}</h5>
+            <p className="max-w-xl text-lg">{t("whyCRabehSub")}</p>
           </div>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -244,40 +231,30 @@ const Page = () => {
             <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
                 <img src="/assets/icon-1.png" width={26} height={26} />
-                Innovative Technology
+                {t("innovTech")}
               </span>
-              <p className="text-sm text-[#525252]">
-                We harness the power of artificial intelligence and blockchain to provide a seamless, secure, and efficient platform for both
-                businesses and investors.
-              </p>
+              <p className="text-sm text-[#525252]">{t("innovTechSub")}</p>
             </div>
             <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
                 <img src="/assets/icon-5.png" width={26} height={26} />
-                Global Reach
+                {t("globalReach")}
               </span>
-              <p className="text-sm text-[#525252]">
-                Our platform is designed to accommodate investors and businesses from all over the world, providing access to a global pool of
-                opportunities and resources.
-              </p>
+              <p className="text-sm text-[#525252]">{t("globalReachSub")}</p>
             </div>
             <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
                 <img src="/assets/icon-4.png" width={26} height={26} />
-                Entrepreneurial Support
+                {t("entreSupport")}
               </span>
-              <p className="text-sm text-[#525252]">
-                We are committed to supporting entrepreneurs by providing the tools and resources needed to achieve financial success and growth.
-              </p>
+              <p className="text-sm text-[#525252]">{t("entreSupportSub")}</p>
             </div>
             <div className="hover:scale-110 hover:border hover:border-primary transition-transform w-[300px] bg-[#F9F9FB] rounded-2xl p-6 space-y-3">
               <span className="flex gap-3 font-bold text-lg">
                 <img src="/assets/icon-6.png" width={26} height={26} />
-                Investor Empowerment
+                {t("investorEmp")}
               </span>
-              <p className="text-sm text-[#525252]">
-                We empower investors by offering a diverse range of investment opportunities and the tools to make informed decisions.
-              </p>
+              <p className="text-sm text-[#525252]">{t("investorEmpSub")}</p>
             </div>
           </motion.div>
         </div>
@@ -285,57 +262,44 @@ const Page = () => {
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-7xl">
           <div className="flex justify-between w-full pb-12 md:flex-row flex-col">
-            <h5 className={"w-full md:w-1/2 text-[#263238] font-bold text-4xl " + fonts.spaceG.className}>How it works</h5>
-            <p className="text-lg text-[#667085] mt-5 md:mt-0 text-justify">
-              It offers services for fundraising, equity exchange, and business enhancement, and facilitates funds and financing and all kinds of
-              support before, during, and after services.{" "}
-            </p>
+            <h5 className={"w-full md:w-1/2 text-[#263238] font-bold text-4xl " + fonts.spaceG.className}>{t("howItWorks")}</h5>
+            <p className="text-lg text-[#667085] mt-5 md:mt-0 text-justify">{t("howItWorksSub")}</p>
           </div>
           <div className={"flex flex-col md:flex-row justify-between  " + fonts.inter.className}>
             <div className="rounded-3xl drop-shadow-lg hover:drop-shadow-2xl hover:scale-105 transition-all md:w-96 bg-white p-8 flex flex-col gap-4">
               <img src="/assets/icon-2.png" height={84} width={84} />
-              <h5 className="pt-4 font-bold text-2xl">For Entreprenuer</h5>
-              <p className="text-[#667085]">
-                Start by setting up your campaign on our platform, outlining your project’s objectives and funding requirements. Promote your campaign
-                to attract and engage potential backers. Keep supporters updated with regular progress reports and use the funds raised to bring your
-                vision to life.
-              </p>
+              <h5 className="pt-4 font-bold text-2xl">{t("forEntre")}</h5>
+              <p className="text-[#667085]">{t("forEntreSub")}</p>
 
               <Link
                 href="/under-construction"
                 className={"pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " + fonts.spaceG.className}
               >
-                Join Entreprenuership Community <FaChevronRight />
+                {t("joinEntreCommu")} <FaChevronRight />
               </Link>
             </div>
             <div className="rounded-3xl drop-shadow-lg hover:drop-shadow-2xl hover:scale-105 transition-all md:w-96 bg-white p-8 flex flex-col gap-4 mt-5 md:mt-0">
               <img src="/assets/icon-2.png" height={84} width={84} />
-              <h5 className="pt-4 font-bold text-2xl">For Investors</h5>
-              <p className="text-[#667085]">
-                Enjoy personalized assistance and expert guidance from our dedicated support team, helping you navigate every step of your fundraising
-                journey.
-              </p>
+              <h5 className="pt-4 font-bold text-2xl">{t("forInvestors")}</h5>
+              <p className="text-[#667085]">{t("forInvestorsSub")}</p>
 
               <Link
                 href="/under-construction"
                 className={"pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " + fonts.spaceG.className}
               >
-                Join Investors Hub <FaChevronRight />
+                {t("joinInvestorsHub")} <FaChevronRight />
               </Link>
             </div>
             <div className="rounded-3xl drop-shadow-lg hover:drop-shadow-2xl hover:scale-105 transition-all md:w-96 bg-white p-8 flex flex-col gap-4 mt-5 md:mt-0">
               <img src="/assets/icon-2.png" height={84} width={84} />
-              <h5 className="pt-4 font-bold text-2xl">For Consultants</h5>
-              <p className="text-[#667085]">
-                Join Rabeh to provide expert advice and support to entrepreneurs. Review and improve project proposals, offer strategic guidance to
-                enhance campaign success, and connect with a network of entrepreneurs and investors to expand your professional opportunities.
-              </p>
+              <h5 className="pt-4 font-bold text-2xl">{t("forConsultants")}</h5>
+              <p className="text-[#667085]">{t("forConsultantsSub")}</p>
 
               <Link
                 href="/under-construction"
                 className={"pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " + fonts.spaceG.className}
               >
-                Join Consultants Circles <FaChevronRight />
+                {t("joinConsultantsHub")} <FaChevronRight />
               </Link>
             </div>
           </div>
@@ -345,33 +309,24 @@ const Page = () => {
       <section className="flex flex-col items-center p-5 md:p-0 ">
         <div className="max-w-7xl py-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Advanced Technologies</h5>
-            <p className={"text-[#667085] " + fonts.inter.className}>
-              Efficiently oversee your freelance workforce within a dedicated talent pool for enhanced productivity and streamlined collaboration
-            </p>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("advancedTech")}</h5>
+            <p className={"text-[#667085] " + fonts.inter.className}>{t("advancedTechSub")}</p>
           </div>
           <div className={"pt-24 gap-4 flex md:flex-row flex-col justify-between " + fonts.spaceG.className}>
             <div className="md:w-96 bg-[#FAFAFA] hover:bg-[#7860DC] hover:scale-105 transition-all rounded-3xl p-6 flex flex-col gap-2 group">
               <img src="/assets/img-1.png" />
-              <h5 className="font-bold text-2xl group-hover:text-white">Artificial Intelligence</h5>
-              <p className="text-[#525252] group-hover:text-white">
-                Our AI-driven system automates various processes, including financing, allocation, and follow-up, ensuring efficiency and accuracy.
-              </p>
+              <h5 className="font-bold text-2xl group-hover:text-white">{t("aiFull")}</h5>
+              <p className="text-[#525252] group-hover:text-white">{t("aiFullSub")}</p>
             </div>
             <div className="w-96 bg-[#FAFAFA] hover:bg-[#7860DC] hover:scale-105 transition-all group rounded-3xl p-6 flex flex-col gap-2">
               <img src="/assets/img-2.png" />
-              <h5 className="font-bold text-2xl group-hover:text-white">Blockchain Security</h5>
-              <p className="text-[#525252] group-hover:text-white">
-                We utilize a centralized blockchain network to secure all transactions, providing transparency, speed, and security.
-              </p>
+              <h5 className="font-bold text-2xl group-hover:text-white">{t("blockChainSec")}</h5>
+              <p className="text-[#525252] group-hover:text-white">{t("blockChainSecSub")}</p>
             </div>
             <div className="w-96 bg-[#FAFAFA] hover:bg-[#7860DC] hover:scale-105 transition-all group rounded-3xl p-6 flex flex-col gap-2">
               <img src="/assets/img-3.png" />
-              <h5 className="font-bold text-2xl group-hover:text-white">Decision Support Tools</h5>
-              <p className="text-[#525252] group-hover:text-white">
-                Our platform offers advanced tools to support decision-making for both businesses and investors, ensuring well-informed choices and
-                successful outcomes.
-              </p>
+              <h5 className="font-bold text-2xl group-hover:text-white">{t("decisionSupportTools")}</h5>
+              <p className="text-[#525252] group-hover:text-white">{t("decisionSupportToolsSub")}</p>
             </div>
           </div>
         </div>
@@ -379,10 +334,8 @@ const Page = () => {
       <section className="flex flex-col items-center p-5 md:p-0 ">
         <div className="md:max-w-7xl w-full md:py-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Discover</h5>
-            <p className={"text-[#667085] " + fonts.inter.className}>
-              An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies
-            </p>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("discoverTitle")}</h5>
+            <p className={"text-[#667085] " + fonts.inter.className}>{t("discoverSub")}</p>
           </div>
           <div className="pt-8 w-full flex items-center justify-center ">
             <div
@@ -429,12 +382,8 @@ const Page = () => {
       <section className="flex flex-col items-center">
         <div className="max-w-7xl flex flex-col items-center p-10 md:p-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Meet Our Team</h5>
-            <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>
-              Our team is the driving force behind our innovative fintech platform. We are a diverse group of professionals with a shared passion for
-              transforming the financial landscape and empowering businesses and investors. Get to know the dedicated individuals who make RABEH a
-              success.
-            </p>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("meetOurTeam")}</h5>
+            <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>{t("meetOurTeamSub")}</p>
           </div>
           <div className="flex flex-col md:flex-row  justify-between gap-11 pt-16">
             {team.map((member, index) => (

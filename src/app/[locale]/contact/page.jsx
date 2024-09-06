@@ -23,7 +23,7 @@ const Page = () => {
       <section className="my-24">
         <img src="/assets/map-2.png" alt="" className="w-full" />
       </section>
-      <ContactForm/>
+      <ContactForm />
     </div>
   );
 };

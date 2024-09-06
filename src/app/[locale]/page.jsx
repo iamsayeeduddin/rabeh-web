@@ -1,6 +1,6 @@
 import React from "react";
-import Hero from "../components/HeroSection";
-import TrustedBy from "../components/TrustedBy";
+import Hero from "../../components/HeroSection";
+import TrustedBy from "../../components/TrustedBy";
 import InvestmentOpportunities from "@/components/InvestmentOpportunities";
 import StrategicPartnerships from "@/components/StrategicPartnerships";
 import RestAssured from "@/components/RestAssured";
@@ -11,24 +11,19 @@ import SupportedCompainies from "@/components/SupportedCompainies";
 import Newsletter from "@/components/Newsletter";
 import UnleashInvestment from "@/components/UnleashInvestment";
 import Policy from "@/components/Policy";
+import { useTranslations } from "next-intl";
 
-const page = () => {
+const Page = () => {
+  const t = useTranslations();
   return (
     <div>
       <Hero
-        subtitle="Investing opportunities"
-        title={
-          <>
-            Unleash <br />
-            Investment and <br />
-            grow <br />
-            businesses
-          </>
-        }
-        description="An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies."
-        button1Text="Get Started"
+        subtitle={t("heroTag")}
+        title={<>{t("heroTitle")}</>}
+        description={t("heroSubtitle")}
+        button1Text={t("getStarted")}
         button1Link="/under-construction"
-        button2Text="Opportunities"
+        button2Text={t("opportunities")}
         button2Link="/opportunities"
         svgImage="illustration-1.png"
         titleColor="text-secoundary"
@@ -51,4 +46,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

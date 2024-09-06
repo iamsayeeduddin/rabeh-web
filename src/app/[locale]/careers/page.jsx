@@ -2,7 +2,7 @@
 import ContactForm from "@/components/ContactForm";
 import useFonts from "@/utils/useFonts";
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 
 const jobData = [

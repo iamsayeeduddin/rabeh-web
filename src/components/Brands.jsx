@@ -4,9 +4,11 @@ import Slider from "react-slick";
 import useFonts from "@/utils/useFonts";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useTranslations } from "next-intl";
 
 const Brands = () => {
   const fonts = useFonts();
+  const t = useTranslations();
 
   const brandImages = [
     { src: "/assets/logos/sabic.jpg", alt: "Sabic" },
@@ -47,7 +49,7 @@ const Brands = () => {
   return (
     <div className={"md:p-[10px] " + fonts.spaceG.className}>
       <div className="md:p-12 p-5 flex flex-col items-center justify-center">
-        <div className="text-[36px] text-secondary font-medium">Trusted by thousands of top brands</div>
+        <div className="text-[36px] text-secondary font-medium">{t("trustedByBrands")}</div>
       </div>
 
       <div className="w-full mt-10 mb-10 p-0">

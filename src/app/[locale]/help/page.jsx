@@ -1,7 +1,7 @@
 import TitleHead from "@/components/TitleHead";
 import useFonts from "@/utils/useFonts";
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import classNames from "classnames";
 
 const Icon = ({ d, fill = "none", stroke = "#344054" }) => (
