@@ -7,10 +7,12 @@ import TitleHead from "@/components/TitleHead";
 import TrustedBy from "@/components/TrustedBy";
 import UnleashInvestment from "@/components/UnleashInvestment";
 import useFonts from "@/utils/useFonts";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const Page = () => {
   const fonts = useFonts();
+  const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState("Just Launched");
 
   const allCards = [
@@ -140,14 +142,19 @@ const Page = () => {
 
   return (
     <div>
-      <TitleHead title={"Opportunities"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
+      <TitleHead title={t("opportunities")} desc={t("rabehDescription")} />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="md:max-w-7xl w-full py-28 ">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>Highlighted projects</h5>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("highlightedPrjs")}</h5>
           </div>
           <div className="pt-8 w-full flex justify-center">
-            <div className={"flex-row items-center justify-center md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5 " + fonts.urbanist.className}>
+            <div
+              className={
+                "flex-row items-center justify-center md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5 " +
+                fonts.urbanist.className
+              }
+            >
               {["Just Launched", "Early Stage", "Late Stage", "Completed Projects"].map((category) => (
                 <span
                   key={category}
@@ -167,29 +174,27 @@ const Page = () => {
       <section className={"flex flex-col items-center md:p-0 p-5 " + fonts.plusJakarta.className}>
         <div className="md:max-w-7xl flex flex-col md:flex-row gap-10">
           <div className="max-w-96">
-            <h5 className="font-bold text-4xl">Explore Projects</h5>
-            <p className="text-[#0B0B0B] text-sm py-6">
-              Create custom landing pages with Rareblocks that converts more visitors than any website. With lots of unique blocks, you can easily build a page.
-            </p>
+            <h5 className="font-bold text-4xl">{t("exploreProjects")}</h5>
+            <p className="text-[#0B0B0B] text-sm py-6">{t("createLandingPages")}</p>
             <div className={"flex flex-row gap-2 md:gap-4 " + fonts.spaceG.className}>
               <Link href={"/under-construction"} className="bg-primary w-fit text-white px-6 py-4 rounded-lg hover:bg-primary/80">
-                Join Now
+                {t("joinNow")}
               </Link>
               <Link href={"/under-construction"} className="text-black w-fit px-6 py-4 border border-gray-700 rounded-lg hover:bg-gray-200">
-                Learn More
+                {t("learnMore")}
               </Link>
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-6">
             <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/building-06.png" />
-              <h5 className="font-bold">Startups</h5>
-              <p className={"text-[#12141D] text-sm " + fonts.inter.className}>Create beautiful landing pages with Rareblocks that converts.</p>
+              <h5 className="font-bold">{t("startups")}</h5>
+              <p className={"text-[#12141D] text-sm " + fonts.inter.className}>{t("createLandingPages")}</p>
             </div>
             <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/chart-breakout-circle.png" />
-              <h5 className="font-bold">Businesses</h5>
-              <p className={"text-[#12141D] text-sm " + fonts.inter.className}>Create beautiful landing pages with Rareblocks that converts.</p>
+              <h5 className="font-bold">{t("businesses")}</h5>
+              <p className={"text-[#12141D] text-sm " + fonts.inter.className}>{t("createLandingPages")}</p>
             </div>
           </div>
         </div>
@@ -197,7 +202,7 @@ const Page = () => {
       <section className="flex flex-col items-center md:p-0 p-5">
         <div className="md:max-w-7xl w-full py-28">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>New projects</h5>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("newProjects")}</h5>
           </div>
           <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
             <CardSlider cards={allCards} />

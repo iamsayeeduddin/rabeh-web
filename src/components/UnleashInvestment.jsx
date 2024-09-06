@@ -3,9 +3,11 @@ import { motion, useInView } from "framer-motion";
 import React, { useRef } from "react";
 import ApplePlaystore from "./ApplePlaystore";
 import useFonts from "@/utils/useFonts";
+import { useTranslations } from "next-intl";
 
 const UnleashInvestment = () => {
   const fonts = useFonts();
+  const t = useTranslations();
   const ref = useRef(null);
   const inView = useInView(ref, { once: false });
 
@@ -18,10 +20,10 @@ const UnleashInvestment = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="flex-1 md:mr-8 md:pt-[128px] md:pb-[128px] md:px-[80px] p-5"
       >
-        <h2 className="text-5xl text-inter font-semibold mb-4">Unleash Investment and grow businesses</h2>
+        <h2 className="text-5xl text-inter font-semibold mb-4">{t("heroTitle")}</h2>
         <div className="flex mt-[48px]">
           <div className="text-start text-[#475467] text-xl border-l-0">
-            <div>Stop compromising between billing needs and engineering bandwidth. With Finto’s prebuilt interfaces and billing components</div>
+            <div>{t("unInvSub")}</div>
           </div>
         </div>
         <div className="hover:cursor-pointer">

@@ -2,10 +2,12 @@ import React from "react";
 import Logo from "./Logo";
 import { FaYoutube, FaInstagram, FaLinkedin, FaTimes, FaFacebook } from "react-icons/fa";
 import useFonts from "@/utils/useFonts";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 function Footer() {
   const fonts = useFonts();
+  const t = useTranslations();
   const secCert = [
     "/assets/norton_logo.png",
     "/assets/mcafee_logo.png",
@@ -25,21 +27,21 @@ function Footer() {
     "/assets/amex_logo.png",
   ];
   const links = [
-    { href: "/about", label: "About Us" },
-    { href: "/opportunities", label: "Opportunities" },
-    { href: "/under-construction", label: "Investments" },
-    { href: "/under-construction", label: "Partnerships" },
-    { href: "/under-construction", label: "Public Relations" },
-    { href: "/under-construction", label: "Knowledge Hub" },
+    { href: "/about", label: t("about") },
+    { href: "/opportunities", label: t("opportunities") },
+    { href: "/under-construction", label: t("investments") },
+    { href: "/under-construction", label: t("partnerships") },
+    { href: "/under-construction", label: t("pr") },
+    { href: "/under-construction", label: t("knowledgeHub") },
   ];
 
   const fundraisingLinks = [
-    { href: "/under-construction", label: "Investment" },
-    { href: "/business", label: "Business" },
-    { href: "/under-construction", label: "Partner" },
-    { href: "/under-construction", label: "Regulations" },
-    { href: "/privacy-policy", label: "Privacy Policy" },
-    { href: "/under-construction", label: "Cookies Policy" },
+    { href: "/under-construction", label: t("investments") },
+    { href: "/business", label: t("business") },
+    { href: "/under-construction", label: t("partner") },
+    { href: "/under-construction", label: t("regulations") },
+    { href: "/privacy-policy", label: t("privacyPolicy") },
+    { href: "/under-construction", label: t("cookiesPolicy") },
   ];
 
   return (
@@ -48,8 +50,8 @@ function Footer() {
         <div className="max-w-80 self-center md:self-start text-center md:text-start">
           <Logo width={250} height={100} />
           <p className={"pt-8 md:pt-6 font-normal text-base text-[#2C303B] " + fonts.urbanist.className}>
-            Empowering Businesses. <br /> Connecting Investors. <br />
-            Transforming Finance.
+            {t("empowerBusiness")} <br /> {t("connectingInvestors")} <br />
+            {t("transformFinance")}
           </p>
         </div>
         <div className="flex justify-center md:justify-start text-center md:text-left md:flex-row gap-10">
@@ -76,20 +78,17 @@ function Footer() {
         </div>
         <div className="max-w-80 mt-7 md:mt-0 ">
           <ul className={"text-[#2C303B] flex flex-col items-center md:items-start md:justify-start gap-4 " + fonts.urbanist.className}>
-            <li className="text-[#392E69] text-lg font-semibold">Policy</li>
-            <li>
-              Rabeh Financial Company is under the permit procedures of the Capital Market Authority and under the supervision of the Central Bank of
-              Saudi Arabia to test its innovative products in the experimental environment (Sandbox) for more.{" "}
-            </li>
+            <li className="text-[#392E69] text-lg font-semibold">{t("policy")}</li>
+            <li>{t("policySub")}</li>
             <li className={"text-[#7860DC] font-bold text-sm underline " + fonts.inter.className}>
-              <Link href={"/under-construction"}>View Policy</Link>
+              <Link href={"/under-construction"}>{t("viewPolicy")}</Link>
             </li>
           </ul>
         </div>
       </div>
       <div className={"max-w-6xl gap-8 justify-between flex flex-col md:flex-row " + fonts.spaceG.className}>
         <div>
-          <h5 className="font-medium text-center md:text-left">Security Certificates</h5>
+          <h5 className="font-medium text-center md:text-left">{t("secCert")}</h5>
           <div className="flex gap-3 pt-5">
             {secCert.map((item, index) => (
               <div key={index + "cert"} className="md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
@@ -99,7 +98,7 @@ function Footer() {
           </div>
         </div>
         <div className="mt-5 md:mt-0">
-          <h5 className="font-medium text-center md:text-left">Flexible Payment options</h5>
+          <h5 className="font-medium text-center md:text-left">{t("flexPayOpt")}</h5>
           <div className="flex gap-3 pt-5">
             {paymentCert.map((item, index) => (
               <div

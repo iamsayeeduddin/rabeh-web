@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import CardSlider from "./CardSlider";
 import useFonts from "@/utils/useFonts";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const InvestmentOpportunities = () => {
   const fonts = useFonts();
+  const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState("Just Launched");
 
   const allCards = [
@@ -135,12 +137,9 @@ const InvestmentOpportunities = () => {
 
   return (
     <div className="bg-[#FAFAFA] w-full h-auto md:pt-[96px] md:pr-[72px] md:pb-[112px] md:pl-[72px] md:flex-row md:gap-[64px] p-5">
-      <div className="font-inter text-[18px] font-medium leading-[27px] text-left my-5">Unleash Investment</div>
-      <div className="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] text-left my-5">Investment opportunities</div>
-      <div className="font-inter text-[18px] font-normal leading-[27px] text-left my-5 max-w-2xl text-[#737373]">
-        It offers services for fundraising, equity exchange, and business enhancement, and facilitates funds and financing and all kinds of support
-        before, during, and after services.
-      </div>
+      <div className="font-inter text-[18px] font-medium leading-[27px] text-left my-5">{t("unleashInvestment")}</div>
+      <div className="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] text-left my-5">{t("investOpp")}</div>
+      <div className="font-inter text-[18px] font-normal leading-[27px] text-left my-5 max-w-2xl text-[#737373]">{t("investOppSub")}</div>
       <div className="md:py-2 w-full flex md:justify-start">
         <div
           className={
@@ -167,7 +166,7 @@ const InvestmentOpportunities = () => {
       </div>
       <div className={"flex items-center justify-center text-primary mt-7 " + fonts.spaceG.className}>
         <Link href="/under-construction" className="hover:border-b-2 pb-1 border-primary transition-all ease-in-out duration-75">
-          More Investment
+          {t("moreInvestment")}
         </Link>
       </div>
     </div>

@@ -2,8 +2,10 @@
 import React, { useCallback } from "react";
 import useFonts from "@/utils/useFonts";
 import { motion, useAnimation } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const WhyRabeh = () => {
+  const t = useTranslations();
   const fonts = useFonts();
   const controls1 = useAnimation();
   const controls2 = useAnimation();
@@ -27,7 +29,7 @@ const WhyRabeh = () => {
 
   return (
     <div className="flex flex-col mt-5 pt-20 md:h-max-[659px] md:px-24 px-5">
-      <div className={"text-4xl  " + fonts.spaceG.className + " flex items-center justify-center"}>Why partner with RABEH ?</div>
+      <div className={"text-4xl  " + fonts.spaceG.className + " flex items-center justify-center"}>{t("whyPartnerWithRABEH")}</div>
       <div className={"flex md:flex-row flex-col mt-5 " + fonts.inter.className}>
         <div className="flex justify-between ml-0   md:m-8 mt-5 ">
           <div
@@ -44,8 +46,8 @@ const WhyRabeh = () => {
                 />
               </svg>
             </motion.div>
-            <h2 className="text-3xl mb-4">AI analytics</h2>
-            <p className="text-[18px]">Manage your clients with a single sign-in using pro access.</p>
+            <h2 className="text-3xl mb-4">{t("aiAnalytics")}</h2>
+            <p className="text-[18px]">{t("manageClients")}</p>
           </div>
         </div>
         <div className="flex justify-center md:m-8 mt-5 ">
@@ -75,8 +77,8 @@ const WhyRabeh = () => {
                 <path d="M68.1667 6.16666L52.75 21.5833" stroke="#7860DC" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </motion.div>
-            <h2 className="text-3xl mb-4">Payments & transfers</h2>
-            <p className="text-[18px]">Supported by access to sales materials and co-branded collateral.</p>
+            <h2 className="text-3xl mb-4">{t("paymentsAndTransfers")}</h2>
+            <p className="text-[18px]">{t("accessSalesMaterials")}</p>
           </div>
         </div>
         <div className="flex justify-center md:m-8 mt-5 ">
@@ -117,8 +119,8 @@ const WhyRabeh = () => {
                 />
               </svg>
             </motion.div>
-            <h2 className="text-3xl mb-4">Decision support tools </h2>
-            <p className="text-[18px]">Make payments, reporting, and more work like magic with the Brex API and no-code platforms.</p>
+            <h2 className="text-3xl mb-4">{t("decisionSupportTools")}</h2>
+            <p className="text-[18px]">{t("brexAPI")}</p>
           </div>
         </div>
       </div>
