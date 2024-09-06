@@ -6,9 +6,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+// import { unstable_setRequestLocale } from "next-intl/server";
 
 export default async function LocaleLayout({ children, params: { locale } }) {
   const messages = await getMessages(locale);
+
   return (
     <html lang="en">
       <head>
@@ -26,6 +28,6 @@ export default async function LocaleLayout({ children, params: { locale } }) {
   );
 }
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// export function generateStaticParams() {
+//   return routing.locales.map((locale) => ({ locale }));
+// }
