@@ -15,11 +15,11 @@ const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const params = useSearchParams();
-  const [type, setType] = useState("");
+  // const [type, setType] = useState("");
 
-  useEffect(() => {
-    setType(params.get("type"));
-  }, []);
+  // useEffect(() => {
+  //   setType();
+  // }, []);
 
   const handleRegister = () => {
     setIsLoading(true);
@@ -47,16 +47,16 @@ const Page = () => {
     initialValues: {
       firstName: "",
       lastName: "",
-      phone: "",
+      phoneNumber: "",
       email: "",
       password: "",
       confirmPassword: "",
-      type,
+      type: params.get("type"),
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("First Name is required"),
       lastName: Yup.string().required("Last Name is required"),
-      phone: Yup.string().required("Mobile Number is required"),
+      phoneNumber: Yup.string().required("Mobile Number is required"),
       email: Yup.string().email("Invalid email address").required("Email is required"),
       password: Yup.string()
         .required("Password is required")
@@ -125,20 +125,19 @@ const Page = () => {
   }
 
   return (
-    <Suspense>
-      <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
-        <div
-          className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px]"
-          style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
-        >
-          {!isRegister ? (
-            <>
-              <p className={`text-[#7986A3] text-center ${fonts.spaceG.className}`}>1/2</p>
-              <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>New {formik.values.type} Account</h2>
-              <p className={`text-[16] md:text-start text-center mb-4 ${fonts.spaceG.className}`}>
-                Enter your personal information to complete the registration process
-              </p>
-              {/* <div className="flex md:flex-row flex-col gap-3 items-center">
+    <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
+      <div
+        className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px]"
+        style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
+      >
+        {!isRegister ? (
+          <>
+            <p className={`text-[#7986A3] text-center ${fonts.spaceG.className}`}>1/2</p>
+            <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>New {formik.values.type} Account</h2>
+            <p className={`text-[16] md:text-start text-center mb-4 ${fonts.spaceG.className}`}>
+              Enter your personal information to complete the registration process
+            </p>
+            {/* <div className="flex md:flex-row flex-col gap-3 items-center">
               <div className="flex gap-5 col-span-full items-center">
                 <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-t-0 border-b-4 border-white flex items-center justify-center">
                   <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -164,157 +163,156 @@ const Page = () => {
               </div>
             </div> */}
 
-              <div className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="firstName">
-                      First Name
-                    </label>
-                    <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border ${
-                        formik.touched.firstName && formik.errors.firstName ? "border-red-500" : "border-gray-200"
-                      } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                      id="firstName"
-                      type="text"
-                      name="firstName"
-                      placeholder="Jane"
-                      {...formik.getFieldProps("firstName")}
-                    />
-                    {formik.touched.firstName && formik.errors.firstName ? (
-                      <p className="text-red-500 text-xs italic">{formik.errors.firstName}</p>
-                    ) : null}
-                  </div>
-                  <div className="w-full md:w-1/2 px-3">
-                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="lastName">
-                      Last Name
-                    </label>
-                    <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border ${
-                        formik.touched.lastName && formik.errors.lastName ? "border-red-500" : "border-gray-200"
-                      } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                      id="lastName"
-                      type="text"
-                      name="lastName"
-                      placeholder="Doe"
-                      {...formik.getFieldProps("lastName")}
-                    />
-                    {formik.touched.lastName && formik.errors.lastName ? (
-                      <p className="text-red-500 text-xs italic">{formik.errors.lastName}</p>
-                    ) : null}
-                  </div>
-                </div>
-
-                <div className="mb-6 relative">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">
-                    Mobile Number
-                  </label>
-                  <div className="relative">
-                    <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border ${
-                        formik.touched.phone && formik.errors.phone ? "border-red-500" : "border-gray-200"
-                      } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
-                      id="phone"
-                      type="text"
-                      name="phone"
-                      placeholder="+966555544444"
-                      {...formik.getFieldProps("phone")}
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <select
-                        className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
-                        id="country-code"
-                      >
-                        <option value="ksa">KSA</option>
-                      </select>
-                    </div>
-                    {formik.touched.phone && formik.errors.phone ? <p className="text-red-500 text-xs italic">{formik.errors.phone}</p> : null}
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
-                    Email
+            <div className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="firstName">
+                    First Name
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
-                      formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-200"
-                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="you@example.com"
-                    {...formik.getFieldProps("email")}
+                      formik.touched.firstName && formik.errors.firstName ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="firstName"
+                    type="text"
+                    name="firstName"
+                    placeholder="Jane"
+                    {...formik.getFieldProps("firstName")}
                   />
-                  {formik.touched.email && formik.errors.email ? <p className="text-red-500 text-xs italic">{formik.errors.email}</p> : null}
-                </div>
-
-                <div className="mb-6 relative">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border ${
-                        formik.touched.password && formik.errors.password ? "border-red-500" : "border-gray-200"
-                      } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                      id="password"
-                      type={isPasswordVisible ? "text" : "password"}
-                      name="password"
-                      placeholder="********"
-                      onChange={handlePasswordChange} // Use custom handler for password strength
-                      value={formik.values.password}
-                    />
-                    <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
-                      {isPasswordVisible ? "Hide" : "Show"}
-                    </button>
-                  </div>
-                  {formik.touched.password && formik.errors.password ? <p className="text-red-500 text-xs italic">{formik.errors.password}</p> : null}
-                  <div id="password-strength" className="h-2 mt-1 rounded-lg" />
-                </div>
-
-                <div className="mb-6">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="confirmPassword">
-                    Confirm Password
-                  </label>
-                  <input
-                    className={`appearance-none block w-full bg-white text-gray-700 border ${
-                      formik.touched.confirmPassword && formik.errors.confirmPassword ? "border-red-500" : "border-gray-200"
-                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                    id="confirmPassword"
-                    type={isPasswordVisible ? "text" : "password"}
-                    name="confirmPassword"
-                    placeholder="********"
-                    {...formik.getFieldProps("confirmPassword")}
-                  />
-                  {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                    <p className="text-red-500 text-xs italic">{formik.errors.confirmPassword}</p>
+                  {formik.touched.firstName && formik.errors.firstName ? (
+                    <p className="text-red-500 text-xs italic">{formik.errors.firstName}</p>
                   ) : null}
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <button
-                    className={
-                      "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
-                      (isLoading ? "animate-pulse" : "")
-                    }
-                    type="button"
-                    onClick={formik.handleSubmit}
-                    disabled={isLoading}
-                  >
-                    Sign Up
-                  </button>
-                </div>
-                <div className={`flex flex-col  pt-4 md:flex-row items-center justify-center text-[16px] mt-1 ${fonts.spaceG.className}`}>
-                  Already have an account? <p className="text-primary ml-2"> Sign in</p>
+                <div className="w-full md:w-1/2 px-3">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="lastName">
+                    Last Name
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.lastName && formik.errors.lastName ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="lastName"
+                    type="text"
+                    name="lastName"
+                    placeholder="Doe"
+                    {...formik.getFieldProps("lastName")}
+                  />
+                  {formik.touched.lastName && formik.errors.lastName ? <p className="text-red-500 text-xs italic">{formik.errors.lastName}</p> : null}
                 </div>
               </div>
-            </>
-          ) : (
-            <OTPVerify email={email} />
-          )}
-        </div>
+
+              <div className="mb-6 relative">
+                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">
+                  Mobile Number
+                </label>
+                <div className="relative">
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.phoneNumber && formik.errors.phoneNumber ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
+                    id="phone"
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="+966555544444"
+                    {...formik.getFieldProps("phoneNumber")}
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <select
+                      className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
+                      id="country-code"
+                    >
+                      <option value="ksa">KSA</option>
+                    </select>
+                  </div>
+                  {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                    <p className="text-red-500 text-xs italic">{formik.errors.phoneNumber}</p>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className={`appearance-none block w-full bg-white text-gray-700 border ${
+                    formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-200"
+                  } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  {...formik.getFieldProps("email")}
+                />
+                {formik.touched.email && formik.errors.email ? <p className="text-red-500 text-xs italic">{formik.errors.email}</p> : null}
+              </div>
+
+              <div className="mb-6 relative">
+                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.password && formik.errors.password ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="password"
+                    type={isPasswordVisible ? "text" : "password"}
+                    name="password"
+                    placeholder="********"
+                    onChange={handlePasswordChange} // Use custom handler for password strength
+                    value={formik.values.password}
+                  />
+                  <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
+                    {isPasswordVisible ? "Hide" : "Show"}
+                  </button>
+                </div>
+                {formik.touched.password && formik.errors.password ? <p className="text-red-500 text-xs italic">{formik.errors.password}</p> : null}
+                <div id="password-strength" className="h-2 mt-1 rounded-lg" />
+              </div>
+
+              <div className="mb-6">
+                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="confirmPassword">
+                  Confirm Password
+                </label>
+                <input
+                  className={`appearance-none block w-full bg-white text-gray-700 border ${
+                    formik.touched.confirmPassword && formik.errors.confirmPassword ? "border-red-500" : "border-gray-200"
+                  } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                  id="confirmPassword"
+                  type={isPasswordVisible ? "text" : "password"}
+                  name="confirmPassword"
+                  placeholder="********"
+                  {...formik.getFieldProps("confirmPassword")}
+                />
+                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                  <p className="text-red-500 text-xs italic">{formik.errors.confirmPassword}</p>
+                ) : null}
+              </div>
+
+              <div className="flex items-center justify-between">
+                <button
+                  className={
+                    "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                    (isLoading ? "animate-pulse" : "")
+                  }
+                  type="button"
+                  onClick={formik.handleSubmit}
+                  disabled={isLoading}
+                >
+                  Sign Up
+                </button>
+              </div>
+              <div className={`flex flex-col  pt-4 md:flex-row items-center justify-center text-[16px] mt-1 ${fonts.spaceG.className}`}>
+                Already have an account? <p className="text-primary ml-2"> Sign in</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <OTPVerify email={email} />
+        )}
       </div>
-    </Suspense>
+    </div>
   );
 };
 
