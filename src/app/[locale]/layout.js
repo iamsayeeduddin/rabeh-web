@@ -1,3 +1,4 @@
+import { routing } from "@/i18n/routing";
 import "./globals.css";
 import Layout from "../../components/_Layout";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -23,4 +24,8 @@ export default async function LocaleLayout({ children, params: { locale } }) {
       <GoogleAnalytics gaId={"G-550WGYWGEQ"} />
     </html>
   );
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }

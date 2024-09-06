@@ -1,121 +1,125 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import useFonts from "@/utils/useFonts";
-
-const tabData = [
-  {
-    key: "Entrepreneur",
-    label: "For Entrepreneur",
-    content: [
-      {
-        icon: "/assets/icon-3.png",
-        title: "Sign Up",
-        description: "Register on the Rabeh platform to create your profile and access campaign tools.",
-      },
-      {
-        icon: "/assets/icon-7.png",
-        title: "Set Up Your Campaign",
-        description: "Craft a compelling project with clear descriptions, goals, and engaging visuals.",
-      },
-      {
-        icon: "/assets/icon-8.png",
-        title: "Launch Your Campaign",
-        description: "Activate your campaign and start promoting it through social media, email, and other marketing channels.",
-      },
-      {
-        icon: "/assets/icon-9.png",
-        title: "Engage with Your Audience",
-        description: "Interact with backers, respond to questions, and provide updates to keep them invested.",
-      },
-      {
-        icon: "/assets/icon-10.png",
-        title: "Optimize Your Efforts",
-        description: "Adjust your strategy based on feedback and performance analytics to improve your campaign.",
-      },
-      {
-        icon: "/assets/icon-11.png",
-        title: "Achieve and Manage Funding",
-        description: "Secure the funds needed, execute your project, and keep backers informed about your progress.",
-      },
-    ],
-  },
-  {
-    key: "Investors",
-    label: "For Investors",
-    content: [
-      {
-        icon: "/assets/icon-3.png",
-        title: "Create an Account",
-        description: "Sign up on Rabeh to begin exploring investment opportunities.",
-      },
-      {
-        icon: "/assets/icon-7.png",
-        title: "Browse Projects",
-        description: "Explore a variety of campaigns across different sectors and industries.",
-      },
-      {
-        icon: "/assets/icon-8.png",
-        title: "Review Details",
-        description: "Examine project descriptions, business plans, funding goals, and risks to make informed decisions.",
-      },
-      {
-        icon: "/assets/icon-9.png",
-        title: "Make Investments",
-        description: "Support projects that match your interests and investment goals through our secure platform.",
-      },
-      {
-        icon: "/assets/icon-10.png",
-        title: "Monitor Performance",
-        description: "Track the progress of your investments and stay updated with project milestones and developments.",
-      },
-      {
-        icon: "/assets/icon-11.png",
-        title: "Engage with Entrepreneurs",
-        description: "Provide feedback or support to the projects you’ve invested in, if desired.",
-      },
-    ],
-  },
-  {
-    key: "Consultants",
-    label: "For Consultants",
-    content: [
-      {
-        icon: "/assets/icon-3.png",
-        title: "Apply to Join",
-        description: "Register as a consultant on the Rabeh platform to start offering your expertise.",
-      },
-      {
-        icon: "/assets/icon-7.png",
-        title: "Assess Campaigns",
-        description: "Review project proposals to provide insightful feedback and strategic advice.",
-      },
-      {
-        icon: "/assets/icon-8.png",
-        title: "Advise Entrepreneurs",
-        description: "Work closely with campaign creators to refine their strategies and improve their chances of success.",
-      },
-      {
-        icon: "/assets/icon-9.png",
-        title: "Support Campaign Development",
-        description: "Help entrepreneurs enhance their campaign presentations and fundraising approaches.",
-      },
-      {
-        icon: "/assets/icon-10.png",
-        title: "Monitor Campaigns",
-        description: "Keep track of the progress of campaigns you’re involved with and offer ongoing support as needed.",
-      },
-      {
-        icon: "/assets/icon-11.png",
-        title: "Network and Grow",
-        description: "Connect with a diverse range of entrepreneurs and investors, expanding your professional network and opportunities.",
-      },
-    ],
-  },
-];
+import { useTranslations } from "next-intl";
 
 const ClickTabs = () => {
   const [activeTab, setActiveTab] = useState("Entrepreneur");
   const fonts = useFonts();
+  const t = useTranslations();
+
+  const tabData = useMemo(() => {
+    return [
+      {
+        key: "Entrepreneur",
+        label: "For Entrepreneur",
+        content: [
+          {
+            icon: "/assets/icon-3.png",
+            title: t("signUp"),
+            description: t("register"),
+          },
+          {
+            icon: "/assets/icon-7.png",
+            title: t("setUpYourCampaign"),
+            description: t("craftCampaign"),
+          },
+          {
+            icon: "/assets/icon-8.png",
+            title: t("launchYourCampaign"),
+            description: t("activateCampaign"),
+          },
+          {
+            icon: "/assets/icon-9.png",
+            title: t("engageWithAudience"),
+            description: t("interactWithBackers"),
+          },
+          {
+            icon: "/assets/icon-10.png",
+            title: t("optimizeEfforts"),
+            description: t("adjustStrategy"),
+          },
+          {
+            icon: "/assets/icon-11.png",
+            title: t("achieveFunding"),
+            description: t("secureFunds"),
+          },
+        ],
+      },
+      {
+        key: "Investors",
+        label: "For Investors",
+        content: [
+          {
+            icon: "/assets/icon-3.png",
+            title: t("createAccount"),
+            description: t("signUpPoint"),
+          },
+          {
+            icon: "/assets/icon-7.png",
+            title: t("browseProjects"),
+            description: t("exploreCampaigns"),
+          },
+          {
+            icon: "/assets/icon-8.png",
+            title: t("reviewDetails"),
+            description: t("examineProjects"),
+          },
+          {
+            icon: "/assets/icon-9.png",
+            title: t("makeInvestments"),
+            description: t("supportProjects"),
+          },
+          {
+            icon: "/assets/icon-10.png",
+            title: t("monitorPerformance"),
+            description: t("trackInvestments"),
+          },
+          {
+            icon: "/assets/icon-11.png",
+            title: t("engageWithEntrepreneurs"),
+            description: t("provideFeedback"),
+          },
+        ],
+      },
+      {
+        key: "Consultants",
+        label: "For Consultants",
+        content: [
+          {
+            icon: "/assets/icon-3.png",
+            title: t("applyToJoin"),
+            description: t("registerAsConsultant"),
+          },
+          {
+            icon: "/assets/icon-7.png",
+            title: t("assessCampaigns"),
+            description: t("reviewProposals"),
+          },
+          {
+            icon: "/assets/icon-8.png",
+            title: t("adviseEntrepreneurs"),
+            description: t("workWithCreators"),
+          },
+          {
+            icon: "/assets/icon-9.png",
+            title: t("supportCampaignDevelopment"),
+            description: t("enhanceCampaigns"),
+          },
+          {
+            icon: "/assets/icon-10.png",
+            title: t("monitorCampaigns"),
+            description: t("trackProgress"),
+          },
+          {
+            icon: "/assets/icon-11.png",
+            title: t("networkAndGrow"),
+            description: t("connectAndExpand"),
+          },
+        ],
+      },
+    ];
+  }, []);
 
   return (
     <div className={"pt-16 p-5  " + fonts.manrope.className}>

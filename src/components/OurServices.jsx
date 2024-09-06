@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import useFonts from "@/utils/useFonts";
+import { useTranslations } from "next-intl";
 
 const OurServices = () => {
   const [activeCard, setActiveCard] = useState(null);
   const fonts = useFonts();
+  const t = useTranslations();
 
   const handleCardClick = (index) => {
     setActiveCard(index);
@@ -13,8 +15,8 @@ const OurServices = () => {
   return (
     <section className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5  ${fonts.inter.className}`}>
       <div className="flex flex-col    md:w-1/2 w-full">
-        <h2 className={`text-3xl font-semibold ${fonts.spaceG.className}`}>Our Services</h2>
-        <p className="text-gray-600 mb-8 mt-5">Consolidate A/R: Unify revenue from all online sales channels, simplifying financial management.</p>
+        <h2 className={`text-3xl font-semibold ${fonts.spaceG.className}`}>{t("ourServices")}</h2>
+        <p className="text-gray-600 mb-8 mt-5">{t("consolidateAR")}</p>
         <div
           className={`flex items-start space-x-4 p-4 border-l-2 ${activeCard === 0 ? "border-primary" : "border-[#CFD3DE]"}`}
           onClick={() => handleCardClick(0)}
@@ -52,13 +54,10 @@ const OurServices = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-xl font-semibold">Track Services</h3>
-            <p className="text-[#6C7278]">
-              Track Services and Set Aside Money in Real-Time Reservations; Easily manage bookings, track services, and allocate funds on the spot,
-              ensuring a seamless experience for your clients.
-            </p>
+            <h3 className="text-xl font-semibold">{t("trackServices")}</h3>
+            <p className="text-[#6C7278]">{t("trackAndAllocate")}</p>
             <a href="#" className="text-primary flex items-center space-x-1 mt-2">
-              <span>Learn more</span>
+              <span>{t("learnMore")}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>
@@ -102,12 +101,10 @@ const OurServices = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-xl font-semibold">Customized Itinerary Planning</h3>
-            <p className="text-[#6C7278]">
-              Rabeh provides travel agencies with a powerful tool for creating and sharing customized itineraries for their clients.
-            </p>
+            <h3 className="text-xl font-semibold">{t("customizedItineraryPlanning")}</h3>
+            <p className="text-[#6C7278]">{t("travelAgencyTool")}</p>
             <a href="#" className="text-primary flex items-center space-x-1 mt-2">
-              <span>Learn more</span>
+              <span>{t("learnMore")}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>
@@ -151,13 +148,10 @@ const OurServices = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-xl font-semibold">Real-Time Group Management</h3>
-            <p className="text-[#6C7278]">
-              For travel agencies handling group bookings, Rabeh offers real-time group management features. Agencies can efficiently manage group
-              reservations, track group member information, and communicate updates instantly.
-            </p>
+            <h3 className="text-xl font-semibold">{t("realTimeGroupManagement")}</h3>
+            <p className="text-[#6C7278]">{t("groupManagementFeatures")}</p>
             <a href="#" className="text-primary flex items-center space-x-1 mt-2">
-              <span>Learn more</span>
+              <span>{t("learnMore")}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>

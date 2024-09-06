@@ -4,7 +4,7 @@ import TitleHead from "@/components/TitleHead";
 import SingleCard from "@/components/SingleCard";
 import ContactForm from "@/components/ContactForm";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   return (
     <div>
@@ -23,7 +23,7 @@ const Page = () => {
       <section className="my-24">
         <img src="/assets/map-2.png" alt="" className="w-full" />
       </section>
-      <ContactForm/>
+      <ContactForm />
     </div>
   );
 };

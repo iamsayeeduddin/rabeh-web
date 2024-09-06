@@ -13,24 +13,17 @@ import UnleashInvestment from "@/components/UnleashInvestment";
 import Policy from "@/components/Policy";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
-  const t = useTranslations("Homepage");
+const Page = ({ params: { locale } }) => {
+  const t = useTranslations();
   return (
     <div>
       <Hero
-        subtitle="Investing opportunities"
-        title={
-          <>
-            Unleash <br />
-            Investment and <br />
-            grow <br />
-            businesses
-          </>
-        }
-        description="An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies."
-        button1Text="Get Started"
+        subtitle={t("heroTag")}
+        title={<>{t("heroTitle")}</>}
+        description={t("heroSubtitle")}
+        button1Text={t("getStarted")}
         button1Link="/under-construction"
-        button2Text="Opportunities"
+        button2Text={t("opportunities")}
         button2Link="/opportunities"
         svgImage="illustration-1.png"
         titleColor="text-secoundary"
@@ -38,7 +31,6 @@ const Page = () => {
         imageWidth="w-auto  "
         imageHeight="h-auto"
       />
-      <p>{t("title")}</p>
       <TrustedBy />
       <InvestmentOpportunities />
       <StrategicPartnerships bottomSpacing={true} />

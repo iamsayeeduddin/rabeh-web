@@ -1,22 +1,35 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Logo from "./Logo";
 import { FaYoutube, FaInstagram, FaLinkedin, FaBars, FaTimes, FaFacebook } from "react-icons/fa";
 import useFonts from "@/utils/useFonts";
 import { useEffect, useState } from "react";
-import { useParams, usePathname, useRouter } from "next/navigation";
+// import { useParams, usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+import { usePathname, useRouter } from "@/i18n/routing";
+import { useParams } from "next/navigation";
 
 const Navbar = () => {
   const fonts = useFonts();
-  const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState();
+  const [lang, setLang] = useState("en");
   const path = usePathname();
+  const t = useTranslations();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { locale } = useRouter();
+  const params = useParams();
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    setLang(locale);
+  }, [locale]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -26,17 +39,21 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
+  const handleLangChange = (lang) => {
+    router.replace(pathname, { locale: lang });
+  };
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
   }, [path]);
 
   const sections = [
     {
-      title: "Overview",
+      title: t("overview_title"),
       items: [
         {
-          title: "Business Services",
-          description: "Analyze conversion rates and improve your sales.",
+          title: t("business_services_title"),
+          description: t("business_services_description"),
           icon: (
             <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -50,8 +67,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Marketplace Integration",
-          description: "Measure active usage and target areas of improvement.",
+          title: t("marketplace_integration_title"),
+          description: t("marketplace_integration_description"),
           icon: (
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -65,8 +82,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Partner App",
-          description: "Measure active usage and target areas of improvement.",
+          title: t("partner_app_title"),
+          description: t("partner_app_description"),
           icon: (
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -80,8 +97,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Partner Portal",
-          description: "Find retention drivers and make your customers smile.",
+          title: t("partner_portal_title"),
+          description: t("partner_portal_description"),
           icon: (
             <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -97,11 +114,11 @@ const Navbar = () => {
       ],
     },
     {
-      title: "Financial Management",
+      title: t("financial_management_title"),
       items: [
         {
-          title: "Accounts Receivable",
-          description: "The latest industry news, updates and info.",
+          title: t("accounts_receivable_title"),
+          description: t("accounts_receivable_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -115,8 +132,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "AutoPay",
-          description: "Learn how our customers are making big changes.",
+          title: t("autopay_title"),
+          description: t("autopay_description"),
           icon: (
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -130,8 +147,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Customized Disbursements",
-          description: "Get up and running on new features and techniques.",
+          title: t("customized_disbursements_title"),
+          description: t("customized_disbursements_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -145,8 +162,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Multiple Disbursement",
-          description: "Get up and running on new features and techniques.",
+          title: t("multiple_disbursement_title"),
+          description: t("multiple_disbursement_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -162,11 +179,11 @@ const Navbar = () => {
       ],
     },
     {
-      title: "Financial Services",
+      title: t("financial_services_title"),
       items: [
         {
-          title: "Lending Features",
-          description: "Learn about our story and our mission statement.",
+          title: t("lending_features_title"),
+          description: t("lending_features_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -180,8 +197,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Payments Solutions",
-          description: "News and writings, press releases, and press resources.",
+          title: t("payments_solutions_title"),
+          description: t("payments_solutions_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -195,8 +212,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Support",
-          description: "We’re always looking for talented people. Join our team!",
+          title: t("support_title"),
+          description: t("support_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -210,8 +227,8 @@ const Navbar = () => {
           ),
         },
         {
-          title: "Through Partners",
-          description: "News and writings, press releases, and press resources.",
+          title: t("through_partners_title"),
+          description: t("through_partners_description"),
           icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -252,30 +269,18 @@ const Navbar = () => {
           <div className={"flex items-center space-x-4 text-white " + fonts.spaceG.className}>
             <div className="relative inline-block">
               <select className="bg-primary text-white border-none rounded px-2 py-1">
-                <option
-                  value="ksa"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    router.push("/");
-                  }}
-                >
-                  🇸🇦 KSA
-                </option>
-                <option
-                  value="usa"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    router.push("/under-construction");
-                  }}
-                >
-                  🇺🇸 USA
-                </option>
+                <option value="ar">🇸🇦 KSA</option>
+                <option value="en">🇺🇸 USA</option>
               </select>
             </div>
             <div className="relative inline-block">
-              <select className="bg-primary text-white border-none rounded px-2 py-1">
+              <select
+                className="bg-primary text-white border-none rounded px-2 py-1"
+                value={lang}
+                onChange={(e) => {
+                  handleLangChange(e.target.value);
+                }}
+              >
                 <option value="en">EN</option>
                 <option value="ar">AR</option>
               </select>
@@ -292,15 +297,15 @@ const Navbar = () => {
 
             <div className={"hidden md:flex space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
               <Link href="/" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                Home
+                {t("home")}
               </Link>
               <Link href="/about" className="text-gray-700 hover:text-primary">
-                About
+                {t("about")}
               </Link>
               <div className="relative">
                 <button onClick={toggleDropdown} className="text-gray-700 hover:text-primary flex items-center">
                   <Link href="/opportunities" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                    Opportunities
+                    {t("opportunities")}
                   </Link>
                   <span className={`ml-2 transform transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}>
                     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="hover:text-primary">
@@ -334,19 +339,19 @@ const Navbar = () => {
               )}
 
               <Link href="/business" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                Business
+                {t("business")}
               </Link>
               <Link href="/investor" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                Investor
+                {t("investors")}
               </Link>
               <Link href="/help" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                Help
+                {t("help")}
               </Link>
               <Link href="/contact" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                Contact Us
+                {t("contactUs")}
               </Link>
               <Link href="/careers" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                Careers
+                {t("careers")}
               </Link>
             </div>
           </div>
@@ -354,14 +359,16 @@ const Navbar = () => {
             {!user?._id ? (
               <>
                 <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
-                  Sign In
+                  {t("signIn")}
                 </Link>
                 <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
-                  Get Started
+                  {t("getStarted")}
                 </Link>
               </>
             ) : (
-              <p>Welcome, {user?.name || "User"}!</p>
+              <p>
+                {t("welcome")}, {user?.name || "User"}!
+              </p>
             )}
           </div>
           <div className="md:hidden flex flex-col ml-auto">
@@ -374,15 +381,15 @@ const Navbar = () => {
         {menuOpen && (
           <div className="md:hidden bg-white px-4 pt-4 pb-3 space-y-1 flex flex-col">
             <Link href="/" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              Home
+              {t("home")}
             </Link>
             <Link href="/about" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              About
+              {t("about")}
             </Link>
             <div className="relative">
               <button onClick={toggleDropdown} className="text-gray-700 hover:text-primary flex items-center justify-between w-full py-2">
                 <Link href="/opportunities" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
-                  Opportunities
+                  {t("opportunities")}
                 </Link>
                 <span className={`ml-2 transform transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}>
                   <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="hover:text-primary">
@@ -415,25 +422,25 @@ const Navbar = () => {
               </>
             )}
             <Link href="/business" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              Business
+              {t("business")}
             </Link>
             <Link href="/investor" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              Investor
+              {t("investors")}
             </Link>
             <Link href="/help" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              Help
+              {t("help")}
             </Link>
             <Link href="/contact" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              Contact Us
+              {t("contactUs")}
             </Link>
             <Link href="/careers" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
-              Careers
+              {t("careers")}
             </Link>
             <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2 ">
-              Sign In
+              {t("signIn")}
             </Link>
             <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
-              Get Started
+              {t("getStarted")}
             </Link>
           </div>
         )}

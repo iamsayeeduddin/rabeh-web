@@ -6,9 +6,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useFonts from "@/utils/useFonts";
+import { useTranslations } from "next-intl";
 
 const WhatCustomerSays = () => {
   const fonts = useFonts();
+  const t = useTranslations();
   const testimonials = [
     {
       title: "Small Business Owner",
@@ -74,8 +76,8 @@ const WhatCustomerSays = () => {
 
   return (
     <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
-      <div className="justify-start text-lg text-medium text-[#737373]">Testimonial</div>
-      <div className="justify-start text-5xl font-semibold font-inter mt-5">What Customer Says</div>
+      <div className="justify-start text-lg text-medium text-[#737373]">{t("testimonials")}</div>
+      <div className="justify-start text-5xl font-semibold font-inter mt-5">{t("whatCustSay")}</div>
 
       <div className="w-full mt-10 p-0">
         <Slider {...settings}>

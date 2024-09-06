@@ -5,7 +5,7 @@ import useFonts from "@/utils/useFonts";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const { ref, inView } = useInView({
     triggerOnce: true, // Trigger animation only once

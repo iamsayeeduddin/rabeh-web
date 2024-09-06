@@ -1,29 +1,24 @@
-import React from 'react'
-import TitleHead from '@/components/TitleHead'
-import WhyRabeh from '@/components/WhyRabeh'
-import OurServices from '@/components/OurServices'
-import UnleashInvestment from '@/components/UnleashInvestment'
-import Newsletter from '@/components/Newsletter'
-import Brands from '@/components/Brands'
-const page = () => {
+import React from "react";
+import TitleHead from "@/components/TitleHead";
+import WhyRabeh from "@/components/WhyRabeh";
+import OurServices from "@/components/OurServices";
+import UnleashInvestment from "@/components/UnleashInvestment";
+import Newsletter from "@/components/Newsletter";
+import Brands from "@/components/Brands";
+import { useTranslations } from "next-intl";
+
+const Page = ({ params: { locale } }) => {
+  const t = useTranslations();
   return (
     <div>
+      <TitleHead title={t("investors")} desc={t("rabehDescription")} />
+      <WhyRabeh />
+      <OurServices />
+      <UnleashInvestment />
+      <Brands />
+      <Newsletter />
+    </div>
+  );
+};
 
-      <TitleHead
-        title={"Investor"}
-        desc={
-          "Rabeh is a revolutionary fintech application that redefines the travel experience."
-        }
-      />
-      <WhyRabeh/>
-      <OurServices/>
-      <UnleashInvestment/>
-     <Brands/>
-      <Newsletter/>
-
-
-    </div>  
-  )
-}
-
-export default page
+export default Page;

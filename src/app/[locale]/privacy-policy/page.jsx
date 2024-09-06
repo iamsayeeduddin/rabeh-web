@@ -158,7 +158,7 @@ const Section = ({ title, content }) => (
   </div>
 );
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const { ref, inView } = useInView({
     triggerOnce: true,

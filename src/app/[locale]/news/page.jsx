@@ -2,7 +2,7 @@ import React from "react";
 import TitleHead from "@/components/TitleHead";
 import useFonts from "@/utils/useFonts";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
 
   const cardData = [

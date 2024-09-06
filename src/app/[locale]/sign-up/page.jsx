@@ -4,7 +4,7 @@ import useFonts from "@/utils/useFonts";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const router = useRouter();
   const [type, setType] = useState("");
