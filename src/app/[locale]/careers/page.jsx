@@ -4,6 +4,7 @@ import useFonts from "@/utils/useFonts";
 import React, { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const jobData = [
   {
@@ -66,6 +67,7 @@ const jobData = [
 const Page = () => {
   const [jobType, setJobType] = useState("All");
   const fonts = useFonts();
+  const t = useTranslations();
   const parentVariants = {
     hidden: {
       opacity: 0,
@@ -97,11 +99,8 @@ const Page = () => {
   return (
     <div className="w-full flex flex-col md:p-[72px] mt-10 p-5 ">
       <div className={"flex flex-col items-center justify-center gap-10 mb-5 " + fonts.urbanist.className}>
-        <div className="text-4xl font-bold">Open positions</div>
-        <div className="text-regular items-center justify-center">
-          Want to work with some of the best global talent and build software used by all the <br /> companies you know and love? Join the team —
-          we’re hiring!
-        </div>
+        <div className="text-4xl font-bold">{t("openPositions")}</div>
+        <div className="text-base items-center justify-center">{t("joinTheTeam")}</div>
       </div>
       <div className="py-2 w-full flex mt-10 justify-center gap-10 mb-5">
         <div

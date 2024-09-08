@@ -4,10 +4,12 @@ import useFonts from "@/utils/useFonts";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 function OTPVerify({ email }) {
   const fonts = useFonts();
   const router = useRouter();
+  const t = useTranslations();
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const [isCountdownFinished, setIsCountdownFinished] = useState(false);
@@ -72,24 +74,22 @@ function OTPVerify({ email }) {
               <path
                 d="M7.8125 22.4023V10.9375C7.8125 10.5231 7.97712 10.1257 8.27015 9.83265C8.56317 9.53962 8.9606 9.375 9.375 9.375H40.625C41.0394 9.375 41.4368 9.53962 41.7299 9.83265C42.0229 10.1257 42.1875 10.5231 42.1875 10.9375V22.4023C42.1875 38.8086 28.2617 44.2383 25.4883 45.1562C25.1732 45.2729 24.8268 45.2729 24.5117 45.1562C21.7383 44.2383 7.8125 38.8086 7.8125 22.4023Z"
                 stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-              <path d="M25 18.75V26.5625" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M25 18.75V26.5625" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               <path
                 d="M27.2812 33.5938C27.2812 34.8536 26.2599 35.875 25 35.875C23.7401 35.875 22.7188 34.8536 22.7188 33.5938C22.7188 32.3339 23.7401 31.3125 25 31.3125C26.2599 31.3125 27.2812 32.3339 27.2812 33.5938Z"
                 fill="white"
                 stroke="white"
-                stroke-width="0.125"
+                strokeWidth="0.125"
               />
             </svg>
           </div>
           <p className={`text-[#7986A3] text-center  ${fonts.spaceG.className}`}> 2/2</p>
-          <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>Code verification</h2>
-          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${fonts.spaceG.className}`}>
-            Please enter the code we just sent to the below email address:
-          </p>
+          <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>{t("codeVerify")}</h2>
+          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${fonts.spaceG.className}`}>{t("plsEnterCode")}</p>
           <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>{email}</p>
         </div>
       </div>
@@ -134,12 +134,12 @@ function OTPVerify({ email }) {
         <div className="flex flex-row items-center justify-center gap-5">
           {!isCountdownFinished ? (
             <>
-              <p className="text-[#7986A3] ">Resend the code after</p>
+              <p className="text-[#7986A3] ">{t("resendCode")}</p>
               <p className="text-bold">{formatTime(timeLeft)}</p>
             </>
           ) : (
             <p className="text-primary cursor-pointer" onClick={resendOTP}>
-              Resend
+              {t("resend")}
             </p>
           )}
         </div>
@@ -151,7 +151,7 @@ function OTPVerify({ email }) {
             onClick={handleVerify}
             disabled={otp.length < 4}
           >
-            Verification
+            {t("verification")}
           </button>
         </div>
       </form>

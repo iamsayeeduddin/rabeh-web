@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const router = useRouter();
+  const t = useTranslations();
   const [type, setType] = useState("");
 
   return (
@@ -17,17 +19,15 @@ const Page = () => {
         className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px] "
         style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
       >
-        <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>Get Started</h2>
-        <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>
-          Rabeh is a revolutionary fintech application that redefines the travel
-          <br></br> experience.
-        </p>
+        <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>{t("getStarted")}</h2>
+        <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>{t("rabehDescription")}</p>
         <div className="flex md:flex-row flex-col gap-3 mt-12 items-center ">
           <div
             onClick={() => {
               setType("Entrepreneur");
               setTimeout(() => {
-                router.push("/new-account?type=Entrepreneur");
+                const l = "/" + locale + "/new-account?type=Entrepreneur";
+                router.push(l);
               }, 500);
             }}
             className={`flex flex-col items-center justify-center gap-8 px-8 py-3 ${
@@ -47,13 +47,14 @@ const Page = () => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>Entrepreneur</div>
+            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("entreprenuers")}</div>
           </div>
           <div
             onClick={() => {
               setType("Investor");
               setTimeout(() => {
-                router.push("/new-account?type=Investor");
+                const l = "/" + locale + "/new-account?type=Investor";
+                router.push(l);
               }, 500);
             }}
             className={`flex ${
@@ -73,13 +74,14 @@ const Page = () => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>Investor</div>
+            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("investors")}</div>
           </div>
           <div
             onClick={() => {
               setType("Consultant");
               setTimeout(() => {
-                router.push("/new-account?type=Consultant");
+                const l = "/" + locale + "/new-account?type=Consultant";
+                router.push(l);
               }, 500);
             }}
             className={`flex  ${
@@ -93,24 +95,26 @@ const Page = () => {
                 <path
                   d="M8.34679 26.1587H6.44203C5.0394 26.1587 3.90234 25.0217 3.90234 23.619V5.84126C3.90234 4.43863 5.0394 3.30157 6.44203 3.30157H24.2198C25.6224 3.30157 26.7595 4.43863 26.7595 5.84126V23.619C26.7595 25.0217 25.6224 26.1587 24.2198 26.1587H22.315M15.3309 24.8889C17.4349 24.8889 19.1404 23.1833 19.1404 21.0794C19.1404 18.9754 17.4349 17.2698 15.3309 17.2698C13.227 17.2698 11.5214 18.9754 11.5214 21.0794C11.5214 23.1833 13.227 24.8889 15.3309 24.8889ZM15.3309 24.8889L15.3581 24.8886L11.3038 28.9429L7.71218 25.3513L11.5463 21.5171M15.3309 24.8889L19.3853 28.9429L22.9769 25.3513L19.1428 21.5171M11.5214 8.38094H19.1404M8.98171 12.8254H21.6801"
                   stroke="#004677"
-                  stroke-width="2.53968"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2.53968"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>Consultant</div>
+            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("consultant")}</div>
           </div>
         </div>
+        {JSON.stringify(locale)}
         <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-2 ${fonts.spaceG.className}`}>
-          Already have an account?{" "}
+          {t("alreadyAcc")}{" "}
           <p
             className="text-primary ml-2 cursor-pointer"
             onClick={() => {
-              router.push("/login");
+              const l = "/" + locale + "/login";
+              router.push(l);
             }}
           >
-            Login
+            {t("login")}
           </p>
         </div>
       </div>

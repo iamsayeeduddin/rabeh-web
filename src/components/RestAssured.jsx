@@ -27,7 +27,7 @@ const RestAssured = () => {
       </div>
 
       <div className="flex-1  ">
-        <img src="/image-1.png" alt="Investment Projects" layout="fill" objectFit="cover" />
+        <img src="/image-1.png" alt="Investment Projects" layout="fill" objectfit="cover" />
       </div>
     </div>
   );

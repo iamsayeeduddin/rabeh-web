@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 const InvestmentOpportunities = () => {
   const fonts = useFonts();
   const t = useTranslations();
-  const [selectedCategory, setSelectedCategory] = useState("Just Launched");
+  const [selectedCategory, setSelectedCategory] = useState(t("justLaunched"));
 
   const allCards = [
     {
@@ -21,7 +21,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "25-11-2024",
-      category: "Just Launched",
+      category: t("justLaunched"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -33,7 +33,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "16-10-2024",
-      category: "Early Stage",
+      category: t("earlyStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -45,7 +45,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "29-10-2024",
-      category: "Late Stage",
+      category: t("lateStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -57,7 +57,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "19-12-2024",
-      category: "Completed Projects",
+      category: t("completedProjects"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -69,7 +69,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "21-12-2024",
-      category: "Just Launched",
+      category: t("justLaunched"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -81,7 +81,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "11-12-2024",
-      category: "Early Stage",
+      category: t("earlyStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -93,7 +93,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "04-11-2024",
-      category: "Late Stage",
+      category: t("lateStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -105,7 +105,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "15-11-2024",
-      category: "Completed Projects",
+      category: t("completedProjects"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -117,7 +117,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "30-11-2024",
-      category: "Just Launched",
+      category: t("justLaunched"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -129,7 +129,7 @@ const InvestmentOpportunities = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "10-12-2024",
-      category: "Early Stage",
+      category: t("earlyStage"),
     },
   ];
 
@@ -147,17 +147,17 @@ const InvestmentOpportunities = () => {
             fonts.urbanist.className
           }
         >
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Just Launched" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
-            Just Launched
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("justLaunched") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            {t("justLaunched")}
           </span>
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Early Stage" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
-            Early Stage
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("earlyStage") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            {t("earlyStage")}
           </span>
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Late Stage" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
-            Late Stage
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("lateStage") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            {t("lateStage")}
           </span>
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === "Completed Projects" ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
-            Completed Projects
+          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("completedProjects") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+            {t("completedProjects")}
           </span>
         </div>
       </div>

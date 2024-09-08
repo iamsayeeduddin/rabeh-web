@@ -57,7 +57,7 @@ function Footer() {
         <div className="flex justify-center md:justify-start text-center md:text-left md:flex-row gap-10">
           <div className="mt-5 md:mt-0">
             <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
-              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>Company</li>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>{t("company")}</li>
               {links.map(({ href, label }) => (
                 <Link key={label} href={href} className="hover:text-[#392E69]/70">
                   {label}
@@ -67,7 +67,7 @@ function Footer() {
           </div>
           <div className="mt-5 md:mt-0">
             <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
-              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>Fundraising</li>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>{t("fundraising")}</li>
               {fundraisingLinks.map(({ href, label }) => (
                 <Link key={label} href={href} className="hover:text-[#392E69]/70">
                   {label}

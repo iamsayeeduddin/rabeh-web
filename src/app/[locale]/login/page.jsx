@@ -7,9 +7,11 @@ import OTPVerify from "@/components/OTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 const Page = () => {
   const fonts = useFonts();
+  const t = useTranslations();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
@@ -49,8 +51,8 @@ const Page = () => {
               <Logo width={176} height={75} />
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>Welcome!</h2>
-            <p className={`text-[16]  text-center text-[#7986A3] ${fonts.spaceG.className}`}>Log in to your account</p>
+            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("welcome")}</h2>
+            <p className={`text-[16]  text-center text-[#7986A3] ${fonts.spaceG.className}`}>{t("loginAcc")}</p>
             <div className="flex md:flex-row flex-col gap-3  items-center ">
               <div className="flex gap-5  col-span-full items-center "></div>
             </div>
@@ -67,7 +69,7 @@ const Page = () => {
                 <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
                   <div className="mb-6">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
-                      Email
+                      {t("email")}
                     </label>
                     <Field
                       className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -82,7 +84,7 @@ const Page = () => {
 
                   <div className="mb-6 relative">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
-                      Password
+                      {t("password")}
                     </label>
                     <div className="relative">
                       <Field
@@ -113,7 +115,7 @@ const Page = () => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Login
+                      {t("login")}
                     </button>
                   </div>
                 </Form>

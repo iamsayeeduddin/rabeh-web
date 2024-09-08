@@ -61,20 +61,20 @@ const WhyRabeh = () => {
                 <path
                   d="M29.625 42.3958C29.625 45.3867 31.9375 47.7917 34.7742 47.7917H40.5708C43.0375 47.7917 45.0417 45.695 45.0417 43.0742C45.0417 40.2683 43.8084 39.2509 41.9892 38.6034L32.7083 35.3658C30.8892 34.7183 29.6559 33.7317 29.6559 30.895C29.6559 28.305 31.66 26.1775 34.1266 26.1775H39.9233C42.76 26.1775 45.0725 28.5825 45.0725 31.5734"
                   stroke="#7860DC"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <path d="M37.333 23.125V50.875" stroke="#7860DC" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M37.333 23.125V50.875" stroke="#7860DC" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                   d="M68.1667 37C68.1667 54.02 54.3533 67.8333 37.3333 67.8333C20.3133 67.8333 6.5 54.02 6.5 37C6.5 19.98 20.3133 6.16666 37.3333 6.16666"
                   stroke="#7860DC"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <path d="M52.75 9.25V21.5833H65.0833" stroke="#7860DC" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M68.1667 6.16666L52.75 21.5833" stroke="#7860DC" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M52.75 9.25V21.5833H65.0833" stroke="#7860DC" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M68.1667 6.16666L52.75 21.5833" stroke="#7860DC" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </motion.div>
             <h2 className="text-3xl mb-4">{t("paymentsAndTransfers")}</h2>
@@ -92,30 +92,30 @@ const WhyRabeh = () => {
                 <path
                   d="M63.875 29.2917C68.5 29.2917 68.5 30.8333 68.5 33.9167V40.0833C68.5 43.1667 68.5 44.7083 63.875 44.7083"
                   stroke="#7860DC"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M31.5007 24.6667L25.6732 32.375C24.4707 34.4408 25.9507 37 28.3249 37H35.4165C37.7907 37 39.2707 39.5592 38.099 41.625L31.5007 49.3333"
                   stroke="#7860DC"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M22.2507 58.5833C9.91732 58.5833 6.83398 55.5 6.83398 43.1667V30.8333C6.83398 18.5 9.91732 15.4167 22.2507 15.4167"
                   stroke="#7860DC"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M40.75 15.4167C53.0833 15.4167 56.1667 18.5 56.1667 30.8333V43.1667C56.1667 55.5 53.0833 58.5833 40.75 58.5833"
                   stroke="#7860DC"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </motion.div>

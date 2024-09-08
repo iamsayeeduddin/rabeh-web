@@ -54,7 +54,7 @@ const Page = () => {
             <hr className="w-1/2 h-px my-8 bg-gray-400 border-0 "></hr>
 
             <TestimonialCard
-              imageUrl={"assets/testimonial-person.png"}
+              imageUrl={"../assets/testimonial-person.png"}
               name={"Mohammed Al Solami"}
               designation={"Director of Technology, Rabeh"}
               testimonial={`Simply the best. Better than all the rest. Recommend this product to beginners and advanced users.`}

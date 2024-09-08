@@ -128,39 +128,39 @@ const ApplePlaystore = () => {
           <path
             d="M52.1599 12.2304C52.1599 13.1522 51.8871 13.8859 51.3404 14.4337C50.72 15.0849 49.9104 15.4105 48.916 15.4105C47.9634 15.4105 47.1527 15.0805 46.4872 14.4205C45.8206 13.7594 45.4873 12.941 45.4873 11.9642C45.4873 10.9863 45.8206 10.1679 46.4872 9.5079C47.1527 8.8468 47.9634 8.5168 48.916 8.5168C49.389 8.5168 49.8411 8.6092 50.2701 8.7929C50.7002 8.9777 51.0445 9.223 51.3019 9.5299L50.7222 10.1107C50.2855 9.5882 49.6838 9.3275 48.9149 9.3275C48.2197 9.3275 47.6191 9.5717 47.112 10.0601C46.6049 10.5485 46.3519 11.1832 46.3519 11.9631C46.3519 12.743 46.6049 13.3777 47.112 13.8661C47.6191 14.3545 48.2197 14.5987 48.9149 14.5987C49.6519 14.5987 50.2668 14.3534 50.7585 13.8617C51.0775 13.5416 51.2623 13.0961 51.3118 12.5252H48.9149V11.7321H52.1126C52.1456 11.9048 52.1599 12.0709 52.1599 12.2304Z"
             stroke="white"
-            stroke-width="0.2"
-            stroke-miterlimit="10"
+            strokeWidth="0.2"
+            strokeMiterlimit="10"
           />
           <path
             d="M57.231 9.47386H54.2258V11.5661H56.9362V12.3592H54.2258V14.4514H57.231V15.2632H53.3777V8.66316H57.231V9.47386Z"
             stroke="white"
-            stroke-width="0.2"
-            stroke-miterlimit="10"
+            strokeWidth="0.2"
+            strokeMiterlimit="10"
           />
           <path
             d="M60.807 15.2632H59.9589V9.47386H58.1153V8.66316H62.6506V9.47386H60.807V15.2632Z"
             stroke="white"
-            stroke-width="0.2"
-            stroke-miterlimit="10"
+            strokeWidth="0.2"
+            strokeMiterlimit="10"
           />
-          <path d="M65.9318 15.2632V8.66316H66.7799V15.2632H65.9318Z" stroke="white" stroke-width="0.2" stroke-miterlimit="10" />
+          <path d="M65.9318 15.2632V8.66316H66.7799V15.2632H65.9318Z" stroke="white" strokeWidth="0.2" strokeMiterlimit="10" />
           <path
             d="M70.541 15.2632H69.6929V9.47386H67.8493V8.66316H72.3846V9.47386H70.541V15.2632Z"
             stroke="white"
-            stroke-width="0.2"
-            stroke-miterlimit="10"
+            strokeWidth="0.2"
+            strokeMiterlimit="10"
           />
           <path
             d="M80.9699 14.4106C80.3209 15.0772 79.5146 15.4105 78.5499 15.4105C77.5852 15.4105 76.7789 15.0772 76.131 14.4106C75.482 13.744 75.1586 12.9278 75.1586 11.9631C75.1586 10.9984 75.482 10.1822 76.131 9.51565C76.7789 8.84905 77.5852 8.51465 78.5499 8.51465C79.5091 8.51465 80.3143 8.85015 80.9655 9.52005C81.6167 10.1899 81.9423 11.0039 81.9423 11.9631C81.9423 12.9278 81.6178 13.744 80.9699 14.4106ZM76.7569 13.8573C77.2453 14.3523 77.8426 14.5987 78.5499 14.5987C79.2572 14.5987 79.8556 14.3512 80.3429 13.8573C80.8313 13.3623 81.0766 12.7309 81.0766 11.9631C81.0766 11.1953 80.8313 10.5639 80.3429 10.0689C79.8556 9.57395 79.2572 9.32755 78.5499 9.32755C77.8426 9.32755 77.2453 9.57505 76.7569 10.0689C76.2696 10.5639 76.0243 11.1953 76.0243 11.9631C76.0243 12.7309 76.2696 13.3623 76.7569 13.8573Z"
             stroke="white"
-            stroke-width="0.2"
-            stroke-miterlimit="10"
+            strokeWidth="0.2"
+            strokeMiterlimit="10"
           />
           <path
             d="M83.1325 15.2632V8.66316H84.1643L87.3719 13.7969H87.4082L87.3719 12.5253V8.66316H88.22V15.2632H87.3345L83.9784 9.87976H83.9421L83.9784 11.1514V15.2632H83.1325Z"
             stroke="white"
-            stroke-width="0.2"
-            stroke-miterlimit="10"
+            strokeWidth="0.2"
+            strokeMiterlimit="10"
           />
           <g filter="url(#filter0_ii_5130_15283)">
             <path
@@ -190,9 +190,9 @@ const ApplePlaystore = () => {
               width="25.3989"
               height="28.293"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
               <feOffset dy="-0.15" />
@@ -212,9 +212,9 @@ const ApplePlaystore = () => {
               width="18.3545"
               height="14.147"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
               <feOffset dy="-0.15" />
@@ -223,29 +223,29 @@ const ApplePlaystore = () => {
               <feBlend mode="normal" in2="shape" result="effect1_innerShadow_5130_15283" />
             </filter>
             <linearGradient id="paint0_linear_5130_15283" x1="23.9808" y1="10.5432" x2="5.5206" y2="29.0034" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#00A0FF" />
-              <stop offset="0.0066" stop-color="#00A1FF" />
-              <stop offset="0.2601" stop-color="#00BEFF" />
-              <stop offset="0.5122" stop-color="#00D2FF" />
-              <stop offset="0.7604" stop-color="#00DFFF" />
-              <stop offset="1" stop-color="#00E3FF" />
+              <stop stopColor="#00A0FF" />
+              <stop offset="0.0066" stopColor="#00A1FF" />
+              <stop offset="0.2601" stopColor="#00BEFF" />
+              <stop offset="0.5122" stopColor="#00D2FF" />
+              <stop offset="0.7604" stopColor="#00DFFF" />
+              <stop offset="1" stopColor="#00E3FF" />
             </linearGradient>
             <linearGradient id="paint1_linear_5130_15283" x1="37.2169" y1="22.9643" x2="10.6014" y2="22.9643" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FFE000" />
-              <stop offset="0.4087" stop-color="#FFBD00" />
-              <stop offset="0.7754" stop-color="#FFA500" />
-              <stop offset="1" stop-color="#FF9C00" />
+              <stop stopColor="#FFE000" />
+              <stop offset="0.4087" stopColor="#FFBD00" />
+              <stop offset="0.7754" stopColor="#FFA500" />
+              <stop offset="1" stopColor="#FF9C00" />
             </linearGradient>
             <linearGradient id="paint2_linear_5130_15283" x1="27.3108" y1="25.4876" x2="2.27646" y2="50.522" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FF3A44" />
-              <stop offset="1" stop-color="#C31162" />
+              <stop stopColor="#FF3A44" />
+              <stop offset="1" stopColor="#C31162" />
             </linearGradient>
             <linearGradient id="paint3_linear_5130_15283" x1="8.02703" y1="1.15782" x2="19.2056" y2="12.3364" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#32A071" />
-              <stop offset="0.0685" stop-color="#2DA771" />
-              <stop offset="0.4762" stop-color="#15CF74" />
-              <stop offset="0.8009" stop-color="#06E775" />
-              <stop offset="1" stop-color="#00F076" />
+              <stop stopColor="#32A071" />
+              <stop offset="0.0685" stopColor="#2DA771" />
+              <stop offset="0.4762" stopColor="#15CF74" />
+              <stop offset="0.8009" stopColor="#06E775" />
+              <stop offset="1" stopColor="#00F076" />
             </linearGradient>
           </defs>
         </svg>

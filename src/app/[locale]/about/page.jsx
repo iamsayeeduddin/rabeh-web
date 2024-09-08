@@ -32,7 +32,7 @@ const Page = () => {
     visible: { opacity: 1, transition: { duration: 0.8 } },
   };
 
-  const [selectedCategory, setSelectedCategory] = useState("Just Launched");
+  const [selectedCategory, setSelectedCategory] = useState(t("justLaunched"));
 
   const allCards = [
     {
@@ -45,7 +45,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "25-11-2024",
-      category: "Just Launched",
+      category: t("justLaunched"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -57,7 +57,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "16-10-2024",
-      category: "Early Stage",
+      category: t("earlyStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -69,7 +69,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "29-10-2024",
-      category: "Late Stage",
+      category: t("lateStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -81,7 +81,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "19-12-2024",
-      category: "Completed Projects",
+      category: t("completedProjects"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -93,7 +93,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "21-12-2024",
-      category: "Just Launched",
+      category: t("justLaunched"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -105,7 +105,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "11-12-2024",
-      category: "Early Stage",
+      category: t("earlyStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -117,7 +117,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "04-11-2024",
-      category: "Late Stage",
+      category: t("lateStage"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -129,7 +129,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "15-11-2024",
-      category: "Completed Projects",
+      category: t("completedProjects"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -141,7 +141,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "30-11-2024",
-      category: "Just Launched",
+      category: t("justLaunched"),
     },
     {
       logoSrc: "/Avatar.png",
@@ -153,7 +153,7 @@ const Page = () => {
       annualReturn: "3.50%",
       returnOnInvestment: "4.78%",
       dueDate: "10-12-2024",
-      category: "Early Stage",
+      category: t("earlyStage"),
     },
   ];
   const filteredCards = allCards.filter((card) => card.category === selectedCategory);
@@ -344,7 +344,7 @@ const Page = () => {
                 fonts.urbanist.className
               }
             >
-              {["Just Launched", "Early Stage", "Late Stage", "Completed Projects"].map((category) => (
+              {[t("justLaunched"), t("earlyStage"), t("lateStage"), t("completedProjects")].map((category) => (
                 <span
                   key={category}
                   onClick={() => setSelectedCategory(category)}
@@ -361,7 +361,7 @@ const Page = () => {
                   fonts.urbanist.className
                 }
               >
-                {["Just Launched", "Early Stage", "Late Stage", "Completed Projects"].map((category) => (
+                {[t("justLaunched"), t("earlyStage"), t("lateStage"), t("completedProjects")].map((category) => (
                   <span
                     key={category}
                     onClick={() => setSelectedCategory(category)}
