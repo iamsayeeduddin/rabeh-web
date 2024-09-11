@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import CardSlider from "@/components/CardSlider";
 import StrategicPartnerships from "@/components/StrategicPartnerships";
 import SupportedCompainies from "@/components/SupportedCompainies";
@@ -338,26 +338,11 @@ const Page = () => {
             <p className={"text-[#667085] " + fonts.inter.className}>{t("discoverSub")}</p>
           </div>
           <div className="pt-8 w-full flex items-center justify-center ">
-            <div
-              className={
-                "flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
-                fonts.urbanist.className
-              }
-            >
-              {[t("justLaunched"), t("earlyStage"), t("lateStage"), t("completedProjects")].map((category) => (
-                <span
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`md:px-3 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
-                >
-                  {category}
-                </span>
-              ))}
-            </div>
+
             <div className="pt-8 w-full flex items-center justify-center ">
               <div
                 className={
-                  "flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
+                  "flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-5 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
                   fonts.urbanist.className
                 }
               >
@@ -365,17 +350,17 @@ const Page = () => {
                   <span
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`md:px-3 px-2 py-2 rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+                    className={`md:px-3 px py-2 mx-1 text-[10px] md:text-lg rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
                   >
                     {category}
                   </span>
                 ))}
               </div>
             </div>
-            <div className={"flex items-center justify-center py-3 md:pt-10 " + fonts.spaceG.className}>
+          </div>
+          <div className={"flex items-center justify-center py-3 md:pt-10 " + fonts.spaceG.className}>
               <CardSlider cards={filteredCards} />
             </div>
-          </div>
         </div>
       </section>
       <SupportedCompainies />
