@@ -3,6 +3,7 @@ import { Link } from "@/i18n/routing";
 import Logo from "./Logo";
 import { FaYoutube, FaInstagram, FaLinkedin, FaBars, FaTimes, FaFacebook } from "react-icons/fa";
 import useFonts from "@/utils/useFonts";
+import { CiLogout } from "react-icons/ci";
 import { useEffect, useState } from "react";
 // import { useParams, usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -28,8 +29,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    setLang(locale);
-  }, [locale, path]);
+    setLang(window.location.pathname.split("/")[1]);
+  }, [locale, path, window.location.pathname]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -46,6 +47,13 @@ const Navbar = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
   }, [path]);
+
+  const handleLogout = () => {
+    if (user?._id) {
+      localStorage.removeItem("user");
+      router.push("/");
+    }
+  };
 
   const sections = [
     {
@@ -361,9 +369,12 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <p>
-                {t("welcome")}, {user?.name || "User"}!
-              </p>
+              <span className="flex items-center gap-4">
+                <p className="rtl:text-right">
+                  {t("welcome")}, {user?.name || "User"}!
+                </p>
+                <CiLogout className="hover:text-primary text-lg" onClick={handleLogout} />
+              </span>
             )}
           </div>
 
