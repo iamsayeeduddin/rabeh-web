@@ -21,7 +21,7 @@ const ContactForm = () => {
               id="grid-first-name"
               type="text"
               name="first-name"
-              placeholder="Jane"
+              placeholder={t("firstName")}
               required
             />
           </div>
@@ -34,7 +34,7 @@ const ContactForm = () => {
               id="grid-last-name"
               type="text"
               name="last-name"
-              placeholder="Doe"
+              placeholder={t("lastName")}
               required
             />
           </div>
@@ -48,7 +48,7 @@ const ContactForm = () => {
             id="grid-email"
             type="email"
             name="email"
-            placeholder="you@example.com"
+            placeholder={t("email")}
             required
           />
         </div>
@@ -61,7 +61,7 @@ const ContactForm = () => {
             id="grid-phone"
             type="text"
             name="phone"
-            placeholder="+1 (202) 656-5556"
+            placeholder={t("phoneNumber")}
             required
           />
         </div>
@@ -74,7 +74,7 @@ const ContactForm = () => {
             id="grid-message"
             name="message"
             rows="4"
-            placeholder="Your message..."
+            placeholder={t("message")}
             required
           ></textarea>
         </div>

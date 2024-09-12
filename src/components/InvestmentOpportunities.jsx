@@ -137,13 +137,17 @@ const InvestmentOpportunities = () => {
 
   return (
     <div className="bg-[#FAFAFA] w-full h-auto md:pt-[96px] md:pr-[72px] md:pb-[112px] md:pl-[72px] md:flex-row md:gap-[64px] p-5">
-      <div className="font-inter text-[18px] font-medium leading-[27px] text-left my-5">{t("unleashInvestment")}</div>
-      <div className="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] text-left my-5">{t("investOpp")}</div>
-      <div className="font-inter text-[18px] font-normal leading-[27px] text-left my-5 max-w-2xl text-[#737373]">{t("investOppSub")}</div>
+      <div className="font-inter text-[18px] font-medium leading-[27px] ltr:text-left rtl:text-right my-5">{t("unleashInvestment")}</div>
+      <div className="font-inter text-[48px] font-semibold leading-[57.6px] tracking-[-0.01em] ltr:text-left rtl:text-right my-5">
+        {t("investOpp")}
+      </div>
+      <div className="font-inter text-[18px] font-normal leading-[27px] ltr:text-left rtl:text-right my-5 max-w-2xl text-[#737373]">
+        {t("investOppSub")}
+      </div>
       <div className="md:py-2 w-full flex md:justify-start">
         <div
           className={
-            "flex-row w-full md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] p-5" +
+            "flex-row w-full md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] p-5 " +
             fonts.urbanist.className
           }
         >

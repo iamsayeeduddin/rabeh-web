@@ -29,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setLang(locale);
-  }, [locale]);
+  }, [locale, path]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -247,9 +247,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-primary ">
-        <div className="flex  justify-between items-center py-2 px-4 mx-auto md:w-[1440px] m-h-[88px] border-b ">
-          <div className=" flex space-x-4 text-white">
+      <nav className="bg-primary">
+        <div className="flex justify-between items-center py-2 px-4 mx-auto md:w-[1440px] m-h-[88px] border-b">
+          <div className="flex ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white">
             <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
               <FaInstagram />
             </Link>
@@ -266,7 +266,7 @@ const Navbar = () => {
               <FaTimes />
             </Link>
           </div>
-          <div className={"flex items-center space-x-4 text-white " + fonts.spaceG.className}>
+          <div className={"flex items-center ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white " + fonts.spaceG.className}>
             <div className="relative inline-block">
               <select className="bg-primary text-white border-none rounded px-2 py-1">
                 <option value="ar">🇸🇦 KSA</option>
@@ -274,13 +274,7 @@ const Navbar = () => {
               </select>
             </div>
             <div className="relative inline-block">
-              <select
-                className="bg-primary text-white border-none rounded px-2 py-1"
-                value={lang}
-                onChange={(e) => {
-                  handleLangChange(e.target.value);
-                }}
-              >
+              <select className="bg-primary text-white border-none rounded px-2 py-1" value={lang} onChange={(e) => handleLangChange(e.target.value)}>
                 <option value="en">EN</option>
                 <option value="ar">AR</option>
               </select>
@@ -288,14 +282,15 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
       <nav className="bg-white shadow-md">
         <div className="flex items-center justify-between py-4 px-4 mx-auto md:w-[1440px] md:h-[88px]">
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center ltr:space-x-6 rtl:space-x-reverse rtl:space-x-6">
             <Link href="/" onClick={handleLinkClick}>
               <Logo />
             </Link>
 
-            <div className={"hidden md:flex space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
+            <div className={"hidden md:flex ltr:space-x-6 rtl:space-x-reverse rtl:space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
               <Link href="/" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
                 {t("home")}
               </Link>
@@ -371,6 +366,7 @@ const Navbar = () => {
               </p>
             )}
           </div>
+
           <div className="md:hidden flex flex-col ml-auto">
             <button onClick={toggleMenu} className="text-primary hover:text-gray-900">
               {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -398,28 +394,25 @@ const Navbar = () => {
                 </span>
               </button>
             </div>
-
             {dropdownOpen && (
-              <>
-                <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
-                  {sections.map((section, index) => (
-                    <div key={index}>
-                      <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
-                      <div className="space-y-6">
-                        {section.items.map((item, itemIndex) => (
-                          <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
-                            <div className="mt-2">{item.icon}</div>
-                            <div>
-                              <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
-                              <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
-                            </div>
+              <div className={"grid grid-cols-1 md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+                {sections.map((section, index) => (
+                  <div key={index}>
+                    <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
+                    <div className="space-y-6">
+                      {section.items.map((item, itemIndex) => (
+                        <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
+                          <div className="mt-2">{item.icon}</div>
+                          <div>
+                            <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                            <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </>
+                  </div>
+                ))}
+              </div>
             )}
             <Link href="/business" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
               {t("business")}
@@ -436,7 +429,7 @@ const Navbar = () => {
             <Link href="/careers" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
               {t("careers")}
             </Link>
-            <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2 ">
+            <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2">
               {t("signIn")}
             </Link>
             <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">

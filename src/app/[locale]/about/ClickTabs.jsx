@@ -12,7 +12,7 @@ const ClickTabs = () => {
     return [
       {
         key: "Entrepreneur",
-        label: "For Entrepreneur",
+        label: t("forEntre"),
         content: [
           {
             icon: "/assets/icon-3.png",
@@ -48,7 +48,7 @@ const ClickTabs = () => {
       },
       {
         key: "Investors",
-        label: "For Investors",
+        label: t("forInvestors"),
         content: [
           {
             icon: "/assets/icon-3.png",
@@ -84,7 +84,7 @@ const ClickTabs = () => {
       },
       {
         key: "Consultants",
-        label: "For Consultants",
+        label: t("forConsultants"),
         content: [
           {
             icon: "/assets/icon-3.png",

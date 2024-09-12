@@ -45,8 +45,13 @@ function Footer() {
   ];
 
   return (
-    <div className="md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat flex flex-col border-b-8 border-b-primary  gap-16 p-5 pt-8">
-      <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start  md:justify-between ">
+    <div
+      className={
+        "flex flex-col p-5 pt-8 md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat border-b-8 border-b-primary gap-16 " +
+        fonts.inter.className
+      }
+    >
+      <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start md:justify-between">
         <div className="max-w-80 self-center md:self-start text-center md:text-start">
           <Logo width={250} height={100} />
           <p className={"pt-8 md:pt-6 font-normal text-base text-[#2C303B] " + fonts.urbanist.className}>
@@ -54,7 +59,8 @@ function Footer() {
             {t("transformFinance")}
           </p>
         </div>
-        <div className="flex justify-center md:justify-start text-center md:text-left md:flex-row gap-10">
+
+        <div className="flex justify-center md:justify-start text-center rtl:md:text-right ltr:md:text-left md:flex-row gap-10">
           <div className="mt-5 md:mt-0">
             <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
               <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>{t("company")}</li>
@@ -76,7 +82,8 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="max-w-80 mt-7 md:mt-0 ">
+
+        <div className="max-w-80 mt-7 md:mt-0">
           <ul className={"text-[#2C303B] flex flex-col items-center md:items-start md:justify-start gap-4 " + fonts.urbanist.className}>
             <li className="text-[#392E69] text-lg font-semibold">{t("policy")}</li>
             <li>{t("policySub")}</li>
@@ -86,9 +93,10 @@ function Footer() {
           </ul>
         </div>
       </div>
+
       <div className={"max-w-6xl gap-8 justify-between flex flex-col md:flex-row " + fonts.spaceG.className}>
         <div>
-          <h5 className="font-medium text-center md:text-left">{t("secCert")}</h5>
+          <h5 className="font-medium text-center rtl:md:text-right ltr:md:text-left">{t("secCert")}</h5>
           <div className="flex gap-3 pt-5">
             {secCert.map((item, index) => (
               <div key={index + "cert"} className="md:w-20 md:h-10 border-2 border-[#EAECF0] rounded-md flex justify-center items-center">
@@ -97,8 +105,9 @@ function Footer() {
             ))}
           </div>
         </div>
+
         <div className="mt-5 md:mt-0">
-          <h5 className="font-medium text-center md:text-left">{t("flexPayOpt")}</h5>
+          <h5 className="font-medium text-center rtl:md:text-right ltr:md:text-left">{t("flexPayOpt")}</h5>
           <div className="flex gap-3 pt-5">
             {paymentCert.map((item, index) => (
               <div
@@ -114,8 +123,9 @@ function Footer() {
           </div>
         </div>
       </div>
+
       <div className={"flex flex-col md:flex-row items-center md:items-start justify-between " + fonts.inter.className}>
-        <div>&#169; {new Date().getFullYear()} Rabeh. All right reserved</div>
+        <div>&#169; {new Date().getFullYear()} Rabeh. All rights reserved</div>
         <div className="flex space-x-4 text-[#3A404E] mt-5 md:mt-0">
           <Link href="https://www.instagram.com/rabehfinance/" target="_blank">
             <FaInstagram />

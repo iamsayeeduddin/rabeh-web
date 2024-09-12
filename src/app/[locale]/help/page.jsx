@@ -74,17 +74,15 @@ const Page = () => {
             fonts.urbanist.className
           )}
         >
-          <div className="text-[36px] font-semibold">{t("stillHaveQuestions")}</div>
-          <div className="text-[16px]">{t("joinStartups")}</div>
-          <div className="flex md:flex-row gap-2">
-            <div className="flex flex-col md:flex-row md:space-x-4 gap-2 md:gap-0">
-              <Link href="/opportunities" className="bg-white text-black px-6 py-3 border border-[#EAECF0] rounded-lg hover:bg-gray-200">
-                {t("learnMore")}
-              </Link>
-              <Link href="/sign-up" className="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-lg hover:bg-primary-light">
-                {t("getStarted")}
-              </Link>
-            </div>
+          <div className="text-[36px] font-semibold text-center">{t("stillHaveQuestions")}</div>
+          <div className="text-[16px] text-center">{t("joinStartups")}</div>
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center md:justify-center rtl:md:flex-row-reverse">
+            <Link href="/opportunities" className="bg-white text-black px-6 py-3 border border-[#EAECF0] rounded-lg hover:bg-gray-200">
+              {t("learnMore")}
+            </Link>
+            <Link href="/sign-up" className="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-lg">
+              {t("getStarted")}
+            </Link>
           </div>
         </div>
       </div>

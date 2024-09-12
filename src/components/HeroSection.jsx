@@ -38,11 +38,11 @@ const Hero = ({
                 />
               </svg>
             </div>
-            <span className={"font-medium text-[#392E69] text-sm rounded-full pl-2"}>{subtitle}</span>
+            <span className={"font-medium text-[#392E69] text-sm rounded-full px-2"}>{subtitle}</span>
           </div>
           <h1 className={`${titleSize} font-bold mb-6 ${titleColor} `}>{title}</h1>
           <p className="text-base md:text-lg mb-8 text-[#737373]">{description}</p>
-          <div className={"flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 " + fonts.spaceG.className}>
+          <div className={"flex flex-col md:flex-row ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + fonts.spaceG.className}>
             <Link href={button1Link} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/80 text-center">
               {button1Text}
             </Link>

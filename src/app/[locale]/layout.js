@@ -17,7 +17,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
         <title>Rabeh</title>
         <link rel="icon" type="image/x-icon" href="/assets/rabeh-icon.ico" />
       </head>
-      <body>
+      <body dir={locale === "en" ? "ltr" : "rtl"}>
         <NextIntlClientProvider messages={messages}>
           <Layout>{children}</Layout>
           <ToastContainer position="bottom-center" />

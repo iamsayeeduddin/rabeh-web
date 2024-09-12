@@ -1,4 +1,7 @@
+import { useTranslations } from "next-intl";
+
 const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, progress, annualReturn, returnOnInvestment, dueDate, onInvestClick }) => {
+  const t = useTranslations();
   return (
     <div className="bg-white w-max-[370.67px] p-4 gap-[16px] border-t border-gray-200 rounded-lg shadow-md mb-5">
       <div className="flex items-center justify-between">
@@ -6,7 +9,9 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
           <img src={logoSrc} alt="Logo" width={40} height={40} className="rounded-full" />
           <div className="ml-3">
             <h2 className="font-semibold text-lg">{projectName}</h2>
-            <p className="text-secondary"> Issue number {issueNumber}</p>
+            <p className="text-secondary">
+              {t("issueNo")} {issueNumber}
+            </p>
           </div>
         </div>
 
@@ -21,12 +26,16 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
                 fill="#495162"
               />
             </svg>
-            <div className="text-[12px]">{daysLeft} Day left</div>
+            <div className="text-[12px]">
+              {daysLeft} {daysLeft > 1 ? t("daysLeft") : t("dayLeft")}
+            </div>
           </div>
         </div>
       </div>
       <div className="mt-4">
-        <p className="text-gray-700 text-xl font-semibold">SAR {amount}</p>
+        <p className="text-gray-700 text-xl font-semibold">
+          {t("SAR")} {amount}
+        </p>
         <div className="relative pt-2 flex items-center">
           <div className="overflow-hidden h-2 text-xs flex rounded bg-purple-200 w-full">
             <div
@@ -52,7 +61,7 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
                 fill="#616B82"
               />
             </svg>
-            Annual Return (APR)
+            {t("annualReturn")}
           </div>
           <p className="text-green-500">{annualReturn}%</p>
         </div>
@@ -70,7 +79,7 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
                 fill="#616B82"
               />
             </svg>
-            Return on investment
+            {t("roi")}
           </div>
           <p className="text-green-500">{returnOnInvestment}%</p>
         </div>
@@ -84,14 +93,14 @@ const ProjectCard = ({ logoSrc, projectName, issueNumber, amount, daysLeft, prog
                 fill="#616B82"
               />
             </svg>
-            Due date
+            {t("dueDate")}
           </div>
           <p className="text-gray-700">{dueDate}</p>
         </div>
       </div>
       <div className="mt-5">
         <button className="bg-primary hover:bg-primary/80 text-white w-full py-2 rounded-md transition" onClick={onInvestClick}>
-          Invest
+          {t("invest")}
         </button>
       </div>
     </div>

@@ -13,16 +13,18 @@ const OurServices = () => {
   };
 
   return (
-    <section className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5  ${fonts.inter.className}`}>
-      <div className="flex flex-col    md:w-1/2 w-full">
+    <section
+      className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5 ${fonts.inter.className} rtl:flex-row-reverse`}
+    >
+      <div className="flex flex-col md:w-1/2 w-full">
         <h2 className={`text-3xl font-semibold ${fonts.spaceG.className}`}>{t("ourServices")}</h2>
         <p className="text-gray-600 mb-8 mt-5">{t("consolidateAR")}</p>
         <div
-          className={`flex items-start space-x-4 p-4 border-l-2 ${activeCard === 0 ? "border-primary" : "border-[#CFD3DE]"}`}
+          className={`flex items-start space-x-4 p-4 rtl:border-r-2 ltr:border-l-2 ${activeCard === 0 ? "border-primary" : "border-[#CFD3DE]"}`}
           onClick={() => handleCardClick(0)}
         >
           <div className="flex-shrink-0">
-            <div className=" ">
+            <div className="">
               <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_5217_8462)">
                   <path
@@ -65,7 +67,7 @@ const OurServices = () => {
           </div>
         </div>
         <div
-          className={`flex items-start space-x-4 p-4 border-l-2 ${activeCard === 1 ? "border-primary" : "border-[#CFD3DE]"}`}
+          className={`flex items-start space-x-4 p-4 rtl:border-r-2 ltr:border-l-2 ${activeCard === 1 ? "border-primary" : "border-[#CFD3DE]"}`}
           onClick={() => handleCardClick(1)}
         >
           <div className="flex-shrink-0">
@@ -112,7 +114,7 @@ const OurServices = () => {
           </div>
         </div>
         <div
-          className={`flex items-start space-x-4 p-4 border-l-2 ${activeCard === 2 ? "border-primary" : "border-[#CFD3DE]"}`}
+          className={`flex items-start space-x-4 p-4 rtl:border-r-2 ltr:border-l-2 ${activeCard === 2 ? "border-primary" : "border-[#CFD3DE]"}`}
           onClick={() => handleCardClick(2)}
         >
           <div className="flex-shrink-0">
@@ -159,7 +161,7 @@ const OurServices = () => {
           </div>
         </div>
       </div>
-      <div className="md:w-1/2 w-full flex items-center md:justify-end mt-8 ">
+      <div className="md:w-1/2 w-full flex items-center md:justify-end mt-8 rtl:md:justify-start">
         <img src="/assets/image-1.png" alt="Our Services Image" width={500} height={500} className="rounded-3xl mt-5" />
       </div>
     </section>

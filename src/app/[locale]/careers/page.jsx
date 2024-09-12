@@ -109,7 +109,7 @@ const Page = () => {
             fonts.spaceG.className
           }
         >
-          {["All", "Design", "Software Engineering", "Customer Success", "Sales", "Marketing"].map((d, i) => (
+          {[t("all"), t("design"), t("softwareEngineering"), t("customerSuccess"), t("sales"), t("marketing")].map((d, i) => (
             <span
               key={i + d}
               onClick={() => setJobType(d)}
@@ -125,7 +125,7 @@ const Page = () => {
           <motion.div
             variants={childVariants}
             key={index}
-            className={"md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between " + fonts.urbanist.className}
+            className={`md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between ${fonts.urbanist.className}`}
           >
             <div className="flex justify-between items-start">
               <span className="text-primary font-semibold">{job.category}</span>
@@ -161,7 +161,7 @@ const Page = () => {
               </h3>
               <p className="text-gray-600 mt-2">{job.description}</p>
             </div>
-            <div className="flex space-x-4 mt-4">
+            <div className="flex flex-col md:flex-row gap-4 mt-4 rtl:md:flex-row-reverse">
               <div className="flex items-center space-x-1">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path

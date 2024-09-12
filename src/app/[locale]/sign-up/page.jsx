@@ -104,7 +104,6 @@ const Page = ({ params: { locale } }) => {
             <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("consultant")}</div>
           </div>
         </div>
-        {JSON.stringify(locale)}
         <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-2 ${fonts.spaceG.className}`}>
           {t("alreadyAcc")}{" "}
           <p

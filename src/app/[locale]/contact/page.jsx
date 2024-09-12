@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
 import useFonts from "@/utils/useFonts";
 import TitleHead from "@/components/TitleHead";
 import SingleCard from "@/components/SingleCard";
 import ContactForm from "@/components/ContactForm";
 import { useTranslations } from "next-intl";
+import { MapProvider } from "@/utils/MapProvider";
+import { MapComponent } from "@/utils/Map";
 
 const Page = () => {
   const fonts = useFonts();
@@ -23,7 +26,9 @@ const Page = () => {
         <SingleCard title={t("phone")} subtitle={t("workingHours")} link={"+1(202)-656-5556"} />
       </section>
       <section className="my-24">
-        <img src="/assets/map-2.png" alt="" className="w-full" />
+        <MapProvider>
+          <MapComponent />
+        </MapProvider>
       </section>
       <ContactForm />
     </div>

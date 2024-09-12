@@ -32,15 +32,15 @@ const Page = () => {
   const figures = [
     {
       number: "1.5M",
-      title: "which is approximately 56% of the consumer population of the US",
+      title: t("buss1"),
     },
     {
       number: "41%",
-      title: "The largest adopters due to being comfortable with technology",
+      title: t("buss2"),
     },
     {
       number: "3964+",
-      title: "The online payment system offers electronic alternatives to traditional",
+      title: t("buss3"),
     },
   ];
   return (
@@ -55,9 +55,9 @@ const Page = () => {
 
             <TestimonialCard
               imageUrl={"../assets/testimonial-person.png"}
-              name={"Mohammed Al Solami"}
-              designation={"Director of Technology, Rabeh"}
-              testimonial={`Simply the best. Better than all the rest. Recommend this product to beginners and advanced users.`}
+              name={t("mohdSolami")}
+              designation={t("directorTech") + ", Rabeh"}
+              testimonial={t("bussQuote")}
             />
           </div>
           <div className=" col-span-8 flex items-center justify-end w-full">
