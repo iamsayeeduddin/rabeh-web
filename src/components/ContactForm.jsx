@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
