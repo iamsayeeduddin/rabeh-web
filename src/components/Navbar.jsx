@@ -30,7 +30,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setLang(window.location.pathname.split("/")[1]);
-  }, [locale, path, window.location.pathname]);
+  }, [locale, path]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);

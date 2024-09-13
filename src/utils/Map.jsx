@@ -5,7 +5,7 @@ we need to make this component client rendered as well else error occurs
 "use client";
 
 //Map component Component from library
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 
 //Map's styling
 export const defaultMapContainerStyle = {
@@ -15,23 +15,25 @@ export const defaultMapContainerStyle = {
 };
 
 const defaultMapCenter = {
-  lat: 24.7116675,
-  lng: 46.6759457,
+  lat: 24.71352613834053,
+  lng: 46.675276297626546,
 };
 
-const defaultMapZoom = 12;
+const defaultMapZoom = 13;
 
 const defaultMapOptions = {
   zoomControl: true,
   tilt: 0,
   gestureHandling: "auto",
-  mapTypeId: "default",
+  mapTypeId: "roadmap",
 };
 
 const MapComponent = () => {
   return (
     <div className="w-full">
-      <GoogleMap mapContainerStyle={defaultMapContainerStyle} center={defaultMapCenter} zoom={defaultMapZoom} options={defaultMapOptions}></GoogleMap>
+      <GoogleMap mapContainerStyle={defaultMapContainerStyle} center={defaultMapCenter} zoom={defaultMapZoom} options={defaultMapOptions}>
+        <Marker position={defaultMapCenter}></Marker>
+      </GoogleMap>
     </div>
   );
 };
