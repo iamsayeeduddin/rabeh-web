@@ -378,7 +378,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="md:hidden flex flex-col ml-auto">
+          <div className="md:hidden flex flex-col">
             <button onClick={toggleMenu} className="text-primary hover:text-gray-900">
               {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
