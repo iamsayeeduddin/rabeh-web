@@ -24,7 +24,8 @@
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.13",
