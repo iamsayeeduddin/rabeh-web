@@ -58,15 +58,15 @@ const PersonalInfo = () => {
 
   return (
     <div
-      className={`personal-info ${fonts.spaceG.className} flex items-start justify-start`}
+      className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}
     >
       <div className="w-full   bg-white ">
         <div className="flex flex-row justify-between">
           <h3 className="text-lg font-semibold text-center mb-6">
             {isEditing ? (
-              <>Personal Information</>
+              <> Edit Personal Information</>
             ) : (
-              <>Edit Personal Information</>
+              <> Personal Information</>
             )}
           </h3>
 
@@ -96,13 +96,13 @@ const PersonalInfo = () => {
           </div>
         </div>
 
-        <div className="user-info grid grid-cols-3 p-5">
-          <div className="flex  mb-6">
+        <div className="user-info grid md:grid-cols-3 p-5 ">
+          <div className="flex   mb-6 justify-center">
             <label htmlFor="upload-image">
               <img
                 src={userInfo.image}
                 alt="Profile"
-                className="rounded-full w-40 h-40 cursor-pointer object-cover"
+                className="rounded-full w-40 h-40 cursor-pointer object-cover border-4 border-white shadow-lg "
               />
               <input
                 id="upload-image"
@@ -111,8 +111,23 @@ const PersonalInfo = () => {
                 onChange={handleImageChange}
                 className="hidden"
               />
+
+{isEditing?(
+            <div className="flex flex-row items-center justify-center rounded-md border-2 border-primary mt-5 p-2 cursor-pointer ">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.0391 2.95923C12.6486 2.56871 12.0154 2.56871 11.6249 2.95923L11.0963 3.48783L12.5105 4.90204L13.0391 4.37345C13.4296 3.98292 13.4296 3.34976 13.0391 2.95923ZM11.5677 5.84485L10.1535 4.43064L2.66536 11.9188V13.3567H4.05589L11.5677 5.84485ZM10.6821 2.01643C11.5933 1.1052 13.0707 1.1052 13.9819 2.01643C14.8931 2.92765 14.8931 4.40503 13.9819 5.31626L4.80344 14.4947C4.67841 14.6198 4.50884 14.69 4.33203 14.69H1.9987C1.63051 14.69 1.33203 14.3915 1.33203 14.0233V11.6426C1.33203 11.4658 1.40227 11.2962 1.52729 11.1712L10.6821 2.01643Z" fill="#7860DC"/>
+</svg>
+<p className="text-primary">change photo</p>
+
+            </div>
+          ):null}
             </label>
+
+            
           </div>
+          
+
+        
 
           <div className="grid gap-4 mb-6">
             {isEditing ? (
@@ -124,7 +139,7 @@ const PersonalInfo = () => {
                     First Name
                   </label>
                   <input
-                    type="text"
+                    type="text" 
                     name="firstName"
                     value={userInfo.firstName}
                     onChange={handleChange}
@@ -232,7 +247,7 @@ const PersonalInfo = () => {
                       Upload Document
                     </label>
                     <div
-                      className={`flex flex-col items-center justify-center border-dashed border-2 `}
+                      className={`flex flex-col items-center justify-center border-dashed border-2 rounded-md md:h-48 `}
                     >
                       <FaUpload className="text-gray-400 mb-2" size={24} />
                       <p className="text-gray-500 text-center">
@@ -278,7 +293,7 @@ const PersonalInfo = () => {
               </>
             ) : (
               <>
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 ">
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">
                       Full Name{" "}
