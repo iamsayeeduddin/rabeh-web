@@ -44,7 +44,7 @@ const StrategicPartnerships = ({ bottomSpacing }) => {
   return (
     <div className={`gap-[16px] md:p-[16px] ${fonts.spaceG.className}`}>
       <div className="md:p-12 p-5 flex flex-col items-center justify-center">
-        <h2 className="text-[48px] text-secondary">{t("strategicPart")}</h2>
+        <h2 className="text-[48px] text-secondary">{t("Strategic Partners")}</h2>
         <p className="text-[20px] text-secondary mt-2">{t("strategicPartDesc")}</p>
       </div>
       <div className={`w-full mt-10 p-5 ${bottomSpacing ? "mb-10" : ""} `}>
