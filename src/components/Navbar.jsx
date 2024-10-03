@@ -51,7 +51,12 @@ const Navbar = () => {
   const handleLogout = () => {
     if (user?._id) {
       localStorage.removeItem("user");
-      router.push("/");
+      setUser({});
+      if (path !== "/en" && path !== "/ar") {
+        window.location.href = "/";
+      } else {
+        window.location.reload();
+      }
     }
   };
 
@@ -369,10 +374,16 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <span className="flex items-center gap-4">
+              <span className="flex items-center justify-center gap-4">
                 <p className="rtl:text-right">
                   {t("welcome")}, {user?.name || "User"}!
                 </p>
+                <div
+                  className="w-8 h-8 flex justify-center items-center rounded-full bg-primary text-white cursor-pointer"
+                  onClick={() => router.push("/my-account")}
+                >
+                  <p>{user?.name?.charAt(0).toUpperCase() || "U"}</p>
+                </div>
                 <CiLogout className="hover:text-primary text-lg" onClick={handleLogout} />
               </span>
             )}

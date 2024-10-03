@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-import axios from "axios";
+import endpoint from "@/utils/apiUtil";
 
 const ContactForm = () => {
   const fonts = useFonts();
@@ -13,7 +13,7 @@ const ContactForm = () => {
   const [load, setLoad] = useState(false);
   const t = useTranslations();
   const handleSubmit = (values) => {
-    axios
+    endpoint
       .post(process.env.NEXT_PUBLIC_API_URL + "/getInTouch", values)
       .then((res) => {
         toast.success(res.data.message);

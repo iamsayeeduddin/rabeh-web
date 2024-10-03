@@ -1,18 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useTranslations } from "next-intl";
-import zxcvbn from "zxcvbn"; // Import zxcvbn for password strength evaluation
+import * as Yup from "yup";
+import zxcvbn from "zxcvbn";
+import { useRouter } from "@/i18n/routing";
+import endpoint from "@/utils/apiUtil";
+import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
   const fonts = useFonts();
   const t = useTranslations();
+  const router = useRouter();
+  const params = useSearchParams();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
-  const [passwordStrength, setPasswordStrength] = useState(0); // State for password strength
-  const [confirmPasswordStrength, setConfirmPasswordStrength] = useState(0); // State for confirm password strength
+  const [loading, setLoading] = useState(false);
+  const [resetSuccess, setResetSuccess] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
+  const [confirmPasswordStrength, setConfirmPasswordStrength] = useState(0);
 
   function togglePasswordVisibility() {
     setIsPasswordVisible(!isPasswordVisible);
@@ -20,12 +29,35 @@ const Page = () => {
 
   const evaluatePasswordStrength = (password) => {
     const result = zxcvbn(password);
-    setPasswordStrength(result.score); // Set strength based on zxcvbn score (0-4)
+    setPasswordStrength(result.score);
   };
 
   const evaluateConfirmPasswordStrength = (password) => {
     const result = zxcvbn(password);
-    setConfirmPasswordStrength(result.score); // Set strength based on zxcvbn score (0-4)
+    setConfirmPasswordStrength(result.score);
+  };
+
+  useEffect(() => {
+    setEmail(params.get("email"));
+  }, [params]);
+
+  const resetPass = (vals) => {
+    setLoading(true);
+    vals.newPassword = vals.password;
+    vals.email = email;
+    delete vals.password;
+    delete vals.confirmPassword;
+    endpoint
+      .post("/new-password", vals)
+      .then((res) => {
+        if (res.status === 200) {
+          setResetSuccess(true);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -38,16 +70,10 @@ const Page = () => {
           boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A",
         }}
       >
-        {true ? (
+        {!resetSuccess ? (
           <>
             <div className="flex items-center justify-center mb-5">
-              <svg
-                width="100"
-                height="100"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="100" height="100" rx="50" fill="#7860DC" />
                 <path
                   opacity="0.2"
@@ -61,13 +87,7 @@ const Page = () => {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
-                <path
-                  d="M50 56.25V60.9375"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                <path d="M50 56.25V60.9375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 <path
                   d="M65.625 42.1875H34.375C33.5121 42.1875 32.8125 42.8871 32.8125 43.75V65.625C32.8125 66.4879 33.5121 67.1875 34.375 67.1875H65.625C66.4879 67.1875 67.1875 66.4879 67.1875 65.625V43.75C67.1875 42.8871 66.4879 42.1875 65.625 42.1875Z"
                   stroke="white"
@@ -85,36 +105,37 @@ const Page = () => {
               </svg>
             </div>
 
-            <h2
-              className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}
-            >
-              {t("New Password")}
-            </h2>
-            <p
-              className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}
-            >
+            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("New Password")}</h2>
+            <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
               {t("Create a new password that is secure and easy to remember")}
             </p>
 
             <Formik
               initialValues={{ password: "", confirmPassword: "" }}
+              validationSchema={Yup.object({
+                password: Yup.string()
+                  .required("Password is required")
+                  .min(8, "Password must be at least 8 characters")
+                  .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+                  .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+                  .matches(/\d/, "Password must contain at least one number")
+                  .matches(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character"),
+                confirmPassword: Yup.string()
+                  .required("Confirm Password is required")
+                  .oneOf([Yup.ref("password"), null], "Passwords must match"),
+              })}
               onSubmit={(values, { setSubmitting }) => {
                 // Handle form submission here
-                setEmail(values.email);
+                resetPass(values);
                 // Assume login function is defined elsewhere
                 // login(values);
                 setSubmitting(false);
               }}
             >
               {({ values, handleChange, isSubmitting }) => (
-                <Form
-                  className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}
-                >
+                <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
                   <div className="mb-6 relative">
-                    <label
-                      className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="password"
-                    >
+                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
                       {t("password")}
                     </label>
                     <div className="relative">
@@ -130,16 +151,9 @@ const Page = () => {
                           evaluatePasswordStrength(e.target.value); // Evaluate strength on change
                         }}
                       />
-                      <span
-                        className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                        onClick={togglePasswordVisibility}
-                      ></span>
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onClick={togglePasswordVisibility}></span>
                     </div>
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="text-red-500 text-xs italic"
-                    />
+                    <ErrorMessage name="password" component="div" className="text-red-500 text-xs italic" />
                   </div>
 
                   {/* Password Strength Meter for Password */}
@@ -174,10 +188,7 @@ const Page = () => {
                   </div>
 
                   <div className="mb-6 relative">
-                    <label
-                      className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="confirmPassword"
-                    >
+                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="confirmPassword">
                       {t("Confirm the new password")}
                     </label>
                     <div className="relative">
@@ -193,18 +204,11 @@ const Page = () => {
                           evaluateConfirmPasswordStrength(e.target.value); // Evaluate strength on change
                         }}
                       />
-                      <span
-                        className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                        onClick={togglePasswordVisibility}
-                      >
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onClick={togglePasswordVisibility}>
                         {/* Password visibility icon */}
                       </span>
                     </div>
-                    <ErrorMessage
-                      name="confirmPassword"
-                      component="div"
-                      className="text-red-500 text-xs italic"
-                    />
+                    <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-xs italic" />
                   </div>
 
                   <div className="mb-4">
@@ -240,19 +244,18 @@ const Page = () => {
                   </div>
 
                   <p className="text-sm text-[#7986A3] my-5">
-                    The length of the password is not less than 8 characters.
-                    The password must not be weak, and it must meet the
-                    following conditions: It must be different from the user ID{" "}
-                    <br />
-                    . It contains lowercase letters (az) and uppercase letters
-                    (AZ) <br />
-                    . It contains at least a number. One (0-9) <br />. Contain
-                    at least one character (!@#SAR%^&*)
+                    The length of the password is not less than 8 characters. The password must not be weak, and it must meet the following
+                    conditions: It must be different from the user ID <br />
+                    . It contains lowercase letters (az) and uppercase letters (AZ) <br />
+                    . It contains at least a number. One (0-9) <br />. Contain at least one character (!@#SAR%^&*)
                   </p>
 
                   <div className="flex items-center justify-center">
                     <button
-                      className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
+                      className={
+                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                        (loading ? "animate-pulse" : "")
+                      }
                       type="submit"
                       disabled={isSubmitting}
                     >
@@ -265,25 +268,11 @@ const Page = () => {
           </>
         ) : (
           <>
-            <div className="flex  flex-col gap-3  items-center ">
-              <div className="flex flex-col gap-5  col-span-full items-center ">
-                <div className="bg-primary rounded-full  h-[100px] w-[100px]   flex items-center justify-center  ">
-                  <svg
-                    width="148"
-                    height="122"
-                    viewBox="0 0 148 122"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="32.25"
-                      y="13.25"
-                      width="101.5"
-                      height="101.5"
-                      rx="50.75"
-                      stroke="#007877"
-                      stroke-width="1.5"
-                    />
+            <div className="flex gap-3  items-center ">
+              <div className="flex gap-5 items-center ">
+                <div className="gap-4 flex flex-col items-center justify-center  ">
+                  <svg width="148" height="122" viewBox="0 0 148 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="32.25" y="13.25" width="101.5" height="101.5" rx="50.75" stroke="#007877" stroke-width="1.5" />
                     <circle cx="83" cy="64" r="45" fill="#EBF7F7" />
                     <path
                       d="M78.2303 83H77.8956C77.1704 82.9493 76.4611 82.7465 75.8196 82.4032C75.1821 82.0561 74.6243 81.5841 74.19 81.0068L59.9771 62.132C59.1881 61.0789 58.8574 59.7683 59.0567 58.4772C59.2519 57.19 59.9651 56.0277 61.033 55.2514C62.1088 54.4791 63.4476 54.1554 64.7625 54.3504C66.0814 54.5415 67.2688 55.2358 68.0617 56.2812L78.7323 70.4558C78.7363 70.4597 78.7363 70.4597 78.7403 70.4597C78.7443 70.4636 78.7443 70.4636 78.7483 70.4636C78.7523 70.4636 78.7523 70.4636 78.7563 70.4636C78.7602 70.4597 78.7602 70.4597 78.7602 70.4558L102.357 46.5025C103.281 45.5664 104.552 45.0242 105.883 45.0008C107.214 44.9774 108.505 45.4728 109.465 46.3777C110.421 47.2826 110.975 48.5269 110.999 49.8297C111.023 51.1364 110.517 52.3962 109.593 53.3324L81.8363 81.5139C81.3661 81.982 80.8083 82.3564 80.1867 82.6099C79.5691 82.8674 78.9037 83 78.2303 83Z"
@@ -318,23 +307,16 @@ const Page = () => {
                       fill="#CEC6F2"
                     />
                   </svg>
-                  <h2
-                    className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}
-                  >
-                    {t("Password has been changed")}
-                  </h2>
-                  <p
-                    className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}
-                  >
-                    {t(
-                      "Password changed successfully, you can login again with your new password"
-                    )}
+
+                  <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("Password has been changed")}</h2>
+                  <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
+                    {t("Password changed successfully, you can login again with your new password")}
                   </p>
                   <div className="flex items-center justify-center">
                     <button
                       className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
-                      type="submit"
-                      onClick={() => {}}
+                      type="button"
+                      onClick={() => router.push("/login")}
                     >
                       {t("sign in")}
                     </button>

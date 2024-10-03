@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import useFonts from "@/utils/useFonts";
 import OTPVerify from "@/components/OTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { useTranslations } from "next-intl";
+import endpoint from "@/utils/apiUtil";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const fonts = useFonts();
@@ -11,12 +14,24 @@ const Page = () => {
 
   const [isEmail, setIsEmail] = useState(false);
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState("");
 
   const handleEmailSubmit = (values, { setSubmitting }) => {
-    
     setEmail(values.email);
-    setIsEmail(true); 
-    setSubmitting(false);
+    endpoint
+      .post("/forgot-password", values)
+      .then((res) => {
+        if (res.status === 200) {
+          setIsEmail(true);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      })
+      .finally(() => {
+        setSubmitting(false);
+        setLoading(false);
+      });
   };
 
   return (
@@ -32,13 +47,7 @@ const Page = () => {
         {!isEmail ? (
           <>
             <div className="flex items-center justify-center mb-5">
-              <svg
-                width="100"
-                height="100"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="100" height="100" rx="50" fill="#7860DC" />
                 <path
                   opacity="0.2"
@@ -52,13 +61,7 @@ const Page = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-                <path
-                  d="M50 56.25V60.9375"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M50 56.25V60.9375" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                   d="M65.625 42.1875H34.375C33.5121 42.1875 32.8125 42.8871 32.8125 43.75V65.625C32.8125 66.4879 33.5121 67.1875 34.375 67.1875H65.625C66.4879 67.1875 67.1875 66.4879 67.1875 65.625V43.75C67.1875 42.8871 66.4879 42.1875 65.625 42.1875Z"
                   stroke="white"
@@ -76,24 +79,22 @@ const Page = () => {
               </svg>
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>
-              {t("Password Reset")}
-            </h2>
+            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("Password Reset")}</h2>
             <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
               {t("Enter your email address, and we will send a verification code to your email")}
             </p>
 
             <Formik
               initialValues={{ email: "" }}
+              validationSchema={Yup.object({
+                email: Yup.string().email("Enter a Valid Email Address!").required("Email Address is required!"),
+              })}
               onSubmit={handleEmailSubmit}
             >
               {({ isSubmitting }) => (
                 <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
                   <div className="mb-6">
-                    <label
-                      className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="grid-email"
-                    >
+                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
                       {t("Email Address")}
                     </label>
                     <Field
@@ -102,18 +103,16 @@ const Page = () => {
                       type="email"
                       name="email"
                       placeholder="Email Address"
-                      required
                     />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-red-500 text-xs italic"
-                    />
+                    <ErrorMessage name="email" component="div" className="text-red-500 text-xs italic" />
                   </div>
 
                   <div className="flex items-center justify-center">
                     <button
-                      className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
+                      className={
+                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                        (loading ? "animate-pulse" : "")
+                      }
                       type="submit"
                       disabled={isSubmitting}
                     >
@@ -125,7 +124,7 @@ const Page = () => {
             </Formik>
           </>
         ) : (
-          <OTPVerify email={email} />
+          <OTPVerify email={email} isReset={true} />
         )}
       </div>
     </div>

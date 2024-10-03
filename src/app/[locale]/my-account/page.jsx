@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import PersonalInfo from "./PersonalInfo";
 import FinancialInfo from "./FinancialInfo";
@@ -8,42 +8,54 @@ import WorkInfo from "./WorkInfo";
 import NationalInfo from "./NationalInfo";
 import BankInfo from "./BankInfo";
 import GeneralInfo from "./GeneralInfo";
+import { useRouter } from "@/i18n/routing";
+import endpoint from "@/utils/apiUtil";
 
 const MyAccount = () => {
   const fonts = useFonts();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("Personal");
+  const [data, setData] = useState({});
 
   const renderTabContent = () => {
     switch (activeTab) {
       case "Personal":
-        return <PersonalInfo />;
+        return <PersonalInfo data={data} />;
       case "Financial":
-        return <FinancialInfo />;
+        return <FinancialInfo data={data} />;
       case "Work":
-        return <WorkInfo />;
+        return <WorkInfo data={data} />;
       case "General":
         return <GeneralInfo />;
       case "National":
-        return <NationalInfo />;
+        return <NationalInfo data={data} />;
       case "Bank":
-        return <BankInfo />;
+        return <BankInfo data={data} />;
       default:
-        return <PersonalInfo />;
+        return <PersonalInfo data={data} />;
     }
   };
+
+  useEffect(() => {
+    let user = JSON.parse(localStorage?.getItem("user"));
+    if (user?.type !== "Investor" && user?.type !== "Entrepreneur") {
+      router.push("/");
+    } else {
+      endpoint
+        .get("/getUserDetails/" + user?._id)
+        .then((res) => {
+          setData(res.data.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
 
   return (
     <div className={`container mx-auto p-6 ${fonts.spaceG.className}`}>
       <div className="flex justify-between items-center mb-6">
         <div className="breadcrumbs text-sm text-gray-500">
           <div className="flex flex-row items-center justify-center gap-2">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -52,13 +64,7 @@ const MyAccount = () => {
               />
             </svg>
             <span className="mr-2"> Account</span>{" "}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -69,28 +75,22 @@ const MyAccount = () => {
             <span className="ml-2">My Account</span>
           </div>
         </div>
-        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] ">
-          Deactivate
-        </button>
+        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] ">Deactivate</button>
       </div>
 
       <div className="border-b mt-6">
         <nav className="-mb-px flex md:space-x-8 space-x-1" aria-label="Tabs">
-          {["Personal", "Financial", "Work", "General", "National", "Bank"].map(
-            (tab) => (
-              <button
-                key={tab}
-                className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === tab
-                    ? "border-primary text-primary"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab}
-              </button>
-            )
-          )}
+          {["Personal", "Financial", "Work", "National", "Bank"].map((tab) => (
+            <button
+              key={tab}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
+                activeTab === tab ? "border-primary text-primary" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+              }`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
         </nav>
       </div>
 
