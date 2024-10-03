@@ -460,9 +460,8 @@ const Page = () => {
                         {...formik.getFieldProps("nationality")}
                       >
                         <option value="" label="Select your nationality" />
-                        <option value="ksa" label="Saudi Arabia" />
-                        <option value="us" label="United States" />
-                        <option value="india" label="India" />
+                        <option value="KSA" label="Saudi Arabia" />
+                        <option value="USA" label="United States" />
                       </select>
                       {formik.touched.nationality && formik.errors.nationality && (
                         <p className="text-red-500 text-xs italic">{formik.errors.nationality}</p>
