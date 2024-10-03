@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import useFonts from "@/utils/useFonts";
-import axios from "axios";
+import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-function OTPVerify({ email }) {
+function OTPVerify({ email, isReset, userType }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -36,7 +36,7 @@ function OTPVerify({ email }) {
   const resendOTP = () => {
     setTimeLeft(60);
     setIsCountdownFinished(false);
-    axios
+    endpoint
       .post(process.env.NEXT_PUBLIC_API_URL + "/resendOTP", { email })
       .then((res) => {
         toast.success(res.data.message);
@@ -48,12 +48,20 @@ function OTPVerify({ email }) {
 
   const handleVerify = (e) => {
     e.preventDefault();
-    axios
-      .post(process.env.NEXT_PUBLIC_API_URL + "/verifyEmail", { email, otp })
+    endpoint
+      .post(process.env.NEXT_PUBLIC_API_URL + "/verifyEmail", { email, otp, isReset })
       .then((res) => {
         toast.success(res.data.message);
-        localStorage.setItem("user", JSON.stringify(res.data.data));
-        router.push("/");
+        if (!isReset) {
+          localStorage.setItem("user", JSON.stringify(res.data.data));
+          if (userType !== "Investor" && userType !== "Entrepreneur") router.push("/");
+          else router.push("/newUserInfo");
+        } else router.push("/new-password/?email=" + email);
+        // else
+        //   router.push({
+        //     path: "/new-password/[email]",
+        //     query: { email },
+        //   });
       })
       .catch((error) => {
         toast.error(error.response.data.message);

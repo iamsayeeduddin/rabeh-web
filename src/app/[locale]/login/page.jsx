@@ -8,10 +8,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/routing";
+import endpoint from "@/utils/apiUtil";
 
 const Page = () => {
   const fonts = useFonts();
   const t = useTranslations();
+  const router = useRouter();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
@@ -22,8 +25,8 @@ const Page = () => {
   }
 
   const login = (values) => {
-    axios
-      .post(process.env.NEXT_PUBLIC_API_URL + "/login", values)
+    endpoint
+      .post("/login", values)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.data));
         toast.success(res.data.message);
@@ -108,10 +111,20 @@ const Page = () => {
                     </div>
                     <ErrorMessage name="password" component="div" className="text-red-500 text-xs italic" />
                   </div>
+                  <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] my-8 ${fonts.spaceG.className}`}>
+                    Forgot Password?{" "}
+                    <p className="text-primary ml-2 cursor-pointer" onClick={() => router.push("/reset-password")}>
+                      {" "}
+                      Reset
+                    </p>
+                  </div>
 
                   <div className="flex items-center justify-center">
                     <button
-                      className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
+                      className={
+                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full" +
+                        (isSubmitting ? " opacity-50 animate-ping cursor-not-allowed" : "")
+                      }
                       type="submit"
                       disabled={isSubmitting}
                     >

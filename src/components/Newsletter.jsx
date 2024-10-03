@@ -2,7 +2,7 @@
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import endpoint from "@/utils/apiUtil";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ const Newsletter = () => {
   const [load, setLoad] = useState(false);
   const t = useTranslations();
   const handleSubmit = (values) => {
-    axios
+    endpoint
       .post(process.env.NEXT_PUBLIC_API_URL + "/subscribe", values)
       .then((res) => {
         toast.success(res.data.message);
