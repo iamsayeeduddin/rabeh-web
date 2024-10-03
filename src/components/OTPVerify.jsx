@@ -54,7 +54,7 @@ function OTPVerify({ email, isReset, userType }) {
         toast.success(res.data.message);
         if (!isReset) {
           localStorage.setItem("user", JSON.stringify(res.data.data));
-          if (userType !== "Investor" || userType !== "Entrepreneur") router.push("/");
+          if (userType !== "Investor" && userType !== "Entrepreneur") router.push("/");
           else router.push("/newUserInfo");
         } else router.push("/new-password/?email=" + email);
         // else
