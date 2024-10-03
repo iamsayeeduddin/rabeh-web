@@ -10,34 +10,33 @@ import BankInfo from "./BankInfo";
 import GeneralInfo from "./GeneralInfo";
 import { useRouter } from "@/i18n/routing";
 import endpoint from "@/utils/apiUtil";
+import { toast } from "react-toastify";
 
 const MyAccount = () => {
   const fonts = useFonts();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Personal");
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  let user = JSON.parse(localStorage?.getItem("user"));
 
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case "Personal":
-        return <PersonalInfo data={data} />;
-      case "Financial":
-        return <FinancialInfo data={data} />;
-      case "Work":
-        return <WorkInfo data={data} />;
-      case "General":
-        return <GeneralInfo />;
-      case "National":
-        return <NationalInfo data={data} />;
-      case "Bank":
-        return <BankInfo data={data} />;
-      default:
-        return <PersonalInfo data={data} />;
-    }
-  };
+  const handleUpdate = (vals) =>{
+    setIsLoading(true);
+    endpoint
+      .post("/updateUser/" + user?._id, vals)
+      .then((res) => {
+        toast.success(res.data.message);
+        setIsSuccess(true);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        setIsSuccess(false);
+      })
+      .finally(() => setIsLoading(false));
+  } 
 
   useEffect(() => {
-    let user = JSON.parse(localStorage?.getItem("user"));
     if (user?.type !== "Investor" && user?.type !== "Entrepreneur") {
       router.push("/");
     } else {
@@ -49,6 +48,25 @@ const MyAccount = () => {
         .catch((err) => console.log(err));
     }
   }, []);
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "Personal":
+        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+      case "Financial":
+        return <FinancialInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+      case "Work":
+        return <WorkInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading}  isSuccess={isSuccess}/>;
+      case "General":
+        return <GeneralInfo />;
+      case "National":
+        return <NationalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+      case "Bank":
+        return <BankInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+      default:
+      return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+    }
+  };
 
   return (
     <div className={`container mx-auto p-6 ${fonts.spaceG.className}`}>
