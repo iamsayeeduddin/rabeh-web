@@ -6,6 +6,7 @@ import endpoint from "@/utils/apiUtil";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Newsletter = () => {
   const fonts = useFonts();
@@ -13,8 +14,8 @@ const Newsletter = () => {
   const [load, setLoad] = useState(false);
   const t = useTranslations();
   const handleSubmit = (values) => {
-    endpoint
-      .post(process.env.NEXT_PUBLIC_API_URL + "/subscribe", values)
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/subscribers/subscribe", values)
       .then((res) => {
         toast.success(res.data.message);
         formRef?.current?.resetForm();

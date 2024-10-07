@@ -25,8 +25,8 @@ const Page = () => {
   }
 
   const login = (values) => {
-    endpoint
-      .post("/login", values)
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/login", values)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.data));
         toast.success(res.data.message);

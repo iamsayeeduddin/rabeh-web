@@ -2,13 +2,13 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import endpoint from "@/utils/apiUtil";
 import useFonts from "@/utils/useFonts";
 import OTPVerify from "@/components/OTPVerify";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import endpoint from "@/utils/apiUtil";
 
 const Page = () => {
   const fonts = useFonts();
@@ -17,14 +17,41 @@ const Page = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const params = useSearchParams();
+  const [image, setImage] = useState(null);
 
-  const handleRegister = (vals) => {
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/jpeg")) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+      formik.setFieldValue("profilePic", file);
+    } else {
+      toast.error("Please upload a valid image (PNG, JPG, or JPEG)");
+      setImage(null); // Clear previous image
+    }
+  };
+
+  const handleRegister = () => {
     setIsLoading(true);
-    setEmail(vals.email);
-    endpoint
-      .post(process.env.NEXT_PUBLIC_API_URL + "/registerUser", vals)
+    setEmail(formik.values.email);
+
+    const formData = new FormData();
+
+    Object.keys(formik.values).forEach((key) => {
+      formData.append(key, formik.values[key]);
+    });
+
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/registerUser", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
-        console.log(response);
         if (response.data.status === "success") {
           setIsRegister(true);
           toast(response.data.message);
@@ -67,7 +94,7 @@ const Page = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
     }),
     onSubmit: (values) => {
-      handleRegister(values);
+      handleRegister();
     },
   });
 
@@ -132,31 +159,38 @@ const Page = () => {
               {t("new")} {t(formik.values.type)} {t("acc")}
             </h2>
             <p className={`text-[16] md:text-start text-center mb-4 ${fonts.spaceG.className}`}>{t("enterPersonalInfo")}</p>
-            {/* <div className="flex md:flex-row flex-col gap-3 items-center">
+            <div className="flex md:flex-row flex-col gap-3 items-center">
               <div className="flex gap-5 col-span-full items-center">
-                <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-t-0 border-b-4 border-white flex items-center justify-center">
-                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M24 8C20.6863 8 18 10.6863 18 14C18 17.3137 20.6863 20 24 20C27.3137 20 30 17.3137 30 14C30 10.6863 27.3137 8 24 8ZM14 14C14 8.47715 18.4772 4 24 4C29.5228 4 34 8.47715 34 14C34 19.5228 29.5228 24 24 24C18.4772 24 14 19.5229 14 14ZM12.1659 40H35.8341C34.8819 34.3246 29.946 30 24 30C18.054 30 13.1181 34.3246 12.1659 40ZM8 42C8 33.1634 15.1634 26 24 26C32.8366 26 40 33.1634 40 42C40 43.1046 39.1046 44 38 44H10C8.89543 44 8 43.1046 8 42Z"
-                      fill="white"
-                    />
-                  </svg>
+                <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-t-4 border-b-4 border-white flex items-center justify-center">
+                  {image ? (
+                    <img src={image} alt="Uploaded" className="h-16 w-16 rounded-full object-cover" />
+                  ) : (
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M24 8C20.6863 8 18 10.6863 18 14C18 17.3137 20.6863 20 24 20C27.3137 20 30 17.3137 30 14C30 10.6863 27.3137 8 24 8ZM14 14C14 8.47715 18.4772 4 24 4C29.5228 4 34 8.47715 34 14C34 19.5228 29.5228 24 24 24C18.4772 24 14 19.5229 14 14ZM12.1659 40H35.8341C34.8819 34.3246 29.946 30 24 30C18.054 30 13.1181 34.3246 12.1659 40ZM8 42C8 33.1634 15.1634 26 24 26C32.8366 26 40 33.1634 40 42C40 43.1046 39.1046 44 38 44H10C8.89543 44 8 43.1046 8 42Z"
+                        fill="white"
+                      />
+                    </svg>
+                  )}
                 </div>
                 <div className="flex flex-row items-center justify-center md:h-8 md:w-[140px] px-2 py-4 gap-1 rounded-md border-2 border-primary">
-                  <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M13.5391 2.95957C13.1486 2.56905 12.5154 2.56905 12.1249 2.95957L11.5963 3.48817L13.0105 4.90238L13.5391 4.37378C13.9296 3.98326 13.9296 3.35009 13.5391 2.95957ZM12.0677 5.84519L10.6535 4.43097L3.16536 11.9191V13.357H4.55589L12.0677 5.84519ZM11.1821 2.01676C12.0933 1.10554 13.5707 1.10554 14.4819 2.01676C15.3931 2.92798 15.3931 4.40537 14.4819 5.31659L5.30344 14.4951C5.17841 14.6201 5.00884 14.6903 4.83203 14.6903H2.4987C2.13051 14.6903 1.83203 14.3919 1.83203 14.0237V11.643C1.83203 11.4661 1.90227 11.2966 2.02729 11.1715L11.1821 2.01676Z"
-                      fill="#7860DC"
-                    />
-                  </svg>
-                  <p className="text-primary">Add photo</p>
+                  <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageChange} className="hidden" id="file-input" />
+                  <label htmlFor="file-input" className="cursor-pointer flex items-center">
+                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M13.5391 2.95957C13.1486 2.56905 12.5154 2.56905 12.1249 2.95957L11.5963 3.48817L13.0105 4.90238L13.5391 4.37378C13.9296 3.98326 13.9296 3.35009 13.5391 2.95957ZM12.0677 5.84519L10.6535 4.43097L3.16536 11.9191V13.357H4.55589L12.0677 5.84519ZM11.1821 2.01676C12.0933 1.10554 13.5707 1.10554 14.4819 2.01676C15.3931 2.92798 15.3931 4.40537 14.4819 5.31659L5.30344 14.4951C5.17841 14.6201 5.00884 14.6903 4.83203 14.6903H2.4987C2.13051 14.6903 1.83203 14.3919 1.83203 14.0237V11.643C1.83203 11.4661 1.90227 11.2966 2.02729 11.1715L11.1821 2.01676Z"
+                        fill="#7860DC"
+                      />
+                    </svg>
+                    <p className="text-primary">Add photo</p>
+                  </label>
                 </div>
               </div>
-            </div> */}
+            </div>
 
             <div className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
               <div className="flex flex-wrap -mx-3 mb-6">
@@ -304,7 +338,7 @@ const Page = () => {
             </div>
           </>
         ) : (
-          <OTPVerify email={email} />
+          <OTPVerify email={email} userType={formik.values.type} />
         )}
       </div>
     </div>

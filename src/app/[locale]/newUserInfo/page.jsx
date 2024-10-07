@@ -8,6 +8,7 @@ import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
+import axios from "axios";
 
 const Page = () => {
   const fonts = useFonts();
@@ -262,8 +263,10 @@ const Page = () => {
         }
       }
       let user = JSON.parse(localStorage.getItem("user"));
-      endpoint
-        .post("/updateUser/" + user?._id, formData)
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/updateUser/" + user?._id, formData, {
+          headers: { Authorization: `Bearer ${user?.token}` },
+        })
         .then((res) => {
           if (res.status === 200) {
             setIsSuccess(true);
@@ -480,9 +483,8 @@ const Page = () => {
                         {...formik.getFieldProps("countryOfResidence")}
                       >
                         <option value="" label="Select your country" />
-                        <option value="ksa" label="Saudi Arabia" />
-                        <option value="us" label="United States" />
-                        <option value="india" label="India" />
+                        <option value="KSA" label="Saudi Arabia" />
+                        <option value="USA" label="United States" />
                       </select>
                       {formik.touched.countryOfResidence && formik.errors.countryOfResidence && (
                         <p className="text-red-500 text-xs italic">{formik.errors.countryOfResidence}</p>

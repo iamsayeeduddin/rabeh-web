@@ -38,8 +38,19 @@ const Page = () => {
   const handleRegister = () => {
     setIsLoading(true);
     setEmail(formik.values.email);
+
+    const formData = new FormData();
+
+    Object.keys(formik.values).forEach((key) => {
+      formData.append(key, formik.values[key]);
+    });
+
     endpoint
-      .post("/registerUser", formik.values)
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/registerUser", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         if (response.data.status === "success") {
           setIsRegister(true);
@@ -83,8 +94,6 @@ const Page = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
     }),
     onSubmit: (values) => {
-      // Handle form submission
-      console.log(values);
       handleRegister();
     },
   });

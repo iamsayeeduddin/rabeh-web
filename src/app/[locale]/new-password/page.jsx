@@ -9,6 +9,7 @@ import { useRouter } from "@/i18n/routing";
 import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
 
 const Page = () => {
   const fonts = useFonts();
@@ -47,11 +48,12 @@ const Page = () => {
     vals.email = email;
     delete vals.password;
     delete vals.confirmPassword;
-    endpoint
-      .post("/new-password", vals)
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/new-password", vals)
       .then((res) => {
         if (res.status === 200) {
           setResetSuccess(true);
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
       })
       .catch((err) => {
@@ -125,14 +127,11 @@ const Page = () => {
                   .oneOf([Yup.ref("password"), null], "Passwords must match"),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                // Handle form submission here
                 resetPass(values);
-                // Assume login function is defined elsewhere
-                // login(values);
                 setSubmitting(false);
               }}
             >
-              {({ values, handleChange, isSubmitting }) => (
+              {({ values, errors, handleChange, isSubmitting }) => (
                 <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
                   <div className="mb-6 relative">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
@@ -204,9 +203,7 @@ const Page = () => {
                           evaluateConfirmPasswordStrength(e.target.value); // Evaluate strength on change
                         }}
                       />
-                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onClick={togglePasswordVisibility}>
-                        {/* Password visibility icon */}
-                      </span>
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" onClick={togglePasswordVisibility}></span>
                     </div>
                     <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-xs italic" />
                   </div>
@@ -229,6 +226,7 @@ const Page = () => {
                           width: `${(confirmPasswordStrength + 1) * 20}%`,
                         }}
                       ></div>
+                      {JSON.stringify(errors)}
                     </div>
                     <p className="text-xs text-gray-600">
                       {confirmPasswordStrength === 0
@@ -318,7 +316,7 @@ const Page = () => {
                       type="button"
                       onClick={() => router.push("/login")}
                     >
-                      {t("sign in")}
+                      {t("signIn")}
                     </button>
                   </div>
                 </div>

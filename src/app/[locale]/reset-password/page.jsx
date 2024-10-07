@@ -5,8 +5,8 @@ import OTPVerify from "@/components/OTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
-import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Page = () => {
   const fonts = useFonts();
@@ -18,8 +18,8 @@ const Page = () => {
 
   const handleEmailSubmit = (values, { setSubmitting }) => {
     setEmail(values.email);
-    endpoint
-      .post("/forgot-password", values)
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/forgot-password", values)
       .then((res) => {
         if (res.status === 200) {
           setIsEmail(true);
@@ -106,11 +106,10 @@ const Page = () => {
                     />
                     <ErrorMessage name="email" component="div" className="text-red-500 text-xs italic" />
                   </div>
-
                   <div className="flex items-center justify-center">
                     <button
                       className={
-                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                        "bg-primary cursor-pointer hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
                         (loading ? "animate-pulse" : "")
                       }
                       type="submit"

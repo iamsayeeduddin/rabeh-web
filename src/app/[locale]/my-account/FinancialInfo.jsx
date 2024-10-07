@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
 
-const FinancialInfo = ({ data }) => {
+const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => {
   const fonts = useFonts(); // Get the font object from the hook
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");
@@ -12,18 +12,22 @@ const FinancialInfo = ({ data }) => {
     theannualincome: "3,4490SAR",
     Educationallevel: "level",
     primarysourceofincome: "source",
-    networth: "445555SAR",
-    anotherphone: "+9961234567890",
+    netWorth: "445555SAR",
+    anotherPhoneNumber: "+9961234567890",
   });
 
-  useEffect(() => {
+  const setInitVal = () => {
     setUserInfo({
-      theannualincome: data?.annualIncome + " SAR",
+      theannualincome: data?.annualIncome,
       Educationallevel: data?.educationalLevel,
       primarysourceofincome: data?.primarySourceOfIncome,
-      networth: data?.netWorth + " SAR",
-      anotherphone: data?.anotherPhoneNumber,
+      netWorth: data?.netWorth,
+      anotherPhoneNumber: data?.anotherPhoneNumber,
     });
+  };
+
+  useEffect(() => {
+    setInitVal();
   }, [data]);
 
   const handleEditClick = () => {
@@ -35,33 +39,23 @@ const FinancialInfo = ({ data }) => {
     setUserInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
-  const handleDocumentUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedDocument(file.name);
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUserInfo((prevInfo) => ({ ...prevInfo, image: reader.result }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleCancel = () => {
+    setInitVal();
     setIsEditing(false);
   };
 
   const handleSave = () => {
-    // Handle save logic
-    console.log("User Info Saved:", userInfo);
-    setIsEditing(false);
+    if (!isLoading) {
+      handleUpdate(userInfo);
+    }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      getData();
+      setIsEditing(false);
+    }
+  }, [isSuccess]);
 
   return (
     <div className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}>
@@ -98,7 +92,7 @@ const FinancialInfo = ({ data }) => {
                     <label className="block text-gray-700 text-xs font-bold mb-2">The annual income</label>
                     <input
                       type="text"
-                      name="The annual income"
+                      name="theannualincome"
                       value={userInfo.theannualincome}
                       onChange={handleChange}
                       className="border border-gray-300 rounded p-2 w-full"
@@ -109,8 +103,8 @@ const FinancialInfo = ({ data }) => {
                 <div>
                   <label className="block text-gray-700 text-xs font-bold mb-2">Educational level</label>
                   <input
-                    type="email"
-                    name="email"
+                    type="text"
+                    name="Educationallevel"
                     value={userInfo.Educationallevel}
                     onChange={handleChange}
                     className="border border-gray-300 rounded p-2 w-full"
@@ -121,45 +115,45 @@ const FinancialInfo = ({ data }) => {
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Primary source of income">
                     Primary source of income
                   </label>
-                  <div className="relative">
-                    <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
-                      id=""
-                      type="text"
-                      value={userInfo.primarysourceofincome}
-                      onChange={handleChange}
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <select
-                        className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
-                        id="country-code"
-                      >
-                        <option value="ksa">trader</option>
-                      </select>
-                    </div>
-                  </div>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id=""
+                    name="primarysourceofincome"
+                    type="text"
+                    value={userInfo.primarysourceofincome}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="mb-6  ">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">Net worth in Riyals (excluding house) </label>
-                  <div className="relative">
-                    <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
-                      type="text"
-                    />
-                  </div>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    type="text"
+                    value={userInfo.netWorth}
+                    name="netWorth"
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-gray-700 text-sm mb-2">Another phone</label>
-                  <input type="phone" className="border border-gray-300 rounded p-2 w-full" />
+                  <input
+                    type="phone"
+                    className="border border-gray-300 rounded p-2 w-full"
+                    value={userInfo?.anotherPhoneNumber}
+                    onChange={handleChange}
+                    name="anotherPhoneNumber"
+                  />
                 </div>
 
                 <div className="flex justify-between mb-4">
                   <button
                     type="button"
                     onClick={handleCancel}
-                    className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
+                    className={
+                      (isLoading ? "animate-pulse" : "") + " border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
+                    }
                   >
                     Cancel
                   </button>
@@ -173,30 +167,25 @@ const FinancialInfo = ({ data }) => {
                 <div className="flex flex-col gap-5 ">
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">The annual income</p>
-                    <p> {`${userInfo.theannualincome} `}</p>
+                    <p> {`${userInfo.theannualincome} SAR`}</p>
                   </div>
 
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">Educational level </p>
-
                     <p>{userInfo.Educationallevel}</p>
                   </div>
 
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">Primary source of income</p>
-
-                    <p> {userInfo.primarysourceofincome}</p>
+                    <p>{userInfo.primarysourceofincome}</p>
                   </div>
-
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">Net worth in Riyals (excluding house)</p>
-
-                    <p> {userInfo.networth}</p>
+                    <p>{userInfo.netWorth} SAR</p>
                   </div>
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">Another phone</p>
-
-                    <p> {userInfo.anotherphone}</p>
+                    <p>{userInfo.anotherPhoneNumber}</p>
                   </div>
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold"></p>

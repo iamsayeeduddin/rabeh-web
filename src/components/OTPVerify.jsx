@@ -5,6 +5,7 @@ import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import axios from "axios";
 
 function OTPVerify({ email, isReset, userType }) {
   const fonts = useFonts();
@@ -13,6 +14,7 @@ function OTPVerify({ email, isReset, userType }) {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const [isCountdownFinished, setIsCountdownFinished] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -36,8 +38,8 @@ function OTPVerify({ email, isReset, userType }) {
   const resendOTP = () => {
     setTimeLeft(60);
     setIsCountdownFinished(false);
-    endpoint
-      .post(process.env.NEXT_PUBLIC_API_URL + "/resendOTP", { email })
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/resendOTP", { email })
       .then((res) => {
         toast.success(res.data.message);
       })
@@ -47,9 +49,10 @@ function OTPVerify({ email, isReset, userType }) {
   };
 
   const handleVerify = (e) => {
+    setLoading(true);
     e.preventDefault();
-    endpoint
-      .post(process.env.NEXT_PUBLIC_API_URL + "/verifyEmail", { email, otp, isReset })
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/verifyEmail", { email, otp, isReset })
       .then((res) => {
         toast.success(res.data.message);
         if (!isReset) {
@@ -57,15 +60,11 @@ function OTPVerify({ email, isReset, userType }) {
           if (userType !== "Investor" && userType !== "Entrepreneur") router.push("/");
           else router.push("/newUserInfo");
         } else router.push("/new-password/?email=" + email);
-        // else
-        //   router.push({
-        //     path: "/new-password/[email]",
-        //     query: { email },
-        //   });
       })
       .catch((error) => {
         toast.error(error.response.data.message);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -157,7 +156,7 @@ function OTPVerify({ email, isReset, userType }) {
             className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
             type="button"
             onClick={handleVerify}
-            disabled={otp.length < 4}
+            disabled={otp.length < 4 || loading}
           >
             {t("verification")}
           </button>

@@ -14,7 +14,7 @@ const ContactForm = () => {
   const t = useTranslations();
   const handleSubmit = (values) => {
     endpoint
-      .post(process.env.NEXT_PUBLIC_API_URL + "/getInTouch", values)
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/leads/getInTouch", values)
       .then((res) => {
         toast.success(res.data.message);
         formRef?.current?.resetForm();

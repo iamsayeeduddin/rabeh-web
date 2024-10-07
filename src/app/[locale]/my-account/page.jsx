@@ -9,8 +9,9 @@ import NationalInfo from "./NationalInfo";
 import BankInfo from "./BankInfo";
 import GeneralInfo from "./GeneralInfo";
 import { useRouter } from "@/i18n/routing";
-import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
+import useAxios from "@/utils/useAxios";
+import axios from "axios";
 
 const MyAccount = () => {
   const fonts = useFonts();
@@ -21,50 +22,84 @@ const MyAccount = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   let user = JSON.parse(localStorage?.getItem("user"));
 
-  const handleUpdate = (vals) =>{
+  const handleUpdate = (vals) => {
+    const formData = new FormData();
+
+    Object.keys(vals).forEach((key) => {
+      formData.append(key, vals[key]);
+    });
     setIsLoading(true);
-    endpoint
-      .post("/updateUser/" + user?._id, vals)
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/updateUser/" + user?._id, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
       .then((res) => {
         toast.success(res.data.message);
         setIsSuccess(true);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
+        if (err.status === 403) {
+          localStorage.removeItem("user");
+          router.push("/login");
+        }
         setIsSuccess(false);
       })
       .finally(() => setIsLoading(false));
-  } 
+  };
+
+  const getData = async () => {
+    setIsSuccess(false);
+    setData({});
+    axios
+      .get(process.env.NEXT_PUBLIC_API_URL + "/api/users/getUserDetails/" + user?._id, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        if (err.status === 403) {
+          localStorage.removeItem("user");
+          router.push("/login");
+        }
+      });
+  };
 
   useEffect(() => {
-    if (user?.type !== "Investor" && user?.type !== "Entrepreneur") {
-      router.push("/");
-    } else {
-      endpoint
-        .get("/getUserDetails/" + user?._id)
-        .then((res) => {
-          setData(res.data.data);
-        })
-        .catch((err) => console.log(err));
-    }
+    getData();
   }, []);
 
+  const tabArr = [
+    { value: "Personal", show: true },
+    { value: "Financial", show: false },
+    { value: "Work", show: false },
+    { value: "National", show: false },
+    { value: "Bank", show: false },
+  ];
   const renderTabContent = () => {
     switch (activeTab) {
       case "Personal":
-        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} getData={getData} />;
       case "Financial":
-        return <FinancialInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <FinancialInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "Work":
-        return <WorkInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading}  isSuccess={isSuccess}/>;
+        return <WorkInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "General":
         return <GeneralInfo />;
       case "National":
-        return <NationalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <NationalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "Bank":
-        return <BankInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <BankInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       default:
-      return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
     }
   };
 
@@ -98,17 +133,21 @@ const MyAccount = () => {
 
       <div className="border-b mt-6">
         <nav className="-mb-px flex md:space-x-8 space-x-1" aria-label="Tabs">
-          {["Personal", "Financial", "Work", "National", "Bank"].map((tab) => (
-            <button
-              key={tab}
-              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === tab ? "border-primary text-primary" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
+          {tabArr
+            .filter((tab) => (user?.type === "Consultant" || user?.type === "Admin" ? tab.show : true))
+            .map((tab) => (
+              <button
+                key={tab.value}
+                className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === tab.value
+                    ? "border-primary text-primary"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                onClick={() => setActiveTab(tab.value)}
+              >
+                {tab.value}
+              </button>
+            ))}
         </nav>
       </div>
 

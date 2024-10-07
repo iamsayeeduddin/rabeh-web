@@ -3,7 +3,7 @@ import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
 import moment from "moment";
 
-const PersonalInfo = ({ data }) => {
+const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => {
   const fonts = useFonts();
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");
@@ -16,8 +16,9 @@ const PersonalInfo = ({ data }) => {
     phoneNumber: "",
     createdAt: "",
     nationality: "Egyptian",
-    idFile: "Passport",
-    image: "/assets/mohd_alosaimi.png",
+    documentFile: "Passport",
+    profilePic: "/assets/mohd_alosaimi.png",
+    image: "",
   });
 
   const initVal = () => {
@@ -26,12 +27,11 @@ const PersonalInfo = ({ data }) => {
       lastName: data.lastName,
       email: data.email,
       phoneNumber: data.phoneNumber,
-      createdAt: moment(data.createdAt).format("DD/MM/YYYY - hh:mm A"),
+      createdAt: data.createdAt,
       nationality: data.nationality,
-      idFile: data?.documentFile,
-      image: data?.profilePic
-        ? process.env.NEXT_PUBLIC_API_URL + "/media/" + data?.profilePic
-        : null,
+      documentFile: data?.documentFile,
+      profilePic: data?.profilePic ? process.env.NEXT_PUBLIC_API_URL + "/media/" + data?.profilePic : null,
+      image: data?.profilePic ? process.env.NEXT_PUBLIC_API_URL + "/media/" + data?.profilePic : null,
       role: data?.type,
     });
   };
@@ -60,7 +60,7 @@ const PersonalInfo = ({ data }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setUserInfo((prevInfo) => ({ ...prevInfo, image: reader.result }));
+        setUserInfo((prevInfo) => ({ ...prevInfo, profilePic: file, image: reader.result }));
       };
       reader.readAsDataURL(file);
     }
@@ -72,23 +72,29 @@ const PersonalInfo = ({ data }) => {
   };
 
   const handleSave = () => {
-    console.log("User Info Saved:", userInfo);
-    setIsEditing(false);
+    let obj = { ...userInfo };
+    if (!obj.documentFile) {
+      delete obj.documentFile;
+    }
+    if (!obj?.profilePic || obj?.profilePic?.toString().includes("http")) {
+      delete obj.profilePic;
+    }
+    delete obj.image;
+    handleUpdate(obj);
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      getData();
+      setIsEditing(false);
+    }
+  }, [isLoading, isSuccess]);
+
   return (
-    <div
-      className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}
-    >
+    <div className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}>
       <div className="w-full   bg-white ">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">
-            {isEditing ? (
-              <> Edit Personal Information</>
-            ) : (
-              <> Personal Information</>
-            )}
-          </h3>
+          <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <> Edit Personal Information</> : <> Personal Information</>}</h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -96,13 +102,7 @@ const PersonalInfo = ({ data }) => {
                 className="  font-semibold py-2 px-4 rounded-md flex flex-row text-[15px] text-[#495162] gap-3 border-2"
                 onClick={handleEditClick}
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -119,37 +119,23 @@ const PersonalInfo = ({ data }) => {
         <div className="user-info grid md:grid-cols-3 p-5 ">
           <div className="flex   mb-6 justify-center">
             <label htmlFor="upload-image">
-              {userInfo.image && (
+              {userInfo.profilePic && (
                 <img
                   src={userInfo.image}
                   alt="Profile"
                   className="rounded-full w-40 h-40 cursor-pointer object-cover border-4 border-white shadow-lg "
                 />
               )}
-              {!userInfo.image && (
+              {!userInfo.profilePic && (
                 <div className="w-40 h-40 flex justify-center items-center text-7xl border-white shadow-lg  rounded-full bg-primary text-white cursor-pointer">
-                  <p className={fonts.spaceG.className}>
-                    {userInfo?.firstName?.[0]?.toUpperCase()}
-                  </p>
+                  <p className={fonts.spaceG.className}>{userInfo?.firstName?.[0]?.toUpperCase()}</p>
                 </div>
               )}
-              <input
-                id="upload-image"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="hidden"
-              />
+              <input id="upload-image" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
 
               {isEditing ? (
                 <div className="flex flex-row items-center justify-center rounded-md border-2 border-primary mt-5 p-2 cursor-pointer ">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -168,9 +154,7 @@ const PersonalInfo = ({ data }) => {
               <>
                 <div className="flex flex-row gap-2">
                   <div>
-                    <label className="block text-gray-700 text-xs font-bold mb-2">
-                      First Name
-                    </label>
+                    <label className="block text-gray-700 text-xs font-bold mb-2">First Name</label>
                     <input
                       type="text"
                       name="firstName"
@@ -180,9 +164,7 @@ const PersonalInfo = ({ data }) => {
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 text-xs font-bold mb-2">
-                      Last Name
-                    </label>
+                    <label className="block text-gray-700 text-xs font-bold mb-2">Last Name</label>
                     <input
                       type="text"
                       name="lastName"
@@ -194,9 +176,7 @@ const PersonalInfo = ({ data }) => {
                 </div>
                 <div></div>
                 <div>
-                  <label className="block text-gray-700 text-xs font-bold mb-2">
-                    Email
-                  </label>
+                  <label className="block text-gray-700 text-xs font-bold mb-2">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -208,10 +188,7 @@ const PersonalInfo = ({ data }) => {
                 </div>
 
                 <div className="mb-6 relative">
-                  <label
-                    className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="phone"
-                  >
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">
                     Phone Number
                   </label>
                   <div className="relative">
@@ -237,38 +214,32 @@ const PersonalInfo = ({ data }) => {
                   </div>
                 </div>
 
-                <div className="mb-6  ">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                    Role
-                  </label>
-                  {/* <div className="relative"> */}
-                  {/* <input
-                      className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
-                      type="text"
-                    /> */}
-                  {/* <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"> */}
-                  <select
-                    onChange={handleChange}
-                    className="appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    value={userInfo?.role}
-                  >
-                    <option value="Investor">Investor</option>
-                    <option value="Consultant">Consultant</option>
-                    <option value="Entrepreneur">Entrepreneur</option>
-                  </select>
-                  {/* </div> */}
-                  {/* </div> */}
-                </div>
+                {data?.type !== "Admin" ? (
+                  <div className="mb-6  ">
+                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">Role</label>
+                    <select
+                      onChange={handleChange}
+                      className="appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      value={userInfo?.role}
+                    >
+                      <option value="Investor">Investor</option>
+                      <option value="Consultant">Consultant</option>
+                      <option value="Entrepreneur">Entrepreneur</option>
+                    </select>
+                  </div>
+                ) : null}
 
                 <div>
-                  <label className="block text-gray-700 text-sm mb-2">
-                    Nationality
-                  </label>
+                  <label className="block text-gray-700 text-sm mb-2">Nationality</label>
                   <select
+                    name="nationality"
                     value={userInfo.nationality}
                     onChange={handleChange}
-                    disabled
-                    className="appearance-none block w-full bg-slate-200 text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    disabled={data?.nationality}
+                    className={
+                      "appearance-none block w-full text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 " +
+                      (userInfo?.nationality ? "bg-slate-200" : "")
+                    }
                     id="country-code"
                   >
                     <option value="" label="Select your nationality" />
@@ -277,27 +248,22 @@ const PersonalInfo = ({ data }) => {
                   </select>
                 </div>
 
-                <div className="mb-6">
-                  <label
-                    className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="documentFile"
-                  >
-                    Upload Document
-                  </label>
-                  <div
-                    className={`flex flex-col items-center justify-center border-dashed border-2 rounded-md md:h-48 `}
-                  >
-                    <FaUpload className="text-gray-400 mb-2" size={24} />
-                    <p className="text-gray-500 text-center">
-                      <span className="text-primary">Click to upload </span>
-                      or drag and drop
-                    </p>
-                    <p className="text-gray-500">
-                      SVG, PNG, JPG or GIF (max. 800x400px)
-                    </p>
-                    <input type="file" id="documentFile" className="hidden" />
+                {data?.type !== "Admin" ? (
+                  <div className="mb-6">
+                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="documentFile">
+                      Upload Document
+                    </label>
+                    <div className={`flex flex-col items-center justify-center border-dashed border-2 rounded-md md:h-48 `}>
+                      <FaUpload className="text-gray-400 mb-2" size={24} />
+                      <p className="text-gray-500 text-center">
+                        <span className="text-primary">Click to upload </span>
+                        or drag and drop
+                      </p>
+                      <p className="text-gray-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+                      <input type="file" id="documentFile" className="hidden" />
+                    </div>
                   </div>
-                </div>
+                ) : null}
 
                 <div className="flex justify-between mb-4">
                   <button
@@ -307,11 +273,7 @@ const PersonalInfo = ({ data }) => {
                   >
                     Cancel
                   </button>
-                  <button
-                    type="submit"
-                    className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full"
-                    onClick={handleSave}
-                  >
+                  <button type="submit" className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full" onClick={handleSave}>
                     Save
                   </button>
                 </div>
@@ -320,99 +282,56 @@ const PersonalInfo = ({ data }) => {
               <>
                 <div className="flex flex-col gap-5 ">
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">
-                      Full Name{" "}
-                    </p>
+                    <p className="text-[#495162] text-[12px] font-bold">Full Name </p>
                     <p> {`${userInfo.firstName} ${userInfo.lastName}`}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">
-                      Email{" "}
-                    </p>
+                    <p className="text-[#495162] text-[12px] font-bold">Email </p>
                     <p>{userInfo.email}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">
-                      Phone number{" "}
-                    </p>
+                    <p className="text-[#495162] text-[12px] font-bold">Phone number </p>
                     <p> {userInfo.phoneNumber}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">
-                      Created alt
-                    </p>
-                    <p>{userInfo.createdAt}</p>
+                    <p className="text-[#495162] text-[12px] font-bold">Created alt</p>
+                    <p>{moment(userInfo.createdAt).format("DD/MM/YYYY - hh:mm A")}</p>
                   </div>
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">
-                      Nationality
-                    </p>
-                    <p> {userInfo.nationality || "NA"}</p>
+                    <p className="text-[#495162] text-[12px] font-bold">Nationality</p>
+                    <p> {userInfo.nationality === "KSA" ? "Saudi Arabia" : "United States" || "NA"}</p>
                   </div>
-                  {userInfo?.idFile ? (
+                  {userInfo?.documentFile && data?.type !== "Admin" ? (
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">
-                        {data?.documentType}
-                      </p>
+                      <p className="text-[#495162] text-[12px] font-bold">{data?.documentType}</p>
 
                       <div
                         className="md:w-[900px] rounded-md mt-2 shadow-sm border h-full flex flex-row gap-5 p-2 cursor-pointer"
                         onClick={() => {
-                          window.open(
-                            process.env.NEXT_PUBLIC_API_URL +
-                              "/media/" +
-                              userInfo.idFile,
-                            "_blank"
-                          );
+                          window.open(process.env.NEXT_PUBLIC_API_URL + "/media/" + userInfo.documentFile, "_blank");
                         }}
                       >
                         <div className="mt-2">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                               fill-rule="evenodd"
                               clip-rule="evenodd"
                               d="M4 0C2.89543 0 2 0.89543 2 2V22C2 23.1046 2.89543 24 4 24H20C21.1046 24 22 23.1046 22 22V0H4ZM22 1.57356e-05V4L18 1.53859e-05L22 1.57356e-05Z"
                               fill="#CFD3DE"
                             />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M18 0V3.99998H22L18 0Z"
-                              fill="#949EB5"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M22 8V4H18L22 8Z"
-                              fill="#AFB7C8"
-                            />
-                            <rect
-                              x="1"
-                              y="8"
-                              width="22"
-                              height="12"
-                              rx="1"
-                              fill="#7860DC"
-                            />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 0V3.99998H22L18 0Z" fill="#949EB5" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 8V4H18L22 8Z" fill="#AFB7C8" />
+                            <rect x="1" y="8" width="22" height="12" rx="1" fill="#7860DC" />
                             <path
                               d="M5.06578 17V11.4H8.44978V12.008H5.73778V13.888H8.23378V14.496H5.73778V17H5.06578ZM9.38609 17V11.4H10.0581V17H9.38609ZM11.3392 17V11.4H12.0112V16.392H14.8432V17H11.3392ZM15.7064 17V11.4H19.1544V12.008H16.3784V13.88H18.9304V14.488H16.3784V16.392H19.1944V17H15.7064Z"
                               fill="white"
                             />
                           </svg>
                         </div>
-                        <div className="text-sm mt-2">
-                          {" "}
-                          {userInfo?.idFile?.split(data?._id + "-")}
-                        </div>
+                        <div className="text-sm mt-2"> {userInfo?.documentFile?.split(data?._id + "-")}</div>
                       </div>
                     </div>
                   ) : null}
