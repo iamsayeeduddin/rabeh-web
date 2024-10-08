@@ -238,7 +238,7 @@ const Page = () => {
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
                       formik.touched.phoneNumber && formik.errors.phoneNumber ? "border-red-500" : "border-gray-200"
-                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
+                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="phone"
                     type="text"
                     name="phoneNumber"
@@ -333,7 +333,11 @@ const Page = () => {
                 </button>
               </div>
               <div className={`flex flex-col  pt-4 md:flex-row items-center justify-center text-[16px] mt-1 ${fonts.spaceG.className}`}>
-                {t("alreadyAcc")} <p className="text-primary ml-2"> {t("signIn")}</p>
+                {t("alreadyAcc")}{" "}
+                <p className="text-primary ml-2 cursor-pointer" onClick={() => !isLoading && router.push("/login")}>
+                  {" "}
+                  {t("signIn")}
+                </p>
               </div>
             </div>
           </>

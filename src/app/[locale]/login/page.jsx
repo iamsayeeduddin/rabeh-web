@@ -9,7 +9,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
-import endpoint from "@/utils/apiUtil";
 
 const Page = () => {
   const fonts = useFonts();
@@ -19,6 +18,7 @@ const Page = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function togglePasswordVisibility() {
     setIsPasswordVisible(!isPasswordVisible);
@@ -62,7 +62,6 @@ const Page = () => {
             <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={(values, { setSubmitting }) => {
-                // Handle form submission here
                 setEmail(values.email);
                 login(values);
                 setSubmitting(false);
@@ -113,7 +112,7 @@ const Page = () => {
                   </div>
                   <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] my-8 ${fonts.spaceG.className}`}>
                     Forgot Password?{" "}
-                    <p className="text-primary ml-2 cursor-pointer" onClick={() => router.push("/reset-password")}>
+                    <p className="text-primary ml-2 cursor-pointer" onClick={() => !isSubmitting && router.push("/reset-password")}>
                       {" "}
                       Reset
                     </p>
@@ -122,8 +121,8 @@ const Page = () => {
                   <div className="flex items-center justify-center">
                     <button
                       className={
-                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full" +
-                        (isSubmitting ? " opacity-50 animate-ping cursor-not-allowed" : "")
+                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                        (isSubmitting ? " opacity-50 animate-pulse cursor-not-allowed" : "")
                       }
                       type="submit"
                       disabled={isSubmitting}

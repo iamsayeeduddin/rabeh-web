@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import CardSlider from "@/components/CardSlider";
 import StrategicPartnerships from "@/components/StrategicPartnerships";
 import SupportedCompainies from "@/components/SupportedCompainies";
@@ -13,8 +13,9 @@ import { useInView } from "react-intersection-observer";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
+  console.log("locale", locale);
 
   const t = useTranslations();
   const { ref: visionRef, inView: visionInView } = useInView({
@@ -186,7 +187,7 @@ const Page = () => {
       <TitleHead title={t("about")} desc={t("aboutSub")} />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-3xl text-center">
-          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("aboutRabeh")}</h5>
+          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("aboutRabeh")}</h5>
           <p>{t("aboutRabehSub")}</p>
         </div>
         <div className={"flex flex-col md:flex-row gap-6 pt-20 " + fonts.spaceG.className}>
@@ -338,7 +339,6 @@ const Page = () => {
             <p className={"text-[#667085] " + fonts.inter.className}>{t("discoverSub")}</p>
           </div>
           <div className="pt-8 w-full flex items-center justify-center ">
-
             <div className="pt-8 w-full flex items-center justify-center ">
               <div
                 className={
@@ -350,7 +350,9 @@ const Page = () => {
                   <span
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`md:px-3 px py-2 mx-1 text-[10px] md:text-lg rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+                    className={`md:px-3 px py-2 mx-1 text-[10px] md:text-lg rounded-md ${
+                      selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"
+                    }`}
                   >
                     {category}
                   </span>
@@ -359,8 +361,8 @@ const Page = () => {
             </div>
           </div>
           <div className={"flex items-center justify-center py-3 md:pt-10 " + fonts.spaceG.className}>
-              <CardSlider cards={filteredCards} />
-            </div>
+            <CardSlider cards={filteredCards} />
+          </div>
         </div>
       </section>
       <SupportedCompainies />

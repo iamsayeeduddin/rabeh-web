@@ -19,6 +19,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => 
     documentFile: "Passport",
     profilePic: "/assets/mohd_alosaimi.png",
     image: "",
+    isPhoneVerified: false,
   });
 
   const initVal = () => {
@@ -33,6 +34,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => 
       profilePic: data?.profilePic ? process.env.NEXT_PUBLIC_API_URL + "/media/" + data?.profilePic : null,
       image: data?.profilePic ? process.env.NEXT_PUBLIC_API_URL + "/media/" + data?.profilePic : null,
       role: data?.type,
+      isPhoneVerified: data?.isPhoneVerified,
     });
   };
   useEffect(() => {
@@ -143,7 +145,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => 
                       fill="#7860DC"
                     />
                   </svg>
-                  <p className="text-primary">change photo</p>
+                  <p className="text-primary">Change photo</p>
                 </div>
               ) : null}
             </label>
@@ -269,11 +271,19 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => 
                   <button
                     type="button"
                     onClick={handleCancel}
+                    disabled={isLoading}
                     className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                   >
                     Cancel
                   </button>
-                  <button type="submit" className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full" onClick={handleSave}>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className={
+                      "bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "cursor-not-allowed animate-pulse" : "")
+                    }
+                    onClick={handleSave}
+                  >
                     Save
                   </button>
                 </div>
