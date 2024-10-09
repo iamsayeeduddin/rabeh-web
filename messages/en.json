@@ -276,5 +276,75 @@
   "design": "Design",
   "softwareEngineering": "Software Engineering",
   "customerSuccess": "Customer Success",
-  "marketing": "Marketing"
+  "marketing": "Marketing",
+  "testimonial1": "Thanks to Rabeh, I was able to expand my small business beyond my wildest dreams. The exposure and funding we received through their platform were game-changers. The entire process was smooth, and the Rabeh team was always there to guide us.",
+  "testimonial2": "Rabeh helped our non-profit organization raise the necessary funds to launch our community project. Their platform made it easy to reach out to potential donors and share our mission. We couldn't have done it without their amazing support!",
+  "testimonial3": "As an app developer, securing funding can be challenging. Rabeh made it possible for us to get the backing we needed to launch our app successfully. The platform's reach and the team's dedication were key to our fundraising success.",
+  "testimonial4": "Rabeh was the perfect partner for our crowdfunding campaign. The exposure and support we received helped us surpass our funding goals. Their commitment to helping innovators like us is evident in every step of the process.",
+  "testimonial5": "Rabeh provided the platform and resources we needed to bring our social enterprise to life. Their team was supportive and responsive, and the crowdfunding campaign exceeded our expectations. We're now making a positive impact, thanks to Rabeh.",
+  "name1": "Emily S.",
+  "position1": "Small Business Owner",
+  
+  "name2": "Michael L.",
+  "position2": "Non-Profit Director",
+  
+  "name3": "Sarah K.",
+  "position3": "App Developer",
+  
+  "name4": "David M.",
+  "position4": "Innovative Product Creator",
+  
+  "name5": "Lisa P.",
+  "position5": "Social Entrepreneur",
+
+  "name9": "Mohammed Alsolami",
+  "title9": "Founder & CEO",
+
+  "name6": "Mohammed Alomar",
+  "title6": "Board Member",
+
+  "name7": "Anas Alsalman",
+  "title7": "Board Member",
+
+  "name8": "Houda Ahmed",
+  "title8": "Head of Investment",
+
+
+  "category1": "Design",
+  "title01": "Product Designer",
+  "type01": "Design",
+  "description01": "We're looking for a mid-level product designer to join our team.",
+  "location01": "Remote",
+  "jobType01": "Full-time",
+
+  "category2": "Software Development",
+  "title02": "Engineering Manager",
+  "type02": "Software",
+  "description02": "Join our engineering team to build cutting-edge solutions.",
+  "location02": "On-site",
+  "jobType02": "Full-time",
+
+  "category3": "Customer Success",
+  "title03": "Customer Success Manager",
+  "type03": "CX",
+  "description03": "We need a marketing specialist to help us reach new heights.",
+  "location03": "Remote",
+  "jobType03": "Part-time",
+
+  "category4": "Sales",
+  "title04": "Account Executive",
+  "type04": "Sales",
+  "description04": "We need a marketing specialist to help us reach new heights.",
+  "location04": "Remote",
+  "jobType04": "Part-time",
+
+  "category5": "Marketing",
+  "title05": "SEO Marketing Manager",
+  "type05": "Marketing",
+  "description05": "We need a marketing specialist to help us reach new heights.",
+  "location05": "Remote",
+  "jobType05": "Part-time",
+
+  "viewJob": "View Job"
+
 }

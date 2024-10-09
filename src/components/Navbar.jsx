@@ -259,7 +259,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-0  w-full ">
+    <div className="fixed top-0  w-full z-10">
       <nav className=" bg-primary">
         <div className="flex justify-between items-center py-2 px-4 mx-auto md:w-[1440px] m-h-[88px] border-b">
           <div className="flex ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white">

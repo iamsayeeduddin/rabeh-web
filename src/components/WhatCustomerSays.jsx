@@ -13,45 +13,42 @@ const WhatCustomerSays = () => {
   const t = useTranslations();
   const testimonials = [
     {
-      title: "Small Business Owner",
-      description:
-        "Thanks to Rabeh, I was able to expand my small business beyond my wildest dreams. The exposure and funding we received through their platform were game-changers. The entire process was smooth, and the Rabeh team was always there to guide us.",
-      name: "Emily S.",
-      position: "Small Business Owner",
+      title: t("title1"),
+      description: t("testimonial1"),
+      name: t("name1"),
+      position: t("position1"),
       imageUrl: "/user3.png",
     },
     {
-      title: "Non-Profit Director",
-      description:
-        "Rabeh helped our non-profit organization raise the necessary funds to launch our community project. Their platform made it easy to reach out to potential donors and share our mission. We couldn't have done it without their amazing support!",
-      name: "Michael L.",
-      position: "Non-Profit Director",
+      title: t("title2"),
+      description: t("testimonial2"),
+      name: t("name2"),
+      position: t("position2"),
       imageUrl: "/user1.png",
     },
     {
-      title: "App Developer",
-      description:
-        "As an app developer, securing funding can be challenging. Rabeh made it possible for us to get the backing we needed to launch our app successfully. The platform's reach and the team's dedication were key to our fundraising success.",
-      name: "Sarah K.",
-      position: "App Developer",
+      title: t("title3"),
+      description: t("testimonial3"),
+      name: t("name3"),
+      position: t("position3"),
       imageUrl: "/user2.png",
     },
     {
-      title: "Innovative Product Creator",
-      description:
-        "Rabeh was the perfect partner for our crowdfunding campaign. The exposure and support we received helped us surpass our funding goals. Their commitment to helping innovators like us is evident in every step of the process.",
-      name: "David M.",
-      position: "Innovative Product Creator",
+      title: t("title4"),
+      description: t("testimonial4"),
+      name: t("name4"),
+      position: t("position4"),
       imageUrl: "/user3.png",
     },
     {
-      title: "Social Entrepreneur",
-      description:
-        "Rabeh provided the platform and resources we needed to bring our social enterprise to life. Their team was supportive and responsive, and the crowdfunding campaign exceeded our expectations. We're now making a positive impact, thanks to Rabeh.",
-      name: "Lisa P.",
-      position: "Social Entrepreneur",
+      title: t("title5"),
+      description: t("testimonial5"),
+      name: t("name5"),
+      position: t("position5"),
       imageUrl: "/user3.png",
-    },
+    }
+    
+    
   ];
 
   const settings = {
