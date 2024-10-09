@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const TrustedBy = () => {
+const TrustedBy = ({ locale }) => {
   const controls = useAnimation();
   const t = useTranslations();
   const { ref, inView } = useInView({

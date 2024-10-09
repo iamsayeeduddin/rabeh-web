@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import axios from "axios";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const [step, setStep] = useState(1);
   const [filledFields, setFilledFields] = useState(0);
@@ -395,8 +395,8 @@ const Page = () => {
       >
         {!isSuccess ? (
           <>
-            <p className={`text-[#7986A3] p-5 md:p-0 text-start ${fonts.spaceG.className}`}>{stepDisplay(step)}/4</p>
-            <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>
+            <p className={`text-[#7986A3] p-5 md:p-0 text-start ${locale === "en" ? fonts.spaceG.className : ""}`}>{stepDisplay(step)}/4</p>
+            <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {step === 1
                 ? "Verify Citizenship"
                 : step === 2
@@ -409,7 +409,7 @@ const Page = () => {
                 ? "Work Information"
                 : "Bank Information"}
             </h2>
-            <p className={`text-[16px] md:text-start text-center mb-4 p-5 md:p-0 ${fonts.spaceG.className}`}>
+            <p className={`text-[16px] md:text-start text-center mb-4 p-5 md:p-0 ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {step === 1
                 ? "Enter your identity information to complete the registration process"
                 : step === 2
@@ -427,10 +427,10 @@ const Page = () => {
               <div className="relative w-full h-1 bg-gray-200 rounded-lg">
                 <div className="absolute top-0 left-0 h-full bg-primary rounded-lg" style={{ width: `${completionPercentage}%` }} />
               </div>
-              <span className={`ml-4 ${fonts.spaceG.className}`}>{Math.round(completionPercentage)}%</span>
+              <span className={`ml-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>{Math.round(completionPercentage)}%</span>
             </div>
 
-            <div className={`w-full md:p-0 p-3 ${fonts.spaceG.className}`}>
+            <div className={`w-full md:p-0 p-3 ${locale === "en" ? fonts.spaceG.className : ""}`}>
               <form onSubmit={formik.handleSubmit}>
                 {step === 1 && (
                   <>
@@ -1007,8 +1007,10 @@ const Page = () => {
                     />
                   </svg>
 
-                  <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("Your ID verification is in progress")}</h2>
-                  <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
+                  <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
+                    {t("Your ID verification is in progress")}
+                  </h2>
+                  <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
                     {t("Once verified, your wallet will be created successfully")}
                   </p>
                   <div className="flex items-center justify-center">

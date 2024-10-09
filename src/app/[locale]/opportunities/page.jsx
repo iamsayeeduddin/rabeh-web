@@ -10,7 +10,7 @@ import useFonts from "@/utils/useFonts";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState(t("justLaunched"));
@@ -142,11 +142,11 @@ const Page = () => {
 
   return (
     <div>
-      <TitleHead title={t("opportunities")} desc={t("rabehDescription")} />
+      <TitleHead locale={locale} title={t("opportunities")} desc={t("rabehDescription")} />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="md:max-w-7xl w-full py-28 ">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("highlightedPrjs")}</h5>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("highlightedPrjs")}</h5>
           </div>
           <div className="pt-8 w-full flex justify-center">
             <div
@@ -166,7 +166,7 @@ const Page = () => {
               ))}
             </div>
           </div>
-          <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
+          <div className={"flex items-center justify-center pt-10 " + (locale === "en" ? fonts.spaceG.className : "")}>
             <CardSlider cards={filteredCards} />
           </div>
         </div>
@@ -176,7 +176,7 @@ const Page = () => {
           <div className="max-w-96">
             <h5 className="font-bold text-4xl">{t("exploreProjects")}</h5>
             <p className="text-[#0B0B0B] text-sm py-6">{t("createLandingPages")}</p>
-            <div className={"flex flex-row gap-2 md:gap-4 " + fonts.spaceG.className}>
+            <div className={"flex flex-row gap-2 md:gap-4 " + (locale === "en" ? fonts.spaceG.className : "")}>
               <Link href={"/under-construction"} className="bg-primary w-fit text-white px-6 py-4 rounded-lg hover:bg-primary/80">
                 {t("joinNow")}
               </Link>
@@ -202,9 +202,9 @@ const Page = () => {
       <section className="flex flex-col items-center md:p-0 p-5">
         <div className="md:max-w-7xl w-full py-28">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("newProjects")}</h5>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("newProjects")}</h5>
           </div>
-          <div className={"flex items-center justify-center pt-10 " + fonts.spaceG.className}>
+          <div className={"flex items-center justify-center pt-10 " + (locale === "en" ? fonts.spaceG.className : "")}>
             <CardSlider cards={allCards} />
           </div>
         </div>
@@ -215,7 +215,7 @@ const Page = () => {
         </div>
       </section>
       <TrustedBy />
-      <SupportedCompainies />
+      <SupportedCompainies locale={locale} />
       <Newsletter />
     </div>
   );

@@ -11,11 +11,11 @@ const Page = () => {
   const t = useTranslations();
   return (
     <div>
-      <TitleHead title={t("investors")} desc={t("rabehDescription")} />
+      <TitleHead locale={locale} title={t("investors")} desc={t("rabehDescription")} />
       <WhyRabeh />
       <OurServices />
       <UnleashInvestment />
-      <Brands />
+      <Brands locale={locale} />
       <Newsletter />
     </div>
   );

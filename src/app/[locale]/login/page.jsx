@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const router = useRouter();
@@ -54,8 +54,8 @@ const Page = () => {
               <Logo width={176} height={75} />
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("welcome")}</h2>
-            <p className={`text-[16]  text-center text-[#7986A3] ${fonts.spaceG.className}`}>{t("loginAcc")}</p>
+            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("welcome")}</h2>
+            <p className={`text-[16]  text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("loginAcc")}</p>
             <div className="flex md:flex-row flex-col gap-3  items-center ">
               <div className="flex gap-5  col-span-full items-center "></div>
             </div>
@@ -68,7 +68,7 @@ const Page = () => {
               }}
             >
               {({ isSubmitting }) => (
-                <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
+                <Form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`}>
                   <div className="mb-6">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
                       {t("email")}
@@ -110,7 +110,11 @@ const Page = () => {
                     </div>
                     <ErrorMessage name="password" component="div" className="text-red-500 text-xs italic" />
                   </div>
-                  <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] my-8 ${fonts.spaceG.className}`}>
+                  <div
+                    className={`flex flex-col md:flex-row items-center justify-center text-[16px] my-8 ${
+                      locale === "en" ? fonts.spaceG.className : ""
+                    }`}
+                  >
                     Forgot Password?{" "}
                     <p className="text-primary ml-2 cursor-pointer" onClick={() => !isSubmitting && router.push("/reset-password")}>
                       {" "}

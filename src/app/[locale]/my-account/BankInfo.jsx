@@ -4,16 +4,13 @@ import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import { FaMapMarkerAlt, FaUpload } from "react-icons/fa";
 
-
 const validationSchema = Yup.object({
   bankName: Yup.string().required("Bank Name is required"),
   accountHolderName: Yup.string().required("Account Holder Name is required"),
-  iban: Yup.string().required("IBAN is required").matches(
-    /^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$/,
-    "IBAN format is invalid"
-  ),
+  iban: Yup.string()
+    .required("IBAN is required")
+    .matches(/^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$/, "IBAN format is invalid"),
 });
-
 
 const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
   const fonts = useFonts();
@@ -59,21 +56,16 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
     }
   }, [isLoading, isSuccess]);
 
-
   const handleCancel = () => {
     setInitVal();
     setIsEditing(false);
   };
 
   return (
-    <div
-      className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}
-    >
+    <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">
-            {isEditing ? <>Edit Bank Information</> : <>Bank Information</>}
-          </h3>
+          <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <>Edit Bank Information</> : <>Bank Information</>}</h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -81,13 +73,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
                 className="font-semibold py-2 px-4 rounded-md flex flex-row text-[15px] text-[#495162] gap-3 border-2"
                 onClick={handleEditClick}
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -101,85 +87,55 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
           </div>
         </div>
 
-        <form
-          onSubmit={formik.handleSubmit}
-          className="user-info grid md:grid-cols-2 p-5"
-        >
+        <form onSubmit={formik.handleSubmit} className="user-info grid md:grid-cols-2 p-5">
           <div className="grid gap-4 mb-6">
             {isEditing ? (
               <>
                 <div className="mb-6">
-                  <label
-                    className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="bankName"
-                  >
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="bankName">
                     Bank Name
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
-                      formik.touched.bankName && formik.errors.bankName
-                        ? "border-red-500"
-                        : "border-gray-200"
+                      formik.touched.bankName && formik.errors.bankName ? "border-red-500" : "border-gray-200"
                     } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="bankName"
                     type="text"
                     {...formik.getFieldProps("bankName")}
                   />
-                  {formik.touched.bankName && formik.errors.bankName && (
-                    <p className="text-red-500 text-xs italic">
-                      {formik.errors.bankName}
-                    </p>
-                  )}
+                  {formik.touched.bankName && formik.errors.bankName && <p className="text-red-500 text-xs italic">{formik.errors.bankName}</p>}
                 </div>
 
                 <div className="mb-6">
-                  <label
-                    className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="accountHolderName"
-                  >
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="accountHolderName">
                     Account Holder Name
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
-                      formik.touched.accountHolderName &&
-                      formik.errors.accountHolderName
-                        ? "border-red-500"
-                        : "border-gray-200"
+                      formik.touched.accountHolderName && formik.errors.accountHolderName ? "border-red-500" : "border-gray-200"
                     } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="accountHolderName"
                     type="text"
                     {...formik.getFieldProps("accountHolderName")}
                   />
-                  {formik.touched.accountHolderName &&
-                    formik.errors.accountHolderName && (
-                      <p className="text-red-500 text-xs italic">
-                        {formik.errors.accountHolderName}
-                      </p>
-                    )}
+                  {formik.touched.accountHolderName && formik.errors.accountHolderName && (
+                    <p className="text-red-500 text-xs italic">{formik.errors.accountHolderName}</p>
+                  )}
                 </div>
 
                 <div className="mb-6">
-                  <label
-                    className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="iban"
-                  >
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="iban">
                     IBAN
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
-                      formik.touched.iban && formik.errors.iban
-                        ? "border-red-500"
-                        : "border-gray-200"
+                      formik.touched.iban && formik.errors.iban ? "border-red-500" : "border-gray-200"
                     } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="iban"
                     type="text"
                     {...formik.getFieldProps("iban")}
                   />
-                  {formik.touched.iban && formik.errors.iban && (
-                    <p className="text-red-500 text-xs italic">
-                      {formik.errors.iban}
-                    </p>
-                  )}
+                  {formik.touched.iban && formik.errors.iban && <p className="text-red-500 text-xs italic">{formik.errors.iban}</p>}
                 </div>
                 {JSON.stringify(formik.errors)}
                 <div className="flex justify-between">
@@ -192,10 +148,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
                   </button>
                   <button
                     type="submit"
-                    className={
-                      "bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " +
-                      (isLoading ? "animate-pulse" : "")
-                    }
+                    className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
                   >
                     Save{" "}
                   </button>
@@ -206,22 +159,16 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
                 <>
                   <div className="grid grid-rows-4 grid-flow-col  gap-5 mt-10">
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">
-                        Bank Name
-                      </p>
+                      <p className="text-[#495162] text-[12px] font-bold">Bank Name</p>
                       <p>{formik.values.bankName || "NA"}</p>
                     </div>
 
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">
-                        Account Holder Name
-                      </p>
+                      <p className="text-[#495162] text-[12px] font-bold">Account Holder Name</p>
                       <p>{formik.values.accountHolderName || "NA"}</p>
                     </div>
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">
-                        IBAN
-                      </p>
+                      <p className="text-[#495162] text-[12px] font-bold">IBAN</p>
                       <p>{formik.values.iban || "NA"}</p>
                     </div>
                   </div>

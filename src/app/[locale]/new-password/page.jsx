@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const router = useRouter();
@@ -107,8 +107,8 @@ const Page = () => {
               </svg>
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("New Password")}</h2>
-            <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
+            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("New Password")}</h2>
+            <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {t("Create a new password that is secure and easy to remember")}
             </p>
 
@@ -132,7 +132,7 @@ const Page = () => {
               }}
             >
               {({ values, errors, handleChange, isSubmitting }) => (
-                <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
+                <Form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`}>
                   <div className="mb-6 relative">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
                       {t("password")}
@@ -306,8 +306,10 @@ const Page = () => {
                     />
                   </svg>
 
-                  <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("Password has been changed")}</h2>
-                  <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
+                  <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
+                    {t("Password has been changed")}
+                  </h2>
+                  <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
                     {t("Password changed successfully, you can login again with your new password")}
                   </p>
                   <div className="flex items-center justify-center">

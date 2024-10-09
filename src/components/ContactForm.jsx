@@ -26,7 +26,7 @@ const ContactForm = () => {
   };
   return (
     <section className="flex flex-col items-center gap-4 my-24 p-5 md:p-0">
-      <p className={"text-md text-primary font-bold " + fonts.spaceG.className}>{t("contactUs")}</p>
+      <p className={"text-md text-primary font-bold " + (locale === "en" ? fonts.spaceG.className : "")}>{t("contactUs")}</p>
       <h3 className={"text-4xl font-bold " + fonts.urbanist.className}>{t("getInTouch")}</h3>
       <p className={"text-gray-500 " + fonts.urbanist.className}>{t("weWouldLoveToHear")}</p>
       <Formik

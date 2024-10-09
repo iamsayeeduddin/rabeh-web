@@ -13,7 +13,7 @@ import UnleashInvestment from "@/components/UnleashInvestment";
 import Policy from "@/components/Policy";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const t = useTranslations();
   return (
     <div>
@@ -30,18 +30,19 @@ const Page = () => {
         titleSize="text-[60px]"
         imageWidth="w-auto  "
         imageHeight="h-auto"
+        locale={locale}
       />
-      <TrustedBy />
-      <InvestmentOpportunities />
-      <StrategicPartnerships bottomSpacing={true} />
-      <RestAssured />
-      <SaveTimeResources />
-      <WhatCustomerSays />
-      <Brands />
-      <SupportedCompainies />
-      <Newsletter />
-      <UnleashInvestment />
-      <Policy />
+      <TrustedBy locale={locale} />
+      <InvestmentOpportunities locale={locale} />
+      <StrategicPartnerships locale={locale} bottomSpacing={true} />
+      <RestAssured locale={locale} />
+      <SaveTimeResources locale={locale} />
+      <WhatCustomerSays locale={locale} />
+      <Brands locale={locale} />
+      <SupportedCompainies locale={locale} />
+      <Newsletter locale={locale} />
+      <UnleashInvestment locale={locale} />
+      <Policy locale={locale} />
     </div>
   );
 };

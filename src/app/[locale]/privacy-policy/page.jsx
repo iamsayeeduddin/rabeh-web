@@ -168,6 +168,7 @@ const Page = () => {
   return (
     <div>
       <TitleHead
+        locale={locale}
         title={"Privacy Policy"}
         desc={
           "Welcome to RABEH. Your privacy is important to us. This Privacy Policy outlines how we collect, use, share, and protect your personal information in compliance with Saudi Arabian laws, including the Saudi Personal Data Protection Law (PDPL), and applicable international regulations."

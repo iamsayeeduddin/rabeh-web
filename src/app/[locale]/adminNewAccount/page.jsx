@@ -10,7 +10,7 @@ import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import endpoint from "@/utils/apiUtil";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -154,11 +154,11 @@ const Page = () => {
       >
         {!isRegister ? (
           <>
-            <p className={`text-[#7986A3] text-center ${fonts.spaceG.className}`}>1/2</p>
-            <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>
+            <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>1/2</p>
+            <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {t("new")} {t(formik.values.type)} {t("acc")}
             </h2>
-            <p className={`text-[16] md:text-start text-center mb-4 ${fonts.spaceG.className}`}>{t("enterPersonalInfo")}</p>
+            <p className={`text-[16] md:text-start text-center mb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("enterPersonalInfo")}</p>
             <div className="flex md:flex-row flex-col gap-3 items-center">
               <div className="flex gap-5 col-span-full items-center">
                 <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-t-4 border-b-4 border-white flex items-center justify-center">
@@ -192,7 +192,7 @@ const Page = () => {
               </div>
             </div>
 
-            <div className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
+            <div className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`}>
               <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="firstName">
@@ -332,7 +332,11 @@ const Page = () => {
                   {t("signUp")}
                 </button>
               </div>
-              <div className={`flex flex-col  pt-4 md:flex-row items-center justify-center text-[16px] mt-1 ${fonts.spaceG.className}`}>
+              <div
+                className={`flex flex-col  pt-4 md:flex-row items-center justify-center text-[16px] mt-1 ${
+                  locale === "en" ? fonts.spaceG.className : ""
+                }`}
+              >
                 {t("alreadyAcc")} <p className="text-primary ml-2"> {t("signIn")}</p>
               </div>
             </div>

@@ -64,7 +64,7 @@ const jobData = [
   },
 ];
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const [jobType, setJobType] = useState("All");
   const fonts = useFonts();
   const t = useTranslations();
@@ -106,7 +106,7 @@ const Page = () => {
         <div
           className={
             "mt-3 bg-[#F9FAFB] rounded-lg flex flex-wrap justify-between cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] " +
-            fonts.spaceG.className
+            (locale === "en" ? fonts.spaceG.className : "")
           }
         >
           {[t("all"), t("design"), t("softwareEngineering"), t("customerSuccess"), t("sales"), t("marketing")].map((d, i) => (

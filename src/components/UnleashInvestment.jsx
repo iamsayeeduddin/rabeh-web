@@ -5,7 +5,7 @@ import ApplePlaystore from "./ApplePlaystore";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const UnleashInvestment = () => {
+const UnleashInvestment = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const ref = useRef(null);

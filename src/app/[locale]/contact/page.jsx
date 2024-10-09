@@ -8,15 +8,15 @@ import { useTranslations } from "next-intl";
 import { MapProvider } from "@/utils/MapProvider";
 import { MapComponent } from "@/utils/Map";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations("");
   return (
     <div>
       <MapProvider>
-        <TitleHead title={t("contactUs")} desc={t("rabehDescription")} />
+        <TitleHead locale={locale} title={t("contactUs")} desc={t("rabehDescription")} />
         <section className="flex flex-col items-center gap-4 p-5 md:p-0 ">
-          <p className={"font-medium text-[#6941C6] " + fonts.spaceG.className}>{t("about")}</p>
+          <p className={"font-medium text-[#6941C6] " + (locale === "en" ? fonts.spaceG.className : "")}>{t("about")}</p>
           <h1 className={"text-4xl font-bold text-center " + fonts.urbanist.className}>{t("distributedTeam")}</h1>
           <h3 className={"text-xl text-[#475467] text-center  " + fonts.urbanist.className}>{t("globalOffices")}</h3>
           <img src="/assets/map.png" alt="" className="w-full my-24 " />

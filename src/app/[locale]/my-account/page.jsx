@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import useAxios from "@/utils/useAxios";
 import axios from "axios";
 
-const MyAccount = () => {
+const MyAccount = ({ params: { locale } }) => {
   const fonts = useFonts();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Personal");
@@ -104,7 +104,7 @@ const MyAccount = () => {
   };
 
   return (
-    <div className={`container mx-auto p-6 ${fonts.spaceG.className}`}>
+    <div className={`container mx-auto p-6 ${locale === "en" ? fonts.spaceG.className : ""}`}>
       <div className="flex justify-between items-center mb-6">
         <div className="breadcrumbs text-sm text-gray-500">
           <div className="flex flex-row items-center justify-center gap-2">

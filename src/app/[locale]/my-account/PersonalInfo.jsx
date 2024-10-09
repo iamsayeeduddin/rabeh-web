@@ -93,7 +93,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => 
   }, [isLoading, isSuccess]);
 
   return (
-    <div className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}>
+    <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full   bg-white ">
         <div className="flex flex-row justify-between">
           <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <> Edit Personal Information</> : <> Personal Information</>}</h3>
@@ -130,7 +130,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => 
               )}
               {!userInfo.profilePic && (
                 <div className="w-40 h-40 flex justify-center items-center text-7xl border-white shadow-lg  rounded-full bg-primary text-white cursor-pointer">
-                  <p className={fonts.spaceG.className}>{userInfo?.firstName?.[0]?.toUpperCase()}</p>
+                  <p className={locale === "en" ? fonts.spaceG.className : ""}>{userInfo?.firstName?.[0]?.toUpperCase()}</p>
                 </div>
               )}
               <input id="upload-image" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />

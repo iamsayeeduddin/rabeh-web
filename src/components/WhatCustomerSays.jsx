@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const WhatCustomerSays = () => {
+const WhatCustomerSays = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const testimonials = [

@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const { ref: visionRef, inView: visionInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -45,11 +45,13 @@ const Page = () => {
   ];
   return (
     <div>
-      <TitleHead title={t("business")} desc={t("rabehDescriptionBuss")} />
+      <TitleHead locale={locale} title={t("business")} desc={t("rabehDescriptionBuss")} />
       <section className="flex flex-col md:py-24 md:px-28 p-5">
         <div className="grid md:grid-cols-12 w-full">
           <div className="flex flex-col col-span-4 ">
-            <h2 className={"text-5xl leading-tight font-bold my-4 text-center md:text-start " + fonts.spaceG.className}>{t("welcomeConsultants")}</h2>
+            <h2 className={"text-5xl leading-tight font-bold my-4 text-center md:text-start " + (locale === "en" ? fonts.spaceG.className : "")}>
+              {t("welcomeConsultants")}
+            </h2>
             <p className={"text-lg text-gray-400 mb-2 text-center md:text-start " + fonts.inter.className}>{t("onlinePaymentCompanies")}</p>
             <hr className="w-1/2 h-px my-8 bg-gray-400 border-0 "></hr>
 

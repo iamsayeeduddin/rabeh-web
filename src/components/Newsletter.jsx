@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const Newsletter = () => {
+const Newsletter = ({ locale }) => {
   const fonts = useFonts();
   const formRef = useRef();
   const [load, setLoad] = useState(false);
@@ -26,7 +26,7 @@ const Newsletter = () => {
       .finally(() => setLoad(false));
   };
   return (
-    <div className={"gap-[16px] md:p-[16px] mb-5 text-center md:text-[none]  " + fonts.spaceG.className}>
+    <div className={"gap-[16px] md:p-[16px] mb-5 text-center md:text-[none]  " + (locale === "en" ? fonts.spaceG.className : "")}>
       <div className="md:p-12 p-5 flex flex-col items-center justify-center ">
         <div className="text-[36px] text-secondary">{t("signUpNews")}</div>
         <div className="text-[20px] text-[#616B82] mt-2">{t("signUpNewsSub")}</div>

@@ -4,7 +4,7 @@ import useFonts from "@/utils/useFonts";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const Policy = () => {
+const Policy = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
 

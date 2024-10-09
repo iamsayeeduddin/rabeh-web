@@ -73,7 +73,7 @@ const WorkInfo = ({ data }) => {
   };
 
   return (
-    <div className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}>
+    <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
           <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <>Edit Work Information</> : <>Work Information</>}</h3>

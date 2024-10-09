@@ -65,6 +65,7 @@ const Page = () => {
   return (
     <div>
       <TitleHead
+        locale={locale}
         title={"Terms and Conditions"}
         desc={
           "We use some cookies to help improve your experience on this website. Here's some more info about what we do with information we collect.."

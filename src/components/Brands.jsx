@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslations } from "next-intl";
 
-const Brands = () => {
+const Brands = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
 
@@ -47,7 +47,7 @@ const Brands = () => {
   };
 
   return (
-    <div className={"md:p-[10px] " + fonts.spaceG.className}>
+    <div className={"md:p-[10px] " + (locale === "en" ? fonts.spaceG.className : "")}>
       <div className="md:p-12 p-5 flex flex-col items-center justify-center">
         <div className="text-[36px] text-secondary font-medium">{t("trustedByBrands")}</div>
       </div>
@@ -70,7 +70,7 @@ const NextArrow = (props) => {
   return (
     <div
       className="bg-white rounded-full p-2 shadow-lg flex items-center justify-center border border-gray-300 transition-opacity duration-200 hover:opacity-75 absolute top-1/2 right-0 transform -translate-y-1/2 z-10"
-      onClick={onClick} 
+      onClick={onClick}
     >
       <svg className="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -17,7 +17,7 @@ const OurServices = () => {
       className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5 ${fonts.inter.className} rtl:flex-row-reverse`}
     >
       <div className="flex flex-col md:w-1/2 w-full">
-        <h2 className={`text-3xl font-semibold ${fonts.spaceG.className}`}>{t("ourServices")}</h2>
+        <h2 className={`text-3xl font-semibold ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("ourServices")}</h2>
         <p className="text-gray-600 mb-8 mt-5">{t("consolidateAR")}</p>
         <div
           className={`flex items-start space-x-4 p-4 rtl:border-r-2 ltr:border-l-2 ${activeCard === 0 ? "border-primary" : "border-[#CFD3DE]"}`}

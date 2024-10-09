@@ -5,7 +5,7 @@ import useFonts from "@/utils/useFonts";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-function Footer() {
+function Footer({ locale }) {
   const fonts = useFonts();
   const t = useTranslations();
   const secCert = [
@@ -63,7 +63,9 @@ function Footer() {
         <div className="flex justify-center md:justify-start text-center rtl:md:text-right ltr:md:text-left md:flex-row gap-10">
           <div className="mt-5 md:mt-0">
             <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
-              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>{t("company")}</li>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>
+                {t("company")}
+              </li>
               {links.map(({ href, label }) => (
                 <Link key={label} href={href} className="hover:text-[#392E69]/70">
                   {label}
@@ -73,7 +75,9 @@ function Footer() {
           </div>
           <div className="mt-5 md:mt-0">
             <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
-              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${fonts.spaceG.className}`}>{t("fundraising")}</li>
+              <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>
+                {t("fundraising")}
+              </li>
               {fundraisingLinks.map(({ href, label }) => (
                 <Link key={label} href={href} className="hover:text-[#392E69]/70">
                   {label}
@@ -94,7 +98,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className={"max-w-6xl gap-8 justify-between flex flex-col md:flex-row " + fonts.spaceG.className}>
+      <div className={"max-w-6xl gap-8 justify-between flex flex-col md:flex-row " + (locale === "en" ? fonts.spaceG.className : "")}>
         <div>
           <h5 className="font-medium text-center rtl:md:text-right ltr:md:text-left">{t("secCert")}</h5>
           <div className="flex gap-3 pt-5">

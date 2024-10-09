@@ -32,7 +32,7 @@ const Page = () => {
 
   return (
     <div>
-      <TitleHead title={t("help")} desc={t("rabehDescription")} />
+      <TitleHead locale={locale} title={t("help")} desc={t("rabehDescription")} />
       <div className="flex w-full md:p-[72px]">
         <div className={classNames("grid md:grid-cols-3 gap-10 py-[96px] px-5", fonts.urbanist.className)}>
           <FAQItem

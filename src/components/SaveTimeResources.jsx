@@ -3,7 +3,7 @@ import Image from "next/image";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const SaveTimeResources = () => {
+const SaveTimeResources = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   return (

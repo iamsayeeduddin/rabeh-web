@@ -29,7 +29,9 @@ const WhyRabeh = () => {
 
   return (
     <div className="flex flex-col mt-5 pt-20 md:h-max-[659px] md:px-24 px-5">
-      <div className={"text-4xl  " + fonts.spaceG.className + " flex items-center justify-center"}>{t("whyPartnerWithRABEH")}</div>
+      <div className={"text-4xl  " + (locale === "en" ? fonts.spaceG.className : "") + " flex items-center justify-center"}>
+        {t("whyPartnerWithRABEH")}
+      </div>
       <div className={"flex md:flex-row flex-col mt-5 " + fonts.inter.className}>
         <div className="flex justify-between ml-0   md:m-8 mt-5 ">
           <div

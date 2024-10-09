@@ -98,18 +98,20 @@ function OTPVerify({ email, isReset, userType }) {
               />
             </svg>
           </div>
-          <p className={`text-[#7986A3] text-center  ${fonts.spaceG.className}`}> 2/2</p>
-          <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>{t("codeVerify")}</h2>
-          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${fonts.spaceG.className}`}>{t("plsEnterCode")}</p>
-          <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>{email}</p>
+          <p className={`text-[#7986A3] text-center  ${locale === "en" ? fonts.spaceG.className : ""}`}> 2/2</p>
+          <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("codeVerify")}</h2>
+          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("plsEnterCode")}</p>
+          <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{email}</p>
         </div>
       </div>
-      <form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`} action="" method="POST">
+      <form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`} action="" method="POST">
         <div className="flex space-x-4 mb-6 items-center justify-center">
           {Array.from({ length: 4 }).map((_, index) => (
             <div key={index} className="relative">
               <input
-                className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center h-[76px] w-[70px]  ${fonts.spaceG.className}`}
+                className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center h-[76px] w-[70px]  ${
+                  locale === "en" ? fonts.spaceG.className : ""
+                }`}
                 id={`otp-input-${index}`}
                 type="text"
                 maxLength="1"

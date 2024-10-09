@@ -279,7 +279,11 @@ const Navbar = () => {
               <FaTimes />
             </Link>
           </div>
-          <div className={"flex items-center ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white " + fonts.spaceG.className}>
+          <div
+            className={
+              "flex items-center ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white " + (locale === "en" ? fonts.spaceG.className : "")
+            }
+          >
             <div className="relative inline-block">
               <select className="bg-primary text-white border-none rounded px-2 py-1">
                 <option value="ar">🇸🇦 KSA</option>
@@ -334,7 +338,7 @@ const Navbar = () => {
                             <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
                               <div className="mt-2">{item.icon}</div>
                               <div>
-                                <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                                <h4 className={"font-semibold mb-2 " + (locale === "en" ? fonts.spaceG.className : "")}>{item.title}</h4>
                                 <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
                               </div>
                             </div>
@@ -363,7 +367,7 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-          <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + fonts.spaceG.className}>
+          <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + (locale === "en" ? fonts.spaceG.className : "")}>
             {!user?._id ? (
               <>
                 <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
@@ -426,7 +430,7 @@ const Navbar = () => {
                         <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
                           <div className="mt-2">{item.icon}</div>
                           <div>
-                            <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                            <h4 className={"font-semibold mb-2 " + (locale === "en" ? fonts.spaceG.className : "")}>{item.title}</h4>
                             <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
                           </div>
                         </div>
@@ -471,7 +475,7 @@ const Navbar = () => {
                       <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
                         <div className="mt-2">{item.icon}</div>
                         <div>
-                          <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
+                          <h4 className={"font-semibold mb-2 " + (locale === "en" ? fonts.spaceG.className : "")}>{item.title}</h4>
                           <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
                         </div>
                       </div>

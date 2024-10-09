@@ -70,7 +70,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
       </head>
       <body dir={locale === "en" ? "ltr" : "rtl"} className={locale === "en" ? "" : arabicFont.className}>
         <NextIntlClientProvider messages={messages}>
-          <Layout>{children}</Layout>
+          <Layout locale={locale}>{children}</Layout>
           <ToastContainer position="bottom-center" />
         </NextIntlClientProvider>
       </body>

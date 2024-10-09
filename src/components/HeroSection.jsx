@@ -16,6 +16,7 @@ const Hero = ({
   titleSize,
   imageWidth,
   imageHeight,
+  locale,
 }) => {
   const fonts = useFonts();
   return (
@@ -42,7 +43,9 @@ const Hero = ({
           </div>
           <h1 className={`${titleSize} font-bold mb-6 ${titleColor} `}>{title}</h1>
           <p className="text-base md:text-lg mb-8 text-[#737373]">{description}</p>
-          <div className={"flex flex-col md:flex-row ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + fonts.spaceG.className}>
+          <div
+            className={"flex flex-col md:flex-row ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + (locale === "en" ? fonts.spaceG.className : "")}
+          >
             <Link href={button1Link} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/80 text-center">
               {button1Text}
             </Link>
