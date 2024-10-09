@@ -7,7 +7,7 @@ const SaveTimeResources = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   return (
-    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
+    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="justify-start text-lg font-medium text-[#737373]">{t("reduceEngEff")}</div>
       <div className="justify-start text-[40px] font-bold mt-5 rtl:md:text-right ltr:md:text-left">{t("saveTR")}</div>
       <div className="justify-start rtl:md:text-right ltr:md:text-left text-sm mt-5">{t("saveTROne")}</div>

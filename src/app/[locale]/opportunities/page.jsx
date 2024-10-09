@@ -152,7 +152,7 @@ const Page = ({ params: { locale } }) => {
             <div
               className={
                 "flex-row items-center justify-center md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5 " +
-                fonts.urbanist.className
+                (locale === "en" ? fonts.urbanist.className : "")
               }
             >
               {[t("justLaunched"), t("earlyStage"), t("lateStage"), t("completedProjects")].map((category) => (
@@ -171,7 +171,7 @@ const Page = ({ params: { locale } }) => {
           </div>
         </div>
       </section>
-      <section className={"flex flex-col items-center md:p-0 p-5 " + fonts.plusJakarta.className}>
+      <section className={"flex flex-col items-center md:p-0 p-5 " + (locale === "en" ? fonts.plusJakarta.className : "")}>
         <div className="md:max-w-7xl flex flex-col md:flex-row gap-10">
           <div className="max-w-96">
             <h5 className="font-bold text-4xl">{t("exploreProjects")}</h5>
@@ -189,12 +189,12 @@ const Page = ({ params: { locale } }) => {
             <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/building-06.png" />
               <h5 className="font-bold">{t("startups")}</h5>
-              <p className={"text-[#12141D] text-sm " + fonts.inter.className}>{t("createLandingPages")}</p>
+              <p className={"text-[#12141D] text-sm " + (locale === "en" ? fonts.inter.className : "")}>{t("createLandingPages")}</p>
             </div>
             <div className="flex flex-col items-start gap-6 p-6 border border-[#E4E4E7] rounded-xl w-full md:max-w-72">
               <img className="w-14 h-14 bg-[#004677] p-4 rounded-full" src="/assets/chart-breakout-circle.png" />
               <h5 className="font-bold">{t("businesses")}</h5>
-              <p className={"text-[#12141D] text-sm " + fonts.inter.className}>{t("createLandingPages")}</p>
+              <p className={"text-[#12141D] text-sm " + (locale === "en" ? fonts.inter.className : "")}>{t("createLandingPages")}</p>
             </div>
           </div>
         </div>

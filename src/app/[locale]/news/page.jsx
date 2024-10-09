@@ -62,7 +62,7 @@ const Page = ({ params: { locale } }) => {
             key={index}
             className={
               "p-10 rounded-[20px] bg-white w-[335px] md:w-[385px] h-auto shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] m-2 " +
-              fonts.inter.className
+              (locale === "en" ? fonts.inter.className : "")
             }
           >
             <div className="flex flex-col items-start gap-5">

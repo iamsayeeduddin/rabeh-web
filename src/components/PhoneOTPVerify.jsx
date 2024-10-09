@@ -52,6 +52,7 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
         setIsCountdownFinished(false); // Enable the countdown again
       })
       .catch((error) => {
+        console.log("err", error);
         toast.error("Failed to send OTP. Please try again.");
       });
   };

@@ -48,13 +48,13 @@ function Footer({ locale }) {
     <div
       className={
         "flex flex-col p-5 pt-8 md:py-16 md:px-36 bg-[url('/assets/bg-asset-1.png')] bg-right-top bg-no-repeat border-b-8 border-b-primary gap-16 " +
-        fonts.inter.className
+        (locale === "en" ? fonts.inter.className : "")
       }
     >
       <div className="md:max-w-6xl flex flex-col md:flex-row items-center md:items-start md:justify-between">
         <div className="max-w-80 self-center md:self-start text-center md:text-start">
           <Logo width={250} height={100} />
-          <p className={"pt-8 md:pt-6 font-normal text-base text-[#2C303B] " + fonts.urbanist.className}>
+          <p className={"pt-8 md:pt-6 font-normal text-base text-[#2C303B] " + (locale === "en" ? fonts.urbanist.className : "")}>
             {t("empowerBusiness")} <br /> {t("connectingInvestors")} <br />
             {t("transformFinance")}
           </p>
@@ -62,7 +62,7 @@ function Footer({ locale }) {
 
         <div className="flex justify-center md:justify-start text-center rtl:md:text-right ltr:md:text-left md:flex-row gap-10">
           <div className="mt-5 md:mt-0">
-            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
+            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${locale === "en" ? fonts.urbanist.className : ""}`}>
               <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>
                 {t("company")}
               </li>
@@ -74,7 +74,7 @@ function Footer({ locale }) {
             </ul>
           </div>
           <div className="mt-5 md:mt-0">
-            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${fonts.urbanist.className}`}>
+            <ul className={`text-[#2C303B] font-medium flex flex-col gap-3 ${locale === "en" ? fonts.urbanist.className : ""}`}>
               <li className={`text-[#392E69] font-bold text-lg md:text-sm pb-2 md:pb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>
                 {t("fundraising")}
               </li>
@@ -88,10 +88,14 @@ function Footer({ locale }) {
         </div>
 
         <div className="max-w-80 mt-7 md:mt-0">
-          <ul className={"text-[#2C303B] flex flex-col items-center md:items-start md:justify-start gap-4 " + fonts.urbanist.className}>
+          <ul
+            className={
+              "text-[#2C303B] flex flex-col items-center md:items-start md:justify-start gap-4 " + (locale === "en" ? fonts.urbanist.className : "")
+            }
+          >
             <li className="text-[#392E69] text-lg font-semibold">{t("policy")}</li>
             <li>{t("policySub")}</li>
-            <li className={"text-[#7860DC] font-bold text-sm underline " + fonts.inter.className}>
+            <li className={"text-[#7860DC] font-bold text-sm underline " + (locale === "en" ? fonts.inter.className : "")}>
               <Link href={"/under-construction"}>{t("viewPolicy")}</Link>
             </li>
           </ul>
@@ -128,7 +132,7 @@ function Footer({ locale }) {
         </div>
       </div>
 
-      <div className={"flex flex-col md:flex-row items-center md:items-start justify-between " + fonts.inter.className}>
+      <div className={"flex flex-col md:flex-row items-center md:items-start justify-between " + (locale === "en" ? fonts.inter.className : "")}>
         <div>&#169; {new Date().getFullYear()} Rabeh. All rights reserved</div>
         <div className="flex space-x-4 text-[#3A404E] mt-5 md:mt-0">
           <Link href="https://www.instagram.com/rabehfinance/" target="_blank">

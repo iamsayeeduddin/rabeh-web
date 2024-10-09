@@ -79,7 +79,7 @@ const Page = () => {
         className="flex flex-col p-10 md:p-16 w-[425px] md:w-[720px]"
       >
         {content.map((section, index) => (
-          <div key={index} className={"flex flex-col gap-10 my-5 " + fonts.urbanist.className}>
+          <div key={index} className={"flex flex-col gap-10 my-5 " + (locale === "en" ? fonts.urbanist.className : "")}>
             <h3 className="font-semibold text-[32px]">{section.title}</h3>
             {section.paragraphs.map((paragraph, idx) => (
               <p className="text-justify" key={idx}>

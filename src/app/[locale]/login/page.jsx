@@ -139,7 +139,7 @@ const Page = ({ params: { locale } }) => {
             </Formik>
           </>
         ) : (
-          <OTPVerify email={email} />
+          <OTPVerify email={email} locale={locale} />
         )}
       </div>
     </div>

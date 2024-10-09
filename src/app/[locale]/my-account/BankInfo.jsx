@@ -12,7 +12,7 @@ const validationSchema = Yup.object({
     .matches(/^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$/, "IBAN format is invalid"),
 });
 
-const BankInfo = ({ data, handleUpdate, isLoading, isSuccess }) => {
+const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
   const fonts = useFonts();
   const [isEditing, setIsEditing] = useState(false);
 

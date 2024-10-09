@@ -270,7 +270,7 @@ const Page = ({ params: { locale } }) => {
             </h5>
             <p className="text-lg text-[#667085] mt-5 md:mt-0 text-justify">{t("howItWorksSub")}</p>
           </div>
-          <div className={"flex flex-col md:flex-row justify-between  " + fonts.inter.className}>
+          <div className={"flex flex-col md:flex-row justify-between  " + (locale === "en" ? fonts.inter.className : "")}>
             <div className="rounded-3xl drop-shadow-lg hover:drop-shadow-2xl hover:scale-105 transition-all md:w-96 bg-white p-8 flex flex-col gap-4">
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">{t("forEntre")}</h5>
@@ -317,14 +317,14 @@ const Page = ({ params: { locale } }) => {
               </Link>
             </div>
           </div>
-          <ClickTabs />
+          <ClickTabs locale={locale} />
         </div>
       </section>
       <section className="flex flex-col items-center p-5 md:p-0 ">
         <div className="max-w-7xl py-24">
           <div className="text-center">
             <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("advancedTech")}</h5>
-            <p className={"text-[#667085] " + fonts.inter.className}>{t("advancedTechSub")}</p>
+            <p className={"text-[#667085] " + (locale === "en" ? fonts.inter.className : "")}>{t("advancedTechSub")}</p>
           </div>
           <div className={"pt-24 gap-4 flex md:flex-row flex-col justify-between " + (locale === "en" ? fonts.spaceG.className : "")}>
             <div className="md:w-96 bg-[#FAFAFA] hover:bg-[#7860DC] hover:scale-105 transition-all rounded-3xl p-6 flex flex-col gap-2 group">
@@ -349,14 +349,14 @@ const Page = ({ params: { locale } }) => {
         <div className="md:max-w-7xl w-full md:py-24">
           <div className="text-center">
             <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("discoverTitle")}</h5>
-            <p className={"text-[#667085] " + fonts.inter.className}>{t("discoverSub")}</p>
+            <p className={"text-[#667085] " + (locale === "en" ? fonts.inter.className : "")}>{t("discoverSub")}</p>
           </div>
           <div className="pt-8 w-full flex items-center justify-center ">
             <div className="pt-8 w-full flex items-center justify-center ">
               <div
                 className={
                   "flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-5 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
-                  fonts.urbanist.className
+                  (locale === "en" ? fonts.urbanist.className : "")
                 }
               >
                 {[t("justLaunched"), t("earlyStage"), t("lateStage"), t("completedProjects")].map((category) => (
@@ -383,15 +383,18 @@ const Page = ({ params: { locale } }) => {
         <div className="max-w-7xl flex flex-col items-center p-10 md:p-24">
           <div className="text-center">
             <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("meetOurTeam")}</h5>
-            <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>{t("meetOurTeamSub")}</p>
+            <p className={"text-[#667085] max-w-3xl " + (locale === "en" ? fonts.inter.className : "")}>{t("meetOurTeamSub")}</p>
           </div>
-          <div className="flex flex-col md:flex-row  justify-between gap-11 pt-16">
+          <div className={`flex flex-col ${locale === "en" ? "md:flex-row" : "md:flex-row-reverse"} justify-between gap-11 pt-16`}>
             {team.map((member, index) => (
-              <div key={index + member.title} className={"flex px-10 flex-col justify-between items-center " + fonts.inter.className}>
+              <div
+                key={index + member.title}
+                className={`flex px-8 flex-col justify-between items-center ${locale === "en" ? fonts.inter.className : ""}`}
+              >
                 <img src={member.img} className="mb-5 w-24 h-24 rounded-full" />
-                <h5 className="text-lg font-semibold md:text-start text-center  ">{member.name}</h5>
+                <h5 className="text-lg font-semibold text-center">{member.name}</h5>
                 <p className="text-[#6941C6] text-center">{member.title}</p>
-                <div className="flex space-x-4 text-[#98A2B3] pt-4">
+                <div className={`flex ${locale === "en" ? "space-x-4" : "space-x-reverse space-x-4"} text-[#98A2B3] pt-4`}>
                   <FaTwitter />
                   <FaLinkedin />
                   <FaFacebook />

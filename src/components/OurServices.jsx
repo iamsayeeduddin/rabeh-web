@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const OurServices = () => {
+const OurServices = ({ locale }) => {
   const [activeCard, setActiveCard] = useState(null);
   const fonts = useFonts();
   const t = useTranslations();
@@ -14,7 +14,9 @@ const OurServices = () => {
 
   return (
     <section
-      className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5 ${fonts.inter.className} rtl:flex-row-reverse`}
+      className={`flex flex-col md:flex-row justify-between items-start py-10 md:h-max-[659px] md:px-24 mt-10 px-5 ${
+        locale === "en" ? fonts.inter.className : ""
+      } rtl:flex-row-reverse`}
     >
       <div className="flex flex-col md:w-1/2 w-full">
         <h2 className={`text-3xl font-semibold ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("ourServices")}</h2>

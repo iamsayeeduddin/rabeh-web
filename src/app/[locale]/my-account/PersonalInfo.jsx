@@ -3,7 +3,7 @@ import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
 import moment from "moment";
 
-const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => {
+const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, locale }) => {
   const fonts = useFonts();
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");

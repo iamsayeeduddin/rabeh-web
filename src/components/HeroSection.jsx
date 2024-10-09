@@ -20,7 +20,7 @@ const Hero = ({
 }) => {
   const fonts = useFonts();
   return (
-    <div className={"flex flex-col gap-10 md:gap-[80px] " + fonts.inter.className}>
+    <div className={"flex flex-col gap-10 md:gap-[80px] " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center max-w-[1440px] h-auto lg:h-max-[713px] p-6 md:p-[72px]">
         <motion.div
           initial={{ x: "-100vw", opacity: 0 }}

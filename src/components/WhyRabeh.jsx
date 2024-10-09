@@ -4,7 +4,7 @@ import useFonts from "@/utils/useFonts";
 import { motion, useAnimation } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-const WhyRabeh = () => {
+const WhyRabeh = ({ locale }) => {
   const t = useTranslations();
   const fonts = useFonts();
   const controls1 = useAnimation();
@@ -32,7 +32,7 @@ const WhyRabeh = () => {
       <div className={"text-4xl  " + (locale === "en" ? fonts.spaceG.className : "") + " flex items-center justify-center"}>
         {t("whyPartnerWithRABEH")}
       </div>
-      <div className={"flex md:flex-row flex-col mt-5 " + fonts.inter.className}>
+      <div className={"flex md:flex-row flex-col mt-5 " + (locale === "en" ? fonts.inter.className : "")}>
         <div className="flex justify-between ml-0   md:m-8 mt-5 ">
           <div
             className="w-[389px] h-[363px] p-8 gap-6 rounded-[30px] flex flex-col items-start justify-center bg-white hover:shadow-custom transition-all border-2 duration-750 border-[#F0F6F9]"

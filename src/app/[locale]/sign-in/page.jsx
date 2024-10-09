@@ -34,7 +34,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold text-[18px] ${fonts.inter.className}`}>Entrepreneur</div>
+            <div className={`font-bold text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>Entrepreneur</div>
           </div>
           <div
             className={`flex flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] hover:bg-[#00B8D9] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${
@@ -52,7 +52,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold text-[18px] ${fonts.inter.className}`}>Investor</div>
+            <div className={`font-bold text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>Investor</div>
           </div>
           <div
             className={`flex flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] hover:bg-[#004677] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${
@@ -70,7 +70,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold text-[18px] ${fonts.inter.className}`}>Consultant</div>
+            <div className={`font-bold text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>Consultant</div>
           </div>
         </div>
         <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-12 ${locale === "en" ? fonts.spaceG.className : ""}`}>

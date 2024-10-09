@@ -67,6 +67,14 @@ export default async function LocaleLayout({ children, params: { locale } }) {
       <head>
         <title>Rabeh</title>
         <link rel="icon" type="image/x-icon" href="/assets/rabeh-icon.ico" />
+        <meta property="og:title" content="Rabeh" />
+        <meta
+          property="og:description"
+          content="An innovative platform for Crowdfunding, Crowd-investing, and Exchange platform that utilizes advanced technologies."
+        />
+        <meta property="og:image" content="/public/assets/logo_mini.png" />
+        <meta property="og:url" content="https://www.rabeh.sa" />
+        <meta property="og:type" content="website" />
       </head>
       <body dir={locale === "en" ? "ltr" : "rtl"} className={locale === "en" ? "" : arabicFont.className}>
         <NextIntlClientProvider messages={messages}>

@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
   }),
 });
 
-const WorkInfo = ({ data }) => {
+const WorkInfo = ({ data, locale }) => {
   const fonts = useFonts(); // Get the font object from the hook
   const [isEditing, setIsEditing] = useState(false);
 

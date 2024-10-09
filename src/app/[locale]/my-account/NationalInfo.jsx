@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
   address: Yup.string().required("Address is required"),
 });
 
-const NationalInfo = () => {
+const NationalInfo = ({ locale }) => {
   const fonts = useFonts();
   const [isEditing, setIsEditing] = useState(false);
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
 
-const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData }) => {
+const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, locale }) => {
   const fonts = useFonts(); // Get the font object from the hook
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");

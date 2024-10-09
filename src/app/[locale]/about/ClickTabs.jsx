@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const ClickTabs = () => {
+const ClickTabs = ({ locale }) => {
   const [activeTab, setActiveTab] = useState("Entrepreneur");
   const fonts = useFonts();
   const t = useTranslations();
@@ -122,7 +122,7 @@ const ClickTabs = () => {
   }, []);
 
   return (
-    <div className={"pt-16 p-5  " + fonts.manrope.className}>
+    <div className={"pt-16 p-5  " + (locale === "en" ? fonts.manrope.className : "")}>
       <div className={"flex flex-col md:flex-row text-center font-bold text-xl "}>
         {tabData.map((tab) => (
           <div

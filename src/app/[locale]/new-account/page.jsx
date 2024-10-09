@@ -231,21 +231,23 @@ const Page = ({ params: { locale } }) => {
               </div>
 
               <div className="mb-6 relative">
-                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">
+                <label className={`block tracking-wide text-gray-700 text-xs font-bold mb-2 ${locale === "en" ? "" : "text-right"}`} htmlFor="phone">
                   {t("phoneNumber")}
                 </label>
                 <div className="relative">
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
                       formik.touched.phoneNumber && formik.errors.phoneNumber ? "border-red-500" : "border-gray-200"
-                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                      locale === "en" ? "pr-16" : "pl-16"
+                    }`}
                     id="phone"
                     type="text"
                     name="phoneNumber"
                     placeholder="+966555544444"
                     {...formik.getFieldProps("phoneNumber")}
                   />
-                  <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <div className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} flex items-center px-2 text-gray-700`}>
                     <select
                       className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
                       id="country-code"
@@ -254,7 +256,7 @@ const Page = ({ params: { locale } }) => {
                     </select>
                   </div>
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                    <p className="text-red-500 text-xs italic">{formik.errors.phoneNumber}</p>
+                    <p className={`text-red-500 text-xs italic ${locale === "en" ? "text-left" : "text-right"}`}>{formik.errors.phoneNumber}</p>
                   ) : null}
                 </div>
               </div>
@@ -277,7 +279,10 @@ const Page = ({ params: { locale } }) => {
               </div>
 
               <div className="mb-6 relative">
-                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
+                <label
+                  className={`block tracking-wide text-gray-700 text-xs font-bold mb-2 ${locale === "en" ? "" : "text-right"}`}
+                  htmlFor="password"
+                >
                   {t("password")}
                 </label>
                 <div className="relative">
@@ -289,14 +294,20 @@ const Page = ({ params: { locale } }) => {
                     type={isPasswordVisible ? "text" : "password"}
                     name="password"
                     placeholder="********"
-                    onChange={handlePasswordChange} // Use custom handler for password strength
+                    onChange={handlePasswordChange} // Custom handler for password strength
                     value={formik.values.password}
                   />
-                  <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
+                  <button
+                    type="button"
+                    className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} px-3 flex items-center`}
+                    onClick={togglePasswordVisibility}
+                  >
                     {isPasswordVisible ? t("hide") : t("show")}
                   </button>
                 </div>
-                {formik.touched.password && formik.errors.password ? <p className="text-red-500 text-xs italic">{formik.errors.password}</p> : null}
+                {formik.touched.password && formik.errors.password ? (
+                  <p className={`text-red-500 text-xs italic ${locale === "en" ? "text-left" : "text-right"}`}>{formik.errors.password}</p>
+                ) : null}
                 <div id="password-strength" className="h-2 mt-1 rounded-lg" />
               </div>
 
@@ -346,7 +357,7 @@ const Page = ({ params: { locale } }) => {
             </div>
           </>
         ) : (
-          <OTPVerify email={email} userType={formik.values.type} />
+          <OTPVerify email={email} userType={formik.values.type} locale={locale} />
         )}
       </div>
     </div>

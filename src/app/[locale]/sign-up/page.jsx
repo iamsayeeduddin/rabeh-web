@@ -47,7 +47,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("entreprenuers")}</div>
+            <div className={`font-bold mb-4 text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>{t("entreprenuers")}</div>
           </div>
           <div
             onClick={() => {
@@ -74,7 +74,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("investors")}</div>
+            <div className={`font-bold mb-4 text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>{t("investors")}</div>
           </div>
           <div
             onClick={() => {
@@ -101,7 +101,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("consultant")}</div>
+            <div className={`font-bold mb-4 text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>{t("consultant")}</div>
           </div>
         </div>
         <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-2 ${locale === "en" ? fonts.spaceG.className : ""}`}>

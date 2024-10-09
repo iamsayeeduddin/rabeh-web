@@ -7,7 +7,7 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
-function OTPVerify({ email, isReset, userType }) {
+function OTPVerify({ email, isReset, userType, locale }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();

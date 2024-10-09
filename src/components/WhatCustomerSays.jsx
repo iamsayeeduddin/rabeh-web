@@ -75,7 +75,7 @@ const WhatCustomerSays = ({ locale }) => {
   };
 
   return (
-    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
+    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="justify-start text-lg text-medium text-[#737373]">{t("testimonials")}</div>
       <div className="justify-start text-5xl font-semibold font-inter mt-5">{t("whatCustSay")}</div>
 

@@ -98,7 +98,7 @@ const Page = ({ params: { locale } }) => {
 
   return (
     <div className="w-full flex flex-col md:p-[72px] mt-10 p-5 ">
-      <div className={"flex flex-col items-center justify-center gap-10 mb-5 " + fonts.urbanist.className}>
+      <div className={"flex flex-col items-center justify-center gap-10 mb-5 " + (locale === "en" ? fonts.urbanist.className : "")}>
         <div className="text-4xl font-bold">{t("openPositions")}</div>
         <div className="text-base items-center justify-center">{t("joinTheTeam")}</div>
       </div>
@@ -125,7 +125,9 @@ const Page = ({ params: { locale } }) => {
           <motion.div
             variants={childVariants}
             key={index}
-            className={`md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between ${fonts.urbanist.className}`}
+            className={`md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between ${
+              locale === "en" ? fonts.urbanist.className : ""
+            }`}
           >
             <div className="flex justify-between items-start">
               <span className="text-primary font-semibold">{job.category}</span>

@@ -6,7 +6,7 @@ const RestAssured = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   return (
-    <div className={"flex flex-col md:flex-row bg-secondary text-white " + fonts.inter.className}>
+    <div className={"flex flex-col md:flex-row bg-secondary text-white " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="flex-1 md:mr-8 pt-[128px] pb-[128px] ltr:pl-[80px] ltr:pr-[80px] rtl:pr-[80px] rtl:pl-[80px]">
         <h2 className={"text-4xl font-bold mb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("restAssured")}</h2>
         <p className={"mt-8"}>{t("restAssuredDesc")}</p>

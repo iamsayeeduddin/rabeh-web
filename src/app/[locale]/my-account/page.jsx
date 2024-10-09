@@ -87,19 +87,19 @@ const MyAccount = ({ params: { locale } }) => {
   const renderTabContent = () => {
     switch (activeTab) {
       case "Personal":
-        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} getData={getData} />;
+        return <PersonalInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} getData={getData} />;
       case "Financial":
-        return <FinancialInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
+        return <FinancialInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "Work":
-        return <WorkInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
+        return <WorkInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "General":
         return <GeneralInfo />;
       case "National":
-        return <NationalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
+        return <NationalInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "Bank":
-        return <BankInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
+        return <BankInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       default:
-        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
+        return <PersonalInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
     }
   };
 

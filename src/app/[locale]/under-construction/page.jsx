@@ -1,6 +1,7 @@
 "use client";
 import useFonts from "@/utils/useFonts";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useState, useEffect } from "react";
 import { MdBuild } from "react-icons/md";
 

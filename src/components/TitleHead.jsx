@@ -10,7 +10,7 @@ function TitleHead({ title, desc, locale }) {
           <h5 className={"text-[#004677] text-4xl sm:text-5xl md:text-7xl font-bold pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>
             {title}
           </h5>
-          <p className={"text-[#475467] text-base sm:text-lg md:text-xl " + fonts.urbanist.className}>{desc}</p>
+          <p className={"text-[#475467] text-base sm:text-lg md:text-xl " + (locale === "en" ? fonts.urbanist.className : "")}>{desc}</p>
         </div>
       </div>
     </div>
