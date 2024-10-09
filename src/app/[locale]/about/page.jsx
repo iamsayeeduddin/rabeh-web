@@ -161,25 +161,26 @@ const Page = ({ params: { locale } }) => {
 
   const team = [
     {
-      name: "Mohammed Alsolami",
-      title: "Founder & CEO",
+      name: t("name9"),
+      title: t("title9"),
       img: "/assets/mohd_alosaimi.png",
     },
     {
-      name: "Mohammed Alomar",
-      title: "Board Member",
+      name: t("name6"),
+      title: t("title6"),
       img: "/assets/mohd_alomar.png",
     },
     {
-      name: "Anas Alsalman",
-      title: "Board Member",
+      name: t("name7"),
+      title: t("title7"),
       img: "/assets/anas_alsalman.png",
     },
     {
-      name: "Houda Ahmed",
-      title: "Head of Investment",
+      name: t("name8"),
+      title: t("title8"),
       img: "/assets/houda_ahmed.png",
-    },
+    }
+    
   ];
 
   return (

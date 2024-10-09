@@ -3,71 +3,76 @@ import ContactForm from "@/components/ContactForm";
 import useFonts from "@/utils/useFonts";
 import React, { useState } from "react";
 import { Link } from "@/i18n/routing";
+
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-const jobData = [
-  {
-    category: "Design",
-    title: "Product Designer",
-    type: "Design",
-    description: "We're looking for a mid-level product designer to join our team.",
-    location: "Remote",
-    jobType: "Full-time",
-    bgColor: "#EFF8FF",
-    borderColor: "#B2DDFF",
-    textColor: "#175CD3",
-  },
-  {
-    category: "Software Development",
-    title: "Engineering Manager",
-    type: "Software",
-    description: "Join our engineering team to build cutting-edge solutions.",
-    location: "On-site",
-    jobType: "Full-time",
-    bgColor: "#FDF2FA",
-    borderColor: "#FCCEEE",
-    textColor: "#C11574",
-  },
-  {
-    category: "Customer Success",
-    title: "Customer Success Manager",
-    type: "CX",
-    description: "We need a marketing specialist to help us reach new heights.",
-    location: "Remote",
-    jobType: "Part-time",
-    bgColor: "#ECFDF3",
-    borderColor: "#ABEFC6",
-    textColor: "#067647",
-  },
-  {
-    category: "Sales",
-    title: "Account Executive",
-    type: "Sales",
-    description: "We need a marketing specialist to help us reach new heights.",
-    location: "Remote",
-    jobType: "Part-time",
-    bgColor: "#EFF8FF",
-    borderColor: "#B2DDFF",
-    textColor: "#175CD3",
-  },
-  {
-    category: "Marketing",
-    title: "SEO Marketing Manager",
-    type: "Marketing",
-    description: "We need a marketing specialist to help us reach new heights.",
-    location: "Remote",
-    jobType: "Part-time",
-    bgColor: "#FFF8E4",
-    borderColor: "#F9DBAF",
-    textColor: "#B93815",
-  },
-];
+
 
 const Page = ({ params: { locale } }) => {
   const [jobType, setJobType] = useState("All");
   const fonts = useFonts();
   const t = useTranslations();
+
+  const jobData = [
+    {
+      category: t("category1"),
+      title: t("title01"),
+      type: t("type01"),
+      description: t("description01"),
+      location: t("location01"),
+      jobType: t("jobType01"),
+      bgColor: "#EFF8FF",
+      borderColor: "#B2DDFF",
+      textColor: "#175CD3",
+    },
+    {
+      category: t("category2"),
+      title: t("title02"),
+      type: t("type02"),
+      description: t("description02"),
+      location: t("location02"),
+      jobType: t("jobType02"),
+      bgColor: "#FDF2FA",
+      borderColor: "#FCCEEE",
+      textColor: "#C11574",
+    },
+    {
+      category: t("category3"),
+      title: t("title03"),
+      type: t("type03"),
+      description: t("description03"),
+      location: t("location03"),
+      jobType: t("jobType03"),
+      bgColor: "#ECFDF3",
+      borderColor: "#ABEFC6",
+      textColor: "#067647",
+    },
+    {
+      category: t("category4"),
+      title: t("title04"),
+      type: t("type04"),
+      description: t("description04"),
+      location: t("location04"),
+      jobType: t("jobType04"),
+      bgColor: "#EFF8FF",
+      borderColor: "#B2DDFF",
+      textColor: "#175CD3",
+    },
+    {
+      category: t("category5"),
+      title: t("title05"),
+      type: t("type05"),
+      description: t("description05"),
+      location: t("location05"),
+      jobType: t("jobType05"),
+      bgColor: "#FFF8E4",
+      borderColor: "#F9DBAF",
+      textColor: "#B93815",
+    }
+    
+  ];
+
   const parentVariants = {
     hidden: {
       opacity: 0,
@@ -132,7 +137,7 @@ const Page = ({ params: { locale } }) => {
             <div className="flex justify-between items-start">
               <span className="text-primary font-semibold">{job.category}</span>
               <a href="#" className="text-primary flex items-center space-x-1">
-                <span>View job</span>
+                <span>{t("viewJob")}</span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M5.83301 14.1667L14.1663 5.83334M14.1663 5.83334H5.83301M14.1663 5.83334V14.1667"
