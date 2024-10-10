@@ -7,7 +7,7 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
-function OTPVerify({ email, isReset, userType, locale }) {
+function OTPVerify({ email, isReset, userType, locale, isRegister = false, setStage }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -52,21 +52,25 @@ function OTPVerify({ email, isReset, userType, locale }) {
     setLoading(true);
     e.preventDefault();
     axios
-      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/verifyEmail", { email, otp, isReset })
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/verifyEmail", { email, otp, isReset, isRegister })
       .then((res) => {
         toast.success(res.data.message);
         let user = res.data.data;
-        if (!isReset && user?.isPhoneVerified) {
-          localStorage.setItem("user", JSON.stringify(res.data.data));
-          if (userType !== "Investor" && userType !== "Entrepreneur") router.push("/");
-          else router.push("/newUserInfo");
-        } else if (!isReset && !user?.isPhoneVerified) {
-          localStorage.setItem("user", JSON.stringify(res.data.data));
-          router.push("/verify-phone");
-        } else router.push("/new-password/?email=" + email);
+
+        if (isRegister) {
+          localStorage.setItem("user", JSON.stringify(user));
+          setStage("Phone");
+        }
+
+        if (isReset) {
+          router.push("/new-password/?email=" + email);
+        }
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") {
+          setStage("Phone");
+        }
       })
       .finally(() => setLoading(false));
   };
@@ -160,8 +164,10 @@ function OTPVerify({ email, isReset, userType, locale }) {
 
         <div className="flex items-center justify-center my-8">
           <button
-            className={"bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " 
-              + (loading ? "animate-pulse" : "")}
+            className={
+              "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+              (loading ? "animate-pulse" : "")
+            }
             type="button"
             onClick={handleVerify}
             disabled={otp.length < 4 || loading}

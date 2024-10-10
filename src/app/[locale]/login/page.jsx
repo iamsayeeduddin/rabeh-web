@@ -4,6 +4,7 @@ import useFonts from "@/utils/useFonts";
 import { useState } from "react";
 import Logo from "../../../components/Logo";
 import OTPVerify from "@/components/OTPVerify";
+import PhoneOTPVerify from "@/components/PhoneOTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -16,7 +17,8 @@ const Page = ({ params: { locale } }) => {
   const router = useRouter();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isEmail, setIsEmail] = useState(false);
+  const [stage, setStage] = useState("Login");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -36,8 +38,9 @@ const Page = ({ params: { locale } }) => {
       .catch((error) => {
         toast.error(error.response.data.message);
         localStorage.setItem("user", JSON.stringify(error.response.data.user));
-        if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setIsEmail(true);
-        if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") router.push("/verify-phone");
+        setPhone(error.response.data.user.phoneNumber);
+        if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setStage("Email");
+        if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") setStage("Phone");
       })
       .finally(() => setLoading(false));
   };
@@ -52,7 +55,7 @@ const Page = ({ params: { locale } }) => {
           boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A",
         }}
       >
-        {!isEmail ? (
+        {stage === "Login" ? (
           <>
             <div className="flex items-center justify-center mb-5">
               <Logo width={176} height={75} />
@@ -142,9 +145,11 @@ const Page = ({ params: { locale } }) => {
               )}
             </Formik>
           </>
-        ) : (
-          <OTPVerify email={email} locale={locale} />
-        )}
+        ) : stage === "Email" ? (
+          <OTPVerify email={email} locale={locale} setStage={setStage} />
+        ) : stage === "Phone" ? (
+          <PhoneOTPVerify phoneNumber={"+91" + phone} locale={locale} setStage={setStage} />
+        ) : null}
       </div>
     </div>
   );

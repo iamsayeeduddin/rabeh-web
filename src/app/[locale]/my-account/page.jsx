@@ -29,16 +29,17 @@ const MyAccount = ({ params: { locale } }) => {
 
   const handleDeactivate = () => {
     setIsLoading(true);
-    axios.post(
-      process.env.NEXT_PUBLIC_API_URL + "/api/users/deactivateUser",
-      { userId: user?._id },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user?.token}`,
-        },
-      }
-    )
+    axios
+      .post(
+        process.env.NEXT_PUBLIC_API_URL + "/api/users/deactivateUser",
+        { userId: user?._id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user?.token}`,
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data.message);
         closePopup();
@@ -51,7 +52,8 @@ const MyAccount = ({ params: { locale } }) => {
           localStorage.removeItem("user");
           router.push("/login");
         }
-      }).finally(() => setIsLoading(false));
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleUpdate = (vals) => {
@@ -160,7 +162,9 @@ const MyAccount = ({ params: { locale } }) => {
             <span className="ml-2">My Account</span>
           </div>
         </div>
-        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] " onClick={openPopup}>{t("deactivate")}</button>
+        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] " onClick={openPopup}>
+          {t("deactivate")}
+        </button>
       </div>
 
       <div className="border-b mt-6">
@@ -200,7 +204,10 @@ const MyAccount = ({ params: { locale } }) => {
               <button
                 onClick={handleDeactivate}
                 disabled={isLoading}
-                className={"px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors " + ()}
+                className={
+                  "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors " +
+                  (isLoading ? "animate-pulse cursor-not-allowed" : "")
+                }
               >
                 Deactivate
               </button>

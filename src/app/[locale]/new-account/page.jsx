@@ -4,20 +4,23 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import OTPVerify from "@/components/OTPVerify";
-import axios from "axios";
+import PhoneOTPVerify from "@/components/PhoneOTPVerify";
 import { toast } from "react-toastify";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import endpoint from "@/utils/apiUtil";
+import { useRouter } from "@/i18n/routing";
+import axios from "axios";
 
 const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
+  const [stage, setStage] = useState("Register");
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const params = useSearchParams();
+  const router = useRouter();
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -45,7 +48,7 @@ const Page = ({ params: { locale } }) => {
       formData.append(key, formik.values[key]);
     });
 
-    endpoint
+    axios
       .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/registerUser", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -53,7 +56,7 @@ const Page = ({ params: { locale } }) => {
       })
       .then((response) => {
         if (response.data.status === "success") {
-          setIsRegister(true);
+          setStage("Email");
           toast(response.data.message);
           formik.resetForm();
         }
@@ -146,13 +149,19 @@ const Page = ({ params: { locale } }) => {
     setIsPasswordVisible(!isPasswordVisible);
   }
 
+  useEffect(() => {
+    if (localStorage.getItem("user") && stage === "Register") {
+      router.push("/");
+    }
+  }, []);
+
   return (
     <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
       <div
         className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px]"
         style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
       >
-        {!isRegister ? (
+        {stage === "Register" ? (
           <>
             <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>1/2</p>
             <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
@@ -161,7 +170,7 @@ const Page = ({ params: { locale } }) => {
             <p className={`text-[16] md:text-start text-center mb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("enterPersonalInfo")}</p>
             <div className="flex md:flex-row flex-col gap-3 items-center">
               <div className="flex gap-5 col-span-full items-center">
-                <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-t-0 border-b-4 border-white flex items-center justify-center">
+                <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-y-4 border-white flex items-center justify-center">
                   {image ? (
                     <img src={image} alt="Uploaded" className="h-16 w-16 rounded-full object-cover" />
                   ) : (
@@ -186,7 +195,7 @@ const Page = ({ params: { locale } }) => {
                         fill="#7860DC"
                       />
                     </svg>
-                    <p className="text-primary">Add photo</p>
+                    <p className="text-primary">{image ? t("changePhoto") : t("addPhoto")}</p>
                   </label>
                 </div>
               </div>
@@ -246,6 +255,10 @@ const Page = ({ params: { locale } }) => {
                     name="phoneNumber"
                     placeholder="+966555544444"
                     {...formik.getFieldProps("phoneNumber")}
+                    onChange={(e) => {
+                      formik?.setFieldValue("phoneNumber", e.target.value);
+                      setPhone(e.target.value);
+                    }}
                   />
                   <div className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} flex items-center px-2 text-gray-700`}>
                     <select
@@ -356,9 +369,11 @@ const Page = ({ params: { locale } }) => {
               </div>
             </div>
           </>
-        ) : (
-          <OTPVerify email={email} userType={formik.values.type} locale={locale} />
-        )}
+        ) : stage === "Email" ? (
+          <OTPVerify email={email} locale={locale} isRegister={true} setStage={setStage} />
+        ) : stage === "Phone" ? (
+          <PhoneOTPVerify phoneNumber={"+91" + phone} locale={locale} setStage={setStage} />
+        ) : null}
       </div>
     </div>
   );

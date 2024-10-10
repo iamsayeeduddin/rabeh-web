@@ -79,7 +79,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
       <body dir={locale === "en" ? "ltr" : "rtl"} className={locale === "en" ? "" : arabicFont.className}>
         <NextIntlClientProvider messages={messages}>
           <Layout locale={locale}>{children}</Layout>
-          <ToastContainer position="bottom-center" />
+          <ToastContainer position="bottom-center" pauseOnFocusLoss={false} autoClose={3000} />
         </NextIntlClientProvider>
       </body>
       <GoogleAnalytics gaId={"G-550WGYWGEQ"} />

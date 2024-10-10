@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "@/utils/firebaseConfig"; // Import Firebase config
+import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "@/utils/firebase";
 import useFonts from "@/utils/useFonts";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
-function PhoneOTPVerify() {
+function PhoneOTPVerify({ locale, phoneNumber }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -18,11 +18,15 @@ function PhoneOTPVerify() {
   const [confirmationResult, setConfirmationResult] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
 
+  // Recaptcha and OTP triggers
   useEffect(() => {
-    setUpRecaptcha();
-    triggerOTP();
+    if (!window.recaptchaVerifier) {
+      setUpRecaptcha();
+      triggerOTP();
+    }
   }, []);
 
+  // Countdown logic
   useEffect(() => {
     if (timeLeft === 0) {
       setIsCountdownFinished(true);
@@ -42,31 +46,52 @@ function PhoneOTPVerify() {
     return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
   };
 
+  // Trigger the OTP
   const triggerOTP = () => {
-    signInWithPhoneNumber(auth, user?.phoneNumber, window.recaptchaVerifier)
-      .then((confirmationResult) => {
-        setConfirmationResult(confirmationResult);
-        toast.success("OTP sent successfully!");
-        setTimeLeft(60); 
-        setIsCountdownFinished(false); 
-      })
-      .catch((error) => {
-        console.log("err", error);
-        toast.error("Failed to send OTP. Please try again.");
-      });
+    if (window.recaptchaVerifier) {
+      signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+        .then((result) => {
+          setConfirmationResult(result);
+          toast.success("OTP sent successfully!");
+          setTimeLeft(60); // Reset timer for re-sending OTP
+          setIsCountdownFinished(false);
+        })
+        .catch((error) => {
+          console.error("Error sending OTP:", error);
+          toast.error("Failed to send OTP. Please try again.");
+        });
+    }
   };
 
+  // Set up reCAPTCHA
   const setUpRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response) => {},
-      },
-      auth
-    );
+    if (typeof window !== "undefined" && auth) {
+      try {
+        window.recaptchaVerifier = new RecaptchaVerifier(
+          "recaptcha-container",
+          {
+            size: "invisible",
+            callback: (response) => {
+              console.log("reCAPTCHA solved", response);
+            },
+            "expired-callback": () => {
+              console.log("reCAPTCHA expired, reset required.");
+            },
+          },
+          auth
+        );
+
+        // Render the reCAPTCHA
+        window.recaptchaVerifier.render().then(() => {
+          console.log("reCAPTCHA initialized");
+        });
+      } catch (error) {
+        console.error("Error initializing reCAPTCHA:", error);
+      }
+    }
   };
 
+  // Handle OTP verification
   const handleVerify = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -80,6 +105,7 @@ function PhoneOTPVerify() {
           updatePhoneVerified();
         })
         .catch((error) => {
+          console.error("Invalid OTP:", error);
           toast.error("Invalid OTP. Please try again.");
         })
         .finally(() => setLoading(false));
@@ -88,23 +114,20 @@ function PhoneOTPVerify() {
 
   const updatePhoneVerified = () => {
     axios
-      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/phone-verified", {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/phone-verified`, {
         userId: user?._id,
       })
       .then((res) => {
         toast.success(res.data.message);
-        let user = res.data.user;
-        localStorage.setItem("user", JSON.stringify(user));
-        if (
-          user?.type !== "Investor" &&
-          user?.type !== "Entrepreneur" &&
-          user?.type !== "Admin"
-        )
+        let updatedUser = res.data.user;
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        if (!["Investor", "Entrepreneur", "Admin"].includes(updatedUser?.type)) {
           router.push("/");
-        else router.push("/newUserInfo");
+        } else {
+          router.push("/newUserInfo");
+        }
       });
-  }
-
+  };
   return (
     <>
       <div id="recaptcha-container"></div>
@@ -135,7 +158,9 @@ function PhoneOTPVerify() {
           </div>
           <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>2/2</p>
           <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("codeVerify")}</h2>
-          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("plsEnterCodePhone")}</p>
+          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
+            {t("plsEnterCodePhone")}
+          </p>
           <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{phoneNumber}</p>
         </div>
       </div>
@@ -195,8 +220,9 @@ function PhoneOTPVerify() {
 
         <div className="flex items-center justify-center my-8">
           <button
-            className={"bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " + 
-              (loading ? "animate-pulse": "")
+            className={
+              "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+              (loading ? "animate-pulse" : "")
             }
             type="button"
             onClick={handleVerify}

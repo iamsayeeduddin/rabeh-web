@@ -13,42 +13,40 @@ const WhatCustomerSays = ({ locale }) => {
   const t = useTranslations();
   const testimonials = [
     {
-      title: t("title1"),
+      title: t("title01"),
       description: t("testimonial1"),
       name: t("name1"),
       position: t("position1"),
       imageUrl: "/user3.png",
     },
     {
-      title: t("title2"),
+      title: t("title02"),
       description: t("testimonial2"),
       name: t("name2"),
       position: t("position2"),
       imageUrl: "/user1.png",
     },
     {
-      title: t("title3"),
+      title: t("title03"),
       description: t("testimonial3"),
       name: t("name3"),
       position: t("position3"),
       imageUrl: "/user2.png",
     },
     {
-      title: t("title4"),
+      title: t("title04"),
       description: t("testimonial4"),
       name: t("name4"),
       position: t("position4"),
       imageUrl: "/user3.png",
     },
     {
-      title: t("title5"),
+      title: t("title05"),
       description: t("testimonial5"),
       name: t("name5"),
       position: t("position5"),
       imageUrl: "/user3.png",
-    }
-    
-    
+    },
   ];
 
   const settings = {

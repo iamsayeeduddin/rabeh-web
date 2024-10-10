@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Layout = ({ children, locale }) => {
   return (
     <div className="overflow-x-hidden">
-      <Header />
+      <Header locale={locale} />
       <main className="mt-20">{children}</main>
       <Footer locale={locale} />
     </div>

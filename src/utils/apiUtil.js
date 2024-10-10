@@ -22,7 +22,6 @@ try {
     localStorage.removeItem("user");
     window.location.href = "/";
   }
-  console.log(err.status, "api");
 }
 
 export default endpoint;

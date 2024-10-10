@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 
-const Navbar = () => {
+const Navbar = ({ locale }) => {
   const fonts = useFonts();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +21,6 @@ const Navbar = () => {
   const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
-  const { locale } = useRouter();
   const params = useParams();
 
   const toggleDropdown = () => {
@@ -43,10 +42,10 @@ const Navbar = () => {
   const handleLangChange = (lang) => {
     router.replace(pathname, { locale: lang });
   };
-
+  const userLs = localStorage.getItem("user");
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-  }, [path]);
+    setUser(JSON.parse(userLs));
+  }, [path, userLs]);
 
   const handleLogout = () => {
     if (user?._id) {
@@ -373,7 +372,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + (locale === "en" ? fonts.spaceG.className : "")}>
-          {!user?.token ? (
+            {!user?.token ? (
               <>
                 <Link href="/login" onClick={handleLinkClick} className="text-gray-700 cursor-pointer hover:text-gray-900 rounded-lg px-4 py-2">
                   {t("signIn")}
