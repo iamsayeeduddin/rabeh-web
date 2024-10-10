@@ -8,14 +8,14 @@ const GeneralInfo = () => {
 
   // Initial states for financial questions (default 'No')
   const [answers, setAnswers] = useState({
-    boardMember: 'No',
-    financialExperience: 'No',
-    workedInFinancialSector: 'No',
-    relatedToBoard: 'No',
-    memberOfListedCompany: 'No',
-    seniorTaskAssignment: 'No',
-    financialSituationInfo: 'No',
-    realBeneficiary: 'No'
+    boardMember: "No",
+    financialExperience: "No",
+    workedInFinancialSector: "No",
+    relatedToBoard: "No",
+    memberOfListedCompany: "No",
+    seniorTaskAssignment: "No",
+    financialSituationInfo: "No",
+    realBeneficiary: "No",
   });
 
   // Formik setup
@@ -39,19 +39,17 @@ const GeneralInfo = () => {
   };
 
   const handleAnswerChange = (field, value) => {
-    setAnswers(prevAnswers => ({
+    setAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [field]: value
+      [field]: value,
     }));
   };
 
   return (
-    <div className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}>
+    <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">
-            {isEditing ? <>Edit General Information</> : <>General Information</>}
-          </h3>
+          <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <>Edit General Information</> : <>General Information</>}</h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -59,13 +57,7 @@ const GeneralInfo = () => {
                 className="font-semibold py-2 px-4 rounded-md flex flex-row text-[15px] text-[#495162] gap-3 border-2"
                 onClick={handleEditClick}
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -87,11 +79,21 @@ const GeneralInfo = () => {
                   { label: "Are you a current member of the board of directors of any company?", field: "boardMember" },
                   { label: "Do you have any other work experience related to the financial sector?", field: "financialExperience" },
                   { label: "Have you worked in the financial sector in the past five years?", field: "workedInFinancialSector" },
-                  { label: "Are you related to a member of the board of directors, audit committee, or a senior executive in a listed company?", field: "relatedToBoard" },
-                  { label: "Are you a member of the board of directors, audit committee, or a senior executive of a listed company?", field: "memberOfListedCompany" },
-                  { label: "Are you assigned to senior tasks in the Kingdom or in a foreign country, senior management positions, or a job in an international organization?", field: "seniorTaskAssignment" },
+                  {
+                    label: "Are you related to a member of the board of directors, audit committee, or a senior executive in a listed company?",
+                    field: "relatedToBoard",
+                  },
+                  {
+                    label: "Are you a member of the board of directors, audit committee, or a senior executive of a listed company?",
+                    field: "memberOfListedCompany",
+                  },
+                  {
+                    label:
+                      "Are you assigned to senior tasks in the Kingdom or in a foreign country, senior management positions, or a job in an international organization?",
+                    field: "seniorTaskAssignment",
+                  },
                   { label: "Any other financial information about the client’s financial situation?", field: "financialSituationInfo" },
-                  { label: "Are you a real beneficiary of the investment account?", field: "realBeneficiary" }
+                  { label: "Are you a real beneficiary of the investment account?", field: "realBeneficiary" },
                 ].map(({ label, field }) => (
                   <div key={field} className=" shadow-md rounded-md w-full flex flex-col gap-2 p-5">
                     <p>{label}</p>
@@ -104,8 +106,8 @@ const GeneralInfo = () => {
                           checked={answers[field] === "Yes"}
                           onChange={() => handleAnswerChange(field, "Yes")}
                           className="checked:bg-primary checked:active:bg-primary checked:focus:bg-primary focus:bg-primary focus:outline-none focus:ring-1 focus:ring-primary"
-
-                        /> Yes
+                        />{" "}
+                        Yes
                       </label>
                       <label className="ml-4">
                         <input
@@ -115,12 +117,13 @@ const GeneralInfo = () => {
                           checked={answers[field] === "No"}
                           onChange={() => handleAnswerChange(field, "No")}
                           className="checked:bg-primary checked:active:bg-primary checked:focus:bg-primary focus:bg-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                        /> No
+                        />{" "}
+                        No
                       </label>
                     </div>
                   </div>
                 ))}
-  </>
+              </>
             ) : (
               <>
                 <div className=" shadow-md rounded-md w-full flex md:flex-row flex-col   justify-between p-5">
@@ -128,7 +131,6 @@ const GeneralInfo = () => {
                   <p>{answers.boardMember}</p>
                 </div>
                 <div className=" shadow-md rounded-md w-full flex md:flex-row flex-col  justify-between p-5">
-
                   <p>Do you have any other work experience related to the financial sector?</p>
                   <p>{answers.financialExperience}</p>
                 </div>
@@ -145,7 +147,10 @@ const GeneralInfo = () => {
                   <p>{answers.memberOfListedCompany}</p>
                 </div>
                 <div className=" shadow-md rounded-md w-full flex md:flex-row flex-col  justify-between p-5">
-                  <p>Are you assigned to senior tasks in the Kingdom or in a foreign country, senior management positions, or a job in an international organization?</p>
+                  <p>
+                    Are you assigned to senior tasks in the Kingdom or in a foreign country, senior management positions, or a job in an international
+                    organization?
+                  </p>
                   <p>{answers.seniorTaskAssignment}</p>
                 </div>
                 <div className=" shadow-md rounded-md w-full flex md:flex-row flex-col  justify-between p-5">

@@ -5,10 +5,10 @@ import OTPVerify from "@/components/OTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
-import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
 
@@ -18,8 +18,8 @@ const Page = () => {
 
   const handleEmailSubmit = (values, { setSubmitting }) => {
     setEmail(values.email);
-    endpoint
-      .post("/forgot-password", values)
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/forgot-password", values)
       .then((res) => {
         if (res.status === 200) {
           setIsEmail(true);
@@ -79,8 +79,8 @@ const Page = () => {
               </svg>
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("Password Reset")}</h2>
-            <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
+            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("Password Reset")}</h2>
+            <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {t("Enter your email address, and we will send a verification code to your email")}
             </p>
 
@@ -92,7 +92,7 @@ const Page = () => {
               onSubmit={handleEmailSubmit}
             >
               {({ isSubmitting }) => (
-                <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
+                <Form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`}>
                   <div className="mb-6">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
                       {t("Email Address")}
@@ -106,11 +106,10 @@ const Page = () => {
                     />
                     <ErrorMessage name="email" component="div" className="text-red-500 text-xs italic" />
                   </div>
-
                   <div className="flex items-center justify-center">
                     <button
                       className={
-                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                        "bg-primary cursor-pointer hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
                         (loading ? "animate-pulse" : "")
                       }
                       type="submit"
@@ -124,7 +123,7 @@ const Page = () => {
             </Formik>
           </>
         ) : (
-          <OTPVerify email={email} isReset={true} />
+          <OTPVerify email={email} isReset={true} locale={locale} />
         )}
       </div>
     </div>

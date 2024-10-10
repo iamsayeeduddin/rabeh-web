@@ -19,8 +19,8 @@ const Page = ({ params: { locale } }) => {
         className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px] "
         style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
       >
-        <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>{t("getStarted")}</h2>
-        <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>{t("rabehDescription")}</p>
+        <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("getStarted")}</h2>
+        <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("rabehDescription")}</p>
         <div className="flex md:flex-row flex-col gap-3 mt-12 items-center ">
           <div
             onClick={() => {
@@ -33,7 +33,7 @@ const Page = ({ params: { locale } }) => {
             className={`flex flex-col items-center justify-center gap-8 px-8 py-3 ${
               type === "Entrepreneur" ? "border-2 border-[#7860DC]" : "border-0"
             } bg-white rounded-[20px] w-[183.33px] shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] hover:bg-primary hover:text-white ${
-              fonts.spaceG.className
+              locale === "en" ? fonts.spaceG.className : ""
             }`}
           >
             <div className="bg-[#F9F8FD] rounded-[15.24px] h-[64px] w-[64px] flex items-center justify-center">
@@ -47,7 +47,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("entreprenuers")}</div>
+            <div className={`font-bold mb-4 text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>{t("entreprenuers")}</div>
           </div>
           <div
             onClick={() => {
@@ -60,7 +60,7 @@ const Page = ({ params: { locale } }) => {
             className={`flex ${
               type === "Investor" ? "border-2 border-[#00B8D9]" : "border-0"
             } flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] hover:bg-[#00B8D9] hover:text-white ${
-              fonts.spaceG.className
+              locale === "en" ? fonts.spaceG.className : ""
             }`}
           >
             <div className="bg-[#F3FCFD] rounded-[15.24px] h-[64px] w-[64px] flex items-center justify-center">
@@ -74,7 +74,7 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("investors")}</div>
+            <div className={`font-bold mb-4 text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>{t("investors")}</div>
           </div>
           <div
             onClick={() => {
@@ -87,7 +87,7 @@ const Page = ({ params: { locale } }) => {
             className={`flex  ${
               type === "Consultant" ? "border-2 border-[#004677]" : "border-0"
             } flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] hover:bg-[#004677] hover:text-white ${
-              fonts.spaceG.className
+              locale === "en" ? fonts.spaceG.className : ""
             }`}
           >
             <div className="bg-[#F3F6F9] rounded-[15.24px] h-[64px] w-[64px] flex items-center justify-center">
@@ -101,10 +101,10 @@ const Page = ({ params: { locale } }) => {
                 />
               </svg>
             </div>
-            <div className={`font-bold mb-4 text-[18px] ${fonts.inter.className}`}>{t("consultant")}</div>
+            <div className={`font-bold mb-4 text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>{t("consultant")}</div>
           </div>
         </div>
-        <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-2 ${fonts.spaceG.className}`}>
+        <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-2 ${locale === "en" ? fonts.spaceG.className : ""}`}>
           {t("alreadyAcc")}{" "}
           <p
             className="text-primary ml-2 cursor-pointer"

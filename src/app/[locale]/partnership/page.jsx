@@ -5,7 +5,7 @@ import React from "react";
 const Page = () => {
   return (
     <div>
-      <StrategicPartnerships bottomSpacing={true} />
+      <StrategicPartnerships locale={locale} bottomSpacing={true} />
       <ContactForm />
     </div>
   );

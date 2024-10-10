@@ -5,6 +5,7 @@ import useFonts from "@/utils/useFonts";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import classNames from "classnames";
+import { useTranslations } from "next-intl";
 
 const fadeInVariants = {
   hidden: {
@@ -158,8 +159,9 @@ const Section = ({ title, content }) => (
   </div>
 );
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
+  const t = useTranslations();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -168,7 +170,8 @@ const Page = () => {
   return (
     <div>
       <TitleHead
-        title={"Privacy Policy"}
+        locale={locale}
+        title={t("privacyPolicy")}
         desc={
           "Welcome to RABEH. Your privacy is important to us. This Privacy Policy outlines how we collect, use, share, and protect your personal information in compliance with Saudi Arabian laws, including the Saudi Personal Data Protection Law (PDPL), and applicable international regulations."
         }
@@ -178,7 +181,7 @@ const Page = () => {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={fadeInVariants}
-        className={classNames("flex flex-col md:pt-0 p-10 md:p-16", fonts.urbanist.className)}
+        className={classNames("flex flex-col md:pt-0 p-10 md:p-16", locale === "en" ? fonts.urbanist.className : "")}
       >
         {sections.map((section, index) => (
           <Section key={index} title={section.title} content={section.content} />

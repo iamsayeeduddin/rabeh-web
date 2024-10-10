@@ -7,16 +7,16 @@ import Newsletter from "@/components/Newsletter";
 import Brands from "@/components/Brands";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const t = useTranslations();
   return (
     <div>
-      <TitleHead title={t("investors")} desc={t("rabehDescription")} />
-      <WhyRabeh />
-      <OurServices />
+      <TitleHead locale={locale} title={t("investors")} desc={t("rabehDescription")} />
+      <WhyRabeh locale={locale} />
+      <OurServices locale={locale} />
       <UnleashInvestment />
-      <Brands />
-      <Newsletter />
+      <Brands locale={locale} />
+      <Newsletter locale={locale} />
     </div>
   );
 };

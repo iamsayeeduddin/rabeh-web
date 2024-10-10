@@ -8,47 +8,45 @@ import "slick-carousel/slick/slick-theme.css";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const WhatCustomerSays = () => {
+const WhatCustomerSays = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const testimonials = [
     {
-      title: t("title1"),
+      title: t("title01"),
       description: t("testimonial1"),
       name: t("name1"),
       position: t("position1"),
       imageUrl: "/user3.png",
     },
     {
-      title: t("title2"),
+      title: t("title02"),
       description: t("testimonial2"),
       name: t("name2"),
       position: t("position2"),
       imageUrl: "/user1.png",
     },
     {
-      title: t("title3"),
+      title: t("title03"),
       description: t("testimonial3"),
       name: t("name3"),
       position: t("position3"),
       imageUrl: "/user2.png",
     },
     {
-      title: t("title4"),
+      title: t("title04"),
       description: t("testimonial4"),
       name: t("name4"),
       position: t("position4"),
       imageUrl: "/user3.png",
     },
     {
-      title: t("title5"),
+      title: t("title05"),
       description: t("testimonial5"),
       name: t("name5"),
       position: t("position5"),
       imageUrl: "/user3.png",
-    }
-    
-    
+    },
   ];
 
   const settings = {
@@ -72,7 +70,7 @@ const WhatCustomerSays = () => {
   };
 
   return (
-    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + fonts.inter.className}>
+    <div className={"flex flex-col md:p-[72px] p-5 bg-white " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="justify-start text-lg text-medium text-[#737373]">{t("testimonials")}</div>
       <div className="justify-start text-5xl font-semibold font-inter mt-5">{t("whatCustSay")}</div>
 

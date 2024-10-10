@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const { ref: visionRef, inView: visionInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -45,12 +45,16 @@ const Page = () => {
   ];
   return (
     <div>
-      <TitleHead title={t("business")} desc={t("rabehDescriptionBuss")} />
+      <TitleHead locale={locale} title={t("business")} desc={t("rabehDescriptionBuss")} />
       <section className="flex flex-col md:py-24 md:px-28 p-5">
         <div className="grid md:grid-cols-12 w-full">
           <div className="flex flex-col col-span-4 ">
-            <h2 className={"text-5xl leading-tight font-bold my-4 text-center md:text-start " + fonts.spaceG.className}>{t("welcomeConsultants")}</h2>
-            <p className={"text-lg text-gray-400 mb-2 text-center md:text-start " + fonts.inter.className}>{t("onlinePaymentCompanies")}</p>
+            <h2 className={"text-5xl leading-tight font-bold my-4 text-center md:text-start " + (locale === "en" ? fonts.spaceG.className : "")}>
+              {t("welcomeConsultants")}
+            </h2>
+            <p className={"text-lg text-gray-400 mb-2 text-center md:text-start " + (locale === "en" ? fonts.inter.className : "")}>
+              {t("onlinePaymentCompanies")}
+            </p>
             <hr className="w-1/2 h-px my-8 bg-gray-400 border-0 "></hr>
 
             <TestimonialCard
@@ -65,7 +69,7 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section className={"w-full md:p-24 p-5 bg-tertiary flex flex-col items-center  " + fonts.plusJakarta.className}>
+      <section className={"w-full md:p-24 p-5 bg-tertiary flex flex-col items-center  " + (locale === "en" ? fonts.plusJakarta.className : "")}>
         <h1 className="text-white text-4xl font-bold mb-10 items-center md:items-start">{t("joinSecuredPayment")}</h1>
         <div className="grid md:grid-cols-12 divide-x divide-gray-600 gap-4 my-12">
           {figures.map(({ number, title }, index) => (
@@ -80,11 +84,17 @@ const Page = () => {
         animate={visionInView ? "visible" : "hidden"}
         className="grid md:grid-cols-12 md:py-24 md:px-28 p-5 md:gap-4"
       >
-        <div className={"flex flex-col md:col-span-5 gap-8 justify-center text-center md:text-start " + fonts.plusJakarta.className}>
+        <div
+          className={
+            "flex flex-col md:col-span-5 gap-8 justify-center text-center md:text-start " + (locale === "en" ? fonts.plusJakarta.className : "")
+          }
+        >
           <h1 className="text-5xl font-bold leading-tight">{t("createCulture")}</h1>
           <p className="text-lg text-gray-400 mb-2 text-center md:text-start ">{t("gainVisibility")}</p>
           <button
-            className={`${styles["button-primary"]} ${fonts.manrope.className} w-fit hover:bg-primary/80 text-center md:text-start mb-5 md:mb-0`}
+            className={`${styles["button-primary"]} ${
+              locale === "en" ? fonts.manrope.className : ""
+            } w-fit hover:bg-primary/80 text-center md:text-start mb-5 md:mb-0`}
           >
             <Link href="/sign-up">{t("getStarted")}</Link>
           </button>
@@ -103,11 +113,17 @@ const Page = () => {
         <div className="flex col-span-7">
           <img src="/assets/business-img-asset-2.png" alt="" />
         </div>
-        <div className={"flex flex-col md:col-span-5 gap-8 justify-center items-center md:items-start " + fonts.plusJakarta.className}>
+        <div
+          className={
+            "flex flex-col md:col-span-5 gap-8 justify-center items-center md:items-start " + (locale === "en" ? fonts.plusJakarta.className : "")
+          }
+        >
           <h1 className="text-5xl font-bold leading-tight text-center md:text-start md:mt-0 mt-5">{t("makeItEasy")}</h1>
           <p className="text-lg text-gray-400 mb-2 text-center md:text-start">{t("autoGenerate")}</p>
           <button
-            className={`${styles["button-primary"]} ${fonts.manrope.className} w-fit hover:bg-primary/80 text-center md:text-start mb-5 md:mb-0 `}
+            className={`${styles["button-primary"]} ${
+              locale === "en" ? fonts.manrope.className : ""
+            } w-fit hover:bg-primary/80 text-center md:text-start mb-5 md:mb-0 `}
           >
             <Link href={"/sign-up"}>{t("getStarted")}</Link>
           </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import useFonts from "@/utils/useFonts";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
 
   return (
@@ -12,14 +12,16 @@ const Page = () => {
         className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px] "
         style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
       >
-        <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>Sign In</h2>
-        <p className={`text-[16] md:text-start text-center ${fonts.spaceG.className}`}>
+        <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>Sign In</h2>
+        <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
           Rabeh is a revolutionary fintech application that redefines the travel
           <br></br> experience.
         </p>
         <div className="flex md:flex-row flex-col gap-3 mt-12 items-center ">
           <div
-            className={`flex flex-col items-center justify-center gap-8 px-8 py-3 bg-white rounded-[20px] w-[183.33px] hover:bg-[#7860DC] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${fonts.spaceG.className}`}
+            className={`flex flex-col items-center justify-center gap-8 px-8 py-3 bg-white rounded-[20px] w-[183.33px] hover:bg-[#7860DC] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
           >
             <div className="bg-[#F9F8FD] rounded-[15.24px] h-[64px] w-[64px] flex items-center justify-center">
               <svg width="31" height="32" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,10 +34,12 @@ const Page = () => {
                 />
               </svg>
             </div>
-            <div className={`font-bold text-[18px] ${fonts.inter.className}`}>Entrepreneur</div>
+            <div className={`font-bold text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>Entrepreneur</div>
           </div>
           <div
-            className={`flex flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] hover:bg-[#00B8D9] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${fonts.spaceG.className}`}
+            className={`flex flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] hover:bg-[#00B8D9] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
           >
             <div className="bg-[#F3FCFD] rounded-[15.24px] h-[64px] w-[64px] flex items-center justify-center">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,10 +52,12 @@ const Page = () => {
                 />
               </svg>
             </div>
-            <div className={`font-bold text-[18px] ${fonts.inter.className}`}>Investor</div>
+            <div className={`font-bold text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>Investor</div>
           </div>
           <div
-            className={`flex flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] hover:bg-[#004677] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${fonts.spaceG.className}`}
+            className={`flex flex-col items-center justify-center gap-8 px-8 py-3 w-[183.33px] bg-white rounded-[20px] hover:bg-[#004677] hover:text-white hover:shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
           >
             <div className="bg-[#F3F6F9] rounded-[15.24px] h-[64px] w-[64px] flex items-center justify-center">
               <svg width="31" height="32" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,10 +70,10 @@ const Page = () => {
                 />
               </svg>
             </div>
-            <div className={`font-bold text-[18px] ${fonts.inter.className}`}>Consultant</div>
+            <div className={`font-bold text-[18px] ${locale === "en" ? fonts.inter.className : ""}`}>Consultant</div>
           </div>
         </div>
-        <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-12 ${fonts.spaceG.className}`}>
+        <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] mt-12 ${locale === "en" ? fonts.spaceG.className : ""}`}>
           Did’t have an account? <p className="text-primary ml-2"> Register</p>
         </div>
       </div>

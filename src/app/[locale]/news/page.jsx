@@ -2,7 +2,7 @@ import React from "react";
 import TitleHead from "@/components/TitleHead";
 import useFonts from "@/utils/useFonts";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
 
   const cardData = [
@@ -55,21 +55,21 @@ const Page = () => {
 
   return (
     <div>
-      <TitleHead title={"News"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
+      <TitleHead locale={locale} title={"News"} desc={"Rabeh is a revolutionary fintech application that redefines the travel experience."} />
       <div className="grid md:grid-cols-3 gap-7 md:p-28 p-5">
         {cardData.map((card, index) => (
           <div
             key={index}
             className={
               "p-10 rounded-[20px] bg-white w-[335px] md:w-[385px] h-auto shadow-[0px_8.15px_6.52px_0px_rgba(0,0,0,0.0079),0px_50px_100px_0px_rgba(0,0,0,0.04)] m-2 " +
-              fonts.inter.className
+              (locale === "en" ? fonts.inter.className : "")
             }
           >
             <div className="flex flex-col items-start gap-5">
               <img src={card.img} alt={`news image ${index + 1}`} />
               <h3 className="font-semibold text-lg">{card.title}</h3>
               {card.content.map((text, idx) => (
-                <p key={idx} className={fonts.spaceG.className}>
+                <p key={idx} className={locale === "en" ? fonts.spaceG.className : ""}>
                   {text}
                 </p>
               ))}
@@ -85,7 +85,7 @@ const Page = () => {
                   <path d="M11.4902 6.97315V12H16.5171" stroke="#616B82" strokeWidth="2.15436" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
 
-                <p className={fonts.spaceG.className}>12 Muharram 1443 - 03 PM</p>
+                <p className={locale === "en" ? fonts.spaceG.className : ""}>12 Muharram 1443 - 03 PM</p>
               </div>
             </div>
           </div>

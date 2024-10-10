@@ -5,7 +5,7 @@ import useFonts from "@/utils/useFonts";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const InvestmentOpportunities = () => {
+const InvestmentOpportunities = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState(t("justLaunched"));
@@ -148,7 +148,7 @@ const InvestmentOpportunities = () => {
         <div
           className={
             "flex-row w-full md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer md:w-fit px-1 md:py-3 font-semibold border border-[#EAECF0] text-[12px] p-5 " +
-            fonts.urbanist.className
+            (locale === "en" ? fonts.urbanist.className : "")
           }
         >
           <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("justLaunched") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
@@ -165,10 +165,10 @@ const InvestmentOpportunities = () => {
           </span>
         </div>
       </div>
-      <div className={"flex items-center justify-center " + fonts.spaceG.className}>
+      <div className={"flex items-center justify-center " + (locale === "en" ? fonts.spaceG.className : "")}>
         <CardSlider cards={filteredCards} />
       </div>
-      <div className={"flex items-center justify-center text-primary mt-7 " + fonts.spaceG.className}>
+      <div className={"flex items-center justify-center text-primary mt-7 " + (locale === "en" ? fonts.spaceG.className : "")}>
         <Link href="/under-construction" className="hover:border-b-2 pb-1 border-primary transition-all ease-in-out duration-75">
           {t("moreInvestment")}
         </Link>

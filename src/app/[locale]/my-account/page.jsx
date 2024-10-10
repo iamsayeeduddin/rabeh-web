@@ -9,67 +9,136 @@ import NationalInfo from "./NationalInfo";
 import BankInfo from "./BankInfo";
 import GeneralInfo from "./GeneralInfo";
 import { useRouter } from "@/i18n/routing";
-import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { useTranslations } from "next-intl";
 
-const MyAccount = () => {
+const MyAccount = ({ params: { locale } }) => {
   const fonts = useFonts();
+  const t = useTranslations();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Personal");
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   let user = JSON.parse(localStorage?.getItem("user"));
 
-  const handleUpdate = (vals) =>{
+  const openPopup = () => setIsOpen(true);
+  const closePopup = () => setIsOpen(false);
+
+  const handleDeactivate = () => {
     setIsLoading(true);
-    endpoint
-      .post("/updateUser/" + user?._id, vals)
+    axios
+      .post(
+        process.env.NEXT_PUBLIC_API_URL + "/api/users/deactivateUser",
+        { userId: user?._id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user?.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+        closePopup();
+        localStorage.removeItem("user");
+        router.push("/");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        if (err.status === 403) {
+          localStorage.removeItem("user");
+          router.push("/login");
+        }
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleUpdate = (vals) => {
+    const formData = new FormData();
+
+    Object.keys(vals).forEach((key) => {
+      formData.append(key, vals[key]);
+    });
+    setIsLoading(true);
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/updateUser/" + user?._id, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
       .then((res) => {
         toast.success(res.data.message);
         setIsSuccess(true);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
+        if (err.status === 403) {
+          localStorage.removeItem("user");
+          router.push("/login");
+        }
         setIsSuccess(false);
       })
       .finally(() => setIsLoading(false));
-  } 
+  };
+
+  const getData = async () => {
+    setIsSuccess(false);
+    setData({});
+    axios
+      .get(process.env.NEXT_PUBLIC_API_URL + "/api/users/getUserDetails/" + user?._id, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        if (err.status === 403) {
+          localStorage.removeItem("user");
+          router.push("/login");
+        }
+      });
+  };
 
   useEffect(() => {
-    if (user?.type !== "Investor" && user?.type !== "Entrepreneur") {
-      router.push("/");
-    } else {
-      endpoint
-        .get("/getUserDetails/" + user?._id)
-        .then((res) => {
-          setData(res.data.data);
-        })
-        .catch((err) => console.log(err));
-    }
+    getData();
   }, []);
 
+  const tabArr = [
+    { label: t("personal"), value: "Personal", show: true },
+    { label: t("financial"), value: "Financial", show: false },
+    { value: t("work"), value: "Work", show: false },
+    { value: t("national"), value: "National", show: false },
+    { value: t("bank"), value: "Bank", show: false },
+  ];
   const renderTabContent = () => {
     switch (activeTab) {
       case "Personal":
-        return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <PersonalInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} getData={getData} />;
       case "Financial":
-        return <FinancialInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <FinancialInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "Work":
-        return <WorkInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading}  isSuccess={isSuccess}/>;
+        return <WorkInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "General":
         return <GeneralInfo />;
       case "National":
-        return <NationalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <NationalInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       case "Bank":
-        return <BankInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <BankInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
       default:
-      return <PersonalInfo data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess}/>;
+        return <PersonalInfo locale={locale} data={data} handleUpdate={handleUpdate} isLoading={isLoading} isSuccess={isSuccess} />;
     }
   };
 
   return (
-    <div className={`container mx-auto p-6 ${fonts.spaceG.className}`}>
+    <div className={`container mx-auto pt-20 p-6 ${locale === "en" ? fonts.spaceG.className : ""}`}>
       <div className="flex justify-between items-center mb-6">
         <div className="breadcrumbs text-sm text-gray-500">
           <div className="flex flex-row items-center justify-center gap-2">
@@ -93,26 +162,59 @@ const MyAccount = () => {
             <span className="ml-2">My Account</span>
           </div>
         </div>
-        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] ">Deactivate</button>
+        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] " onClick={openPopup}>
+          {t("deactivate")}
+        </button>
       </div>
 
       <div className="border-b mt-6">
         <nav className="-mb-px flex md:space-x-8 space-x-1" aria-label="Tabs">
-          {["Personal", "Financial", "Work", "National", "Bank"].map((tab) => (
-            <button
-              key={tab}
-              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === tab ? "border-primary text-primary" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
+          {tabArr
+            .filter((tab) => (user?.type === "Consultant" || user?.type === "Admin" ? tab.show : true))
+            .map((tab) => (
+              <button
+                key={tab.value}
+                className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === tab.value
+                    ? "border-primary text-primary"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+                onClick={() => setActiveTab(tab.value)}
+              >
+                {tab.label}
+              </button>
+            ))}
         </nav>
       </div>
 
       <div className="mt-6">{renderTabContent()}</div>
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-96">
+            <h2 className="text-lg font-semibold mb-4">Are you sure?</h2>
+            <p className="text-gray-600 mb-6">Do you really want to deactivate this account? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={closePopup}
+                disabled={isLoading}
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeactivate}
+                disabled={isLoading}
+                className={
+                  "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors " +
+                  (isLoading ? "animate-pulse cursor-not-allowed" : "")
+                }
+              >
+                Deactivate
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

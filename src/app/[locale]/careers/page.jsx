@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 
 
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const [jobType, setJobType] = useState("All");
   const fonts = useFonts();
   const t = useTranslations();
@@ -103,7 +103,7 @@ const Page = () => {
 
   return (
     <div className="w-full flex flex-col md:p-[72px] mt-10 p-5 ">
-      <div className={"flex flex-col items-center justify-center gap-10 mb-5 " + fonts.urbanist.className}>
+      <div className={"flex flex-col items-center justify-center gap-10 mb-5 " + (locale === "en" ? fonts.urbanist.className : "")}>
         <div className="text-4xl font-bold">{t("openPositions")}</div>
         <div className="text-base items-center justify-center">{t("joinTheTeam")}</div>
       </div>
@@ -111,7 +111,7 @@ const Page = () => {
         <div
           className={
             "mt-3 bg-[#F9FAFB] rounded-lg flex flex-wrap justify-between cursor-pointer w-fit px-1 py-3 font-semibold border border-[#EAECF0] " +
-            fonts.spaceG.className
+            (locale === "en" ? fonts.spaceG.className : "")
           }
         >
           {[t("all"), t("design"), t("softwareEngineering"), t("customerSuccess"), t("sales"), t("marketing")].map((d, i) => (
@@ -130,7 +130,9 @@ const Page = () => {
           <motion.div
             variants={childVariants}
             key={index}
-            className={`md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between ${fonts.urbanist.className}`}
+            className={`md:w-[768px] p-[28px] rounded-2xl border-2 bg-white flex flex-col justify-between ${
+              locale === "en" ? fonts.urbanist.className : ""
+            }`}
           >
             <div className="flex justify-between items-start">
               <span className="text-primary font-semibold">{job.category}</span>

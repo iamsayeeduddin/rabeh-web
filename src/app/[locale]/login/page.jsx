@@ -4,29 +4,32 @@ import useFonts from "@/utils/useFonts";
 import { useState } from "react";
 import Logo from "../../../components/Logo";
 import OTPVerify from "@/components/OTPVerify";
+import PhoneOTPVerify from "@/components/PhoneOTPVerify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
-import endpoint from "@/utils/apiUtil";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const router = useRouter();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isEmail, setIsEmail] = useState(false);
+  const [stage, setStage] = useState("Login");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function togglePasswordVisibility() {
     setIsPasswordVisible(!isPasswordVisible);
   }
 
   const login = (values) => {
-    endpoint
-      .post("/login", values)
+    setLoading(true);
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/login", values)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.data));
         toast.success(res.data.message);
@@ -34,8 +37,12 @@ const Page = () => {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
-        if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setIsEmail(true);
-      });
+        localStorage.setItem("user", JSON.stringify(error.response.data.user));
+        setPhone(error.response.data.user.phoneNumber);
+        if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setStage("Email");
+        if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") setStage("Phone");
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -48,28 +55,27 @@ const Page = () => {
           boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A",
         }}
       >
-        {!isEmail ? (
+        {stage === "Login" ? (
           <>
             <div className="flex items-center justify-center mb-5">
               <Logo width={176} height={75} />
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("welcome")}</h2>
-            <p className={`text-[16]  text-center text-[#7986A3] ${fonts.spaceG.className}`}>{t("loginAcc")}</p>
+            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("welcome")}</h2>
+            <p className={`text-[16]  text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("loginAcc")}</p>
             <div className="flex md:flex-row flex-col gap-3  items-center ">
               <div className="flex gap-5  col-span-full items-center "></div>
             </div>
             <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={(values, { setSubmitting }) => {
-                // Handle form submission here
                 setEmail(values.email);
                 login(values);
                 setSubmitting(false);
               }}
             >
               {({ isSubmitting }) => (
-                <Form className={`w-full md:p-0 p-3 max-w-lg ${fonts.spaceG.className}`}>
+                <Form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`}>
                   <div className="mb-6">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
                       {t("email")}
@@ -111,22 +117,26 @@ const Page = () => {
                     </div>
                     <ErrorMessage name="password" component="div" className="text-red-500 text-xs italic" />
                   </div>
-                  <div className={`flex flex-col md:flex-row items-center justify-center text-[16px] my-8 ${fonts.spaceG.className}`}>
-                    Forgot Password?{" "}
-                    <p className="text-primary ml-2 cursor-pointer" onClick={() => router.push("/reset-password")}>
+                  <div
+                    className={`flex flex-col md:flex-row items-center justify-center text-[16px] my-8 ${
+                      locale === "en" ? fonts.spaceG.className : ""
+                    }`}
+                  >
+                    {t("forgotPass")}{" "}
+                    <p className="text-primary mx-2 cursor-pointer" onClick={() => !isSubmitting && router.push("/reset-password")}>
                       {" "}
-                      Reset
+                      {t("reset")}
                     </p>
                   </div>
 
                   <div className="flex items-center justify-center">
                     <button
                       className={
-                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full" +
-                        (isSubmitting ? " opacity-50 animate-ping cursor-not-allowed" : "")
+                        "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
+                        (isSubmitting || loading ? " opacity-50 animate-pulse cursor-not-allowed" : "")
                       }
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || loading}
                     >
                       {t("login")}
                     </button>
@@ -135,9 +145,11 @@ const Page = () => {
               )}
             </Formik>
           </>
-        ) : (
-          <OTPVerify email={email} />
-        )}
+        ) : stage === "Email" ? (
+          <OTPVerify email={email} locale={locale} setStage={setStage} />
+        ) : stage === "Phone" ? (
+          <PhoneOTPVerify phoneNumber={"+91" + phone} locale={locale} setStage={setStage} />
+        ) : null}
       </div>
     </div>
   );

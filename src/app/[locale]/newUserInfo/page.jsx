@@ -8,8 +8,9 @@ import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
+import axios from "axios";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const [step, setStep] = useState(1);
   const [filledFields, setFilledFields] = useState(0);
@@ -129,6 +130,7 @@ const Page = () => {
       employerPhone: "",
       employmentStartDate: "",
       stillWorking: false,
+      hasEmployerPhone: false,
       employmentEndDate: "",
       bankName: "",
       accountHolderName: "",
@@ -262,8 +264,10 @@ const Page = () => {
         }
       }
       let user = JSON.parse(localStorage.getItem("user"));
-      endpoint
-        .post("/updateUser/" + user?._id, formData)
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/api/users/updateUser/" + user?._id, formData, {
+          headers: { Authorization: `Bearer ${user?.token}` },
+        })
         .then((res) => {
           if (res.status === 200) {
             setIsSuccess(true);
@@ -392,21 +396,21 @@ const Page = () => {
       >
         {!isSuccess ? (
           <>
-            <p className={`text-[#7986A3] p-5 md:p-0 text-start ${fonts.spaceG.className}`}>{stepDisplay(step)}/4</p>
-            <h2 className={`font-bold text-[24px] md:text-start text-center ${fonts.spaceG.className}`}>
+            <p className={`text-[#7986A3] p-5 md:p-0 text-start ${locale === "en" ? fonts.spaceG.className : ""}`}>{stepDisplay(step)}/4</p>
+            <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {step === 1
-                ? "Verify Citizenship"
+                ? t("verifyCitizen")
                 : step === 2
-                ? "Verify Identity"
+                ? t("verifyId")
                 : step === 3
-                ? "Upload Documents"
+                ? t("uploadDoc")
                 : step === 4
-                ? "Financial Information"
+                ? t("financialInfo")
                 : step === 5
-                ? "Work Information"
-                : "Bank Information"}
+                ? t("workInfo")
+                : t("bankInfo")}
             </h2>
-            <p className={`text-[16px] md:text-start text-center mb-4 p-5 md:p-0 ${fonts.spaceG.className}`}>
+            <p className={`text-[16px] md:text-start text-center mb-4 p-5 md:p-0 ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {step === 1
                 ? "Enter your identity information to complete the registration process"
                 : step === 2
@@ -424,16 +428,16 @@ const Page = () => {
               <div className="relative w-full h-1 bg-gray-200 rounded-lg">
                 <div className="absolute top-0 left-0 h-full bg-primary rounded-lg" style={{ width: `${completionPercentage}%` }} />
               </div>
-              <span className={`ml-4 ${fonts.spaceG.className}`}>{Math.round(completionPercentage)}%</span>
+              <span className={`ml-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>{Math.round(completionPercentage)}%</span>
             </div>
 
-            <div className={`w-full md:p-0 p-3 ${fonts.spaceG.className}`}>
+            <div className={`w-full md:p-0 p-3 ${locale === "en" ? fonts.spaceG.className : ""}`}>
               <form onSubmit={formik.handleSubmit}>
                 {step === 1 && (
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="dateOfBirth">
-                        Date of Birth
+                        {t("dateOfBirth")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -450,7 +454,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="nationality">
-                        Nationality
+                        {t("nationality")}
                       </label>
                       <select
                         className={`block w-full bg-white text-gray-700 border ${
@@ -470,7 +474,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="countryOfResidence">
-                        Country of Residence
+                        {t("countryOfResidence")}
                       </label>
                       <select
                         className={`block w-full bg-white text-gray-700 border ${
@@ -480,9 +484,8 @@ const Page = () => {
                         {...formik.getFieldProps("countryOfResidence")}
                       >
                         <option value="" label="Select your country" />
-                        <option value="ksa" label="Saudi Arabia" />
-                        <option value="us" label="United States" />
-                        <option value="india" label="India" />
+                        <option value="KSA" label="Saudi Arabia" />
+                        <option value="USA" label="United States" />
                       </select>
                       {formik.touched.countryOfResidence && formik.errors.countryOfResidence && (
                         <p className="text-red-500 text-xs italic">{formik.errors.countryOfResidence}</p>
@@ -491,7 +494,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="city">
-                        City
+                        {t("city")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -506,7 +509,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="region">
-                        Region
+                        {t("region")}
                       </label>
                       <select
                         className={`block w-full bg-white text-gray-700 border ${
@@ -525,7 +528,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="neighbourhood">
-                        Neighbourhood
+                        {t("neighbourhood")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -542,7 +545,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="street">
-                        Street
+                        {t("street")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -557,7 +560,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="address">
-                        Address
+                        {t("address")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -577,7 +580,7 @@ const Page = () => {
                     {/* Step 2: ID Verification */}
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="idNumber">
-                        ID Number
+                        {t("idNumber")}
                       </label>
                       <div className="flex w-full">
                         <input
@@ -589,7 +592,7 @@ const Page = () => {
                           {...formik.getFieldProps("idNumber")}
                         />
                         <button type="button" className="bg-primary text-white font-bold  px-4 h-[45.5px]  rounded-r-lg" onClick={handleNext}>
-                          Verify
+                          {t("verify")}
                         </button>
                       </div>
                       {formik.touched.idNumber && formik.errors.idNumber && <p className="text-red-500 text-xs italic">{formik.errors.idNumber}</p>}
@@ -617,7 +620,7 @@ const Page = () => {
                       {!formik?.values?.documentFile ? (
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="documentFile">
-                            Upload Document
+                            {t("uploadDoc")}
                           </label>
                           <div
                             onDragOver={handleDragOver}
@@ -674,7 +677,7 @@ const Page = () => {
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="annualIncome">
-                        Annual Income
+                        {t("annualIncome")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -691,7 +694,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="educationalLevel">
-                        Educational Level
+                        {t("educationalLevel")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -708,7 +711,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="primarySourceOfIncome">
-                        Primary Source of Income
+                        {t("primarySourceOfIncome")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -725,7 +728,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="netWorth">
-                        Net Worth in Riyals (excluding house)
+                        {t("netWorthRiyalsEx")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -740,7 +743,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="anotherPhoneNumber">
-                        Another Phone Number
+                        {t("anotherPhone")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -761,14 +764,14 @@ const Page = () => {
                     <div className="mb-4">
                       <label className="inline-flex items-center">
                         <input type="checkbox" className="form-checkbox" {...formik.getFieldProps("noEmployer")} />
-                        <span className="ml-2">There is no employer?</span>
+                        <span className="ml-2">{t("noEmployer")}</span>
                       </label>
                     </div>
                     {!formik.values.noEmployer && (
                       <>
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerName">
-                            Employer Name
+                            {t("employerName")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -785,7 +788,7 @@ const Page = () => {
 
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerAddress">
-                            Employer Address
+                            {t("employerAddress")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -802,7 +805,7 @@ const Page = () => {
 
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="jobName">
-                            Job Name
+                            {t("jobName")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -825,7 +828,7 @@ const Page = () => {
                         {formik.values.hasEmployerPhone && (
                           <div className="mb-6">
                             <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerPhone">
-                              Employer Phone
+                              {t("employerPhone")}
                             </label>
                             <input
                               className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -843,7 +846,7 @@ const Page = () => {
 
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employmentStartDate">
-                            Employment Start Date
+                            {t("employmentStartDate")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -861,14 +864,14 @@ const Page = () => {
                         <div className="mb-4">
                           <label className="inline-flex items-center">
                             <input type="checkbox" className="form-checkbox" {...formik.getFieldProps("stillWorking")} />
-                            <span className="ml-2">Still working?</span>
+                            <span className="ml-2">{t("stillWorking")}</span>
                           </label>
                         </div>
 
                         {formik.values.stillWorking === false && (
                           <div className="mb-6">
                             <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employmentEndDate">
-                              Employment End Date
+                              {t("employmentEndDate")}
                             </label>
                             <input
                               className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -891,7 +894,7 @@ const Page = () => {
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="bankName">
-                        Bank Name
+                        {t("bankName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -906,7 +909,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="accountHolderName">
-                        Account Holder Name
+                        {t("accountHolderName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -923,7 +926,7 @@ const Page = () => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="iban">
-                        IBAN
+                        {t("iban")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -945,7 +948,7 @@ const Page = () => {
                         onClick={handlePrevious}
                         className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                       >
-                        Back
+                        {t("back")}
                       </button>
                     ) : null}
                     <button
@@ -956,7 +959,7 @@ const Page = () => {
                       }
                       onClick={handleNext}
                     >
-                      {step === 6 ? "Submit" : "Next"}
+                      {step === 6 ? t("submit") : t("next")}
                     </button>
                   </div>
                 ) : null}
@@ -1005,9 +1008,11 @@ const Page = () => {
                     />
                   </svg>
 
-                  <h2 className={`font-bold text-[36px] text-center ${fonts.spaceG.className}`}>{t("Your ID verification is in progress")}</h2>
-                  <p className={`text-[16] text-center text-[#7986A3] ${fonts.spaceG.className}`}>
-                    {t("Once verified, your wallet will be created successfully")}
+                  <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
+                    {t("verificationInProgress")}
+                  </h2>
+                  <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
+                    {t("onceVerifiedWalletCreated")}
                   </p>
                   <div className="flex items-center justify-center">
                     <button
@@ -1017,7 +1022,7 @@ const Page = () => {
                       type="button"
                       onClick={() => router.push("/")}
                     >
-                      {t("Home")}
+                      {t("home")}
                     </button>
                   </div>
                 </div>

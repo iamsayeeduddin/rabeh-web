@@ -1,10 +1,11 @@
 "use client";
 import useFonts from "@/utils/useFonts";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useState, useEffect } from "react";
 import { MdBuild } from "react-icons/md";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const router = useRouter();
   const path = usePathname();
@@ -15,7 +16,11 @@ const Page = () => {
   }, [path]);
 
   return (
-    <div className={"bg-secondary py-56 flex flex-col text-white gap-8 justify-center items-center text-3xl " + fonts.spaceG.className}>
+    <div
+      className={
+        "bg-secondary py-56 flex flex-col text-white gap-8 justify-center items-center text-3xl " + (locale === "en" ? fonts.spaceG.className : "")
+      }
+    >
       {/* <MdBuild className="text-5xl animate-spin" /> */}
       {!user?._id ? (
         <>

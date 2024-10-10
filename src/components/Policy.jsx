@@ -4,7 +4,7 @@ import useFonts from "@/utils/useFonts";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const Policy = () => {
+const Policy = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
 
@@ -28,7 +28,7 @@ const Policy = () => {
   }, []);
 
   return (
-    <div className={"flex flex-col p-10 md:p-[100px] bg-white " + fonts.inter.className}>
+    <div className={"flex flex-col p-10 md:p-[100px] bg-white " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="justify-start text-[40px] font-inter mt-5">{t("policy")}</div>
       <div className="text-[18px] ltr:text-start rtl:text-right text-[#737373] max-w-3xl">{t("policySub")}</div>
 

@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "@/utils/firebase";
 import useFonts from "@/utils/useFonts";
-import endpoint from "@/utils/apiUtil";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
-function OTPVerify({ email, isReset, userType, locale, isRegister = false, setStage }) {
+function PhoneOTPVerify({ locale, phoneNumber }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -15,7 +15,18 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
   const [timeLeft, setTimeLeft] = useState(60);
   const [isCountdownFinished, setIsCountdownFinished] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [confirmationResult, setConfirmationResult] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  // Recaptcha and OTP triggers
+  useEffect(() => {
+    if (!window.recaptchaVerifier) {
+      setUpRecaptcha();
+      triggerOTP();
+    }
+  }, []);
+
+  // Countdown logic
   useEffect(() => {
     if (timeLeft === 0) {
       setIsCountdownFinished(true);
@@ -35,51 +46,94 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
     return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
   };
 
-  const resendOTP = () => {
-    setTimeLeft(60);
-    setIsCountdownFinished(false);
-    axios
-      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/resendOTP", { email })
-      .then((res) => {
-        toast.success(res.data.message);
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      });
+  // Trigger the OTP
+  const triggerOTP = () => {
+    if (window.recaptchaVerifier) {
+      signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+        .then((result) => {
+          setConfirmationResult(result);
+          toast.success("OTP sent successfully!");
+          setTimeLeft(60); // Reset timer for re-sending OTP
+          setIsCountdownFinished(false);
+        })
+        .catch((error) => {
+          console.error("Error sending OTP:", error);
+          toast.error("Failed to send OTP. Please try again.");
+        });
+    }
   };
 
+  // Set up reCAPTCHA
+  const setUpRecaptcha = () => {
+    if (typeof window !== "undefined" && auth) {
+      try {
+        window.recaptchaVerifier = new RecaptchaVerifier(
+          "recaptcha-container",
+          {
+            size: "invisible",
+            callback: (response) => {
+              console.log("reCAPTCHA solved", response);
+            },
+            "expired-callback": () => {
+              console.log("reCAPTCHA expired, reset required.");
+            },
+          },
+          auth
+        );
+
+        // Render the reCAPTCHA
+        window.recaptchaVerifier.render().then(() => {
+          console.log("reCAPTCHA initialized");
+        });
+      } catch (error) {
+        console.error("Error initializing reCAPTCHA:", error);
+      }
+    }
+  };
+
+  // Handle OTP verification
   const handleVerify = (e) => {
     setLoading(true);
     e.preventDefault();
-    axios
-      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/verifyEmail", { email, otp, isReset, isRegister })
-      .then((res) => {
-        toast.success(res.data.message);
-        let user = res.data.data;
 
-        if (isRegister) {
-          localStorage.setItem("user", JSON.stringify(user));
-          setStage("Phone");
-        }
-
-        if (isReset) {
-          router.push("/new-password/?email=" + email);
-        }
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-        if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") {
-          setStage("Phone");
-        }
-      })
-      .finally(() => setLoading(false));
+    if (confirmationResult) {
+      confirmationResult
+        .confirm(otp)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          updatePhoneVerified();
+        })
+        .catch((error) => {
+          console.error("Invalid OTP:", error);
+          toast.error("Invalid OTP. Please try again.");
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
+  const updatePhoneVerified = () => {
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/phone-verified`, {
+        userId: user?._id,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        let updatedUser = res.data.user;
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        if (!["Investor", "Entrepreneur", "Admin"].includes(updatedUser?.type)) {
+          router.push("/");
+        } else {
+          router.push("/newUserInfo");
+        }
+      });
+  };
   return (
     <>
-      <div className="flex  flex-col gap-3  items-center ">
-        <div className="flex flex-col gap-5  col-span-full items-center ">
-          <div className="bg-primary rounded-full  h-[100px] w-[100px]   flex items-center justify-center  ">
+      <div id="recaptcha-container"></div>
+      <div className="flex flex-col gap-3 items-center">
+        <div className="flex flex-col gap-5 col-span-full items-center">
+          <div className="bg-primary rounded-full h-[100px] w-[100px] flex items-center justify-center">
             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 opacity="0.2"
@@ -102,18 +156,20 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
               />
             </svg>
           </div>
-          <p className={`text-[#7986A3] text-center  ${locale === "en" ? fonts.spaceG.className : ""}`}> 2/2</p>
+          <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>2/2</p>
           <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("codeVerify")}</h2>
-          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("plsEnterCode")}</p>
-          <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{email}</p>
+          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
+            {t("plsEnterCodePhone")}
+          </p>
+          <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{phoneNumber}</p>
         </div>
       </div>
       <form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`} action="" method="POST">
         <div className="flex space-x-4 mb-6 items-center justify-center">
-          {Array.from({ length: 4 }).map((_, index) => (
+          {Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="relative">
               <input
-                className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center h-[76px] w-[70px]  ${
+                className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center h-[76px] w-[70px] ${
                   locale === "en" ? fonts.spaceG.className : ""
                 }`}
                 id={`otp-input-${index}`}
@@ -130,7 +186,7 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
 
                   setOtp(newOtp);
 
-                  if (value.length === 1 && index < 3) {
+                  if (value.length === 1 && index < 5) {
                     const nextInput = document.getElementById(`otp-input-${index + 1}`);
                     if (nextInput) {
                       nextInput.focus();
@@ -152,11 +208,11 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
         <div className="flex flex-row items-center justify-center gap-5">
           {!isCountdownFinished ? (
             <>
-              <p className="text-[#7986A3] ">{t("resendCode")}</p>
+              <p className="text-[#7986A3]">{t("resendCode")}</p>
               <p className="text-bold">{formatTime(timeLeft)}</p>
             </>
           ) : (
-            <p className="text-primary cursor-pointer" onClick={resendOTP}>
+            <p className="text-primary cursor-pointer" onClick={triggerOTP}>
               {t("resend")}
             </p>
           )}
@@ -170,7 +226,7 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
             }
             type="button"
             onClick={handleVerify}
-            disabled={otp.length < 4 || loading}
+            disabled={otp.length < 6 || loading}
           >
             {t("verification")}
           </button>
@@ -180,4 +236,4 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
   );
 }
 
-export default OTPVerify;
+export default PhoneOTPVerify;

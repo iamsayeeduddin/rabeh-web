@@ -256,6 +256,7 @@
   "hide": "Hide",
   "codeVerify": "Code verification",
   "plsEnterCode": "Please enter the code we just sent to the below email address:",
+  "plsEnterCodePhone": "Please enter the code we just sent to the below phone number:",
   "resendCode": "Resend the code after",
   "verification": "Verification",
   "issueNo": "Issue number",
@@ -284,16 +285,16 @@
   "testimonial5": "Rabeh provided the platform and resources we needed to bring our social enterprise to life. Their team was supportive and responsive, and the crowdfunding campaign exceeded our expectations. We're now making a positive impact, thanks to Rabeh.",
   "name1": "Emily S.",
   "position1": "Small Business Owner",
-  
+
   "name2": "Michael L.",
   "position2": "Non-Profit Director",
-  
+
   "name3": "Sarah K.",
   "position3": "App Developer",
-  
+
   "name4": "David M.",
   "position4": "Innovative Product Creator",
-  
+
   "name5": "Lisa P.",
   "position5": "Social Entrepreneur",
 
@@ -308,7 +309,6 @@
 
   "name8": "Houda Ahmed",
   "title8": "Head of Investment",
-
 
   "category1": "Design",
   "title01": "Product Designer",
@@ -345,6 +345,61 @@
   "location05": "Remote",
   "jobType05": "Part-time",
 
-  "viewJob": "View Job"
-
+  "viewJob": "View Job",
+  "forgotPass": "Forgot Password?",
+  "reset": "Reset",
+  "addPhoto": "Add photo",
+  "changePhoto": "Change photo",
+  "deactivate": "Deactivate",
+  "personal": "Personal",
+  "financial": "Financial",
+  "work": "Work",
+  "general": "General",
+  "national": "National",
+  "bank": "Bank",
+  "edit": "Edit",
+  "role": "Role",
+  "nationality": "Nationality",
+  "uploadDoc": "Upload Document",
+  "cancel": "Cancel",
+  "save": "Save",
+  "fullName": "Full Name",
+  "createdAt": "Created At",
+  "workInfo": "Work Information",
+  "employerName": "Employer Name",
+  "employerAddress": "Employer Address",
+  "jobName": "Job Name",
+  "hasEmployerPhone": "Do you have an employer phone?",
+  "employerPhone": "Employer Phone",
+  "employmentStartDate": "Employment Start Date",
+  "employmentEndDate": "Employment End Date",
+  "stillWorking": "Still working?",
+  "bankInfo": "Bank Information",
+  "bankName": "Bank Name",
+  "accHolderName": "Account Holder Name",
+  "iban": "IBAN",
+  "nationalAddInfo": "National Address Information",
+  "dateOfBirth": "Date of Birth",
+  "countryOfResidence": "Country of Residence",
+  "address": "Address",
+  "street": "Street",
+  "neighbourhood": "Neighbourhood",
+  "city": "City",
+  "region": "Region",
+  "financialInfo": "Financial Information",
+  "annualIncome": "Annual Income",
+  "eduLevel": "Education Level",
+  "primarySourceOfIncome": "Primary Source of Income",
+  "netWorthRiyalsEx": "Net worth in Riyals (excluding house)",
+  "anotherPhone": "Another Phone",
+  "verifyId": "Verify Identity",
+  "verifyCitizen": "Verify Citizenship",
+  "idNumber": "ID Number",
+  "verify": "Verify",
+  "noEmployer": "No Employer?",
+  "submit": "Submit",
+  "back": "Back",
+  "next": "Next",
+  "verificationInProgress": "Your ID verification is in progress",
+  "onceVerifedWalletCreated": "Once verified, your wallet will be created successfully"
 }

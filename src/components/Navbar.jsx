@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 
-const Navbar = () => {
+const Navbar = ({ locale }) => {
   const fonts = useFonts();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +21,6 @@ const Navbar = () => {
   const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
-  const { locale } = useRouter();
   const params = useParams();
 
   const toggleDropdown = () => {
@@ -43,10 +42,10 @@ const Navbar = () => {
   const handleLangChange = (lang) => {
     router.replace(pathname, { locale: lang });
   };
-
+  const userLs = localStorage.getItem("user");
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-  }, [path]);
+    setUser(JSON.parse(userLs));
+  }, [path, userLs]);
 
   const handleLogout = () => {
     if (user?._id) {
@@ -279,7 +278,11 @@ const Navbar = () => {
               <FaTimes />
             </Link>
           </div>
-          <div className={"flex items-center ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white " + fonts.spaceG.className}>
+          <div
+            className={
+              "flex items-center ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 text-white " + (locale === "en" ? fonts.spaceG.className : "")
+            }
+          >
             <div className="relative inline-block">
               <select className="bg-primary text-white border-none rounded px-2 py-1">
                 <option value="ar">🇸🇦 KSA</option>
@@ -303,7 +306,12 @@ const Navbar = () => {
               <Logo />
             </Link>
 
-            <div className={"hidden md:flex ltr:space-x-6 rtl:space-x-reverse rtl:space-x-6 text-sm text-[#2C303B] " + fonts.inter.className}>
+            <div
+              className={
+                "hidden md:flex ltr:space-x-6 rtl:space-x-reverse rtl:space-x-6 text-sm text-[#2C303B] " +
+                (locale === "en" ? fonts.inter.className : "")
+              }
+            >
               <Link href="/" onClick={handleLinkClick} className="text-gray-700 hover:text-primary">
                 {t("home")}
               </Link>
@@ -325,7 +333,7 @@ const Navbar = () => {
 
               {dropdownOpen && (
                 <div className="flex md:hidden p-5 md:py-5 md:px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
-                  <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+                  <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + (locale === "en" ? fonts.urbanist.className : "")}>
                     {sections.map((section, index) => (
                       <div key={index}>
                         <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
@@ -334,8 +342,8 @@ const Navbar = () => {
                             <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
                               <div className="mt-2">{item.icon}</div>
                               <div>
-                                <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
-                                <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
+                                <h4 className={"font-semibold mb-2 " + (locale === "en" ? fonts.spaceG.className : "")}>{item.title}</h4>
+                                <p className={"mt-5 " + (locale === "en" ? fonts.inter.className : "")}>{item.description}</p>
                               </div>
                             </div>
                           ))}
@@ -363,13 +371,17 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-          <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + fonts.spaceG.className}>
-            {!user?._id ? (
+          <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + (locale === "en" ? fonts.spaceG.className : "")}>
+            {!user?.token ? (
               <>
-                <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2">
+                <Link href="/login" onClick={handleLinkClick} className="text-gray-700 cursor-pointer hover:text-gray-900 rounded-lg px-4 py-2">
                   {t("signIn")}
                 </Link>
-                <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+                <Link
+                  href="/sign-up"
+                  onClick={handleLinkClick}
+                  className="bg-primary cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-primary-light"
+                >
                   {t("getStarted")}
                 </Link>
               </>
@@ -384,7 +396,7 @@ const Navbar = () => {
                 >
                   <p>{user?.name?.charAt(0).toUpperCase() || "U"}</p>
                 </div>
-                <CiLogout className="hover:text-primary text-lg" onClick={handleLogout} />
+                <CiLogout className="hover:text-primary text-lg cursor-pointer" onClick={handleLogout} />
               </span>
             )}
           </div>
@@ -417,7 +429,7 @@ const Navbar = () => {
               </button>
             </div>
             {dropdownOpen && (
-              <div className={"grid grid-cols-1 md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+              <div className={"grid grid-cols-1 md:grid-cols-4 gap-8 text-left " + (locale === "en" ? fonts.urbanist.className : "")}>
                 {sections.map((section, index) => (
                   <div key={index}>
                     <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
@@ -426,8 +438,8 @@ const Navbar = () => {
                         <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
                           <div className="mt-2">{item.icon}</div>
                           <div>
-                            <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
-                            <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
+                            <h4 className={"font-semibold mb-2 " + (locale === "en" ? fonts.spaceG.className : "")}>{item.title}</h4>
+                            <p className={"mt-5 " + (locale === "en" ? fonts.inter.className : "")}>{item.description}</p>
                           </div>
                         </div>
                       ))}
@@ -462,7 +474,7 @@ const Navbar = () => {
 
         {dropdownOpen && (
           <div className="hidden md:flex p-5 md:py-5 md:px-28 bg-[url('/assets/logo-ddwon.png')] bg-right-bottom bg-no-repeat">
-            <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + fonts.urbanist.className}>
+            <div className={"grid grid-cols-1  md:grid-cols-4 gap-8 text-left " + (locale === "en" ? fonts.urbanist.className : "")}>
               {sections.map((section, index) => (
                 <div key={index}>
                   <h3 className={"font-semibold text-lg mb-4 text-[#004677]"}>{section.title}</h3>
@@ -471,8 +483,8 @@ const Navbar = () => {
                       <div className="flex items-start gap-4 hover:text-[#00BFB2] cursor-pointer" key={itemIndex}>
                         <div className="mt-2">{item.icon}</div>
                         <div>
-                          <h4 className={"font-semibold mb-2 " + fonts.spaceG.className}>{item.title}</h4>
-                          <p className={"mt-5 " + fonts.inter.className}>{item.description}</p>
+                          <h4 className={"font-semibold mb-2 " + (locale === "en" ? fonts.spaceG.className : "")}>{item.title}</h4>
+                          <p className={"mt-5 " + (locale === "en" ? fonts.inter.className : "")}>{item.description}</p>
                         </div>
                       </div>
                     ))}

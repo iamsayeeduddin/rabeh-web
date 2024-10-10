@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import { FaMapMarkerAlt, FaUpload } from "react-icons/fa";
-
+import { useTranslations } from "next-intl";
 
 // Yup validation schema
 const validationSchema = Yup.object({
@@ -17,8 +17,9 @@ const validationSchema = Yup.object({
   address: Yup.string().required("Address is required"),
 });
 
-const NationalInfo = () => {
+const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locales }) => {
   const fonts = useFonts();
+  const t = useTranslations();
   const [isEditing, setIsEditing] = useState(false);
 
   // Initial form values for Formik
@@ -33,16 +34,33 @@ const NationalInfo = () => {
     address: "Address",
   };
 
-  // Formik setup
+  const handleSave = (vals) => {
+    if (!isLoading) {
+      handleUpdate(vals);
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      // Handle save logic
-      console.log("User Info Saved:", values);
+      handleSave(values);
       setIsEditing(false);
     },
   });
+
+  useEffect(() => {
+    formik.setValues({
+      dateOfBirth: data?.dateOfBirth,
+      nationality: data?.nationality,
+      countryOfResidence: data?.countryOfResidence,
+      city: data?.city,
+      region: data?.region,
+      neighbourhood: data?.neighbourhood,
+      street: data?.street,
+      address: data?.address,
+    });
+  }, [data]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -52,13 +70,26 @@ const NationalInfo = () => {
     setIsEditing(false);
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      getData();
+      setIsEditing(false);
+    }
+  }, [isSuccess]);
+
   return (
-    <div className={`personal-info ${fonts.spaceG.className} flex flex-col items-start justify-start`}>
+    <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">
-            {isEditing ? <>Edit National Address Information</> : <>National Address Information</>}
-          </h3>
+        <h3 className="text-lg font-semibold text-center mb-6">
+            {isEditing ? (
+              <>
+                {t("edit")} {t("nationalAddInfo")}
+              </>
+            ) : (
+              <>{t("nationalAddInfo")}</>
+            )}
+        </h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -66,13 +97,7 @@ const NationalInfo = () => {
                 className="font-semibold py-2 px-4 rounded-md flex flex-row text-[15px] text-[#495162] gap-3 border-2"
                 onClick={handleEditClick}
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -80,7 +105,7 @@ const NationalInfo = () => {
                     fill="#495162"
                   />
                 </svg>
-                Edit
+                {t("edit")}
               </button>
             )}
           </div>
@@ -89,287 +114,216 @@ const NationalInfo = () => {
         <form onSubmit={formik.handleSubmit} className="user-info grid md:grid-cols-2 p-5">
           <div className="grid gap-4 mb-6">
             {isEditing ? (
-             <>
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="dateOfBirth"
-               >
-                 Date of Birth
-               </label>
-               <input
-                 className={`appearance-none block w-full bg-white text-gray-700 border ${
-                   formik.touched.dateOfBirth && formik.errors.dateOfBirth
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="dateOfBirth"
-                 type="date"
-                 {...formik.getFieldProps("dateOfBirth")}
-               />
-               {formik.touched.dateOfBirth && formik.errors.dateOfBirth && (
-                 <p className="text-red-500 text-xs italic">
-                   {formik.errors.dateOfBirth}
-                 </p>
-               )}
-             </div>
+              <>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="dateOfBirth">
+                    {t("dateOfBirth")}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.dateOfBirth && formik.errors.dateOfBirth ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="dateOfBirth"
+                    type="date"
+                    {...formik.getFieldProps("dateOfBirth")}
+                  />
+                  {formik.touched.dateOfBirth && formik.errors.dateOfBirth && (
+                    <p className="text-red-500 text-xs italic">{formik.errors.dateOfBirth}</p>
+                  )}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="nationality"
-               >
-                 Nationality
-               </label>
-               <select
-                 className={`block w-full bg-white text-gray-700 border ${
-                   formik.touched.nationality && formik.errors.nationality
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="nationality"
-                 {...formik.getFieldProps("nationality")}
-               >
-                 <option value="" label="Select your nationality" />
-                 <option value="ksa" label="Saudi Arabia" />
-                 <option value="us" label="United States" />
-                 <option value="india" label="India" />
-               </select>
-               {formik.touched.nationality && formik.errors.nationality && (
-                 <p className="text-red-500 text-xs italic">
-                   {formik.errors.nationality}
-                 </p>
-               )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="nationality">
+                    {t("nationality")}
+                  </label>
+                  <select
+                    className={`block w-full bg-white text-gray-700 border ${
+                      formik.touched.nationality && formik.errors.nationality ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="nationality"
+                    {...formik.getFieldProps("nationality")}
+                  >
+                    <option value="" label="Select your nationality" />
+                    <option value="KSA" label="Saudi Arabia" />
+                    <option value="US" label="United States" />
+                  </select>
+                  {formik.touched.nationality && formik.errors.nationality && (
+                    <p className="text-red-500 text-xs italic">{formik.errors.nationality}</p>
+                  )}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="countryOfResidence"
-               >
-                 Country of Residence
-               </label>
-               <select
-                 className={`block w-full bg-white text-gray-700 border ${
-                   formik.touched.countryOfResidence &&
-                   formik.errors.countryOfResidence
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="countryOfResidence"
-                 {...formik.getFieldProps("countryOfResidence")}
-               >
-                 <option value="" label="Select your country" />
-                 <option value="ksa" label="Saudi Arabia" />
-                 <option value="us" label="United States" />
-                 <option value="india" label="India" />
-               </select>
-               {formik.touched.countryOfResidence &&
-                 formik.errors.countryOfResidence && (
-                   <p className="text-red-500 text-xs italic">
-                     {formik.errors.countryOfResidence}
-                   </p>
-                 )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="countryOfResidence">
+                    {t("countryOfResidence")}
+                  </label>
+                  <select
+                    className={`block w-full bg-white text-gray-700 border ${
+                      formik.touched.countryOfResidence && formik.errors.countryOfResidence ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="countryOfResidence"
+                    {...formik.getFieldProps("countryOfResidence")}
+                  >
+                    <option value="" label="Select your country" />
+                    <option value="KSA" label="Saudi Arabia" />
+                    <option value="US" label="United States" />
+                  </select>
+                  {formik.touched.countryOfResidence && formik.errors.countryOfResidence && (
+                    <p className="text-red-500 text-xs italic">{formik.errors.countryOfResidence}</p>
+                  )}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="city"
-               >
-                 City
-               </label>
-               <input
-                 className={`appearance-none block w-full bg-white text-gray-700 border ${
-                   formik.touched.city && formik.errors.city
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="city"
-                 type="text"
-                 {...formik.getFieldProps("city")}
-               />
-               {formik.touched.city && formik.errors.city && (
-                 <p className="text-red-500 text-xs italic">
-                   {formik.errors.city}
-                 </p>
-               )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="city">
+                    {t("city")}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.city && formik.errors.city ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="city"
+                    type="text"
+                    {...formik.getFieldProps("city")}
+                  />
+                  {formik.touched.city && formik.errors.city && <p className="text-red-500 text-xs italic">{formik.errors.city}</p>}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="region"
-               >
-                 Region
-               </label>
-               <select
-                 className={`block w-full bg-white text-gray-700 border ${
-                   formik.touched.region && formik.errors.region
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="region"
-                 {...formik.getFieldProps("region")}
-               >
-                 <option value="" label="Select your region" />
-                 <option value="central" label="Central" />
-                 <option value="western" label="Western" />
-                 <option value="eastern" label="Eastern" />
-               </select>
-               {formik.touched.region && formik.errors.region && (
-                 <p className="text-red-500 text-xs italic">
-                   {formik.errors.region}
-                 </p>
-               )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="region">
+                    {t("region")}
+                  </label>
+                  <select
+                    className={`block w-full bg-white text-gray-700 border ${
+                      formik.touched.region && formik.errors.region ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="region"
+                    {...formik.getFieldProps("region")}
+                  >
+                    <option value="" label="Select your region" />
+                    <option value="central" label="Central" />
+                    <option value="western" label="Western" />
+                    <option value="eastern" label="Eastern" />
+                  </select>
+                  {formik.touched.region && formik.errors.region && <p className="text-red-500 text-xs italic">{formik.errors.region}</p>}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="neighbourhood"
-               >
-                 Neighbourhood
-               </label>
-               <input
-                 className={`appearance-none block w-full bg-white text-gray-700 border ${
-                   formik.touched.neighbourhood &&
-                   formik.errors.neighbourhood
-                     ? "border-red-500"
-                     : " border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="neighbourhood"
-                 type="text"
-                 {...formik.getFieldProps("neighbourhood")}
-               />
-               {formik.touched.neighbourhood &&
-                 formik.errors.neighbourhood && (
-                   <p className="text-red-500 text-xs italic">
-                     {formik.errors.neighbourhood}
-                   </p>
-                 )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="neighbourhood">
+                    {t("neighbourhood")}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.neighbourhood && formik.errors.neighbourhood ? "border-red-500" : " border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="neighbourhood"
+                    type="text"
+                    {...formik.getFieldProps("neighbourhood")}
+                  />
+                  {formik.touched.neighbourhood && formik.errors.neighbourhood && (
+                    <p className="text-red-500 text-xs italic">{formik.errors.neighbourhood}</p>
+                  )}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="street"
-               >
-                 Street
-               </label>
-               <input
-                 className={`appearance-none block w-full bg-white text-gray-700 border ${
-                   formik.touched.street && formik.errors.street
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="street"
-                 type="text"
-                 {...formik.getFieldProps("street")}
-               />
-               {formik.touched.street && formik.errors.street && (
-                 <p className="text-red-500 text-xs italic">
-                   {formik.errors.street}
-                 </p>
-               )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="street">
+                    {t("street")}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.street && formik.errors.street ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="street"
+                    type="text"
+                    {...formik.getFieldProps("street")}
+                  />
+                  {formik.touched.street && formik.errors.street && <p className="text-red-500 text-xs italic">{formik.errors.street}</p>}
+                </div>
 
-             <div className="mb-6">
-               <label
-                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                 htmlFor="address"
-               >
-                 Address
-               </label>
-               <input
-                 className={`appearance-none block w-full bg-white text-gray-700 border ${
-                   formik.touched.address && formik.errors.address
-                     ? "border-red-500"
-                     : "border-gray-200"
-                 } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                 id="address"
-                 type="text"
-                 {...formik.getFieldProps("address")}
-               />
-               {formik.touched.address && formik.errors.address && (
-                 <p className="text-red-500 text-xs italic">
-                   {formik.errors.address}
-                 </p>
-               )}
-             </div>
+                <div className="mb-6">
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="address">
+                    {t("address")}
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-white text-gray-700 border ${
+                      formik.touched.address && formik.errors.address ? "border-red-500" : "border-gray-200"
+                    } rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                    id="address"
+                    type="text"
+                    {...formik.getFieldProps("address")}
+                  />
+                  {formik.touched.address && formik.errors.address && <p className="text-red-500 text-xs italic">{formik.errors.address}</p>}
+                </div>
 
-             <div className="mb-4">
-               <button
-                 type="button"
-                 className="flex items-center justify-center text-primary border border-primary font-bold py-2 px-4 rounded-lg w-full"
-               >
-                 <FaMapMarkerAlt className="mr-2" />
-                 Select Your Current Location
-               </button>
-             </div>
+                {/* <div className="mb-4">
+                  <button
+                    type="button"
+                    className="flex items-center justify-center text-primary border border-primary font-bold py-2 px-4 rounded-lg w-full"
+                  >
+                    <FaMapMarkerAlt className="mr-2" />
+                    Select Your Current Location
+                  </button>
+                </div> */}
 
-             <div className="flex justify-between mb-4">
-               <button
-                 type="button"
-                 onClick={handleCancel}
-                 className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
-               >
-                 Cancel
-               </button>
-               <button
-                 type="submit"
-                 className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full"
-               >
-                 Save
-               </button>
-             </div>
-           </>
+                <div className="flex justify-between mb-4">
+                  <button
+                    type="button"
+                    onClick={handleCancel}
+                    className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
+                  >
+                    {t("cancel")}
+                  </button>
+                  <button
+                    disabled={isLoading}
+                    type="submit"
+                    className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
+                  >
+                    {t("save")}
+                  </button>
+                </div>
+              </>
             ) : (
               <>
-                  <>
+                <>
                   <div className="grid grid-rows-4 grid-flow-col  gap-5 mt-10">
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">Date of birth</p>
-          <p>{formik.values.dateOfBirth}</p>
-        </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">Date of birth</p>
+                      <p>{formik.values.dateOfBirth}</p>
+                    </div>
 
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">JCountry of residence</p>
-          <p>{formik.values.countryOfResidence}</p>
-        </div>
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">Region</p>
-          <p>{formik.values.region}</p>
-        </div>
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">Street</p>
-          <p>{formik.values.street}</p>
-        </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">JCountry of residence</p>
+                      <p>{formik.values.countryOfResidence}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">Region</p>
+                      <p>{formik.values.region}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">Street</p>
+                      <p>{formik.values.street}</p>
+                    </div>
 
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">Nationality</p>
-          <p>{formik.values.nationality}</p>
-        </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">Nationality</p>
+                      <p>{formik.values.nationality}</p>
+                    </div>
 
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">City</p>
-          <p>{formik.values.city}</p>
-        </div>
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">Neighborhood</p>
-          <p>{formik.values.neighbourhood}</p>
-        </div>
-        <div>
-          <p className="text-[#495162] text-[12px] font-bold">Address</p>
-          <p>{formik.values.address}</p>
-        </div>
-      </div>
-    </>
-                
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">City</p>
+                      <p>{formik.values.city}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">Neighborhood</p>
+                      <p>{formik.values.neighbourhood}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#495162] text-[12px] font-bold">Address</p>
+                      <p>{formik.values.address}</p>
+                    </div>
+                  </div>
+                </>
               </>
             )}
           </div>
-         
         </form>
       </div>
     </div>

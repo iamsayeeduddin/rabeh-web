@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import CardSlider from "@/components/CardSlider";
 import StrategicPartnerships from "@/components/StrategicPartnerships";
 import SupportedCompainies from "@/components/SupportedCompainies";
@@ -13,8 +13,9 @@ import { useInView } from "react-intersection-observer";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-const Page = () => {
+const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
+  console.log("locale", locale);
 
   const t = useTranslations();
   const { ref: visionRef, inView: visionInView } = useInView({
@@ -184,13 +185,15 @@ const Page = () => {
 
   return (
     <div>
-      <TitleHead title={t("about")} desc={t("aboutSub")} />
+      <TitleHead locale={locale} title={t("about")} desc={t("aboutSub")} />
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-3xl text-center">
-          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("aboutRabeh")}</h5>
+          <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? (locale === "en" ? fonts.spaceG.className : "") : "")}>
+            {t("aboutRabeh")}
+          </h5>
           <p>{t("aboutRabehSub")}</p>
         </div>
-        <div className={"flex flex-col md:flex-row gap-6 pt-20 " + fonts.spaceG.className}>
+        <div className={"flex flex-col md:flex-row gap-6 pt-20 " + (locale === "en" ? fonts.spaceG.className : "")}>
           <motion.div
             ref={visionRef}
             variants={fadeInVariant}
@@ -217,7 +220,7 @@ const Page = () => {
           </motion.div>
         </div>
       </section>
-      <section className={"flex flex-col items-center p-5  md:px-32 md:py-24 " + fonts.spaceG.className}>
+      <section className={"flex flex-col items-center p-5  md:px-32 md:py-24 " + (locale === "en" ? fonts.spaceG.className : "")}>
         <div className="max-w-7xl">
           <div className="w-full space-y-4 pb-12">
             <h5 className="font-bold text-4xl">{t("whyChooseRabeh")}</h5>
@@ -263,10 +266,12 @@ const Page = () => {
       <section className="flex flex-col items-center p-5 md:p-0">
         <div className="max-w-7xl">
           <div className="flex justify-between w-full pb-12 md:flex-row flex-col">
-            <h5 className={"w-full md:w-1/2 text-[#263238] font-bold text-4xl " + fonts.spaceG.className}>{t("howItWorks")}</h5>
+            <h5 className={"w-full md:w-1/2 text-[#263238] font-bold text-4xl " + (locale === "en" ? fonts.spaceG.className : "")}>
+              {t("howItWorks")}
+            </h5>
             <p className="text-lg text-[#667085] mt-5 md:mt-0 text-justify">{t("howItWorksSub")}</p>
           </div>
-          <div className={"flex flex-col md:flex-row justify-between  " + fonts.inter.className}>
+          <div className={"flex flex-col md:flex-row justify-between  " + (locale === "en" ? fonts.inter.className : "")}>
             <div className="rounded-3xl drop-shadow-lg hover:drop-shadow-2xl hover:scale-105 transition-all md:w-96 bg-white p-8 flex flex-col gap-4">
               <img src="/assets/icon-2.png" height={84} width={84} />
               <h5 className="pt-4 font-bold text-2xl">{t("forEntre")}</h5>
@@ -274,7 +279,10 @@ const Page = () => {
 
               <Link
                 href="/under-construction"
-                className={"pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " + fonts.spaceG.className}
+                className={
+                  "pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " +
+                  (locale === "en" ? fonts.spaceG.className : "")
+                }
               >
                 {t("joinEntreCommu")} <FaChevronRight />
               </Link>
@@ -286,7 +294,10 @@ const Page = () => {
 
               <Link
                 href="/under-construction"
-                className={"pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " + fonts.spaceG.className}
+                className={
+                  "pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " +
+                  (locale === "en" ? fonts.spaceG.className : "")
+                }
               >
                 {t("joinInvestorsHub")} <FaChevronRight />
               </Link>
@@ -298,22 +309,25 @@ const Page = () => {
 
               <Link
                 href="/under-construction"
-                className={"pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " + fonts.spaceG.className}
+                className={
+                  "pt-4 font-medium gap-2 items-center text-[#667085] flex hover:text-[#7860DC] cursor-pointer " +
+                  (locale === "en" ? fonts.spaceG.className : "")
+                }
               >
                 {t("joinConsultantsHub")} <FaChevronRight />
               </Link>
             </div>
           </div>
-          <ClickTabs />
+          <ClickTabs locale={locale} />
         </div>
       </section>
       <section className="flex flex-col items-center p-5 md:p-0 ">
         <div className="max-w-7xl py-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("advancedTech")}</h5>
-            <p className={"text-[#667085] " + fonts.inter.className}>{t("advancedTechSub")}</p>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("advancedTech")}</h5>
+            <p className={"text-[#667085] " + (locale === "en" ? fonts.inter.className : "")}>{t("advancedTechSub")}</p>
           </div>
-          <div className={"pt-24 gap-4 flex md:flex-row flex-col justify-between " + fonts.spaceG.className}>
+          <div className={"pt-24 gap-4 flex md:flex-row flex-col justify-between " + (locale === "en" ? fonts.spaceG.className : "")}>
             <div className="md:w-96 bg-[#FAFAFA] hover:bg-[#7860DC] hover:scale-105 transition-all rounded-3xl p-6 flex flex-col gap-2 group">
               <img src="/assets/img-1.png" />
               <h5 className="font-bold text-2xl group-hover:text-white">{t("aiFull")}</h5>
@@ -335,23 +349,24 @@ const Page = () => {
       <section className="flex flex-col items-center p-5 md:p-0 ">
         <div className="md:max-w-7xl w-full md:py-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("discoverTitle")}</h5>
-            <p className={"text-[#667085] " + fonts.inter.className}>{t("discoverSub")}</p>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("discoverTitle")}</h5>
+            <p className={"text-[#667085] " + (locale === "en" ? fonts.inter.className : "")}>{t("discoverSub")}</p>
           </div>
           <div className="pt-8 w-full flex items-center justify-center ">
-
             <div className="pt-8 w-full flex items-center justify-center ">
               <div
                 className={
                   "flex-row items-center justify-center   md:mt-3 bg-[#F9FAFB] rounded-lg cursor-pointer w-fit px-5 py-3 font-semibold border border-[#EAECF0] md:text-[18px] text-[12px] p-5" +
-                  fonts.urbanist.className
+                  (locale === "en" ? fonts.urbanist.className : "")
                 }
               >
                 {[t("justLaunched"), t("earlyStage"), t("lateStage"), t("completedProjects")].map((category) => (
                   <span
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`md:px-3 px py-2 mx-1 text-[10px] md:text-lg rounded-md ${selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+                    className={`md:px-3 px py-2 mx-1 text-[10px] md:text-lg rounded-md ${
+                      selectedCategory === category ? "bg-white text-[#344054]" : "text-[#667085]"
+                    }`}
                   >
                     {category}
                   </span>
@@ -359,25 +374,28 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <div className={"flex items-center justify-center py-3 md:pt-10 " + fonts.spaceG.className}>
-              <CardSlider cards={filteredCards} />
-            </div>
+          <div className={"flex items-center justify-center py-3 md:pt-10 " + (locale === "en" ? fonts.spaceG.className : "")}>
+            <CardSlider cards={filteredCards} />
+          </div>
         </div>
       </section>
-      <SupportedCompainies />
+      <SupportedCompainies locale={locale} />
       <section className="flex flex-col items-center">
         <div className="max-w-7xl flex flex-col items-center p-10 md:p-24">
           <div className="text-center">
-            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + fonts.spaceG.className}>{t("meetOurTeam")}</h5>
-            <p className={"text-[#667085] max-w-3xl " + fonts.inter.className}>{t("meetOurTeamSub")}</p>
+            <h5 className={"text-[#263238] font-bold text-4xl pb-4 " + (locale === "en" ? fonts.spaceG.className : "")}>{t("meetOurTeam")}</h5>
+            <p className={"text-[#667085] max-w-3xl " + (locale === "en" ? fonts.inter.className : "")}>{t("meetOurTeamSub")}</p>
           </div>
-          <div className="flex flex-col md:flex-row  justify-between gap-11 pt-16">
+          <div className={`flex flex-col ${locale === "en" ? "md:flex-row" : "md:flex-row-reverse"} justify-between gap-11 pt-16`}>
             {team.map((member, index) => (
-              <div key={index + member.title} className={"flex px-10 flex-col justify-between items-center " + fonts.inter.className}>
+              <div
+                key={index + member.title}
+                className={`flex px-8 flex-col justify-between items-center ${locale === "en" ? fonts.inter.className : ""}`}
+              >
                 <img src={member.img} className="mb-5 w-24 h-24 rounded-full" />
-                <h5 className="text-lg font-semibold md:text-start text-center  ">{member.name}</h5>
+                <h5 className="text-lg font-semibold text-center">{member.name}</h5>
                 <p className="text-[#6941C6] text-center">{member.title}</p>
-                <div className="flex space-x-4 text-[#98A2B3] pt-4">
+                <div className={`flex ${locale === "en" ? "space-x-4" : "space-x-reverse space-x-4"} text-[#98A2B3] pt-4`}>
                   <FaTwitter />
                   <FaLinkedin />
                   <FaFacebook />
@@ -388,7 +406,7 @@ const Page = () => {
         </div>
       </section>
       <div className="bg-[#F9F9FB]">
-        <StrategicPartnerships bottomSpacing={false} />
+        <StrategicPartnerships locale={locale} bottomSpacing={false} />
       </div>
     </div>
   );

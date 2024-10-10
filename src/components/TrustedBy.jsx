@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const TrustedBy = () => {
+const TrustedBy = ({ locale }) => {
   const controls = useAnimation();
   const t = useTranslations();
   const { ref, inView } = useInView({
@@ -29,7 +29,9 @@ const TrustedBy = () => {
       className="py-[24px] px-[72px] flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between md:gap-0"
     >
       <div
-        className={`text-[#A3A3A3] text-center md:text-left ltr:md:text-left rtl:md:text-right text-lg font-medium mb-4 md:mb-0 ${fonts.inter.className}`}
+        className={`text-[#A3A3A3] text-center md:text-left ltr:md:text-left rtl:md:text-right text-lg font-medium mb-4 md:mb-0 ${
+          locale === "en" ? fonts.inter.className : ""
+        }`}
       >
         {t("trustedByTxt")}
       </div>

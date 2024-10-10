@@ -16,10 +16,11 @@ const Hero = ({
   titleSize,
   imageWidth,
   imageHeight,
+  locale,
 }) => {
   const fonts = useFonts();
   return (
-    <div className={"flex flex-col gap-10 md:gap-[80px] " + fonts.inter.className}>
+    <div className={"flex flex-col gap-10 md:gap-[80px] " + (locale === "en" ? fonts.inter.className : "")}>
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center max-w-[1440px] h-auto lg:h-max-[713px] p-6 md:p-[72px]">
         <motion.div
           initial={{ x: "-100vw", opacity: 0 }}
@@ -42,7 +43,9 @@ const Hero = ({
           </div>
           <h1 className={`${titleSize} font-bold mb-6 ${titleColor} `}>{title}</h1>
           <p className="text-base md:text-lg mb-8 text-[#737373]">{description}</p>
-          <div className={"flex flex-col md:flex-row ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + fonts.spaceG.className}>
+          <div
+            className={"flex flex-col md:flex-row ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + (locale === "en" ? fonts.spaceG.className : "")}
+          >
             <Link href={button1Link} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/80 text-center">
               {button1Text}
             </Link>

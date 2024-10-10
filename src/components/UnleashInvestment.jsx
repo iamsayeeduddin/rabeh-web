@@ -5,14 +5,14 @@ import ApplePlaystore from "./ApplePlaystore";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 
-const UnleashInvestment = () => {
+const UnleashInvestment = ({ locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const ref = useRef(null);
   const inView = useInView(ref, { once: false });
 
   return (
-    <div className={"flex flex-col md:flex-row text-secondary md:mt-5 m-5 " + fonts.urbanist.className}>
+    <div className={"flex flex-col md:flex-row text-secondary md:mt-5 m-5 " + (locale === "en" ? fonts.urbanist.className : "")}>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, x: -50 }}

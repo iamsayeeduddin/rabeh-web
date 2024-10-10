@@ -6,15 +6,18 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import endpoint from "@/utils/apiUtil";
+import { useRouter } from "@/i18n/routing";
 
-const ContactForm = () => {
+const ContactForm = ({ locale }) => {
   const fonts = useFonts();
   const formRef = useRef();
   const [load, setLoad] = useState(false);
   const t = useTranslations();
+  const router = useRouter();
+
   const handleSubmit = (values) => {
     endpoint
-      .post(process.env.NEXT_PUBLIC_API_URL + "/getInTouch", values)
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/leads/getInTouch", values)
       .then((res) => {
         toast.success(res.data.message);
         formRef?.current?.resetForm();
@@ -26,9 +29,9 @@ const ContactForm = () => {
   };
   return (
     <section className="flex flex-col items-center gap-4 my-24 p-5 md:p-0">
-      <p className={"text-md text-primary font-bold " + fonts.spaceG.className}>{t("contactUs")}</p>
-      <h3 className={"text-4xl font-bold " + fonts.urbanist.className}>{t("getInTouch")}</h3>
-      <p className={"text-gray-500 " + fonts.urbanist.className}>{t("weWouldLoveToHear")}</p>
+      <p className={"text-md text-primary font-bold " + (locale === "en" ? fonts.spaceG.className : "")}>{t("contactUs")}</p>
+      <h3 className={"text-4xl font-bold " + (locale === "en" ? fonts.urbanist.className : "")}>{t("getInTouch")}</h3>
+      <p className={"text-gray-500 " + (locale === "en" ? fonts.urbanist.className : "")}>{t("weWouldLoveToHear")}</p>
       <Formik
         innerRef={formRef}
         initialValues={{
@@ -134,9 +137,9 @@ const ContactForm = () => {
               <label className="block text-gray-500 font-bold" htmlFor="privacy-policy">
                 <span className="text-sm">
                   {t("privacyPolicyAgreement")}{" "}
-                  <a href="#" className="text-primary">
+                  <p className="text-primary cursor-pointer" onClick={() => router.push("/privacy-policy")}>
                     {t("privPolicy")}
-                  </a>
+                  </p>
                   .
                 </span>
               </label>
