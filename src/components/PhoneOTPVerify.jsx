@@ -5,8 +5,9 @@ import useFonts from "@/utils/useFonts";
 import { toast } from "react-toastify";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import axios from "axios";
 
-function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
+function PhoneOTPVerify() {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -15,14 +16,13 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
   const [isCountdownFinished, setIsCountdownFinished] = useState(false);
   const [loading, setLoading] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  // Automatically trigger OTP when the component mounts
   useEffect(() => {
     setUpRecaptcha();
     triggerOTP();
   }, []);
 
-  // Start countdown timer
   useEffect(() => {
     if (timeLeft === 0) {
       setIsCountdownFinished(true);
@@ -42,14 +42,13 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
     return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
   };
 
-  // Trigger reCAPTCHA and send OTP
   const triggerOTP = () => {
-    signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+    signInWithPhoneNumber(auth, user?.phoneNumber, window.recaptchaVerifier)
       .then((confirmationResult) => {
         setConfirmationResult(confirmationResult);
         toast.success("OTP sent successfully!");
-        setTimeLeft(60); // Reset the countdown timer after sending OTP
-        setIsCountdownFinished(false); // Enable the countdown again
+        setTimeLeft(60); 
+        setIsCountdownFinished(false); 
       })
       .catch((error) => {
         console.log("err", error);
@@ -62,9 +61,7 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => {
-          // reCAPTCHA solved, allow OTP to be sent.
-        },
+        callback: (response) => {},
       },
       auth
     );
@@ -79,15 +76,8 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
         .confirm(otp)
         .then((result) => {
           const user = result.user;
-          toast.success("OTP verified successfully!");
-
-          if (!isReset) {
-            localStorage.setItem("user", JSON.stringify(user));
-            if (userType !== "Investor" && userTypse !== "Entrepreneur") router.push("/");
-            else router.push("/newUserInfo");
-          } else {
-            router.push("/new-password/?phoneNumber=" + phoneNumber);
-          }
+          console.log(user);
+          updatePhoneVerified();
         })
         .catch((error) => {
           toast.error("Invalid OTP. Please try again.");
@@ -96,9 +86,28 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
     }
   };
 
+  const updatePhoneVerified = () => {
+    axios
+      .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/phone-verified", {
+        userId: user?._id,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        let user = res.data.user;
+        localStorage.setItem("user", JSON.stringify(user));
+        if (
+          user?.type !== "Investor" &&
+          user?.type !== "Entrepreneur" &&
+          user?.type !== "Admin"
+        )
+          router.push("/");
+        else router.push("/newUserInfo");
+      });
+  }
+
   return (
     <>
-      <div id="recaptcha-container"></div> {/* Required for Firebase reCAPTCHA */}
+      <div id="recaptcha-container"></div>
       <div className="flex flex-col gap-3 items-center">
         <div className="flex flex-col gap-5 col-span-full items-center">
           <div className="bg-primary rounded-full h-[100px] w-[100px] flex items-center justify-center">

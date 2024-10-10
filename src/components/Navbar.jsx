@@ -373,7 +373,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className={"hidden md:flex items-center space-x-4 font-medium text-sm " + (locale === "en" ? fonts.spaceG.className : "")}>
-            {!user?._id ? (
+          {!user?.token ? (
               <>
                 <Link href="/login" onClick={handleLinkClick} className="text-gray-700 cursor-pointer hover:text-gray-900 rounded-lg px-4 py-2">
                   {t("signIn")}

@@ -35,7 +35,9 @@ const Page = ({ params: { locale } }) => {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        localStorage.setItem("user", JSON.stringify(error.response.data.user));
         if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setIsEmail(true);
+        if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") router.push("/verify-phone");
       })
       .finally(() => setLoading(false));
   };

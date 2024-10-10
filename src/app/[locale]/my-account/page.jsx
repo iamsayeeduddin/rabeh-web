@@ -21,7 +21,38 @@ const MyAccount = ({ params: { locale } }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   let user = JSON.parse(localStorage?.getItem("user"));
+
+  const openPopup = () => setIsOpen(true);
+  const closePopup = () => setIsOpen(false);
+
+  const handleDeactivate = () => {
+    setIsLoading(true);
+    axios.post(
+      process.env.NEXT_PUBLIC_API_URL + "/api/users/deactivateUser",
+      { userId: user?._id },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      }
+    )
+      .then((res) => {
+        toast.success(res.data.message);
+        closePopup();
+        localStorage.removeItem("user");
+        router.push("/");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        if (err.status === 403) {
+          localStorage.removeItem("user");
+          router.push("/login");
+        }
+      }).finally(() => setIsLoading(false));
+  };
 
   const handleUpdate = (vals) => {
     const formData = new FormData();
@@ -129,7 +160,7 @@ const MyAccount = ({ params: { locale } }) => {
             <span className="ml-2">My Account</span>
           </div>
         </div>
-        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] ">{t("deactivate")}</button>
+        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] " onClick={openPopup}>{t("deactivate")}</button>
       </div>
 
       <div className="border-b mt-6">
@@ -153,6 +184,30 @@ const MyAccount = ({ params: { locale } }) => {
       </div>
 
       <div className="mt-6">{renderTabContent()}</div>
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-96">
+            <h2 className="text-lg font-semibold mb-4">Are you sure?</h2>
+            <p className="text-gray-600 mb-6">Do you really want to deactivate this account? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={closePopup}
+                disabled={isLoading}
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeactivate}
+                disabled={isLoading}
+                className={"px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors " + ()}
+              >
+                Deactivate
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
