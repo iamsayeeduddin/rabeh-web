@@ -284,16 +284,16 @@
   "testimonial5": "Rabeh provided the platform and resources we needed to bring our social enterprise to life. Their team was supportive and responsive, and the crowdfunding campaign exceeded our expectations. We're now making a positive impact, thanks to Rabeh.",
   "name1": "Emily S.",
   "position1": "Small Business Owner",
-  
+
   "name2": "Michael L.",
   "position2": "Non-Profit Director",
-  
+
   "name3": "Sarah K.",
   "position3": "App Developer",
-  
+
   "name4": "David M.",
   "position4": "Innovative Product Creator",
-  
+
   "name5": "Lisa P.",
   "position5": "Social Entrepreneur",
 
@@ -308,7 +308,6 @@
 
   "name8": "Houda Ahmed",
   "title8": "Head of Investment",
-
 
   "category1": "Design",
   "title01": "Product Designer",
@@ -345,6 +344,7 @@
   "location05": "Remote",
   "jobType05": "Part-time",
 
-  "viewJob": "View Job"
-
+  "viewJob": "View Job",
+  "forgotPass": "Forgot Password?",
+  "reset": "Reset"
 }

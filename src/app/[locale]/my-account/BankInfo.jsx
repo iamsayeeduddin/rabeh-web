@@ -28,9 +28,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      // Handle save logic
       handleUpdate(values);
-      // setIsEditing(false);
     },
   });
 
@@ -148,6 +146,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
                   </button>
                   <button
                     type="submit"
+                    disabled={isLoading}
                     className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
                   >
                     Save{" "}

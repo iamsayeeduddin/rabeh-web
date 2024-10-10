@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
   address: Yup.string().required("Address is required"),
 });
 
-const NationalInfo = ({ locale }) => {
+const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locales }) => {
   const fonts = useFonts();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -32,16 +32,33 @@ const NationalInfo = ({ locale }) => {
     address: "Address",
   };
 
-  // Formik setup
+  const handleSave = (vals) => {
+    if (!isLoading) {
+      handleUpdate(vals);
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      // Handle save logic
-      console.log("User Info Saved:", values);
+      handleSave(values);
       setIsEditing(false);
     },
   });
+
+  useEffect(() => {
+    formik.setValues({
+      dateOfBirth: data?.dateOfBirth,
+      nationality: data?.nationality,
+      countryOfResidence: data?.countryOfResidence,
+      city: data?.city,
+      region: data?.region,
+      neighbourhood: data?.neighbourhood,
+      street: data?.street,
+      address: data?.address,
+    });
+  }, [data]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -50,6 +67,13 @@ const NationalInfo = ({ locale }) => {
   const handleCancel = () => {
     setIsEditing(false);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      getData();
+      setIsEditing(false);
+    }
+  }, [isSuccess]);
 
   return (
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
@@ -241,7 +265,11 @@ const NationalInfo = ({ locale }) => {
                   >
                     Cancel
                   </button>
-                  <button type="submit" className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full">
+                  <button
+                    disabled={isLoading}
+                    type="submit"
+                    className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
+                  >
                     Save
                   </button>
                 </div>

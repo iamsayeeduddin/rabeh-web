@@ -25,6 +25,7 @@ const Page = ({ params: { locale } }) => {
   }
 
   const login = (values) => {
+    setLoading(true);
     axios
       .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/login", values)
       .then((res) => {
@@ -35,7 +36,8 @@ const Page = ({ params: { locale } }) => {
       .catch((error) => {
         toast.error(error.response.data.message);
         if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setIsEmail(true);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -115,10 +117,10 @@ const Page = ({ params: { locale } }) => {
                       locale === "en" ? fonts.spaceG.className : ""
                     }`}
                   >
-                    Forgot Password?{" "}
-                    <p className="text-primary ml-2 cursor-pointer" onClick={() => !isSubmitting && router.push("/reset-password")}>
+                    {t("forgotPass")}{" "}
+                    <p className="text-primary mx-2 cursor-pointer" onClick={() => !isSubmitting && router.push("/reset-password")}>
                       {" "}
-                      Reset
+                      {t("reset")}
                     </p>
                   </div>
 
@@ -126,10 +128,10 @@ const Page = ({ params: { locale } }) => {
                     <button
                       className={
                         "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " +
-                        (isSubmitting ? " opacity-50 animate-pulse cursor-not-allowed" : "")
+                        (isSubmitting || loading ? " opacity-50 animate-pulse cursor-not-allowed" : "")
                       }
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || loading}
                     >
                       {t("login")}
                     </button>

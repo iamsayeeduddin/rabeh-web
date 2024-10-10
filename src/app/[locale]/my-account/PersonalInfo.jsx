@@ -1,12 +1,15 @@
+"use client";
 import { useEffect, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
 import moment from "moment";
+import { useTranslations } from "next-intl";
 
 const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, locale }) => {
   const fonts = useFonts();
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");
+  const t = useTranslations();
 
   // User information state
   const [userInfo, setUserInfo] = useState({
@@ -190,19 +193,24 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                 </div>
 
                 <div className="mb-6 relative">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">
-                    Phone Number
+                  <label
+                    className={`block tracking-wide text-gray-700 text-xs font-bold mb-2 ${locale === "en" ? "" : "text-right"}`}
+                    htmlFor="phone"
+                  >
+                    {t("phoneNumber")}
                   </label>
                   <div className="relative">
                     <input
-                      className={`appearance-none  bg-slate-200 block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                      className={`appearance-none bg-slate-200 block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                        locale === "en" ? "pr-16" : "pl-16"
+                      }`}
                       id="phone"
                       type="text"
                       disabled
                       value={userInfo.phoneNumber}
                       onChange={handleChange}
                     />
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <div className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} flex items-center px-2 text-gray-700`}>
                       <select
                         value={userInfo.countryCode || "KSA"}
                         className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"

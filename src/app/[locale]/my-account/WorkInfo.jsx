@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
   }),
 });
 
-const WorkInfo = ({ data, locale }) => {
+const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale }) => {
   const fonts = useFonts(); // Get the font object from the hook
   const [isEditing, setIsEditing] = useState(false);
 
@@ -39,13 +39,19 @@ const WorkInfo = ({ data, locale }) => {
     hasEmployerPhone: true,
     stillWorking: false,
   };
+
+  const handleSave = (vals) => {
+    if (!isLoading) {
+      handleUpdate(vals);
+    }
+  };
   // Formik setup
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: (values) => {
       // Handle save logic
-      console.log("User Info Saved:", values);
+      handleSave(values);
       setIsEditing(false);
     },
   });
@@ -71,6 +77,13 @@ const WorkInfo = ({ data, locale }) => {
   const handleCancel = () => {
     setIsEditing(false);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      getData();
+      setIsEditing(false);
+    }
+  }, [isSuccess]);
 
   return (
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
@@ -237,7 +250,11 @@ const WorkInfo = ({ data, locale }) => {
                   >
                     Cancel
                   </button>
-                  <button type="submit" className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full">
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
+                  >
                     Save
                   </button>
                 </div>
@@ -248,31 +265,31 @@ const WorkInfo = ({ data, locale }) => {
                   <div className="flex flex-col gap-5 mt-10">
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Employer Name</p>
-                      <p>{formik.values.employerName}</p>
+                      <p>{formik.values.employerName || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Employer Address</p>
-                      <p>{formik.values.employerAddress}</p>
+                      <p>{formik.values.employerAddress || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Job Name</p>
-                      <p>{formik.values.jobName}</p>
+                      <p>{formik.values.jobName || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Employer Phone</p>
-                      <p>{formik.values.employerPhone}</p>
+                      <p>{formik.values.employerPhone || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Employment Start Date</p>
-                      <p>{formik.values.employmentStartDate}</p>
+                      <p>{formik.values.employmentStartDate || "NA"}</p>
                     </div>
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Employment end Date</p>
-                      <p>{formik.values.employmentStartDate}</p>
+                      <p>{formik.values.employmentStartDate || "NA"}</p>
                     </div>
                   </div>
                 </>
