@@ -130,6 +130,7 @@ const Page = ({ params: { locale } }) => {
       employerPhone: "",
       employmentStartDate: "",
       stillWorking: false,
+      hasEmployerPhone: false,
       employmentEndDate: "",
       bankName: "",
       accountHolderName: "",
@@ -398,16 +399,16 @@ const Page = ({ params: { locale } }) => {
             <p className={`text-[#7986A3] p-5 md:p-0 text-start ${locale === "en" ? fonts.spaceG.className : ""}`}>{stepDisplay(step)}/4</p>
             <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {step === 1
-                ? "Verify Citizenship"
+                ? t("verifyCitizen")
                 : step === 2
-                ? "Verify Identity"
+                ? t("verifyId")
                 : step === 3
-                ? "Upload Documents"
+                ? t("uploadDoc")
                 : step === 4
-                ? "Financial Information"
+                ? t("financialInfo")
                 : step === 5
-                ? "Work Information"
-                : "Bank Information"}
+                ? t("workInfo")
+                : t("bankInfo")}
             </h2>
             <p className={`text-[16px] md:text-start text-center mb-4 p-5 md:p-0 ${locale === "en" ? fonts.spaceG.className : ""}`}>
               {step === 1
@@ -436,7 +437,7 @@ const Page = ({ params: { locale } }) => {
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="dateOfBirth">
-                        Date of Birth
+                        {t("dateOfBirth")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -453,7 +454,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="nationality">
-                        Nationality
+                        {t("nationality")}
                       </label>
                       <select
                         className={`block w-full bg-white text-gray-700 border ${
@@ -473,7 +474,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="countryOfResidence">
-                        Country of Residence
+                        {t("countryOfResidence")}
                       </label>
                       <select
                         className={`block w-full bg-white text-gray-700 border ${
@@ -493,7 +494,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="city">
-                        City
+                        {t("city")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -508,7 +509,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="region">
-                        Region
+                        {t("region")}
                       </label>
                       <select
                         className={`block w-full bg-white text-gray-700 border ${
@@ -527,7 +528,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="neighbourhood">
-                        Neighbourhood
+                        {t("neighbourhood")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -544,7 +545,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="street">
-                        Street
+                        {t("street")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -559,7 +560,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="address">
-                        Address
+                        {t("address")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -579,7 +580,7 @@ const Page = ({ params: { locale } }) => {
                     {/* Step 2: ID Verification */}
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="idNumber">
-                        ID Number
+                        {t("idNumber")}
                       </label>
                       <div className="flex w-full">
                         <input
@@ -591,7 +592,7 @@ const Page = ({ params: { locale } }) => {
                           {...formik.getFieldProps("idNumber")}
                         />
                         <button type="button" className="bg-primary text-white font-bold  px-4 h-[45.5px]  rounded-r-lg" onClick={handleNext}>
-                          Verify
+                          {t("verify")}
                         </button>
                       </div>
                       {formik.touched.idNumber && formik.errors.idNumber && <p className="text-red-500 text-xs italic">{formik.errors.idNumber}</p>}
@@ -619,7 +620,7 @@ const Page = ({ params: { locale } }) => {
                       {!formik?.values?.documentFile ? (
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="documentFile">
-                            Upload Document
+                            {t("uploadDoc")}
                           </label>
                           <div
                             onDragOver={handleDragOver}
@@ -676,7 +677,7 @@ const Page = ({ params: { locale } }) => {
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="annualIncome">
-                        Annual Income
+                        {t("annualIncome")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -693,7 +694,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="educationalLevel">
-                        Educational Level
+                        {t("educationalLevel")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -710,7 +711,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="primarySourceOfIncome">
-                        Primary Source of Income
+                        {t("primarySourceOfIncome")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -727,7 +728,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="netWorth">
-                        Net Worth in Riyals (excluding house)
+                        {t("netWorthRiyalsEx")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -742,7 +743,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="anotherPhoneNumber">
-                        Another Phone Number
+                        {t("anotherPhone")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -763,14 +764,14 @@ const Page = ({ params: { locale } }) => {
                     <div className="mb-4">
                       <label className="inline-flex items-center">
                         <input type="checkbox" className="form-checkbox" {...formik.getFieldProps("noEmployer")} />
-                        <span className="ml-2">There is no employer?</span>
+                        <span className="ml-2">{t("noEmployer")}</span>
                       </label>
                     </div>
                     {!formik.values.noEmployer && (
                       <>
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerName">
-                            Employer Name
+                            {t("employerName")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -787,7 +788,7 @@ const Page = ({ params: { locale } }) => {
 
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerAddress">
-                            Employer Address
+                            {t("employerAddress")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -804,7 +805,7 @@ const Page = ({ params: { locale } }) => {
 
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="jobName">
-                            Job Name
+                            {t("jobName")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -827,7 +828,7 @@ const Page = ({ params: { locale } }) => {
                         {formik.values.hasEmployerPhone && (
                           <div className="mb-6">
                             <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerPhone">
-                              Employer Phone
+                              {t("employerPhone")}
                             </label>
                             <input
                               className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -845,7 +846,7 @@ const Page = ({ params: { locale } }) => {
 
                         <div className="mb-6">
                           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employmentStartDate">
-                            Employment Start Date
+                            {t("employmentStartDate")}
                           </label>
                           <input
                             className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -863,14 +864,14 @@ const Page = ({ params: { locale } }) => {
                         <div className="mb-4">
                           <label className="inline-flex items-center">
                             <input type="checkbox" className="form-checkbox" {...formik.getFieldProps("stillWorking")} />
-                            <span className="ml-2">Still working?</span>
+                            <span className="ml-2">{t("stillWorking")}</span>
                           </label>
                         </div>
 
                         {formik.values.stillWorking === false && (
                           <div className="mb-6">
                             <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employmentEndDate">
-                              Employment End Date
+                              {t("employmentEndDate")}
                             </label>
                             <input
                               className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -893,7 +894,7 @@ const Page = ({ params: { locale } }) => {
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="bankName">
-                        Bank Name
+                        {t("bankName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -908,7 +909,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="accountHolderName">
-                        Account Holder Name
+                        {t("accountHolderName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -925,7 +926,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="iban">
-                        IBAN
+                        {t("iban")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -947,7 +948,7 @@ const Page = ({ params: { locale } }) => {
                         onClick={handlePrevious}
                         className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                       >
-                        Back
+                        {t("back")}
                       </button>
                     ) : null}
                     <button
@@ -958,7 +959,7 @@ const Page = ({ params: { locale } }) => {
                       }
                       onClick={handleNext}
                     >
-                      {step === 6 ? "Submit" : "Next"}
+                      {step === 6 ? t("submit") : t("next")}
                     </button>
                   </div>
                 ) : null}
@@ -1008,10 +1009,10 @@ const Page = ({ params: { locale } }) => {
                   </svg>
 
                   <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
-                    {t("Your ID verification is in progress")}
+                    {t("verificationInProgress")}
                   </h2>
                   <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
-                    {t("Once verified, your wallet will be created successfully")}
+                    {t("onceVerifiedWalletCreated")}
                   </p>
                   <div className="flex items-center justify-center">
                     <button
@@ -1021,7 +1022,7 @@ const Page = ({ params: { locale } }) => {
                       type="button"
                       onClick={() => router.push("/")}
                     >
-                      {t("Home")}
+                      {t("home")}
                     </button>
                   </div>
                 </div>

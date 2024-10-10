@@ -3,7 +3,8 @@ import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
 
 const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, locale }) => {
-  const fonts = useFonts(); // Get the font object from the hook
+  const fonts = useFonts();
+  const t = useTranslations();
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");
 
@@ -61,7 +62,15 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full   bg-white ">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <> Edit Financial Information</> : <> Financial Information</>}</h3>
+          <h3 className="text-lg font-semibold text-center mb-6">
+              {isEditing ? (
+                <>
+                  {t("edit")} {t("financialInfo")}
+                </>
+              ) : (
+                <>{t("financialInfo")}</>
+              )}
+          </h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -77,7 +86,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                     fill="#495162"
                   />
                 </svg>
-                Edit
+                {t("edit")}
               </button>
             )}
           </div>
@@ -89,7 +98,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
               <>
                 <div className="">
                   <div>
-                    <label className="block text-gray-700 text-xs font-bold mb-2">The annual income</label>
+                    <label className="block text-gray-700 text-xs font-bold mb-2">{t("annualIncome")}</label>
                     <input
                       type="text"
                       name="theannualincome"
@@ -101,7 +110,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                 </div>
                 <div></div>
                 <div>
-                  <label className="block text-gray-700 text-xs font-bold mb-2">Educational level</label>
+                  <label className="block text-gray-700 text-xs font-bold mb-2">{t("eduLevel")}</label>
                   <input
                     type="text"
                     name="Educationallevel"
@@ -113,7 +122,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
 
                 <div className="mb-6 relative">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Primary source of income">
-                    Primary source of income
+                    {t("primarySourceOfIncome")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
@@ -126,7 +135,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                 </div>
 
                 <div className="mb-6  ">
-                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">Net worth in Riyals (excluding house) </label>
+                  <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">{t("netWorthRiyalsEx")} </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     type="text"
@@ -137,7 +146,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 text-sm mb-2">Another phone</label>
+                  <label className="block text-gray-700 text-sm mb-2">{t("anotherPhone")}</label>
                   <input
                     type="phone"
                     className="border border-gray-300 rounded p-2 w-full"
@@ -151,14 +160,23 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                   <button
                     type="button"
                     onClick={handleCancel}
+                    disabled={isLoading}
                     className={
                       (isLoading ? "animate-pulse" : "") + " border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                     }
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
-                  <button type="submit" className="bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full" onClick={handleSave}>
-                    Save
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className={
+                      "bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " +
+                      (isLoading ? "animate-pulse" : "")
+                    }
+                    onClick={handleSave}
+                  >
+                    {t("save")}
                   </button>
                 </div>
               </>
@@ -166,25 +184,25 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
               <>
                 <div className="flex flex-col gap-5 ">
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">The annual income</p>
-                    <p> {`${userInfo.theannualincome} SAR`}</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("annualIncome")}</p>
+                    <p> {userInfo.theannualincome ? `${userInfo.theannualincome} SAR` :"NA"}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Educational level </p>
-                    <p>{userInfo.Educationallevel}</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("eduLevel")} </p>
+                    <p>{userInfo.Educationallevel || "NA"}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Primary source of income</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("primarySourceOfIncome")}</p>
                     <p>{userInfo.primarysourceofincome}</p>
                   </div>
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Net worth in Riyals (excluding house)</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("netWorthRiyalsEx")}</p>
                     <p>{userInfo.netWorth} SAR</p>
                   </div>
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Another phone</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("anotherPhone")}</p>
                     <p>{userInfo.anotherPhoneNumber}</p>
                   </div>
                   <div>

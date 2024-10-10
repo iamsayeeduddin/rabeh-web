@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import { FaMapMarkerAlt, FaUpload } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 const validationSchema = Yup.object({
   bankName: Yup.string().required("Bank Name is required"),
@@ -14,6 +15,7 @@ const validationSchema = Yup.object({
 
 const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
   const fonts = useFonts();
+  const t = useTranslations();
   const [isEditing, setIsEditing] = useState(false);
 
   // Initial form values for Formik
@@ -63,7 +65,15 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <>Edit Bank Information</> : <>Bank Information</>}</h3>
+        <h3 className="text-lg font-semibold text-center mb-6">
+            {isEditing ? (
+              <>
+                {t("edit")} {t("bankInfo")}
+              </>
+            ) : (
+              <>{t("bankInfo")}</>
+            )}
+          </h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -79,7 +89,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
                     fill="#495162"
                   />
                 </svg>
-                Edit
+                {t("edit")}
               </button>
             )}
           </div>
@@ -91,7 +101,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
               <>
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="bankName">
-                    Bank Name
+                    {t("bankName")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -106,7 +116,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="accountHolderName">
-                    Account Holder Name
+                    {t("accHolderName")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -123,7 +133,7 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="iban">
-                    IBAN
+                    {t("iban")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -135,21 +145,20 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
                   />
                   {formik.touched.iban && formik.errors.iban && <p className="text-red-500 text-xs italic">{formik.errors.iban}</p>}
                 </div>
-                {JSON.stringify(formik.errors)}
                 <div className="flex justify-between">
                   <button
                     type="button"
                     onClick={handleCancel}
                     className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
                   <button
                     type="submit"
                     disabled={isLoading}
                     className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
                   >
-                    Save{" "}
+                    {t("save")}
                   </button>
                 </div>
               </>
@@ -158,16 +167,16 @@ const BankInfo = ({ data, handleUpdate, isLoading, isSuccess, locale }) => {
                 <>
                   <div className="grid grid-rows-4 grid-flow-col  gap-5 mt-10">
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Bank Name</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("bankName")}</p>
                       <p>{formik.values.bankName || "NA"}</p>
                     </div>
 
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Account Holder Name</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("accHolderName")}</p>
                       <p>{formik.values.accountHolderName || "NA"}</p>
                     </div>
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">IBAN</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("iban")}</p>
                       <p>{formik.values.iban || "NA"}</p>
                     </div>
                   </div>

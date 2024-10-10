@@ -10,11 +10,12 @@ import BankInfo from "./BankInfo";
 import GeneralInfo from "./GeneralInfo";
 import { useRouter } from "@/i18n/routing";
 import { toast } from "react-toastify";
-import useAxios from "@/utils/useAxios";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 
 const MyAccount = ({ params: { locale } }) => {
   const fonts = useFonts();
+  const t = useTranslations();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Personal");
   const [data, setData] = useState({});
@@ -78,11 +79,11 @@ const MyAccount = ({ params: { locale } }) => {
   }, []);
 
   const tabArr = [
-    { value: "Personal", show: true },
-    { value: "Financial", show: false },
-    { value: "Work", show: false },
-    { value: "National", show: false },
-    { value: "Bank", show: false },
+    { label: t("personal"), value: "Personal", show: true },
+    { label: t("financial"), value: "Financial", show: false },
+    { value: t("work"), value: "Work", show: false },
+    { value: t("national"), value: "National", show: false },
+    { value: t("bank"), value: "Bank", show: false },
   ];
   const renderTabContent = () => {
     switch (activeTab) {
@@ -128,7 +129,7 @@ const MyAccount = ({ params: { locale } }) => {
             <span className="ml-2">My Account</span>
           </div>
         </div>
-        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] ">Deactivate</button>
+        <button className=" text-[#B21531] px-4 py-2 rounded-md border-2 border-[#B21531] ">{t("deactivate")}</button>
       </div>
 
       <div className="border-b mt-6">
@@ -145,7 +146,7 @@ const MyAccount = ({ params: { locale } }) => {
                 }`}
                 onClick={() => setActiveTab(tab.value)}
               >
-                {tab.value}
+                {tab.label}
               </button>
             ))}
         </nav>

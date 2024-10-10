@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import moment from "moment";
+import { useTranslations } from "next-intl";
 
 // Yup validation schema
 const validationSchema = Yup.object({
@@ -26,6 +27,7 @@ const validationSchema = Yup.object({
 const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale }) => {
   const fonts = useFonts(); // Get the font object from the hook
   const [isEditing, setIsEditing] = useState(false);
+  const t = useTranslations();
 
   // Initial form values for Formik
   const initialValues = {
@@ -65,7 +67,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
       employmentStartDate: moment(data?.employmentStartDate || new Date()).format("YYYY-MM-DD"),
       employmentEndDate: moment(data?.employmentEndDate || new Date()).format("YYYY-MM-DD"),
       noEmployer: data?.noEmployer,
-      hasEmployerPhone: true,
+      hasEmployerPhone: data?.hasEmployerPhone,
       stillWorking: data?.stillWorking,
     });
   }, [data]);
@@ -89,7 +91,15 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">{isEditing ? <>Edit Work Information</> : <>Work Information</>}</h3>
+        <h3 className="text-lg font-semibold text-center mb-6">
+            {isEditing ? (
+              <>
+                {t("edit")} {t("workInfo")}
+              </>
+            ) : (
+              <>{t("workInfo")}</>
+            )}
+          </h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -105,7 +115,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
                     fill="#495162"
                   />
                 </svg>
-                Edit
+                {t("edit")}
               </button>
             )}
           </div>
@@ -125,7 +135,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
                   <>
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerName">
-                        Employer Name
+                        {t("employerName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -142,7 +152,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerAddress">
-                        Employer Address
+                        {t("employerAddress")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -159,7 +169,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="jobName">
-                        Job Name
+                        {t("jobName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -175,14 +185,14 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
                     <div className="mb-6">
                       <label className="flex items-center text-gray-700 text-xs font-bold mb-2">
                         <input className="mr-2 leading-tight" type="checkbox" {...formik.getFieldProps("hasEmployerPhone")} />
-                        <span className="text-sm">Do you have an employer phone?</span>
+                        <span className="text-sm">{t("hasEmployerPhone")}</span>
                       </label>
                     </div>
 
                     {formik.values.hasEmployerPhone && (
                       <div className="mb-6">
                         <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employerPhone">
-                          Employer Phone
+                          {t("employerPhone")}
                         </label>
                         <input
                           className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -200,7 +210,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employmentStartDate">
-                        Employment Start Date
+                        {t("employmentStartDate")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -218,14 +228,14 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
                     <div className="mb-4">
                       <label className="inline-flex items-center">
                         <input type="checkbox" className="form-checkbox" {...formik.getFieldProps("stillWorking")} />
-                        <span className="ml-2">Still working?</span>
+                        <span className="ml-2">{t("stillWorking")}</span>
                       </label>
                     </div>
 
                     {formik.values.stillWorking === false && (
                       <div className="mb-6">
                         <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employmentEndDate">
-                          Employment End Date
+                          {t("employmentEndDate")}
                         </label>
                         <input
                           className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -246,16 +256,17 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
                   <button
                     type="button"
                     onClick={handleCancel}
+                    disabled={isLoading}
                     className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
                   <button
                     type="submit"
                     disabled={isLoading}
                     className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
                   >
-                    Save
+                    {t("save")}
                   </button>
                 </div>
               </>
@@ -264,33 +275,41 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
                 <>
                   <div className="flex flex-col gap-5 mt-10">
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Employer Name</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("employerName")}</p>
                       <p>{formik.values.employerName || "NA"}</p>
                     </div>
 
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Employer Address</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("employerAddress")}</p>
                       <p>{formik.values.employerAddress || "NA"}</p>
                     </div>
 
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Job Name</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("jobName")}</p>
                       <p>{formik.values.jobName || "NA"}</p>
                     </div>
 
-                    <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Employer Phone</p>
-                      <p>{formik.values.employerPhone || "NA"}</p>
-                    </div>
+                    {formik?.values?.hasEmployerPhone ? (
+                      <div>
+                        <p className="text-[#495162] text-[12px] font-bold">
+                          {t("employerPhone")}
+                        </p>
+                        <p>{formik.values.employerPhone || "NA"}</p>
+                      </div>
+                    ) : null}
 
                     <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Employment Start Date</p>
+                      <p className="text-[#495162] text-[12px] font-bold">{t("employmentStartDate")}</p>
                       <p>{formik.values.employmentStartDate || "NA"}</p>
                     </div>
-                    <div>
-                      <p className="text-[#495162] text-[12px] font-bold">Employment end Date</p>
-                      <p>{formik.values.employmentStartDate || "NA"}</p>
-                    </div>
+                    {formik?.values?.stillWorking ? null : (
+                      <div>
+                        <p className="text-[#495162] text-[12px] font-bold">
+                          {t("employmentEndDate")}
+                        </p>
+                        <p>{formik.values.employmentStartDate || "NA"}</p>
+                      </div>
+                    )}
                   </div>
                 </>
               </>

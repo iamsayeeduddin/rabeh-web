@@ -115,7 +115,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                     fill="#495162"
                   />
                 </svg>
-                Edit
+                {t("edit")}
               </button>
             )}
           </div>
@@ -148,7 +148,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                       fill="#7860DC"
                     />
                   </svg>
-                  <p className="text-primary">Change photo</p>
+                  <p className="text-primary">{userInfo?.profilePic ? t("changePhoto") : t("addPhoto")}</p>
                 </div>
               ) : null}
             </label>
@@ -159,7 +159,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
               <>
                 <div className="flex flex-row gap-2">
                   <div>
-                    <label className="block text-gray-700 text-xs font-bold mb-2">First Name</label>
+                    <label className="block text-gray-700 text-xs font-bold mb-2">{t("firstName")}</label>
                     <input
                       type="text"
                       name="firstName"
@@ -169,7 +169,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 text-xs font-bold mb-2">Last Name</label>
+                    <label className="block text-gray-700 text-xs font-bold mb-2">{t("lastName")}</label>
                     <input
                       type="text"
                       name="lastName"
@@ -181,7 +181,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                 </div>
                 <div></div>
                 <div>
-                  <label className="block text-gray-700 text-xs font-bold mb-2">Email</label>
+                  <label className="block text-gray-700 text-xs font-bold mb-2">{t("email")}</label>
                   <input
                     type="email"
                     name="email"
@@ -226,7 +226,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
 
                 {data?.type !== "Admin" ? (
                   <div className="mb-6  ">
-                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">Role</label>
+                    <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">{t("role")}</label>
                     <select
                       onChange={handleChange}
                       className="appearance-none block w-full bg-white text-gray-700 border rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -240,7 +240,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                 ) : null}
 
                 <div>
-                  <label className="block text-gray-700 text-sm mb-2">Nationality</label>
+                  <label className="block text-gray-700 text-sm mb-2">{t("nationality")}</label>
                   <select
                     name="nationality"
                     value={userInfo.nationality}
@@ -258,10 +258,10 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                   </select>
                 </div>
 
-                {data?.type !== "Admin" ? (
+                {data?.type !== "Admin" && false ? (
                   <div className="mb-6">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="documentFile">
-                      Upload Document
+                      {t("uploadDoc")}
                     </label>
                     <div className={`flex flex-col items-center justify-center border-dashed border-2 rounded-md md:h-48 `}>
                       <FaUpload className="text-gray-400 mb-2" size={24} />
@@ -282,7 +282,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                     disabled={isLoading}
                     className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
                   <button
                     type="submit"
@@ -292,7 +292,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                     }
                     onClick={handleSave}
                   >
-                    Save
+                    {t("save")}
                   </button>
                 </div>
               </>
@@ -300,26 +300,26 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
               <>
                 <div className="flex flex-col gap-5 ">
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Full Name </p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("fullName")} </p>
                     <p> {`${userInfo.firstName} ${userInfo.lastName}`}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Email </p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("email")} </p>
                     <p>{userInfo.email}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Phone number </p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("phoneNumber")} </p>
                     <p> {userInfo.phoneNumber}</p>
                   </div>
 
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Created alt</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("createdAt")}</p>
                     <p>{moment(userInfo.createdAt).format("DD/MM/YYYY - hh:mm A")}</p>
                   </div>
                   <div>
-                    <p className="text-[#495162] text-[12px] font-bold">Nationality</p>
+                    <p className="text-[#495162] text-[12px] font-bold">{t("nationality")}</p>
                     <p> {userInfo.nationality === "KSA" ? "Saudi Arabia" : "United States" || "NA"}</p>
                   </div>
                   {userInfo?.documentFile && data?.type !== "Admin" ? (

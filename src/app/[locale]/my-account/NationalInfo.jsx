@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import { FaMapMarkerAlt, FaUpload } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 // Yup validation schema
 const validationSchema = Yup.object({
@@ -18,6 +19,7 @@ const validationSchema = Yup.object({
 
 const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locales }) => {
   const fonts = useFonts();
+  const t = useTranslations();
   const [isEditing, setIsEditing] = useState(false);
 
   // Initial form values for Formik
@@ -79,9 +81,15 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-          <h3 className="text-lg font-semibold text-center mb-6">
-            {isEditing ? <>Edit National Address Information</> : <>National Address Information</>}
-          </h3>
+        <h3 className="text-lg font-semibold text-center mb-6">
+            {isEditing ? (
+              <>
+                {t("edit")} {t("nationalAddInfo")}
+              </>
+            ) : (
+              <>{t("nationalAddInfo")}</>
+            )}
+        </h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -97,7 +105,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                     fill="#495162"
                   />
                 </svg>
-                Edit
+                {t("edit")}
               </button>
             )}
           </div>
@@ -109,7 +117,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
               <>
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="dateOfBirth">
-                    Date of Birth
+                    {t("dateOfBirth")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -126,7 +134,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="nationality">
-                    Nationality
+                    {t("nationality")}
                   </label>
                   <select
                     className={`block w-full bg-white text-gray-700 border ${
@@ -136,9 +144,8 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                     {...formik.getFieldProps("nationality")}
                   >
                     <option value="" label="Select your nationality" />
-                    <option value="ksa" label="Saudi Arabia" />
-                    <option value="us" label="United States" />
-                    <option value="india" label="India" />
+                    <option value="KSA" label="Saudi Arabia" />
+                    <option value="US" label="United States" />
                   </select>
                   {formik.touched.nationality && formik.errors.nationality && (
                     <p className="text-red-500 text-xs italic">{formik.errors.nationality}</p>
@@ -147,7 +154,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="countryOfResidence">
-                    Country of Residence
+                    {t("countryOfResidence")}
                   </label>
                   <select
                     className={`block w-full bg-white text-gray-700 border ${
@@ -157,9 +164,8 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                     {...formik.getFieldProps("countryOfResidence")}
                   >
                     <option value="" label="Select your country" />
-                    <option value="ksa" label="Saudi Arabia" />
-                    <option value="us" label="United States" />
-                    <option value="india" label="India" />
+                    <option value="KSA" label="Saudi Arabia" />
+                    <option value="US" label="United States" />
                   </select>
                   {formik.touched.countryOfResidence && formik.errors.countryOfResidence && (
                     <p className="text-red-500 text-xs italic">{formik.errors.countryOfResidence}</p>
@@ -168,7 +174,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="city">
-                    City
+                    {t("city")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -183,7 +189,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="region">
-                    Region
+                    {t("region")}
                   </label>
                   <select
                     className={`block w-full bg-white text-gray-700 border ${
@@ -202,7 +208,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="neighbourhood">
-                    Neighbourhood
+                    {t("neighbourhood")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -219,7 +225,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="street">
-                    Street
+                    {t("street")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -234,7 +240,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
 
                 <div className="mb-6">
                   <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="address">
-                    Address
+                    {t("address")}
                   </label>
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -247,7 +253,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                   {formik.touched.address && formik.errors.address && <p className="text-red-500 text-xs italic">{formik.errors.address}</p>}
                 </div>
 
-                <div className="mb-4">
+                {/* <div className="mb-4">
                   <button
                     type="button"
                     className="flex items-center justify-center text-primary border border-primary font-bold py-2 px-4 rounded-lg w-full"
@@ -255,7 +261,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                     <FaMapMarkerAlt className="mr-2" />
                     Select Your Current Location
                   </button>
-                </div>
+                </div> */}
 
                 <div className="flex justify-between mb-4">
                   <button
@@ -263,14 +269,14 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                     onClick={handleCancel}
                     className="  border border-[#CFD3DE] text-[#495162] font-bold py-2 px-4 rounded-lg w-full mr-2"
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
                   <button
                     disabled={isLoading}
                     type="submit"
                     className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
                   >
-                    Save
+                    {t("save")}
                   </button>
                 </div>
               </>

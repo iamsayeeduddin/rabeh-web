@@ -116,6 +116,7 @@ function OTPVerify({ email, isReset, userType, locale }) {
                 type="text"
                 maxLength="1"
                 required
+                disabled={loading}
                 onChange={(e) => {
                   const value = e.target.value;
 
@@ -159,7 +160,8 @@ function OTPVerify({ email, isReset, userType, locale }) {
 
         <div className="flex items-center justify-center my-8">
           <button
-            className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
+            className={"bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " 
+              + (loading ? "animate-pulse" : "")}
             type="button"
             onClick={handleVerify}
             disabled={otp.length < 4 || loading}

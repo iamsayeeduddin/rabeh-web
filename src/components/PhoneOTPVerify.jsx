@@ -126,7 +126,7 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
           </div>
           <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>2/2</p>
           <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("codeVerify")}</h2>
-          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("plsEnterCode")}</p>
+          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("plsEnterCodePhone")}</p>
           <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{phoneNumber}</p>
         </div>
       </div>
@@ -142,6 +142,7 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
                 type="text"
                 maxLength="1"
                 required
+                disabled={loading}
                 onChange={(e) => {
                   const value = e.target.value;
 
@@ -185,7 +186,9 @@ function PhoneOTPVerify({ phoneNumber, isReset, userType }) {
 
         <div className="flex items-center justify-center my-8">
           <button
-            className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
+            className={"bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full " + 
+              (loading ? "animate-pulse": "")
+            }
             type="button"
             onClick={handleVerify}
             disabled={otp.length < 6 || loading}
