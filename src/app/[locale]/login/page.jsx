@@ -148,7 +148,7 @@ const Page = ({ params: { locale } }) => {
         ) : stage === "Email" ? (
           <OTPVerify email={email} locale={locale} setStage={setStage} />
         ) : stage === "Phone" ? (
-          <PhoneOTPVerify phoneNumber={"+91" + phone} locale={locale} setStage={setStage} />
+          <PhoneOTPVerify phoneNumber={"+966" + phone} locale={locale} setStage={setStage} />
         ) : null}
       </div>
     </div>
