@@ -258,6 +258,7 @@
   "plsEnterCode": "Please enter the code we just sent to the below email address:",
   "plsEnterCodePhone": "Please enter the code we just sent to the below phone number:",
   "resendCode": "Resend the code after",
+  "resend": "Resend",
   "verification": "Verification",
   "issueNo": "Issue number",
   "dayLeft": "Day left",

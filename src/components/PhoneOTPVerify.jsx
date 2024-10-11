@@ -67,19 +67,15 @@ function PhoneOTPVerify({ locale, phoneNumber }) {
   const setUpRecaptcha = () => {
     if (typeof window !== "undefined" && auth) {
       try {
-        window.recaptchaVerifier = new RecaptchaVerifier(
-          "recaptcha-container",
-          {
-            size: "invisible",
-            callback: (response) => {
-              console.log("reCAPTCHA solved", response);
-            },
-            "expired-callback": () => {
-              console.log("reCAPTCHA expired, reset required.");
-            },
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+          size: "invisible",
+          callback: (response) => {
+            console.log("reCAPTCHA solved", response);
           },
-          auth
-        );
+          "expired-callback": () => {
+            console.log("reCAPTCHA expired, reset required.");
+          },
+        });
 
         // Render the reCAPTCHA
         window.recaptchaVerifier.render().then(() => {
