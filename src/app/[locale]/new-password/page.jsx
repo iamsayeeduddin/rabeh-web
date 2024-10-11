@@ -226,7 +226,6 @@ const Page = ({ params: { locale } }) => {
                           width: `${(confirmPasswordStrength + 1) * 20}%`,
                         }}
                       ></div>
-                      {JSON.stringify(errors)}
                     </div>
                     <p className="text-xs text-gray-600">
                       {confirmPasswordStrength === 0
