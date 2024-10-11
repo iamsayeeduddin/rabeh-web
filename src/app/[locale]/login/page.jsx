@@ -39,7 +39,7 @@ const Page = ({ params: { locale } }) => {
         toast.error(error.response.data.message);
         if (error.response.status === 412) {
           localStorage.setItem("user", JSON.stringify(error?.response?.data?.user));
-          error?.setPhone(error?.response?.data?.user?.phoneNumber);
+          setPhone(error?.response?.data?.user?.phoneNumber);
           if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setStage("Email");
           if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") setStage("Phone");
         }
