@@ -61,6 +61,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
   };
 
   const handleImageChange = (e) => {
+    if (!isEditing) return;
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -136,7 +137,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
                   <p className={locale === "en" ? fonts.spaceG.className : ""}>{userInfo?.firstName?.[0]?.toUpperCase()}</p>
                 </div>
               )}
-              <input id="upload-image" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+              {isEditing ? <input id="upload-image" type="file" accept="image/*" onChange={handleImageChange} className="hidden" /> : null}
 
               {isEditing ? (
                 <div className="flex flex-row items-center justify-center rounded-md border-2 border-primary mt-5 p-2 cursor-pointer ">

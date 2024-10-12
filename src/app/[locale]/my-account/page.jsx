@@ -114,9 +114,9 @@ const MyAccount = ({ params: { locale } }) => {
   const tabArr = [
     { label: t("personal"), value: "Personal", show: true },
     { label: t("financial"), value: "Financial", show: false },
-    { value: t("work"), value: "Work", show: false },
-    { value: t("national"), value: "National", show: false },
-    { value: t("bank"), value: "Bank", show: false },
+    { label: t("work"), value: "Work", show: false },
+    { label: t("national"), value: "National", show: false },
+    { label: t("bank"), value: "Bank", show: false },
   ];
   const renderTabContent = () => {
     switch (activeTab) {

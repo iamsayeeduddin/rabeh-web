@@ -16,7 +16,7 @@ const SupportedCompainies = ({ locale }) => {
         <div className={"text-[#7F879E] font-medium text-start font-inter md:px-20 p-5 text-lg " + (locale === "en" ? fonts.inter.className : "")}>
           {t("supportedCompainies1")}
           <div className="text-white texxt-start text-[18px] mt-5 underline cursor-pointer">
-            <Link href={"/under-construction"}>{t("regPartner")}</Link>
+            <Link href={"/contact"}>{t("regPartner")}</Link>
           </div>
         </div>
       </div>

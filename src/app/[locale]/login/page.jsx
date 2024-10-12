@@ -20,6 +20,8 @@ const Page = ({ params: { locale } }) => {
   const [stage, setStage] = useState("Login");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
   const [loading, setLoading] = useState(false);
 
   function togglePasswordVisibility() {
@@ -31,15 +33,18 @@ const Page = ({ params: { locale } }) => {
     axios
       .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/login", values)
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data.data));
         toast.success(res.data.message);
-        window.location.href = "/";
+        setPhone(res?.data?.data?.phoneNumber);
+        setUserId(res?.data?.data?._id);
+        setCountryCode(res?.data?.data?.countryCode);
+        setStage("Phone");
       })
       .catch((error) => {
         toast.error(error.response.data.message);
         if (error.response.status === 412) {
-          localStorage.setItem("user", JSON.stringify(error?.response?.data?.user));
           setPhone(error?.response?.data?.user?.phoneNumber);
+          setCountryCode(error?.response?.data?.user?.countryCode);
+          setUserId(error?.response?.data?.user?._id);
           if (error.response.data.statusCode === "EMAIL_NOT_VERIFIED") setStage("Email");
           if (error.response.data.statusCode === "PHONE_NOT_VERIFIED") setStage("Phone");
         }
@@ -150,7 +155,7 @@ const Page = ({ params: { locale } }) => {
         ) : stage === "Email" ? (
           <OTPVerify email={email} locale={locale} setStage={setStage} />
         ) : stage === "Phone" ? (
-          <PhoneOTPVerify phoneNumber={"+91" + phone} locale={locale} setStage={setStage} />
+          <PhoneOTPVerify phoneNumber={countryCode + phone} userId={userId} locale={locale} setStage={setStage} isLogin={true} />
         ) : null}
       </div>
     </div>

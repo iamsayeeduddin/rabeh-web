@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
   address: Yup.string().required("Address is required"),
 });
 
-const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locales }) => {
+const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const [isEditing, setIsEditing] = useState(false);
@@ -81,7 +81,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-        <h3 className="text-lg font-semibold text-center mb-6">
+          <h3 className="text-lg font-semibold text-center mb-6">
             {isEditing ? (
               <>
                 {t("edit")} {t("nationalAddInfo")}
@@ -89,7 +89,7 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
             ) : (
               <>{t("nationalAddInfo")}</>
             )}
-        </h3>
+          </h3>
 
           <div className="flex justify-end mb-4">
             {!isEditing && (
@@ -286,38 +286,38 @@ const NationalInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, local
                   <div className="grid grid-rows-4 grid-flow-col  gap-5 mt-10">
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Date of birth</p>
-                      <p>{formik.values.dateOfBirth}</p>
+                      <p>{formik.values.dateOfBirth || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">JCountry of residence</p>
-                      <p>{formik.values.countryOfResidence}</p>
+                      <p>{formik.values.countryOfResidence || "NA"}</p>
                     </div>
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Region</p>
-                      <p>{formik.values.region}</p>
+                      <p>{formik.values.region || "NA"}</p>
                     </div>
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Street</p>
-                      <p>{formik.values.street}</p>
+                      <p>{formik.values.street || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Nationality</p>
-                      <p>{formik.values.nationality}</p>
+                      <p>{formik.values.nationality || "NA"}</p>
                     </div>
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">City</p>
-                      <p>{formik.values.city}</p>
+                      <p>{formik.values.city || "NA"}</p>
                     </div>
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Neighborhood</p>
-                      <p>{formik.values.neighbourhood}</p>
+                      <p>{formik.values.neighbourhood || "NA"}</p>
                     </div>
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">Address</p>
-                      <p>{formik.values.address}</p>
+                      <p>{formik.values.address || "NA"}</p>
                     </div>
                   </div>
                 </>

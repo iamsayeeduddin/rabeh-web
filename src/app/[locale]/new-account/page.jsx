@@ -19,6 +19,8 @@ const Page = ({ params: { locale } }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
+  const [userId, setUserId] = useState("");
   const params = useSearchParams();
   const router = useRouter();
   const [image, setImage] = useState(null);
@@ -78,6 +80,7 @@ const Page = ({ params: { locale } }) => {
       email: "",
       password: "",
       confirmPassword: "",
+      countryCode: "+966",
       type: params.get("type"),
     },
     validationSchema: Yup.object({
@@ -150,10 +153,17 @@ const Page = ({ params: { locale } }) => {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("user") && stage === "Register") {
+    let u = JSON.parse(localStorage.getItem("user"));
+    if (u?._id && stage === "Register") {
       router.push("/");
     }
   }, []);
+
+  const countryCodes = [
+    { value: "+91", label: "India" },
+    { value: "+966", label: "KSA" },
+    { value: "+971", label: "UAE" },
+  ];
 
   return (
     <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
@@ -263,9 +273,20 @@ const Page = ({ params: { locale } }) => {
                   <div className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} flex items-center px-2 text-gray-700`}>
                     <select
                       className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
-                      id="country-code"
+                      id="countryCode"
+                      {...formik.getFieldProps("countryCode")}
+                      onChange={(e) => {
+                        formik?.setFieldValue("countryCode", e.target.value);
+                        setCountryCode(e.target.value);
+                      }}
                     >
-                      <option value="ksa">KSA</option>
+                      {countryCodes
+                        .filter((ele) => (process.env.NEXT_PUBLIC_APP_MODE === "production" ? ele.label !== "IN" : true))
+                        .map((ele) => (
+                          <option key={ele.value} value={ele.value}>
+                            {ele.label}
+                          </option>
+                        ))}
                     </select>
                   </div>
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
@@ -370,9 +391,9 @@ const Page = ({ params: { locale } }) => {
             </div>
           </>
         ) : stage === "Email" ? (
-          <OTPVerify email={email} locale={locale} isRegister={true} setStage={setStage} />
+          <OTPVerify email={email} locale={locale} isRegister={true} setStage={setStage} setUserId={setUserId} />
         ) : stage === "Phone" ? (
-          <PhoneOTPVerify phoneNumber={"+966" + phone} locale={locale} setStage={setStage} />
+          <PhoneOTPVerify phoneNumber={countryCode + phone} userId={userId} locale={locale} setStage={setStage} />
         ) : null}
       </div>
     </div>

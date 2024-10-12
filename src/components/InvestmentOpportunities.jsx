@@ -151,16 +151,28 @@ const InvestmentOpportunities = ({ locale }) => {
             (locale === "en" ? fonts.urbanist.className : "")
           }
         >
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("justLaunched") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+          <span
+            className={`md:px-3 py-2 rounded-md ${selectedCategory === t("justLaunched") ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+            onClick={() => setSelectedCategory(t("justLaunched"))}
+          >
             {t("justLaunched")}
           </span>
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("earlyStage") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+          <span
+            className={`md:px-3 py-2 rounded-md ${selectedCategory === t("earlyStage") ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+            onClick={() => setSelectedCategory(t("earlyStage"))}
+          >
             {t("earlyStage")}
           </span>
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("lateStage") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+          <span
+            className={`md:px-3 py-2 rounded-md ${selectedCategory === t("lateStage") ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+            onClick={() => setSelectedCategory(t("lateStage"))}
+          >
             {t("lateStage")}
           </span>
-          <span className={`md:px-3 py-2 rounded-md ${selectedCategory === t("completedProjects") ? "bg-white text-[#344054]" : "text-[#667085]"}`}>
+          <span
+            className={`md:px-3 py-2 rounded-md ${selectedCategory === t("completedProjects") ? "bg-white text-[#344054]" : "text-[#667085]"}`}
+            onClick={() => setSelectedCategory(t("completedProjects"))}
+          >
             {t("completedProjects")}
           </span>
         </div>

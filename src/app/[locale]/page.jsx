@@ -22,7 +22,7 @@ const Page = ({ params: { locale } }) => {
         title={<>{t("heroTitle")}</>}
         description={t("heroSubtitle")}
         button1Text={t("getStarted")}
-        button1Link="/under-construction"
+        button1Link="/get-started"
         button2Text={t("opportunities")}
         button2Link="/opportunities"
         svgImage="illustration-1.png"

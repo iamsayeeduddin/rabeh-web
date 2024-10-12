@@ -7,7 +7,7 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
-function OTPVerify({ email, isReset, userType, locale, isRegister = false, setStage }) {
+function OTPVerify({ email, isReset, userType, locale, isRegister = false, setStage, setUserId }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -56,12 +56,8 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
       .then((res) => {
         toast.success(res.data.message);
         let user = res.data.data;
-
-        if (isRegister) {
-          localStorage.setItem("user", JSON.stringify(user));
-          setStage("Phone");
-        }
-
+        setStage("Phone");
+        setUserId(user._id);
         if (isReset) {
           router.push("/new-password/?email=" + email);
         }

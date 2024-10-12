@@ -7,7 +7,7 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import axios from "axios";
 
-function PhoneOTPVerify({ locale, phoneNumber }) {
+function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
   const fonts = useFonts();
   const router = useRouter();
   const t = useTranslations();
@@ -16,9 +16,7 @@ function PhoneOTPVerify({ locale, phoneNumber }) {
   const [isCountdownFinished, setIsCountdownFinished] = useState(false);
   const [loading, setLoading] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
-  const user = JSON.parse(localStorage.getItem("user"));
 
-  // Recaptcha and OTP triggers
   useEffect(() => {
     if (!window.recaptchaVerifier) {
       setUpRecaptcha();
@@ -26,7 +24,6 @@ function PhoneOTPVerify({ locale, phoneNumber }) {
     }
   }, []);
 
-  // Countdown logic
   useEffect(() => {
     if (timeLeft === 0) {
       setIsCountdownFinished(true);
@@ -97,7 +94,6 @@ function PhoneOTPVerify({ locale, phoneNumber }) {
         .confirm(otp)
         .then((result) => {
           const user = result.user;
-          console.log(user);
           updatePhoneVerified();
         })
         .catch((error) => {
@@ -111,15 +107,15 @@ function PhoneOTPVerify({ locale, phoneNumber }) {
   const updatePhoneVerified = () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/phone-verified`, {
-        userId: user?._id,
+        userId,
       })
       .then((res) => {
         toast.success(res.data.message);
         let updatedUser = res.data.user;
         localStorage.setItem("user", JSON.stringify(updatedUser));
-        if (!["Investor", "Entrepreneur", "Admin"].includes(updatedUser?.type)) {
+        if (!["Investor", "Entrepreneur", "Admin"].includes(updatedUser?.type) || isLogin) {
           router.push("/");
-        } else {
+        } else if (!isLogin) {
           router.push("/newUserInfo");
         }
       });

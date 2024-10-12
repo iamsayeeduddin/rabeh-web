@@ -4,20 +4,25 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFonts from "@/utils/useFonts";
 import OTPVerify from "@/components/OTPVerify";
-import axios from "axios";
+import PhoneOTPVerify from "@/components/PhoneOTPVerify";
 import { toast } from "react-toastify";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import endpoint from "@/utils/apiUtil";
+import { useRouter } from "@/i18n/routing";
+import axios from "axios";
 
 const Page = ({ params: { locale } }) => {
   const fonts = useFonts();
   const t = useTranslations();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
+  const [stage, setStage] = useState("Register");
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
+  const [userId, setUserId] = useState("");
   const params = useSearchParams();
+  const router = useRouter();
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -53,7 +58,7 @@ const Page = ({ params: { locale } }) => {
       })
       .then((response) => {
         if (response.data.status === "success") {
-          setIsRegister(true);
+          setStage("Email");
           toast(response.data.message);
           formik.resetForm();
         }
@@ -75,6 +80,7 @@ const Page = ({ params: { locale } }) => {
       email: "",
       password: "",
       confirmPassword: "",
+      countryCode: "+966",
       type: "Admin",
     },
     validationSchema: Yup.object({
@@ -146,22 +152,35 @@ const Page = ({ params: { locale } }) => {
     setIsPasswordVisible(!isPasswordVisible);
   }
 
+  useEffect(() => {
+    let u = JSON.parse(localStorage.getItem("user"));
+    if (u?._id && stage === "Register") {
+      router.push("/");
+    }
+  }, []);
+
+  const countryCodes = [
+    { value: "+91", label: "India" },
+    { value: "+966", label: "KSA" },
+    { value: "+971", label: "UAE" },
+  ];
+
   return (
     <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
       <div
         className="flex flex-col gap-5 bg-[#FFFFFF] md:px-[112px] py-[32px] rounded-b-[12px]"
         style={{ boxShadow: "0px 1px 2px 0px #1018280F, 0px 1px 3px 0px #1018281A" }}
       >
-        {!isRegister ? (
+        {stage === "Register" ? (
           <>
             <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>1/2</p>
             <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
-              {t("new")} {t(formik.values.type)} {t("acc")}
+              {t("new")} {t(formik.values.type?.toLowerCase())} {t("acc")}
             </h2>
             <p className={`text-[16] md:text-start text-center mb-4 ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("enterPersonalInfo")}</p>
             <div className="flex md:flex-row flex-col gap-3 items-center">
               <div className="flex gap-5 col-span-full items-center">
-                <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-t-4 border-b-4 border-white flex items-center justify-center">
+                <div className="bg-primary rounded-full h-[72px] w-[72px] drop-shadow-lg border-x-4 border-y-4 border-white flex items-center justify-center">
                   {image ? (
                     <img src={image} alt="Uploaded" className="h-16 w-16 rounded-full object-cover" />
                   ) : (
@@ -186,7 +205,7 @@ const Page = ({ params: { locale } }) => {
                         fill="#7860DC"
                       />
                     </svg>
-                    <p className="text-primary">Add photo</p>
+                    <p className="text-primary">{image ? t("changePhoto") : t("addPhoto")}</p>
                   </label>
                 </div>
               </div>
@@ -231,30 +250,47 @@ const Page = ({ params: { locale } }) => {
               </div>
 
               <div className="mb-6 relative">
-                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">
+                <label className={`block tracking-wide text-gray-700 text-xs font-bold mb-2 ${locale === "en" ? "" : "text-right"}`} htmlFor="phone">
                   {t("phoneNumber")}
                 </label>
                 <div className="relative">
                   <input
                     className={`appearance-none block w-full bg-white text-gray-700 border ${
                       formik.touched.phoneNumber && formik.errors.phoneNumber ? "border-red-500" : "border-gray-200"
-                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 pl-16`}
+                    } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                      locale === "en" ? "pr-16" : "pl-16"
+                    }`}
                     id="phone"
                     type="text"
                     name="phoneNumber"
                     placeholder="+966555544444"
                     {...formik.getFieldProps("phoneNumber")}
+                    onChange={(e) => {
+                      formik?.setFieldValue("phoneNumber", e.target.value);
+                      setPhone(e.target.value);
+                    }}
                   />
-                  <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <div className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} flex items-center px-2 text-gray-700`}>
                     <select
                       className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
-                      id="country-code"
+                      id="countryCode"
+                      {...formik.getFieldProps("countryCode")}
+                      onChange={(e) => {
+                        formik?.setFieldValue("countryCode", e.target.value);
+                        setCountryCode(e.target.value);
+                      }}
                     >
-                      <option value="ksa">KSA</option>
+                      {countryCodes
+                        .filter((ele) => (process.env.NEXT_PUBLIC_APP_MODE === "production" ? ele.label !== "IN" : true))
+                        .map((ele) => (
+                          <option key={ele.value} value={ele.value}>
+                            {ele.label}
+                          </option>
+                        ))}
                     </select>
                   </div>
                   {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                    <p className="text-red-500 text-xs italic">{formik.errors.phoneNumber}</p>
+                    <p className={`text-red-500 text-xs italic ${locale === "en" ? "text-left" : "text-right"}`}>{formik.errors.phoneNumber}</p>
                   ) : null}
                 </div>
               </div>
@@ -277,7 +313,10 @@ const Page = ({ params: { locale } }) => {
               </div>
 
               <div className="mb-6 relative">
-                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
+                <label
+                  className={`block tracking-wide text-gray-700 text-xs font-bold mb-2 ${locale === "en" ? "" : "text-right"}`}
+                  htmlFor="password"
+                >
                   {t("password")}
                 </label>
                 <div className="relative">
@@ -289,14 +328,20 @@ const Page = ({ params: { locale } }) => {
                     type={isPasswordVisible ? "text" : "password"}
                     name="password"
                     placeholder="********"
-                    onChange={handlePasswordChange} // Use custom handler for password strength
+                    onChange={handlePasswordChange} // Custom handler for password strength
                     value={formik.values.password}
                   />
-                  <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={togglePasswordVisibility}>
+                  <button
+                    type="button"
+                    className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} px-3 flex items-center`}
+                    onClick={togglePasswordVisibility}
+                  >
                     {isPasswordVisible ? t("hide") : t("show")}
                   </button>
                 </div>
-                {formik.touched.password && formik.errors.password ? <p className="text-red-500 text-xs italic">{formik.errors.password}</p> : null}
+                {formik.touched.password && formik.errors.password ? (
+                  <p className={`text-red-500 text-xs italic ${locale === "en" ? "text-left" : "text-right"}`}>{formik.errors.password}</p>
+                ) : null}
                 <div id="password-strength" className="h-2 mt-1 rounded-lg" />
               </div>
 
@@ -337,13 +382,19 @@ const Page = ({ params: { locale } }) => {
                   locale === "en" ? fonts.spaceG.className : ""
                 }`}
               >
-                {t("alreadyAcc")} <p className="text-primary ml-2"> {t("signIn")}</p>
+                {t("alreadyAcc")}{" "}
+                <p className="text-primary ml-2 cursor-pointer" onClick={() => !isLoading && router.push("/login")}>
+                  {" "}
+                  {t("signIn")}
+                </p>
               </div>
             </div>
           </>
-        ) : (
-          <OTPVerify email={email} userType={formik.values.type} locale={locale} />
-        )}
+        ) : stage === "Email" ? (
+          <OTPVerify email={email} locale={locale} isRegister={true} setStage={setStage} setUserId={setUserId} />
+        ) : stage === "Phone" ? (
+          <PhoneOTPVerify phoneNumber={countryCode + phone} userId={userId} locale={locale} setStage={setStage} />
+        ) : null}
       </div>
     </div>
   );
