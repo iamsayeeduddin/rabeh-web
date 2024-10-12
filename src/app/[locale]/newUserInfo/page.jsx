@@ -387,7 +387,7 @@ const Page = ({ params: { locale } }) => {
   };
 
   return (
-    <div className="w-full p-5 bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
+    <div className="w-full mt-10 p-5 bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
       <div
         className="flex flex-col gap-5 bg-[#FFFFFF] md:px-28 py-[32px] rounded-b-[12px] md:w-[798px]"
         style={{
@@ -694,7 +694,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="educationalLevel">
-                        {t("educationalLevel")}
+                        {t("eduLevel")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${
@@ -909,7 +909,7 @@ const Page = ({ params: { locale } }) => {
 
                     <div className="mb-6">
                       <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="accountHolderName">
-                        {t("accountHolderName")}
+                        {t("accHolderName")}
                       </label>
                       <input
                         className={`appearance-none block w-full bg-white text-gray-700 border ${

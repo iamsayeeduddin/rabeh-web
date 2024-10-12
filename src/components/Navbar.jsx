@@ -15,7 +15,7 @@ const Navbar = ({ locale }) => {
   const fonts = useFonts();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [lang, setLang] = useState("en");
   const path = usePathname();
   const t = useTranslations();
@@ -42,10 +42,11 @@ const Navbar = ({ locale }) => {
   const handleLangChange = (lang) => {
     router.replace(pathname, { locale: lang });
   };
-  const userLs = localStorage.getItem("user");
+
   useEffect(() => {
-    setUser(JSON.parse(userLs));
-  }, [path, userLs]);
+    const userL = JSON.parse(window.localStorage.getItem("user"));
+    setUser(userL);
+  }, [path]);
 
   const handleLogout = () => {
     if (user?._id) {

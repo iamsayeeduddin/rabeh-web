@@ -64,8 +64,8 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
       employerAddress: data?.employerAddress,
       jobName: data?.jobName,
       employerPhone: data?.employerPhone,
-      employmentStartDate: moment(data?.employmentStartDate || new Date()).format("YYYY-MM-DD"),
-      employmentEndDate: moment(data?.employmentEndDate || new Date()).format("YYYY-MM-DD"),
+      employmentStartDate: data?.employmentStartDate,
+      employmentEndDate: data?.employmentEndDate,
       noEmployer: data?.noEmployer,
       hasEmployerPhone: data?.hasEmployerPhone,
       stillWorking: data?.stillWorking,
@@ -91,7 +91,7 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
     <div className={`personal-info ${locale === "en" ? fonts.spaceG.className : ""} flex flex-col items-start justify-start`}>
       <div className="w-full bg-white">
         <div className="flex flex-row justify-between">
-        <h3 className="text-lg font-semibold text-center mb-6">
+          <h3 className="text-lg font-semibold text-center mb-6">
             {isEditing ? (
               <>
                 {t("edit")} {t("workInfo")}
@@ -291,23 +291,19 @@ const WorkInfo = ({ data, isLoading, isSuccess, getData, handleUpdate, locale })
 
                     {formik?.values?.hasEmployerPhone ? (
                       <div>
-                        <p className="text-[#495162] text-[12px] font-bold">
-                          {t("employerPhone")}
-                        </p>
+                        <p className="text-[#495162] text-[12px] font-bold">{t("employerPhone")}</p>
                         <p>{formik.values.employerPhone || "NA"}</p>
                       </div>
                     ) : null}
 
                     <div>
                       <p className="text-[#495162] text-[12px] font-bold">{t("employmentStartDate")}</p>
-                      <p>{formik.values.employmentStartDate || "NA"}</p>
+                      <p>{formik.values.employmentStartDate ? moment(formik.values.employmentStartDate).format("YYYY-MM-DD") : "NA"}</p>
                     </div>
                     {formik?.values?.stillWorking ? null : (
                       <div>
-                        <p className="text-[#495162] text-[12px] font-bold">
-                          {t("employmentEndDate")}
-                        </p>
-                        <p>{formik.values.employmentStartDate || "NA"}</p>
+                        <p className="text-[#495162] text-[12px] font-bold">{t("employmentEndDate")}</p>
+                        <p>{formik.values.employmentEndDate ? moment(formik.values.employmentEndDate).format("YYYY-MM-DD") : "NA"}</p>
                       </div>
                     )}
                   </div>

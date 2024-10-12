@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useFonts from "@/utils/useFonts";
 import { FaUpload } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, locale }) => {
   const fonts = useFonts();
@@ -63,13 +64,13 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
       <div className="w-full   bg-white ">
         <div className="flex flex-row justify-between">
           <h3 className="text-lg font-semibold text-center mb-6">
-              {isEditing ? (
-                <>
-                  {t("edit")} {t("financialInfo")}
-                </>
-              ) : (
-                <>{t("financialInfo")}</>
-              )}
+            {isEditing ? (
+              <>
+                {t("edit")} {t("financialInfo")}
+              </>
+            ) : (
+              <>{t("financialInfo")}</>
+            )}
           </h3>
 
           <div className="flex justify-end mb-4">
@@ -170,10 +171,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className={
-                      "bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " +
-                      (isLoading ? "animate-pulse" : "")
-                    }
+                    className={"bg-primary  text-white font-bold py-2 px-4 rounded-lg w-full " + (isLoading ? "animate-pulse" : "")}
                     onClick={handleSave}
                   >
                     {t("save")}
@@ -185,7 +183,7 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
                 <div className="flex flex-col gap-5 ">
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">{t("annualIncome")}</p>
-                    <p> {userInfo.theannualincome ? `${userInfo.theannualincome} SAR` :"NA"}</p>
+                    <p> {userInfo.theannualincome ? `${userInfo.theannualincome} SAR` : "NA"}</p>
                   </div>
 
                   <div>
@@ -195,15 +193,15 @@ const FinancialInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, loca
 
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">{t("primarySourceOfIncome")}</p>
-                    <p>{userInfo.primarysourceofincome}</p>
+                    <p>{userInfo.primarysourceofincome || "NA"}</p>
                   </div>
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">{t("netWorthRiyalsEx")}</p>
-                    <p>{userInfo.netWorth} SAR</p>
+                    <p>{userInfo.netWorth ? `${userInfo.netWorth} SAR` : "NA"}</p>
                   </div>
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">{t("anotherPhone")}</p>
-                    <p>{userInfo.anotherPhoneNumber}</p>
+                    <p>{userInfo.anotherPhoneNumber || "NA"}</p>
                   </div>
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold"></p>
