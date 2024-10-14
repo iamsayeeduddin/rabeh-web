@@ -48,7 +48,9 @@ const ContactForm = ({ locale }) => {
           email: Yup.string().email("Invalid email format").required("Email is required"),
           phone: Yup.string().required("Phone number is required"),
           message: Yup.string().required("Message is required"),
-          privacyPolicy: Yup.bool().required("Privacy policy must be accepted"),
+          privacyPolicy: Yup.boolean()
+            .oneOf([true], "Privacy policy must be accepted")
+            .required("Privacy policy must be accepted"),
         })}
         onSubmit={(values, { setSubmitting }) => {
           setLoad(true);

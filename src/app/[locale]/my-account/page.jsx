@@ -73,6 +73,7 @@ const MyAccount = ({ params: { locale } }) => {
       .then((res) => {
         toast.success(res.data.message);
         setIsSuccess(true);
+        window.scrollTo({top: 0, behavior: "smooth"});
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -118,6 +119,7 @@ const MyAccount = ({ params: { locale } }) => {
     { label: t("national"), value: "National", show: false },
     { label: t("bank"), value: "Bank", show: false },
   ];
+  
   const renderTabContent = () => {
     switch (activeTab) {
       case "Personal":
