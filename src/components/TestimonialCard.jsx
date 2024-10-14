@@ -1,7 +1,7 @@
 import useFonts from "@/utils/useFonts";
 import React from "react";
 
-const TestimonialCard = ({ imageUrl, name, designation, testimonial }) => {
+const TestimonialCard = ({ imageUrl, name, designation, testimonial, locale }) => {
   const fonts = useFonts();
   return (
     <div className="flex flex-col gap-8">
