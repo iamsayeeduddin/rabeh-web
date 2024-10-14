@@ -44,12 +44,12 @@ const Hero = ({
           <h1 className={`${titleSize} font-bold mb-6 ${titleColor} `}>{title}</h1>
           <p className="text-base md:text-lg mb-8 text-[#737373]">{description}</p>
           <div
-            className={"flex flex-col md:flex-row ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + (locale === "en" ? fonts.spaceG.className : "")}
+            className={"flex flex-col gap-5 md:gap-0 items-center  md:flex-row md:ltr:space-x-4 rtl:space-x-reverse rtl:space-x-4 " + (locale === "en" ? fonts.spaceG.className : "")}
           >
-            <Link href={button1Link} className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/80 text-center">
+            <Link href={button1Link} className="bg-primary w-full md:w-auto text-white px-6 py-3 rounded-lg hover:bg-primary/80 text-center">
               {button1Text}
             </Link>
-            <Link href={button2Link} className="text-black px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 text-center">
+            <Link href={button2Link} className="text-black w-full md:w-auto px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-200 text-center">
               {button2Text}
             </Link>
           </div>
