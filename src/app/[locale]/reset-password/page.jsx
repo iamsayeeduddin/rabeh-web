@@ -23,6 +23,7 @@ const Page = ({ params: { locale } }) => {
       .then((res) => {
         if (res.status === 200) {
           setIsEmail(true);
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
       })
       .catch((err) => {

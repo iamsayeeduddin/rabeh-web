@@ -58,7 +58,7 @@ const Page = ({ params: { locale } }) => {
       })
       .then((response) => {
         if (response.data.status === "success") {
-          setStage("Email");
+          changeStage("Email");
           toast(response.data.message);
           formik.resetForm();
         }
@@ -164,6 +164,12 @@ const Page = ({ params: { locale } }) => {
     { value: "+966", label: "KSA" },
     { value: "+971", label: "UAE" },
   ];
+
+
+  const changeStage = (stage) => {
+    setStage(stage);
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
 
   return (
     <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
@@ -391,9 +397,9 @@ const Page = ({ params: { locale } }) => {
             </div>
           </>
         ) : stage === "Email" ? (
-          <OTPVerify email={email} locale={locale} isRegister={true} setStage={setStage} setUserId={setUserId} />
+          <OTPVerify email={email} locale={locale} isRegister={true} setStage={changeStage} setUserId={setUserId} />
         ) : stage === "Phone" ? (
-          <PhoneOTPVerify phoneNumber={countryCode + phone} userId={userId} locale={locale} setStage={setStage} />
+          <PhoneOTPVerify phoneNumber={countryCode + phone} userId={userId} locale={locale} setStage={changeStage} />
         ) : null}
       </div>
     </div>
