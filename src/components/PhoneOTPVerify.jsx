@@ -16,6 +16,7 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
   const [isCountdownFinished, setIsCountdownFinished] = useState(false);
   const [loading, setLoading] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     if (!window.recaptchaVerifier) {
@@ -111,14 +112,17 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
       })
       .then((res) => {
         toast.success(res.data.message);
+        setIsSuccess(true);
         let updatedUser = res.data.user;
         localStorage.setItem("user", JSON.stringify(updatedUser));
-        if (!["Investor", "Entrepreneur", "Admin"].includes(updatedUser?.type) || isLogin) {
+        if (!["Investor", "Entrepreneur"].includes(updatedUser?.type) || isLogin) {
           router.push("/");
         } else if (!isLogin) {
           router.push("/newUserInfo");
         }
-      });
+      }).catch((err) => {
+        toast.success(err.response?.data?.message || "Failed!")
+      })
   };
   return (
     <>
@@ -218,7 +222,7 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
             }
             type="button"
             onClick={handleVerify}
-            disabled={otp.length < 6 || loading}
+            disabled={otp.length < 6 || loading || isSuccess}
           >
             {t("verification")}
           </button>
