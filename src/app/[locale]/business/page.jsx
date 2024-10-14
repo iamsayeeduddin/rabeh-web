@@ -62,6 +62,7 @@ const Page = ({ params: { locale } }) => {
               name={t("mohdSolami")}
               designation={t("directorTech") + ", Rabeh"}
               testimonial={t("bussQuote")}
+              locale={locale}
             />
           </div>
           <div className=" col-span-8 flex items-center justify-end w-full">
