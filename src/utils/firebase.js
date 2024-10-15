@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 const firebaseConfig = {
@@ -15,8 +15,13 @@ const firebaseConfig = {
 // Initialize Firebase
 let app;
 
-if (!app && typeof window !== "undefined") {
-  app = initializeApp(firebaseConfig);
+if (typeof window !== "undefined") {
+  // Check if Firebase apps have already been initialized
+  if (!getApps().length) {
+    app = initializeApp(firebaseConfig);
+  } else {
+    app = getApps()[0]; // Use the existing initialized app
+  }
 }
 
 const auth = getAuth(app);
