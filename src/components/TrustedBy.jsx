@@ -13,7 +13,6 @@ const TrustedBy = ({ locale }) => {
   const controls = useAnimation();
   const t = useTranslations();
 
-
   const logos = [
     { src: "/assets/logos/pif.jpg", alt: "Logo 1" },
     { src: "/assets/logos/kaust.jpg", alt: "Logo 2" },
@@ -31,18 +30,8 @@ const TrustedBy = ({ locale }) => {
     { src: "/assets/logos/waad.jpg", alt: "Logo 14" },
     { src: "/assets/logos/core.jpg", alt: "Logo 15" },
     { src: "/assets/logos/s3.jpg", alt: "Logo 16" },
-    { src: "/assets/logos/sharaka.jpg", alt: "Logo 17" },
-
-
-
-
-
-
-
-
-
+    { src: "/assets/logos/sharaka.png", alt: "Logo 17" },
   ];
-
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -70,7 +59,7 @@ const TrustedBy = ({ locale }) => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 1,
         },
       },
     ],
@@ -91,16 +80,14 @@ const TrustedBy = ({ locale }) => {
       </div>
 
       <div className="w-full ">
-      <Slider {...settings}>
+        <Slider {...settings}>
           {logos.map((logo, index) => (
-            <div key={index} className="w-full flex justify-center items-center">
-              <img src={logo.src} alt={logo.alt}  className="w-2/3 h-[100px] md:h-[200px] object-contain" />
+            <div key={index} className="w-full !flex justify-center items-center">
+              <img src={logo.src} alt={logo.alt} className="w-2/3 h-[100px] md:h-[200px] object-contain" />
             </div>
           ))}
         </Slider>
       </div>
-
-     
     </motion.section>
   );
 };
