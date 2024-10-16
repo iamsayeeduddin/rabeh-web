@@ -405,5 +405,12 @@
   "onceVerifedWalletCreated": "Once verified, your wallet will be created successfully",
   "firstNamePlaceholder": "John",
   "lastNamePlaceholder": "Doe",
-  "privacySubtitle": "Welcome to RABEH. Your privacy is important to us. This Privacy Policy outlines how we collect, use, share, and protect your personal information in compliance with Saudi Arabian laws, including the Saudi Personal Data Protection Law (PDPL), and applicable international regulations."
+  "privacySubtitle": "Welcome to RABEH. Your privacy is important to us. This Privacy Policy outlines how we collect, use, share, and protect your personal information in compliance with Saudi Arabian laws, including the Saudi Personal Data Protection Law (PDPL), and applicable international regulations.",
+  "passwordReset": "Reset Password",
+  "enterEmailtoReset": "Enter your email address, and we will send a verification code to your email",
+  "updatePassword": "Update Password",
+  "newPassword": "New Password",
+  "createNewPass": "Create a new password that is secure and easy to remember",
+  "passwordChanged": "Password Changed",
+  "passwordChangedDesc": "Password changed successfully, you can login again with your new password"
 }

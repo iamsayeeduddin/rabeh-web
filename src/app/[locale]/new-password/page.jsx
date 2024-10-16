@@ -107,10 +107,8 @@ const Page = ({ params: { locale } }) => {
               </svg>
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("New Password")}</h2>
-            <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
-              {t("Create a new password that is secure and easy to remember")}
-            </p>
+            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("newPassword")}</h2>
+            <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("createNewPass")}</p>
 
             <Formik
               initialValues={{ password: "", confirmPassword: "" }}
@@ -188,7 +186,7 @@ const Page = ({ params: { locale } }) => {
 
                   <div className="mb-6 relative">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="confirmPassword">
-                      {t("Confirm the new password")}
+                      {t("confirmPassword")}
                     </label>
                     <div className="relative">
                       <Field
@@ -240,12 +238,13 @@ const Page = ({ params: { locale } }) => {
                     </p>
                   </div>
 
-                  <p className="text-sm text-[#7986A3] my-5">
-                    The length of the password is not less than 8 characters. The password must not be weak, and it must meet the following
-                    conditions: It must be different from the user ID <br />
-                    . It contains lowercase letters (az) and uppercase letters (AZ) <br />
-                    . It contains at least a number. One (0-9) <br />. Contain at least one character (!@#SAR%^&*)
-                  </p>
+                  {/* <p className="text-sm text-[#7986A3] my-5">
+                    conditions: <br />
+                    The length of the password shou not less than 8 characters. The password must not be weak, and it must meet the following It
+                    contains lowercase letters (az) and uppercase letters (AZ) <br />
+                    It contains at least a number. One (0-9) <br />
+                    Contain at least one character
+                  </p> */}
 
                   <div className="flex items-center justify-center">
                     <button
@@ -256,7 +255,7 @@ const Page = ({ params: { locale } }) => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      {t("change")}
+                      {t("updatePassword")}
                     </button>
                   </div>
                 </Form>
@@ -305,11 +304,9 @@ const Page = ({ params: { locale } }) => {
                     />
                   </svg>
 
-                  <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
-                    {t("Password has been changed")}
-                  </h2>
+                  <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("passwordChanged")}</h2>
                   <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
-                    {t("Password changed successfully, you can login again with your new password")}
+                    {t("passwordChangedDesc")}
                   </p>
                   <div className="flex items-center justify-center">
                     <button

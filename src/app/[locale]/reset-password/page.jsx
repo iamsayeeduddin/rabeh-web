@@ -80,10 +80,8 @@ const Page = ({ params: { locale } }) => {
               </svg>
             </div>
 
-            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("Password Reset")}</h2>
-            <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
-              {t("Enter your email address, and we will send a verification code to your email")}
-            </p>
+            <h2 className={`font-bold text-[36px] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("passwordReset")}</h2>
+            <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("enterEmailtoReset")}</p>
 
             <Formik
               initialValues={{ email: "" }}
@@ -96,14 +94,14 @@ const Page = ({ params: { locale } }) => {
                 <Form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`}>
                   <div className="mb-6">
                     <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
-                      {t("Email Address")}
+                      {t("email")}
                     </label>
                     <Field
                       className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-email"
                       type="email"
                       name="email"
-                      placeholder="Email Address"
+                      placeholder={t("email")}
                     />
                     <ErrorMessage name="email" component="div" className="text-red-500 text-xs italic" />
                   </div>
@@ -116,7 +114,7 @@ const Page = ({ params: { locale } }) => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      {t("Send")}
+                      {t("reset")}
                     </button>
                   </div>
                 </Form>

@@ -228,8 +228,8 @@ const Page = ({ params: { locale } }) => {
                     } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="firstName"
                     type="text"
-                    name={t("firstNamePlaceholder")}
-                    placeholder="Jane"
+                    name="firstName"
+                    placeholder={t("firstNamePlaceholder")}
                     {...formik.getFieldProps("firstName")}
                   />
                   {formik.touched.firstName && formik.errors.firstName ? (
@@ -246,8 +246,8 @@ const Page = ({ params: { locale } }) => {
                     } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="lastName"
                     type="text"
-                    name={t("lastNamePlaceholder")}
-                    placeholder="Doe"
+                    name="lastName"
+                    placeholder={t("lastNamePlaceholder")}
                     {...formik.getFieldProps("lastName")}
                   />
                   {formik.touched.lastName && formik.errors.lastName ? <p className="text-red-500 text-xs italic">{formik.errors.lastName}</p> : null}
