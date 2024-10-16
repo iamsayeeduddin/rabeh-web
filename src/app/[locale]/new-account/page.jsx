@@ -165,11 +165,10 @@ const Page = ({ params: { locale } }) => {
     { value: "+971", label: "UAE" },
   ];
 
-
   const changeStage = (stage) => {
     setStage(stage);
-    window.scrollTo({top: 0, behavior: "smooth"});
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="w-full p-5 md:p-[94px_112px_94px_112px] bg-gradient-to-b from-[#F5F8FF] to-[rgba(244, 253, 255, 0)] flex items-center justify-center shadow-[0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1)]">
@@ -229,7 +228,7 @@ const Page = ({ params: { locale } }) => {
                     } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="firstName"
                     type="text"
-                    name="firstName"
+                    name={t("firstNamePlaceholder")}
                     placeholder="Jane"
                     {...formik.getFieldProps("firstName")}
                   />
@@ -247,7 +246,7 @@ const Page = ({ params: { locale } }) => {
                     } rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                     id="lastName"
                     type="text"
-                    name="lastName"
+                    name={t("lastNamePlaceholder")}
                     placeholder="Doe"
                     {...formik.getFieldProps("lastName")}
                   />
