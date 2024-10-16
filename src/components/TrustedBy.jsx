@@ -5,13 +5,16 @@ import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const TrustedBy = ({ locale }) => {
   const controls = useAnimation();
   const t = useTranslations();
   const { ref, inView } = useInView({
-    triggerOnce: true, // Animation will trigger only once
-    threshold: 0.2, // Adjust the threshold as needed
+    triggerOnce: true,
+    threshold: 0.2,
   });
   const fonts = useFonts();
 
@@ -20,6 +23,17 @@ const TrustedBy = ({ locale }) => {
       controls.start({ opacity: 1, y: 0 });
     }
   }, [inView, controls]);
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
 
   return (
     <motion.section
@@ -35,17 +49,37 @@ const TrustedBy = ({ locale }) => {
       >
         {t("trustedByTxt")}
       </div>
-      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
-        <img src="/assets/logos/pif.jpg" alt="Logo 1" width={150} />
+
+      <div className="w-full  md:hidden">
+        <Slider {...sliderSettings}>
+          <div className="flex justify-center items-center  py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+            <img src="/assets/logos/pif.jpg" alt="Logo 1" width={150} />
+          </div>
+          <div className="flex justify-center items-center py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+            <img src="/assets/logos/kaust.jpg" alt="Logo 2" width={150} />
+          </div>
+          <div className="flex justify-center items-center py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+            <img src="/assets/logos/vision.jpg" alt="Logo 3" width={150} />
+          </div>
+          <div className="flex justify-center items-center py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+            <img src="/assets/logos/raed.jpg" alt="Logo 4" width={150} />
+          </div>
+        </Slider>
       </div>
-      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
-        <img src="/assets/logos/kaust.jpg" alt="Logo 2" width={150} />
-      </div>
-      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
-        <img src="/assets/logos/vision.jpg" alt="Logo 3" width={150} />
-      </div>
-      <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
-        <img src="/assets/logos/raed.jpg" alt="Logo 4" width={150} />
+
+      <div className="hidden md:flex md:gap-5">
+        <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+          <img src="/assets/logos/pif.jpg" alt="Logo 1" width={150} />
+        </div>
+        <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+          <img src="/assets/logos/kaust.jpg" alt="Logo 2" width={150} />
+        </div>
+        <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+          <img src="/assets/logos/vision.jpg" alt="Logo 3" width={150} />
+        </div>
+        <div className="py-5 px-10 hover:shadow-2xl hover:scale-125 transition-all">
+          <img src="/assets/logos/raed.jpg" alt="Logo 4" width={150} />
+        </div>
       </div>
     </motion.section>
   );
