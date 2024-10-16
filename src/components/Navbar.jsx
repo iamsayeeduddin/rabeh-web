@@ -410,7 +410,7 @@ const Navbar = ({ locale }) => {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-white px-4 pt-4 pb-3 space-y-1 flex flex-col">
+          <div className="md:hidden bg-white px-4 pt-4 pb-3 space-y-2 flex flex-col">
             <Link href="/" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
               {t("home")}
             </Link>
@@ -464,12 +464,29 @@ const Navbar = ({ locale }) => {
             <Link href="/careers" onClick={handleLinkClick} className="text-gray-700 hover:text-primary py-2">
               {t("careers")}
             </Link>
-            <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2">
-              {t("signIn")}
-            </Link>
-            <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
-              {t("getStarted")}
-            </Link>
+            {!user?.token ? (
+              <>
+                <Link href="/login" onClick={handleLinkClick} className="text-gray-700 hover:text-gray-900 rounded-lg px-4 py-2 border-2">
+                  {t("signIn")}
+                </Link>
+                <Link href="/sign-up" onClick={handleLinkClick} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
+                  {t("getStarted")}
+                </Link>
+              </>
+            ) : (
+              <span className="flex items-center gap-4">
+                <div
+                  className="w-8 h-8 flex justify-center items-center rounded-full bg-primary text-white cursor-pointer"
+                  onClick={() => router.push("/my-account")}
+                >
+                  <p>{user?.name?.charAt(0).toUpperCase() || "U"}</p>
+                </div>
+                <p className="rtl:text-right">
+                  {t("welcome")}, {user?.name || "User"}!
+                </p>
+                <CiLogout className="hover:text-primary text-lg cursor-pointer" onClick={handleLogout} />
+              </span>
+            )}
           </div>
         )}
 

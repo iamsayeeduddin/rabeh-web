@@ -638,7 +638,7 @@ const Page = ({ params: { locale } }) => {
                             <p className="text-gray-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
                             <input
                               ref={fileInputRef}
-                              type="file"
+                              type="image/*"
                               id="documentFile"
                               className="hidden"
                               onChange={(event) => {
@@ -1012,7 +1012,7 @@ const Page = ({ params: { locale } }) => {
                     {t("verificationInProgress")}
                   </h2>
                   <p className={`text-[16] text-center text-[#7986A3] ${locale === "en" ? fonts.spaceG.className : ""}`}>
-                    {t("onceVerifiedWalletCreated")}
+                    {t("onceVerifedWalletCreated")}
                   </p>
                   <div className="flex items-center justify-center">
                     <button

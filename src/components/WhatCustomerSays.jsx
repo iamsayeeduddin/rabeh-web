@@ -74,8 +74,8 @@ const WhatCustomerSays = ({ locale }) => {
       <div className="justify-start text-lg text-medium text-[#737373]">{t("testimonials")}</div>
       <div className="justify-start text-5xl font-semibold font-inter mt-5">{t("whatCustSay")}</div>
 
-      <div className="w-full mt-10 p-0">
-        <Slider {...settings}>
+      <div className="h-fit mt-10 p-0">
+        <Slider {...settings} className="w-full">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
