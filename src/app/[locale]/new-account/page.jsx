@@ -59,12 +59,12 @@ const Page = ({ params: { locale } }) => {
       .then((response) => {
         if (response.data.status === "success") {
           changeStage("Email");
-          toast(response.data.message);
+          toast(response?.data?.message);
           formik.resetForm();
         }
       })
       .catch((error) => {
-        toast(error.response.data.message);
+        toast(error?.response?.data.message);
       })
       .finally(() => {
         setIsLoading(false);

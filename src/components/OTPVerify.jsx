@@ -44,7 +44,7 @@ function OTPVerify({ email, isReset, userType, locale, isRegister = false, setSt
         toast.success(res.data.message);
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data?.message || "Failed");
       });
   };
 

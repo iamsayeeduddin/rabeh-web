@@ -140,7 +140,7 @@ const MyAccount = ({ params: { locale } }) => {
   };
 
   return (
-    <div className={`container mx-auto pt-20 p-6 ${locale === "en" ? fonts.spaceG.className : ""}`}>
+    <div className={`container mx-auto p-6 ${locale === "en" ? fonts.spaceG.className : ""}`}>
       <div className="flex justify-between items-center mb-6">
         <div className="breadcrumbs text-sm text-gray-500">
           <div className="flex flex-row items-center justify-center gap-2">

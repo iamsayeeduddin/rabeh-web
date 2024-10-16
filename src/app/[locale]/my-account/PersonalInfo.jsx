@@ -312,7 +312,7 @@ const PersonalInfo = ({ data, handleUpdate, isLoading, isSuccess, getData, local
 
                   <div>
                     <p className="text-[#495162] text-[12px] font-bold">{t("phoneNumber")} </p>
-                    <p> {userInfo.phoneNumber}</p>
+                    <p> {userInfo?.countryCode}{userInfo.phoneNumber}</p>
                   </div>
 
                   <div>
