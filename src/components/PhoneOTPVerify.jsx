@@ -120,9 +120,10 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
         } else if (!isLogin) {
           router.push("/newUserInfo");
         }
-      }).catch((err) => {
-        toast.success(err.response?.data?.message || "Failed!")
       })
+      .catch((err) => {
+        toast.success(err.response?.data?.message || "Failed!");
+      });
   };
   return (
     <>
@@ -165,9 +166,8 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
           {Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="relative">
               <input
-                className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center h-[76px] w-[70px] ${
-                  locale === "en" ? fonts.spaceG.className : ""
-                }`}
+                className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center 
+        h-[48px] w-[43px] sm:h-[60px] sm:w-[54px] md:h-[70px] md:w-[64px] lg:h-[76px] lg:w-[70px] ${locale === "en" ? fonts.spaceG.className : ""}`}
                 id={`otp-input-${index}`}
                 type="text"
                 maxLength="1"
@@ -201,6 +201,7 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
             </div>
           ))}
         </div>
+
         <div className="flex flex-row items-center justify-center gap-5">
           {!isCountdownFinished ? (
             <>
