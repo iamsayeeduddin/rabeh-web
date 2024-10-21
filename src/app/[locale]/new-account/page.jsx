@@ -277,7 +277,7 @@ const Page = ({ params: { locale } }) => {
                   />
                   <div className={`absolute inset-y-0 ${locale === "en" ? "right-0" : "left-0"} flex items-center px-2 text-gray-700`}>
                     <select
-                      className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-full"
+                      className="block bg-transparent border-none bg-no-repeat text-gray-700 pr-8 focus:outline-none focus:bg-white h-fit"
                       id="countryCode"
                       {...formik.getFieldProps("countryCode")}
                       onChange={(e) => {
