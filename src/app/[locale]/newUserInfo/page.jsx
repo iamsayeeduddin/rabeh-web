@@ -638,7 +638,8 @@ const Page = ({ params: { locale } }) => {
                             <p className="text-gray-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
                             <input
                               ref={fileInputRef}
-                              type="image/*"
+                              accept="image/*"
+                              type="file"
                               id="documentFile"
                               className="hidden"
                               onChange={(event) => {
