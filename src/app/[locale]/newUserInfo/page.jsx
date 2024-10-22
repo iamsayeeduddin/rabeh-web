@@ -644,7 +644,6 @@ const Page = ({ params: { locale } }) => {
                               className="hidden"
                               onChange={(event) => {
                                 formik.setFieldValue("documentFile", event.target.files[0]);
-                                console.log(event.target.files[0]);
                               }}
                             />
                           </div>
