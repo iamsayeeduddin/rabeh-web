@@ -105,6 +105,13 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
     }
   };
 
+  useEffect(() => {
+    const firstInput = document.getElementById("otp-input-0");
+    if (firstInput) {
+      firstInput.focus();
+    }
+  }, []);
+
   const updatePhoneVerified = () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/phone-verified`, {
@@ -153,21 +160,54 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
               />
             </svg>
           </div>
-          <p className={`text-[#7986A3] text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>2/2</p>
-          <h2 className={`font-bold text-[24px] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{t("codeVerify")}</h2>
-          <p className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>
+          <p
+            className={`text-[#7986A3] text-center ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
+          >
+            2/2
+          </p>
+          <h2
+            className={`font-bold text-[24px] md:text-start text-center ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
+          >
+            {t("codeVerify")}
+          </h2>
+          <p
+            className={`text-[16] text-[#7986A3] p-5 md:p-0 text-center ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
+          >
             {t("plsEnterCodePhone")}
           </p>
-          <p className={`text-[16] md:text-start text-center ${locale === "en" ? fonts.spaceG.className : ""}`}>{phoneNumber}</p>
+          <p
+            className={`text-[16] md:text-start text-center ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
+          >
+            {phoneNumber}
+          </p>
         </div>
       </div>
-      <form className={`w-full md:p-0 p-3 max-w-lg ${locale === "en" ? fonts.spaceG.className : ""}`} action="" method="POST">
-        <div className="flex space-x-4 mb-6 items-center justify-center">
+      <form
+        className={`w-full md:p-0 p-3 max-w-lg ${
+          locale === "en" ? fonts.spaceG.className : ""
+        }`}
+        action=""
+        method="POST"
+      >
+        <div
+          className={`flex space-x-4 rtl:space-x-reverse mb-6 items-center justify-center`}
+        >
           {Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="relative">
               <input
+                key={`otp-input-${index}`}
                 className={`appearance-none block bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-center 
-        h-[48px] w-[43px] sm:h-[60px] sm:w-[54px] md:h-[70px] md:w-[64px] lg:h-[76px] lg:w-[70px] ${locale === "en" ? fonts.spaceG.className : ""}`}
+            h-[48px] w-[43px] sm:h-[60px] sm:w-[54px] md:h-[70px] md:w-[64px] lg:h-[76px] lg:w-[70px] ${
+              locale === "en" ? fonts.spaceG.className : ""
+            }`}
                 id={`otp-input-${index}`}
                 type="text"
                 maxLength="1"
@@ -182,8 +222,13 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
 
                   setOtp(newOtp);
 
-                  if (value.length === 1 && index < 5) {
-                    const nextInput = document.getElementById(`otp-input-${index + 1}`);
+                  if (value.length === 1) {
+                    const nextInput = document.getElementById(
+                      `otp-input-${index + 1}`
+                    );
+                    if (nextInput) {
+                      nextInput.focus();
+                    }
                     if (nextInput) {
                       nextInput.focus();
                     }
@@ -191,7 +236,9 @@ function PhoneOTPVerify({ locale, phoneNumber, isLogin, userId, countryCode }) {
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Backspace" && !e.target.value) {
-                    const prevInput = document.getElementById(`otp-input-${index - 1}`);
+                    const prevInput = document.getElementById(
+                      `otp-input-${index - 1}`
+                    );
                     if (prevInput) {
                       prevInput.focus();
                     }

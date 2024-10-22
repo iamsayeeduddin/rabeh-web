@@ -1,7 +1,8 @@
 "use client";
 import { Link } from "@/i18n/routing";
 import Logo from "./Logo";
-import { FaYoutube, FaInstagram, FaLinkedin, FaBars, FaTimes, FaFacebook } from "react-icons/fa";
+import { FaYoutube, FaInstagram, FaLinkedin, FaBars, FaFacebook } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import useFonts from "@/utils/useFonts";
 import { CiLogout } from "react-icons/ci";
 import { useEffect, useState } from "react";
@@ -276,7 +277,7 @@ const Navbar = ({ locale }) => {
               <FaYoutube />
             </Link>
             <Link href="https://x.com/RabehFinance" target="_blank">
-              <FaTimes />
+              <FaXTwitter />
             </Link>
           </div>
           <div
