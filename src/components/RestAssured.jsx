@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import useFonts from "@/utils/useFonts";
 import { useTranslations } from "next-intl";
 const RestAssured = ({ locale }) => {
