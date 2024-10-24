@@ -405,7 +405,7 @@ const Navbar = ({ locale }) => {
 
           <div className="md:hidden flex flex-col">
             <button onClick={toggleMenu} className="text-primary hover:text-gray-900">
-              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {menuOpen ? <FaXTwitter size={24} /> : <FaBars size={24} />}
             </button>
           </div>
         </div>
